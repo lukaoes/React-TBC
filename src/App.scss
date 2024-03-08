@@ -185,3 +185,94 @@
      }
   }
 }
+
+// footer
+
+footer {
+  width: 100%;
+  height: auto;
+  background-color: #fffad1;
+  margin: 0 auto;
+
+  .footer-container {
+    margin: 0 auto;
+    max-width: 75rem;
+    padding: 2.25rem 1.25rem;
+  }
+
+  .footer-newsteller {
+    margin: 0 auto;
+    max-width: 615px;
+    
+    p {
+      font-weight: 300;
+      font-size: 18px;
+    }
+
+    div {
+      display: flex;
+      input {
+        box-sizing: border-box;
+        padding: 10px 10px;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid #000;
+        width: 100%;
+
+        &:focus {
+          border: none;
+        }
+      }
+      
+      button {
+        padding: 10px 10px;
+        border-radius: 0 15px 15px 0;
+        font-weight: 700;
+        border: 1px solid #f8d09f;
+        background-color: #f8d09f;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+  
+  .footer-links {
+    .company {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      margin: 0 auto;
+      gap: 10px;
+      
+      h2 {
+        font-size: 18px;
+      }
+
+      a {
+        color: #000;
+        text-decoration: none;
+        transition: all 0.3s ease-in-out;    
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  @media only screen and (min-width: 768px) {
+    .footer-container {
+      display: flex;
+      gap: 10px;
+      justify-content: space-around;
+      align-items: center;
+
+      .footer-newsteller {
+        margin: 0;
+      }
+    }
+ }
+}
