@@ -1,0 +1,32 @@
+main {
+  width: 100%;
+  width: 100%;
+  height: auto;
+  background-color: $secondary-color;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 25px;
+  }
+
+  .main-container {
+    margin: 0 auto;
+    max-width: 75rem;
+    padding: 2.25rem 1.25rem;
+  }
+
+  .featured-products {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 10px;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 15px;
+
+    @media only screen and (min-width: $tablet) {
+      padding: 30px;
+    }
+  }
+}

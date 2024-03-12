@@ -1,0 +1,91 @@
+.featured-card {
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  
+  .featured-card_img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 15px 15px 0 0;
+  }
+
+  &_joint {
+    border-radius: 100px 100px 0px 0px;
+    position: absolute;
+    bottom: 150px;
+    background-color: #fff;
+    height: 10px;
+    width: 100%;
+    transition: all 0.1s ease-in-out;
+  }
+
+  &_info {
+    position: relative;
+    height: 150px;
+    z-index: 1;
+    background-color: #fff;
+    border-radius: 0 0 15px 15px;
+    box-shadow: 0px 5px 0px 0px #e4ece6;
+    padding: 10px 15px 15px 15px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+    h4 {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    .cate-rating {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      span {
+        font-size: 16px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        span {
+          font-size: 12px;
+          display: block;
+        }
+      }
+    }
+
+    .price-cart {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      span {
+        font-size: 24px;
+        font-weight: 800;
+      }
+
+      button {
+        padding: 10px;
+        border: 1px solid #f2f2f2;
+        border-radius: 10px;
+        background-color: #fbfbfb;
+        cursor: pointer;
+
+        &:hover {
+          background-color: transparent;
+        }
+      }
+    }
+  }
+
+  &:hover {
+    .featured-card_joint {
+      height: 20px;
+      box-shadow: 0px -20px 21px 0px rgba(0,0,0,0.1);
+    }
+  }
+
+  @media only screen and (min-width: $tablet) {
+    max-width: 310px;
+  }
+}
