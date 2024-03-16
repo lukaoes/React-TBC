@@ -6,9 +6,11 @@ import './styles/index.scss'
 
 function App() {
   return (
-    <div>
+    <div className='app'>
       <Header />
-      <Home />
+      <main className='content'>
+        <Home />
+      </main>
       <Footer />
     </div>
   );
