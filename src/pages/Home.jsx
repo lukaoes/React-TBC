@@ -111,11 +111,11 @@ export const Home = () => {
   return (
     <main>
       <div className="main-container">
-        <h1>Blog Posts</h1>
+        <h1 className="title">Blog Posts</h1>
         <div className="blog-posts">
           <BlogCard blogCardData={blogCardData} />
         </div>
-        <h1>Featured Products</h1>
+        <h1 className="title">Featured Products</h1>
         <div className="featured-products">
           <Card cardData={cardData} />
         </div>
