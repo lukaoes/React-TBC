@@ -1,15 +1,17 @@
 const Contact = () => {
 
   function handleFocus(event) {
-    var input = event.target;
-    var parent = input.parentNode;
-    var label = parent.querySelector('label');
+  var input = event.target;
+  var parent = input.parentNode;
+  var label = parent.querySelector('label');
+  if (label) {
     if (event.type === 'focusin' || input.value) {
       label.classList.add('active');
     } else {
       label.classList.remove('active');
     }
   }
+}
 
   document.addEventListener('focusin', handleFocus);
   document.addEventListener('focusout', handleFocus);
