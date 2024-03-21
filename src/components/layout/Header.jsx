@@ -1,3 +1,5 @@
+import { NavLink } from "react-router-dom"
+
 const Header = () => {
   let openBurger = false
 
@@ -29,10 +31,10 @@ const Header = () => {
             </div>
             <div className={`menu ${openBurger ? 'is-active' : ''}`} id="menu">
               <ul className="menu-inner">
-                  <li className="menu-item"><a href="/" className="menu-link">Home</a></li>
-                  <li className="menu-item"><a href="/" className="menu-link">Products</a></li>
-                  <li className="menu-item"><a href="/" className="menu-link">About</a></li>
-                  <li className="menu-item"><a href="/" className="menu-link">Contact</a></li>
+                  <li className="menu-item"><NavLink to="/" className="menu-link">Home</NavLink></li>
+                  <li className="menu-item"><NavLink to="/products" className="menu-link">Products</NavLink></li>
+                  <li className="menu-item"><NavLink to="/about" className="menu-link">About</NavLink></li>
+                  <li className="menu-item"><NavLink to="/contact" className="menu-link">Contact</NavLink></li>
               </ul>
             </div>
             <a href="/" className="menu-block">REGISTER</a>

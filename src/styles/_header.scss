@@ -123,9 +123,17 @@
 
   &-item {
     transition: all 0.1s ease;
+    a {
+      opacity: 0.6;
+      display: inline-block;
+    }
     &:hover {
       border-radius: 4px;
       border-bottom: 4px solid #f5d0a2;
+    }
+
+    .active {
+      opacity: 1;
     }
   }
 
