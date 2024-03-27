@@ -3,6 +3,7 @@ import Layout from "../components/layout/Layout"
 import Home from "../pages/Home"
 import Contact from "../pages/Contact"
 import Blog from "../pages/Blog"
+import Profile from "../pages/Profile"
 
 const AllRoutes = () => {
   return (
@@ -12,6 +13,7 @@ const AllRoutes = () => {
           <Route path="/" element={<Home />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/blog" element={<Blog />} />
+          <Route path="/profile" element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>
