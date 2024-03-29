@@ -58,26 +58,29 @@ const ProfileForm = ({ userData, setUserData }) => {
     return (
       <div>
         <label htmlFor={fieldName}>{label}:</label>
-        <input
-          type={type}
-          id={fieldName}
-          name={fieldName}
-          value={formData[fieldName]}
-          onChange={handleChange}
-          readOnly={!edit[fieldName]}
-        />
-        <button
-          type="button"
-          onClick={() => {
-            if (edit[fieldName]) {
-              handleSave()
-            } else {
-              handleEdit(fieldName)
-            }
-          }}
-        >
-          {edit[fieldName] ? "Save" : "Change"}
-        </button>
+        <div className="profile-input-container">
+          <input
+            type={type}
+            id={fieldName}
+            name={fieldName}
+            value={formData[fieldName]}
+            onChange={handleChange}
+            readOnly={!edit[fieldName]}
+          />
+          <button
+            className="input-button"
+            type="button"
+            onClick={() => {
+              if (edit[fieldName]) {
+                handleSave()
+              } else {
+                handleEdit(fieldName)
+              }
+            }}
+          >
+            {edit[fieldName] ? "Save" : "Change"}
+          </button>
+        </div>
       </div>
     )
   }
