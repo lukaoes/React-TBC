@@ -4,13 +4,27 @@ const SearchBar = ({ cardData, onSearch }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortedByPrice, setSortedByPrice] = useState(false)
 
-  const handleInputChange = (event) => {
-    const inputValue = event.target.value;
-    setSearchTerm(inputValue);
+  const debounce = (func, delay) => {
+    let timeoutId
+    return function (...args) {
+      clearTimeout(timeoutId)
+      timeoutId = setTimeout(() => {
+        func.apply(this, args)
+      }, delay)
+    }
+  }
+
+  const debouncedSearch = debounce((searchTerm) => {
     const filteredData = cardData.filter((item) =>
-      item.title.toLowerCase().includes(inputValue.toLowerCase())
-    );
-    onSearch(filteredData);
+      item.title.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    onSearch(filteredData)
+  }, 300)
+
+  const handleInputChange = (event) => {
+    const inputValue = event.target.value
+    setSearchTerm(inputValue)
+    debouncedSearch(inputValue)
   }
 
   const handleSortByPrice = () => {
@@ -52,17 +66,6 @@ const SearchBar = ({ cardData, onSearch }) => {
             c8.239,0,15.332-3.688,18.985-9.877C347.382,306.396,347.725,305.657,347.725,303.956z"/>
         </g>
         </svg>
-        {/* <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="18" height="18"
-          viewBox="0 0 24 24"
-          className="search_icon"
-          onClick={handleSortByPrice}
-        >
-          <path
-            d="M21.172 24l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z"
-          />
-        </svg> */}
       </form>
     </div>
   );
