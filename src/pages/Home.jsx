@@ -1,4 +1,6 @@
+import { useState } from 'react';
 import Card from '../components/cards/Card'
+import SearchBar from '../components/Home/searchBar';
 
 const cardData = [
   {
@@ -64,15 +66,28 @@ const cardData = [
 ]
 
 export const Home = () => {
+  const [filteredCardData, setFilteredCardData] = useState(cardData);
+
+  const handleSearch = (filteredData) => {
+    setFilteredCardData(filteredData);
+  };
+
   return (
-    <main>
-      <div className="main-container">
-        <h1 className="title">Featured Products</h1>
-        <div className="featured-products">
-          <Card cardData={cardData} />
+    <>
+      <SearchBar cardData={cardData} onSearch={handleSearch} />
+      <main>
+        <div className="main-container">
+          <h1 className="title">Featured Products</h1>
+          <div className="featured-products">
+            {filteredCardData.length > 0 ? (
+              <Card cardData={filteredCardData} />
+            ) : (
+              <p style={{ fontSize: '18px', fontWeight: '700'}}>No items found :(</p>
+            )}
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </>
   )
 }
 

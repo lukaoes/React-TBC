@@ -1,4 +1,3 @@
-import SearchBar from "./searchBar"
 import { useState } from "react";
 import BurgerMenu from "./burgerMenu";
 import HeaderMenu from "./headerMenu";
@@ -20,7 +19,6 @@ const Header = () => {
             <a href="/profile" className="menu-block">MY PROFILE</a>
         </nav>
       </header>
-      <SearchBar />
     </>
   )
 }
