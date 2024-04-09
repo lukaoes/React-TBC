@@ -2,7 +2,8 @@
 import BlogCard from '@/components/cards/blogCard';
 import BlogRecentCard from '@/components/cards/blogRecentCard';
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
+import Loading from '../loading';
 
 // const blogCardData = [
 //   {
@@ -209,9 +210,12 @@ import { useEffect, useState } from 'react';
 
 export default function Blog() {
   const [blogCardData, setBlogCardData] = useState([])
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     axios.get('https://dummyjson.com/posts').then(res => {
       setBlogCardData(res.data.posts)
+      setLoading(false)
     })
   }, [])
 
@@ -226,24 +230,29 @@ export default function Blog() {
           <h5>The latest news to drive design strategy</h5>
         </div>
         <div className="blog-container">
-          {/* <div>
-            <BlogCard blogCardData={blogCardData[0]} />
-          </div> */}
-          <div className="blog-recent-post">
-            {blogCardData.slice(15, 19).map((data, index) => (
-              <BlogRecentCard key={`blog-card-recent-${index}`} blogRecentPost={data} />
+          <Suspense fallback={<Loading />}>
+            {loading ? (
+              <Loading />
+            ) : (
+              <div className="blog-recent-post">
+                {blogCardData.slice(15, 19).map((data, index) => (
+                  <BlogRecentCard key={`blog-card-recent-${index}`} blogRecentPost={data} />
+                ))}
+              </div>
+            )}
+          </Suspense>
+        </div>
+      </div>
+      {!loading && (
+        <div className="main-container">
+          <h1 className="title">All Blog Posts</h1>
+          <div className="blog-posts">
+            {blogCardData.map((data, index) => (
+              <BlogCard key={`blog-card-${index}`} blogCardData={data} />
             ))}
           </div>
         </div>
-      </div>
-      <div className="main-container">
-        <h1 className="title">All Blog Posts</h1>
-        <div className="blog-posts">
-          {blogCardData.map((data, index) => (
-            <BlogCard key={`blog-card-${index}`} blogCardData={data} />
-          ))}
-        </div>
-      </div>
+      )}
     </main>
   );
 };
