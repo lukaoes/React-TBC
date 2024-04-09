@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 const Card = ({ cardData }) => {
+  console.log(cardData)
   return (
     <>
       {cardData.map((item, index) => (
@@ -9,7 +10,7 @@ const Card = ({ cardData }) => {
             className="featured-card_img"
             width={600}
             height={200}
-            src={item.img}
+            src={item.thumbnail}
             alt={item.title}
           />
           <div className="featured-card_joint"></div>
@@ -20,7 +21,7 @@ const Card = ({ cardData }) => {
                 <span>Category:</span>
                 {item.category}
               </span>
-              <span>⭐ {item.rating.stars} ({item.rating.total})</span>
+              <span>⭐ {item.rating} ({item.rating.stock})</span>
             </div>
             <div className="price-cart">
               <span>${item.price}</span>
