@@ -15,7 +15,6 @@ const BlogPost = ({ params: {blogPost} }) => {
             How to boost self-preception through communication, writing and kinship.
           </p>
           <Image
-            style={{ width: "90%"}}
             className="w-[90%] absolute left-1/2 transform -translate-x-1/2 h-[300px] object-cover md:h-[400px]"
             src="https://picsum.photos/1200/1200"
             alt="imposter"

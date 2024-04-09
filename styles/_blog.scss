@@ -29,21 +29,13 @@
     padding: 20px;
     margin: 0 auto;
 
-    div:first-child {
-      width: 100%;
-      
-      .blog-card {
-        max-width: 100%;
-      }
-    }
-
     .blog-recent-post{
       margin-top: 20px;
       display: flex;
-      flex-direction: column;
-      gap: 30px;
-
-      & > div {
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 40px;
+      & > div { 
         display: flex;
         gap: 20px;
       }
@@ -64,11 +56,9 @@
       gap: 30px;
     }
     .blog-recent-post{
-      max-width: 500px;
       display: flex;
-      gap: 0!important;
-      margin-top: 0!important;
-      flex-direction: column;
+      gap: 0;
+      margin-top: 0;
       justify-content: space-between;
     }
  }
