@@ -1,6 +1,7 @@
 import Card from "../cards/Card"
 
-const FeaturedProducts = () => {
+const FeaturedProducts = ({filteredCardData}) => {
+  console.log(filteredCardData)
   return (
     <>
       {filteredCardData.length > 0 ? (
