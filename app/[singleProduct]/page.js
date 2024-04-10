@@ -1,15 +1,15 @@
+import SingleProdInfo from "@/components/SingleProduct/singleProdInfo"
+import { Suspense } from "react"
 import Loading from "../loading"
-import dynamic from 'next/dynamic'
- 
-const DynamicSingleProduct = dynamic(() => import('../../components/SingleProduct/singleProdInfo'), {
-  ssr: false,
-  loading: <Loading />,
-})
 
 const SingleProduct = ({ params: {singleProduct} }) => {
   const prodId = Number(singleProduct)
 
-  return (<DynamicSingleProduct prodId={prodId}  />)
+  return (
+    <Suspense fallback={<Loading />}>
+      <SingleProdInfo prodId={prodId} />
+    </Suspense>
+  )
 }
 
 export default SingleProduct
