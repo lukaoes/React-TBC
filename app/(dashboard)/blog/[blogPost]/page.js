@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import axios from 'axios';
 import { Suspense, useEffect, useState } from 'react';
-import Loading from '@/app/loading';
+import Loading from '../../loading';
 
 const BlogPost = ({ params: {blogPost} }) => {
   const [singleBlog, setSingleBlog] = useState([])
