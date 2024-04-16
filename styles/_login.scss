@@ -1,0 +1,93 @@
+.login-layout {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+
+  .login-bg {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    object-fit: cover;
+    pointer-events: none;
+  }
+
+  .login-form {
+    min-width: 280px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+    border: 1px solid #FFDEAD;
+    border-radius: 10px;
+
+    h1 {
+      font-size: 24px;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    
+    input {
+      display: block;
+      background-color: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      color: #000;
+      margin-bottom: 20px;
+      padding: 8px;
+      width: 100%;
+      border-radius: 5px;
+
+      &::placeholder {
+        color: #000;
+        opacity: 1;
+      }
+
+      &:focus {
+        outline: 1px solid #992503;
+      }
+    }
+
+    label {
+      display: block;
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    button {
+      background-color: #BE4407;
+      background-position: center;
+      color: white;
+      letter-spacing: 2px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+      font-size: 18px;
+      outline: none;
+      padding: 10px 0;
+      width: 100%;
+      transition: background 0.8s;
+      
+      &:hover {
+        background: darken(#BE4407, 5%) radial-gradient(circle, transparent 1%, darken(#BE4407, 5%) 1%) center/15000%;
+      }
+      
+      &:active {
+        background-color: darken(#BE4407, 10%);
+        background-size: 100%;
+        transition: background 0s;
+      }
+    }
+    
+    span {
+      opacity: 0.5;
+      text-align: center;
+      display: block;
+    }
+  }
+}

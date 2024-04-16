@@ -7,25 +7,27 @@ const LoginForm = ({ handleLogin }) => {
 
   return (
     <form>
+      <label htmlFor="username">Username:</label>
       <input 
         type="email"
         id="username"
-        placeholder="username"
+        placeholder="Username..."
         value={email}
         onChange={(e) => {
           setEmail(e.target.value)
         }}
       />
+      <label htmlFor="password">Password:</label>
       <input 
         type="password"
         id="password"
-        placeholder="password"
+        placeholder="Password..."
         value={password}
         onChange={(e) => {
           setPassword(e.target.value)
         }}
       />
-      <button onClick={() => handleLogin(email, password)}>send</button>
+      <button onClick={() => handleLogin(email, password)}>LOGIN</button>
     </form>
   )
 }
