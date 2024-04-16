@@ -2,7 +2,7 @@
 import Image from 'next/image'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import Loading from '@/app/loading';
+import Loading from '@/app/(dashboard)/loading';
 
 
 const SingleProdInfo = ({prodId}) => {
