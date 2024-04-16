@@ -1,15 +1,9 @@
 import SingleProdInfo from "@/components/SingleProduct/singleProdInfo"
-import { Suspense } from "react"
-import Loading from "../loading"
 
-const SingleProduct = ({ params: {singleProduct} }) => {
+export default async function SingleProduct({ params: {singleProduct} }) {
   const prodId = Number(singleProduct)
 
   return (
-    <Suspense fallback={<Loading />}>
-      <SingleProdInfo prodId={prodId} />
-    </Suspense>
+    <SingleProdInfo prodId={prodId} />
   )
 }
-
-export default SingleProduct
