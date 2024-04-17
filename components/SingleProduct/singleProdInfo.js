@@ -1,30 +1,17 @@
-'use client'
 import Image from 'next/image'
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import Loading from '@/app/loading';
 
+async function fetchSingleProduct(prodId) {
+  const response = await fetch(`https://dummyjson.com/products/${prodId}`);
+  const singleProductData = await response.json();
 
-const SingleProdInfo = ({prodId}) => {
-  const [oneProduct, setOneProduct] = useState([])
-  const [loading, setLoading] = useState(true)
+  return singleProductData
+}
 
-  useEffect(() => {
-    axios.get(`https://dummyjson.com/products/${prodId}`)
-      .then((res) => {
-        setOneProduct(res.data)
-        setLoading(false)
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-      });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+export default async function SingleProdInfo({prodId}) {
+  const oneProduct = await fetchSingleProduct(prodId);
 
   return (
       <div className="max-w-[1024px] mx-auto my-0 p-[20px] md:flex md:gap-8 ">
-        {loading ? <Loading /> : 
-        (<>
           <div>
             <Image src={oneProduct.thumbnail}
               alt="product image"
@@ -75,10 +62,6 @@ const SingleProdInfo = ({prodId}) => {
               </div>
             </div>
           </div>
-        </>
-        )}
       </div>
   )
 }
-
-export default SingleProdInfo;
