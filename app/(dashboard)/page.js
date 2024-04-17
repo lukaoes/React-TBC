@@ -1,16 +1,21 @@
 'use client'
 import FeaturedProducts from '@/components/Home/featuredProducts';
 import SearchBar from '@/components/Home/searchBar';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
-import Loading from './loading';
+import axios from 'axios';
 const API = 'https://dummyjson.com/products'
+
+// async function fetchMain() {
+//     const response = await fetch(`https://dummyjson.com/products/`);
+//     const mainData = await response.json();
+  
+//     return mainData
+// }
 
 
 export default function Home() {
   const [products, setProducts] = useState([])
   const [filteredCardData, setFilteredCardData] = useState([]);
-  const [loading, setLoading] = useState(true)
 
   const handleSearch = (filteredData) => {
     setFilteredCardData(filteredData);
@@ -21,12 +26,12 @@ export default function Home() {
       .then((res) => {
         setProducts(res.data.products);
         setFilteredCardData(res.data.products);
-        setLoading(false);
       })
       .catch((error) => {
         console.error('Error fetching data:', error);
       });
   }, []);
+
 
   return (
     <>
@@ -34,10 +39,8 @@ export default function Home() {
       <main>
         <div className="main-container">
           <h1 className="title">Featured Products</h1>
-          <div className="featured-products">
-            {loading ? <Loading /> : 
-              <FeaturedProducts filteredCardData={filteredCardData} />
-            }
+          <div className="featured-products"> 
+            <FeaturedProducts filteredCardData={filteredCardData} />
           </div>
         </div>
       </main>

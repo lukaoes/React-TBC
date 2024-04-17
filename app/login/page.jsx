@@ -4,7 +4,7 @@
 import { AUTH_COOKIE_KEY } from "@/constants";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers"
-import { login } from "../actions";
+import { login } from "./actions";
 import LoginForm from "@/components/Login/LoginForm";
 import layeredPeaks from "../../public/assets/images/layered-peaks.svg"
 import Image from "next/image";
