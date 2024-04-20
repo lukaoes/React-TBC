@@ -1,7 +1,7 @@
 'use server'
 import { AUTH_COOKIE_KEY } from "@/constants";
-import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export const handleCookieDelete = () => {
   cookies().delete(AUTH_COOKIE_KEY);

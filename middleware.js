@@ -1,5 +1,6 @@
 import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
+import { cookies } from 'next/headers'
  
 let headers = { 'accept-language': 'en,en;q=0.5' }
 let languages = new Negotiator({ headers }).languages()
@@ -36,3 +37,31 @@ export const config = {
     // '/'
   ],
 }
+
+const axios = require('axios');
+const { AUTH_COOKIE_KEY } = require('./constants');
+
+export const loginMiddleware = async (req, res, next) => {
+  try {
+    const { username, password } = req.body;
+
+    const response = await axios.post('https://dummyjson.com/auth/login', {
+      username,
+      password,
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    const user = response.data;
+
+    const cookieStore = cookies(req, res);
+    cookieStore.set(AUTH_COOKIE_KEY, JSON.stringify(user));
+
+    next();
+  } catch (error) {
+    console.error('Error during login:', error);
+    res.status(500).json({ error: 'An error occurred during login.' });
+  }
+};
