@@ -52,7 +52,6 @@ const ProfileForm = ({ userData, setUserData }) => {
       email: false
     });
 
-    console.log('updfdt', updatedUserData)
   };
 
   const generateAboutInput = (fieldName, label, type = "text") => {

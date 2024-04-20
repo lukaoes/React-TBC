@@ -1,3 +1,4 @@
+import { getDictionary } from '@/app/[lang]/dictionaries';
 import Image from 'next/image'
 
 async function fetchPosts(blogPost) {
@@ -7,7 +8,10 @@ async function fetchPosts(blogPost) {
   return posts
 }
 
-export default async function BlogPost({ params: {blogPost} }) {
+export default async function BlogPost({ params }) {
+  const {lang} = params
+  const {blogPost} = params
+  const dict = await getDictionary(lang) // en
   const singleBlog = await fetchPosts(blogPost)
 
   return (
@@ -22,7 +26,7 @@ export default async function BlogPost({ params: {blogPost} }) {
           <h1 className="font-semibold text-center mb-[30px]">
             {singleBlog.title}
           </h1>
-          <p className="text-center font-light text-[18px] mb-[30px] w-full">
+          <p className="text-center font-light text-[18px] mb-[30px] w-full h-[27px] overflow-hidden">
             {singleBlog.body}
           </p>
           <Image
@@ -36,19 +40,19 @@ export default async function BlogPost({ params: {blogPost} }) {
       </div>
       <div className="px-[20px] py-[0] max-w-[1000px] mx-[auto] my-[0] flex flex-col md:flex-row md:mt-[400px]">
         <div>
-          <h2 className="text-[22px] mb-[15px] md:text-2xl md:mb-4">Introduction</h2>
+          <h2 className="text-[22px] mb-[15px] md:text-2xl md:mb-4">{dict.blogPost.introduction}</h2>
           <p className="mb-[25px] md:mb-6 md:text-base">{singleBlog.body}</p>
-          <h2 className="text-[22px] mb-[15px] md:text-2xl md:mb-4">Software and Tools</h2>
+          <h2 className="text-[22px] mb-[15px] md:text-2xl md:mb-4">{dict.blogPost.tools}</h2>
           <p className="mb-[25px] md:mb-6 md:text-base">{singleBlog.body}</p>
-          <h2 className="text-[22px] mb-[15px] md:text-2xl md:mb-4">Other resources</h2>
+          <h2 className="text-[22px] mb-[15px] md:text-2xl md:mb-4">{dict.blogPost.otherResources}</h2>
           <p className="mb-[25px] md:mb-6 md:text-base">{singleBlog.body}</p>
         </div>
         <div className="order-[-1] text-center mb-[15px] md:order-1 md:w-full md:text-center md:mb-4">
-          <h3 className="mx-[0] my-[15px] font-medium">Table of contents</h3>
-          <span className="block cursor-pointer mb-[8px] hover:underline">Introduction</span>
-          <span className="block cursor-pointer mb-[8px] hover:underline">Software And Tools</span>
-          <span className="block cursor-pointer mb-[8px] hover:underline">Other Resources</span>
-          <h3 className="mx-[0] my-[15px] font-medium">Author & Date</h3>
+          <h3 className="mx-[0] my-[15px] font-medium">{dict.blogPost.tableOfContents}</h3>
+          <span className="block cursor-pointer mb-[8px] hover:underline">{dict.blogPost.introduction}</span>
+          <span className="block cursor-pointer mb-[8px] hover:underline">{dict.blogPost.tools}</span>
+          <span className="block cursor-pointer mb-[8px] hover:underline">{dict.blogPost.otherResources}</span>
+          <h3 className="mx-[0] my-[15px] font-medium">{dict.blogPost.authorAndDate}</h3>
           <div className="blog-post-author">
             <div className="flex items-center justify-center text-left gap-[10px] font-medium">
               <Image

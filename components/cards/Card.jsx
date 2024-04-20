@@ -1,7 +1,10 @@
 import Image from "next/image";
+import { getDictionary } from "@/app/[lang]/dictionaries";
 
-const Card = ({ cardData }) => {
-  console.log(cardData)
+
+async function Card({ cardData, lang }) {
+  const dict = await getDictionary(lang)
+
   return (
     <>
       {cardData.map((item, index) => (
@@ -21,7 +24,7 @@ const Card = ({ cardData }) => {
               <h4>{item.title}</h4>
               <div className="cate-rating">
                 <span>
-                  <span>Category:</span>
+                  <span>{dict.main.category}:</span>
                   {item.category}
                 </span>
                 <span>⭐ {item.rating} ({item.rating.stock})</span>

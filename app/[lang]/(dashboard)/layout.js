@@ -1,5 +1,5 @@
 import { Roboto } from "next/font/google";
-import "../../styles/index.scss"
+import "../../../styles/index.scss"
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { AUTH_COOKIE_KEY } from "@/constants";
@@ -16,7 +16,7 @@ export const metadata = {
   description: "BUY PRODUCTS FOR A FAIR PRICE",
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, params: {lang} }) {
   const cookieStore = cookies();
 
   const cookie = cookieStore.get(AUTH_COOKIE_KEY);
@@ -24,15 +24,16 @@ export default function RootLayout({ children }) {
   if(!cookie) {
     redirect('/login')
   }
+
   return (
-    <html lang="en">
+    <html lang={lang}>
       <body>
         <div className={`app ${roboto.className}`}>
-          <Header />
+          <Header lang={lang} />
           <main className='content'>
             {children}
           </main>
-          <Footer />
+          <Footer lang={lang} />
         </div>
       </body>
     </html>

@@ -1,7 +1,6 @@
 import Image from "next/image";
 
 const BlogCard = ({ blogCardData }) => {
-  console.log(blogCardData)
   return (
     <div className="blog-card">
       <a href={`/blog/${blogCardData.id}`}>

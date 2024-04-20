@@ -1,15 +1,20 @@
-'use client'
-import { useState } from "react";
+// 'use client'
+// import { useState } from "react";
+import { getDictionary } from "@/app/[lang]/dictionaries";
 import BurgerMenu from "./burgerMenu";
 import HeaderMenu from "./headerMenu";
 import Link from 'next/link';
+import LangSelect from "./langSelect";
 
-const Header = () => {
-  const [openBurger, setOpenBurger] = useState(false);
+async function Header(params) {
+  const {lang} = params
+  const dict = await getDictionary(lang) // en
+
+  let openBurger = false;
 
   const toggleBurgerMenu = () => {
-    setOpenBurger(!openBurger);
-  };
+    openBurger = !openBurger;
+  };  
 
   return (
     <>
@@ -17,8 +22,9 @@ const Header = () => {
         <nav className="navbar container">
             <Link href="/" className="brand">LUKMART</Link>
             <BurgerMenu openBurger={openBurger} toggleBurgerMenu={toggleBurgerMenu} />
-            <HeaderMenu openBurger={openBurger} />
-            <Link href="/profile" className="menu-block">MY PROFILE</Link>
+            <HeaderMenu openBurger={openBurger} lang={lang} />
+            <Link href="/profile" className="menu-block">{dict.header.profile}</Link>
+            <LangSelect />
         </nav>
       </header>
     </>

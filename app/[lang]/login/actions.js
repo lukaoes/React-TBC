@@ -16,7 +16,5 @@ export async function login(username, password) {
 
   const cookieStore = cookies();
 
-  console.log(user);
-
   cookieStore.set(AUTH_COOKIE_KEY, JSON.stringify(user));
 }

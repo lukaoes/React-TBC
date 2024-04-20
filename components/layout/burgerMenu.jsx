@@ -3,7 +3,7 @@ const BurgerMenu = ({ openBurger, toggleBurgerMenu }) => {
     <div
       className={`burger ${openBurger ? "is-active" : ""}`}
       id="burger"
-      onClick={toggleBurgerMenu}
+      // onClick={toggleBurgerMenu}
     >
       <span className="burger-line"></span>
       <span className="burger-line"></span>

@@ -1,21 +1,24 @@
-const Footer = () => {
+import { getDictionary } from "@/app/[lang]/dictionaries"
+
+async function Footer(params) {
+  const {lang} = params
+  const dict = await getDictionary(lang)
+
   return (
     <footer>
       <div className="footer-container">
         <div className="footer-newsteller"> 
-          <p>
-            Want to know what we&apos;re up to? Sign up for the newsteller and join our tribe.
-          </p>
+          <p>{dict.footer.paragraph}</p>
           <div>
-            <input type="email" name="email" placeholder="Email Address" />
-            <button>SUBSCRIBE</button>
+            <input type="email" name="email" placeholder={dict.footer.email} />
+            <button>{dict.footer.subscribe}</button>
           </div>
         </div>
         <div className="footer-links">
           <div className="company">
-            <h2>Company</h2>
-            <a href="/">Terms & Conditions</a>
-            <a href="/">Privacy Policy</a>
+            <h2>{dict.footer.company}</h2>
+            <a href="/">{dict.footer.terms}</a>
+            <a href="/">{dict.footer.privacy}</a>
           </div>
         </div>
       </div>
