@@ -1,16 +1,16 @@
 import { getDictionary } from '@/app/[lang]/dictionaries';
 import Image from 'next/image'
 
-export async function generateStaticParams() {
-  const response = await fetch('https://dummyjson.com/posts');
-  const posts = await response.json();
+// export async function generateStaticParams() {
+//   const response = await fetch('https://dummyjson.com/posts');
+//   const posts = await response.json();
 
-  const paths = posts.posts.map((post) => ({
-    params: { blogPost: post.id }
-  }))
+//   const paths = posts.posts.map((post) => ({
+//     params: { blogPost: post.id }
+//   }))
 
-  return paths
-}
+//   return paths
+// }
 
 async function fetchPosts(blogPost) {
   const response = await fetch(`https://dummyjson.com/posts/${blogPost}`)

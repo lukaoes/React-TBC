@@ -1,15 +1,15 @@
 import SingleProdInfo from "@/components/SingleProduct/singleProdInfo"
 
-export async function generateStaticParams() {
-  const response = await fetch('https://dummyjson.com/products/');
-  const products = await response.json();
+// export async function generateStaticParams() {
+//   const response = await fetch('https://dummyjson.com/products/');
+//   const products = await response.json();
 
-  const paths = products.products.map((post) => ({
-    params: { singleProduct: post.id }
-  }))
+//   const paths = products.products.map((post) => ({
+//     params: { singleProduct: post.id }
+//   }))
 
-  return paths
-}
+//   return paths
+// }
 
 export default async function SingleProduct({ params }) {
   const {lang} = params
