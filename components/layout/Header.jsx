@@ -5,6 +5,7 @@ import BurgerMenu from "./burgerMenu";
 import HeaderMenu from "./headerMenu";
 import Link from 'next/link';
 import LangSelect from "./langSelect";
+import ThemeButton from "./button";
 
 async function Header(params) {
   const {lang} = params
@@ -25,6 +26,7 @@ async function Header(params) {
             <HeaderMenu openBurger={openBurger} lang={lang} />
             <Link href="/profile" className="menu-block">{dict.header.profile}</Link>
             <LangSelect />
+            <ThemeButton />
         </nav>
       </header>
     </>

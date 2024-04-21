@@ -1,0 +1,115 @@
+$background-color-dark: #292a32;
+$background-color-light: #eef6f0;
+$complimentary-color-dark: #393b43;
+$complimentary-color-light: #feffff;
+$light-main: #DEE4E7;
+$dark-main: #424242;
+
+.app {
+    background-color: $light-main;
+    color: $dark-main;
+
+    header,
+    footer {
+      background-color: $light-main;
+      color: $dark-main;
+    }
+}
+
+.app.dark-mode {
+    background-color: $dark-main;
+    color: $light-main;
+
+    // header & footer
+    header,
+    footer {
+      background-color: $dark-main;
+      color: $light-main;
+    }
+
+    .brand {
+      color: $light-main;
+    }
+
+    .company {
+      a {
+        color: $light-main;
+      }
+    }
+
+    .footer-newsteller {
+      button {
+        background-color: #424242;
+        border: 1px solid $light-main;
+      }
+      div input {
+        border-bottom: 1px solid $light-main;
+      }
+    }
+
+    // main
+    .featured-products {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .price-cart {
+      button {
+        background-color: #353535;
+      }
+    }
+
+    .featured-card_joint,
+    .featured-card_info {
+      background-color: $dark-main;
+    }
+
+    .featured-card_info {
+      box-shadow: 0px 5px 0px 0px #181717;
+    }
+
+    // contact
+    .contact-form{
+      background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    // profile
+    .profile-form,
+    .profile-user {
+      background: rgba(255, 255, 255, 0.05);
+      box-shadow: 0px 10px 1px rgb(36, 36, 36), 0 10px 20px rgb(24, 24, 24);
+
+      input:read-only {
+        color: rgba($light-main, 0.4);;
+      }
+    }
+
+    // blog
+    .blog-recent {
+      background-color: #555555;
+      background-image: none;
+    }
+
+    .blog-recent-right {
+      a {
+        color: $light-main;
+      }
+    }
+
+    .blog-card_info,
+    .blog-card {
+      border-radius: 15px;
+      background-color: #525252;
+
+      a {
+        color: $light-main;
+      }
+    }
+
+    .blog-post-cover {
+      background-color: #555555;
+    }
+
+    .blog-date {
+      background-color: #555555;
+    }
+}

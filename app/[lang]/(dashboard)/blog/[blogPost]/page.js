@@ -27,7 +27,7 @@ export default async function BlogPost({ params }) {
 
   return (
     <div>
-      <div className="px-[20px] py-[60px] w-full bg-[#fffad1] mb-[270px] md:flex md:flex-row md:items-center md:justify-between">
+      <div className="px-[20px] py-[60px] w-full bg-[#fffad1] mb-[270px] md:flex md:flex-row md:items-center md:justify-between blog-post-cover">
         <div className="max-w-[1200px] mx-[auto] my-[0] relative">
           {singleBlog.tags && singleBlog.tags.length > 0 && (
             <span className="block uppercase px-[15px] py-[5px] tracking-[1px] border-[2px] border-[solid] border-[#000] font-semibold rounded-[20px] w-[170px] mx-[auto] my-[0] text-center mb-[20px]">
@@ -75,7 +75,7 @@ export default async function BlogPost({ params }) {
               />
               <p className="text-[16px] m-0 inline-block">Arley <br /> Brentley</p>
             </div>
-            <div className="bg-[#eef6f0] w-[130px] px-[10px] py-[4px] rounded-[8px] font-semibold mx-[auto] my-[20px] [box-shadow:rgba(100,_100,_111,_0.2)_0px_7px_29px_0px]">28 MAR 2024</div>
+            <div className="bg-[#eef6f0] w-[130px] px-[10px] py-[4px] rounded-[8px] font-semibold mx-[auto] my-[20px] [box-shadow:rgba(100,_100,_111,_0.2)_0px_7px_29px_0px] blog-date">28 MAR 2024</div>
           </div>
         </div>
       </div>
