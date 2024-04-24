@@ -1,20 +1,29 @@
 'use client'
+import Login from "@/script/login"
 import { useState } from "react"
+import { useRouter } from "next/navigation";
 
-const LoginForm = ({ handleLogin }) => {
-  const [email, setEmail] = useState('')
+const LoginForm = () => {
+  const router = useRouter();
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
+  const handleLogin = (e) => {
+    e.preventDefault();
+
+    Login(username, password).then(() => router.push("/"));
+  }
+
   return (
-    <form>
+    <form onSubmit={handleLogin}>
       <label htmlFor="username">Username:</label>
       <input 
-        type="email"
+        type="username"
         id="username"
         placeholder="Username..."
-        value={email}
+        value={username}
         onChange={(e) => {
-          setEmail(e.target.value)
+          setUsername(e.target.value)
         }}
       />
       <label htmlFor="password">Password:</label>
@@ -27,7 +36,7 @@ const LoginForm = ({ handleLogin }) => {
           setPassword(e.target.value)
         }}
       />
-      <button onClick={() => handleLogin(email, password)}>LOGIN</button>
+      <button type="submit">LOGIN</button>
     </form>
   )
 }
