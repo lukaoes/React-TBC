@@ -2,11 +2,10 @@
 import { AUTH_COOKIE_KEY } from "@/constants";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers"
-// import { login } from "@/app/handlers";
 import LoginForm from "@/components/Login/LoginForm";
 import layeredPeaks from "../../../public/assets/images/layered-peaks.svg"
 import Image from "next/image";
-import { loginMiddleware } from "@/middleware";
+import { login } from "./api/login/route";
 
 export default async function Login() {
   const cookieStore = cookies();
@@ -19,12 +18,7 @@ export default async function Login() {
 
   const handleLogin = async (username, password) => {
     'use server'
-    try {
-      await loginMiddleware({ body: { username, password } }, {}, () => {});
-      redirect('/');
-    } catch (error) {
-      console.error('Error during login:', error);
-    }
+    await login(username, password)
   }
 
   return (

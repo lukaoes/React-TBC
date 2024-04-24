@@ -1,4 +1,4 @@
-import { handleCookieDelete } from "@/app/handlers"
+import { logOut } from "@/app/[lang]/login/api/logout/route"
 import Image from "next/image"
 
 const ProfileUser = ({ name, lastName }) => {
@@ -6,7 +6,7 @@ const ProfileUser = ({ name, lastName }) => {
     <div className="profile-user">
       <Image src="https://picsum.photos/450/450" alt="profile" width={100} height={100}/>
       <p>{name} {lastName}</p>
-      <button onClick={() => handleCookieDelete()}>Log Out</button> 
+      <button onClick={() => logOut()}>Log Out</button> 
     </div>
   )
 }

@@ -38,30 +38,30 @@ export const config = {
   ],
 }
 
-const axios = require('axios');
-const { AUTH_COOKIE_KEY } = require('./constants');
+// const axios = require('axios');
+// const { AUTH_COOKIE_KEY } = require('./constants');
 
-export const loginMiddleware = async (req, res, next) => {
-  try {
-    const { username, password } = req.body;
+// export const loginMiddleware = async (req, res, next) => {
+//   try {
+//     const { username, password } = req.body;
 
-    const response = await axios.post('https://dummyjson.com/auth/login', {
-      username,
-      password,
-    }, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    });
+//     const response = await axios.post('https://dummyjson.com/auth/login', {
+//       username,
+//       password,
+//     }, {
+//       headers: {
+//         'Content-Type': 'application/json'
+//       }
+//     });
 
-    const user = response.data;
+//     const user = response.data;
 
-    const cookieStore = cookies(req, res);
-    cookieStore.set(AUTH_COOKIE_KEY, JSON.stringify(user));
+//     const cookieStore = cookies(req, res);
+//     cookieStore.set(AUTH_COOKIE_KEY, JSON.stringify(user));
 
-    next();
-  } catch (error) {
-    console.error('Error during login:', error);
-    res.status(500).json({ error: 'An error occurred during login.' });
-  }
-};
+//     next();
+//   } catch (error) {
+//     console.error('Error during login:', error);
+//     res.status(500).json({ error: 'An error occurred during login.' });
+//   }
+// };
