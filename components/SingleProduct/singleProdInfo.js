@@ -1,3 +1,4 @@
+import { getDictionary } from '@/app/[lang]/dictionaries';
 import Image from 'next/image'
 
 async function fetchSingleProduct(prodId) {
@@ -7,8 +8,9 @@ async function fetchSingleProduct(prodId) {
   return singleProductData
 }
 
-export default async function SingleProdInfo({prodId}) {
+export default async function SingleProdInfo({prodId, lang}) {
   const oneProduct = await fetchSingleProduct(prodId);
+  const dict = await getDictionary(lang)
 
   return (
       <div className="max-w-[1024px] mx-auto my-0 p-[20px] md:flex md:gap-8 ">
@@ -25,10 +27,10 @@ export default async function SingleProdInfo({prodId}) {
               {oneProduct.title}
             </h1>
             <h2 className="mb-[10px] uppercase font-medium text-center md:text-left">
-              BY <span className="text-[rgb(35,_166,_240)]"> {oneProduct.brand}</span>
+              {dict.singleProduct.by} <span className="text-[rgb(35,_166,_240)]"> {oneProduct.brand}</span>
             </h2>
             <h2 className="mb-[10px] uppercase font-medium text-center md:text-left">
-              CATEGORY: <span className="text-[rgb(35,_166,_240)]"> {oneProduct.category}</span>
+              {dict.singleProduct.category}: <span className="text-[rgb(35,_166,_240)]"> {oneProduct.category}</span>
             </h2>
             <div>
               <div className="flex items-center mt-[20px] justify-center md:justify-start">
@@ -37,10 +39,10 @@ export default async function SingleProdInfo({prodId}) {
                 </p>
                 <div>
                   <p className="text-[24px] font-bold m-0">
-                    Save {oneProduct.discountPercentage}%
+                    {dict.singleProduct.save} {oneProduct.discountPercentage}%
                   </p>
                   <p className="text-danger text-[red] text-[14px]">
-                    Inclusive deal of the day
+                    {dict.singleProduct.deal}
                   </p>
                 </div>
               </div>
@@ -49,15 +51,15 @@ export default async function SingleProdInfo({prodId}) {
               </p>
               <div className="flex flex-col items-center md:block">
                 <p className="mt-[20px] text-[rgb(13,_92,_99)] text-[16px] font-semibold">
-                  STOCK: {oneProduct.stock}
+                  {dict.singleProduct.stock}: {oneProduct.stock}
                 </p>
                 <p className="mt-[20px] text-[rgb(255,_123,_71)] font-normal">
-                  RATING: {oneProduct.rating}/5 ⭐
+                  {dict.singleProduct.rating}: {oneProduct.rating}/5 ⭐
                 </p>
                 <button
                   className="p-[10px] border-[1px] border-[solid] border-[rgb(13,92,99)] text-[rgb(255,_255,_255)] bg-[rgb(13,_92,_99)] rounded-[8px] mt-[25px] text-[20px] [transition:all_0.3s_ease-in-out_0s] cursor-pointer hover:opacity-70"
                 >
-                  Add To Cart
+                  {dict.singleProduct.addToCart}
                 </button>
               </div>
             </div>

@@ -1,13 +1,15 @@
 import Card from "../cards/Card"
+import { getDictionary } from "@/app/[lang]/dictionaries";
 
-const FeaturedProducts = ({filteredCardData}) => {
-  console.log(filteredCardData)
+async function FeaturedProducts({products, lang}) {
+  const dict = await getDictionary(lang)
+
   return (
     <>
-      {filteredCardData.length > 0 ? (
-        <Card cardData={filteredCardData} />
+      {products.length > 0 ? (
+        <Card cardData={products} lang={lang} />
       ) : (
-        <p style={{ fontSize: '18px', fontWeight: '700'}}>No items found :(</p>
+        <p style={{ fontSize: '18px', fontWeight: '700'}}>{dict.main.noItems}</p>
       )}
     </>
   )

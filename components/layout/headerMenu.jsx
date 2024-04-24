@@ -1,19 +1,19 @@
 // HeaderMenu.js
 import React from "react";
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { getDictionary } from "@/app/[lang]/dictionaries";
 
 
-const HeaderMenu = ({ openBurger }) => {
-	const pathname = usePathname();
+async function HeaderMenu({ openBurger, lang }) {
+  const dict = await getDictionary(lang)
 
   return (
     <div className={`menu ${openBurger ? 'is-active' : ''}`} id="menu">
       <ul className="menu-inner">
-        <li className="menu-item"><Link href="/" className={`menu-link ${pathname == '/' ? 'active' : ''}`}>Home</Link></li>
-        <li className="menu-item"><Link href="/blog" className={`menu-link ${pathname == '/blog' ? 'active' : ''}`}>Blog</Link></li>
-        <li className="menu-item"><Link href="/about" className={`menu-link ${pathname == '/about' ? 'active' : ''}`}>About</Link></li>
-        <li className="menu-item"><Link href="/contact" className={`menu-link ${pathname == '/contact' ? 'active' : ''}`}>Contact</Link></li>
+        <li className="menu-item"><Link href="/">{dict.header.home}</Link></li>
+        <li className="menu-item"><Link href="/blog">{dict.header.blog}</Link></li>
+        <li className="menu-item"><Link href="/about">{dict.header.about}</Link></li>
+        <li className="menu-item"><Link href="/contact">{dict.header.contact}</Link></li>
       </ul>
     </div>
   );

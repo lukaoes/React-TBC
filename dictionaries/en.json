@@ -1,0 +1,65 @@
+{
+  "main": {
+    "popular": "Popular Products",
+    "noItems": "No items found :(",
+    "category": "Category"
+  },
+  "profile": {
+    "logOut": "Log Out",
+    "save": "Save",
+    "change": "Change",
+    "about": "About",
+    "password": "Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm Password",
+    "passwordsNotMatch": "Passwords do not match",
+    "saveChanges": "Save Changes"
+  },
+  "contact": {
+    "title": "Let's talk about your products",
+    "about": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque non ullam culpa quae molestiae labore quod architecto eum odit voluptas? Dignissimos voluptatem qui accusamus consequuntur nulla sint odio, voluptate omnis.",
+    "city": "Tbilisi",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "number": "Number",
+    "text": "Say Something...",
+    "send": "Send"
+  },
+  "blog": {
+    "title": "Our Blog",
+    "intro": "The latest news to improve strategies",
+    "allBlogPosts": "All Blog Posts"
+  },
+  "blogPost": {
+    "introduction": "Introduction",
+    "tools": "Software and Tools",
+    "otherResources": "Other resources",
+    "tableOfContents": "Table of contents",
+    "authorAndDate": "Author & Date"
+  },
+  "singleProduct": {
+    "by": "BY",
+    "category": "CATEGORY",
+    "save": "Save",
+    "deal": "Inclusive deal of the day",
+    "stock": "STOCK",
+    "rating": "RATING",
+    "addToCart": "Add To Cart"
+  },
+  "header": {
+    "profile": "Profile",
+    "home": "Home",
+    "blog": "Blog",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "footer": {
+    "paragraph": "Want to know what we're up to? Sign up for the newsteller and join our tribe.",
+    "subscribe": "SUBSCRIBE",
+    "company": "Company",
+    "terms": "Terms & Conditions",
+    "privacy": "Privacy Policy",
+    "email": "Email Address"
+  }
+}

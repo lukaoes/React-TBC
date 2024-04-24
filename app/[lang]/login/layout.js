@@ -1,4 +1,4 @@
-import '../../styles/index.scss'
+import '../../../styles/index.scss'
 
 export const metadata = {
   title: 'Next.js',
