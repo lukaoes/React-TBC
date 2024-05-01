@@ -1,28 +1,23 @@
-import { getDictionary } from "../../app/[lang]/dictionaries"
+import { getI18n } from '../../locales/server';
 
-interface FooterProps {
-  lang: string;
-}
-
-async function Footer(params: FooterProps) {
-  const {lang} = params
-  const dict = await getDictionary(lang)
+async function Footer() {
+  const t = await getI18n()
 
   return (
     <footer>
       <div className="footer-container">
         <div className="footer-newsteller"> 
-          <p>{dict.footer.paragraph}</p>
+          <p>{t('footer.paragraph')}</p>
           <div>
-            <input type="email" name="email" placeholder={dict.footer.email} />
-            <button>{dict.footer.subscribe}</button>
+            <input type="email" name="email" placeholder="Email Address" />
+            <button>{t('footer.subscribe')}</button>
           </div>
         </div>
         <div className="footer-links">
           <div className="company">
-            <h2>{dict.footer.company}</h2>
-            <a href="/">{dict.footer.terms}</a>
-            <a href="/">{dict.footer.privacy}</a>
+            <h2>{t('footer.company')}</h2>
+            <a href="/">{t('footer.terms')}</a>
+            <a href="/">{t('footer.privacy')}</a>
           </div>
         </div>
       </div>

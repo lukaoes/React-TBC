@@ -1,5 +1,6 @@
+import { getScopedI18n } from '../../locales/server';
+
 import Image from 'next/image'
-import { getDictionary } from '../../app/[lang]/dictionaries';
 
 async function fetchSingleProduct(prodId: number) {
   const response = await fetch(`https://dummyjson.com/products/${prodId}`);
@@ -10,12 +11,11 @@ async function fetchSingleProduct(prodId: number) {
 
 interface IProps {
   prodId: number,
-  lang: string,
 }
 
-export default async function SingleProdInfo({prodId, lang}: IProps) {
+export default async function SingleProdInfo({prodId}: IProps) {
   const oneProduct = await fetchSingleProduct(prodId);
-  const dict = await getDictionary(lang)
+  const t = await getScopedI18n('singleProduct')
 
   return (
       <div className="max-w-[1024px] mx-auto my-0 p-[20px] md:flex md:gap-8 ">
@@ -32,10 +32,10 @@ export default async function SingleProdInfo({prodId, lang}: IProps) {
               {oneProduct.title}
             </h1>
             <h2 className="mb-[10px] uppercase font-medium text-center md:text-left">
-              {dict.singleProduct.by} <span className="text-[rgb(35,_166,_240)]"> {oneProduct.brand}</span>
+              {t('by')} <span className="text-[rgb(35,_166,_240)]"> {oneProduct.brand}</span>
             </h2>
             <h2 className="mb-[10px] uppercase font-medium text-center md:text-left">
-              {dict.singleProduct.category}: <span className="text-[rgb(35,_166,_240)]"> {oneProduct.category}</span>
+            {t('category')}: <span className="text-[rgb(35,_166,_240)]"> {oneProduct.category}</span>
             </h2>
             <div>
               <div className="flex items-center mt-[20px] justify-center md:justify-start">
@@ -44,10 +44,10 @@ export default async function SingleProdInfo({prodId, lang}: IProps) {
                 </p>
                 <div>
                   <p className="text-[24px] font-bold m-0">
-                    {dict.singleProduct.save} {oneProduct.discountPercentage}%
+                    {t('save')} {oneProduct.discountPercentage}%
                   </p>
                   <p className="text-danger text-[red] text-[14px]">
-                    {dict.singleProduct.deal}
+                    {t('deal')}
                   </p>
                 </div>
               </div>
@@ -56,15 +56,15 @@ export default async function SingleProdInfo({prodId, lang}: IProps) {
               </p>
               <div className="flex flex-col items-center md:block">
                 <p className="mt-[20px] text-[rgb(13,_92,_99)] text-[16px] font-semibold">
-                  {dict.singleProduct.stock}: {oneProduct.stock}
+                  {t('stock')}: {oneProduct.stock}
                 </p>
                 <p className="mt-[20px] text-[rgb(255,_123,_71)] font-normal">
-                  {dict.singleProduct.rating}: {oneProduct.rating}/5 ⭐
+                  {t('rating')}: {oneProduct.rating}/5 ⭐
                 </p>
                 <button
                   className="p-[10px] border-[1px] border-[solid] border-[rgb(13,92,99)] text-[rgb(255,_255,_255)] bg-[rgb(13,_92,_99)] rounded-[8px] mt-[25px] text-[20px] [transition:all_0.3s_ease-in-out_0s] cursor-pointer hover:opacity-70"
                 >
-                  {dict.singleProduct.addToCart}
+                  {t('addToCart')}
                 </button>
               </div>
             </div>

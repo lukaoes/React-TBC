@@ -1,0 +1,57 @@
+export default {
+  'main.popular': 'Popular Products',
+  'main.noItems': 'No items found :(',
+  'main.category': 'Category',
+
+  'profile.logOut': 'Log Out',
+  'profile.save': 'Save',
+  'profile.change': 'Change',
+  'profile.about': 'About',
+  'profile.password': 'Password',
+  'profile.newPassword': 'New Password',
+  'profile.confirmPassword': 'Confirm Password',
+  'profile.passwordsNotMatch': 'Passwords do not match',
+  'profile.saveChanges': 'Save Changes',
+
+  'contact.title': "Let's talk about your products",
+  'contact.about': "Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque non ullam culpa quae molestiae labore quod architecto eum odit voluptas? Dignissimos voluptatem qui accusamus consequuntur nulla sint odio, voluptate omnis.",
+  'contact.city': "Tbilisi",
+  'contact.firstName': "First Name",
+  'contact.lastName': "Last Name",
+  'contact.email': "Email",
+  'contact.number': "Number",
+  'contact.text': "Say Something...",
+  'contact.send': "Send",
+
+  'blog.title': "Our Blog",
+  'blog.intro': "The latest news to improve strategies",
+  'blog.allBlogPosts': "All Blog Posts",
+
+  'blogPost.introduction': "Introduction",
+  'blogPost.tools': "Software and Tools",
+  'blogPost.otherResources': "Other resources",
+  'blogPost.tableOfContents': "Table of contents",
+  'blogPost.authorAndDate': "Author & Date",
+
+  'singleProduct.by': "BY",
+  'singleProduct.category': "CATEGORY",
+  'singleProduct.save': "Save",
+  'singleProduct.deal': "Inclusive deal of the day",
+  'singleProduct.stock': "STOCK",
+  'singleProduct.rating': "RATING",
+  'singleProduct.addToCart': "Add To Cart",
+
+  'header.profile': "Profile",
+  'header.home': "Home",
+  'header.blog': "Blog",
+  'header.about': "About",
+  'header.contact': "Contact",
+
+  'footer.paragraph': "Want to know what we're up to? Sign up for the newsteller and join our tribe.",
+  'footer.subscribe': "SUBSCRIBE",
+  'footer.company': "Company",
+  'footer.terms': "Terms & Conditions",
+  'footer.privacy': "Privacy Policy",
+  'footer.email': "Email Address",
+
+} as const

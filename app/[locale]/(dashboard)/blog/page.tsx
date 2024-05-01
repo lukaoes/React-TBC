@@ -1,29 +1,25 @@
-
+import { getScopedI18n } from "../../../../locales/server"
 import BlogCard from '../../../../components/cards/blogCard';
 import BlogRecentCard from '../../../../components/cards/blogRecentCard';
-import { getDictionary } from '../../dictionaries';
-
 
 async function fetchBlog() {
-const response = await fetch('https://dummyjson.com/posts');
+  const response = await fetch('https://dummyjson.com/posts');
   const blogPosts = await response.json();
 
   return blogPosts
 }
 
 
-export default async function Blog({ params } : {params : {lang: string}}) {
-  const {lang} = params
-  console.log("blog", lang)
-  const dict = await getDictionary(lang) // en
+export default async function Blog() {
+  const t = await getScopedI18n('blog')
   const blogCardData = await fetchBlog();
 
   return (
     <main>
       <div className="blog-recent">
         <div className="blog-recent_header">
-          <h1>{dict.blog.title}</h1>
-          <h5>{dict.blog.intro}</h5>
+          <h1>{t('title')}</h1>
+          <h5>{t('intro')}</h5>
         </div>
         <div className="blog-container">
           <div className="blog-recent-post">
@@ -34,7 +30,7 @@ export default async function Blog({ params } : {params : {lang: string}}) {
         </div>
       </div>
         <div className="main-container">
-          <h1 className="title">{dict.blog.allBlogPosts}</h1>
+          <h1 className="title">{t('allBlogPosts')}</h1>
           <div className="blog-posts">
             {blogCardData.posts.map((data: { id: string; title: string; tags: string[]; body: string; }, index: number) => (
               <BlogCard key={`blog-card-${index}`} blogCardData={data} />

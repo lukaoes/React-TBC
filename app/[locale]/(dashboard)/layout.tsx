@@ -5,6 +5,8 @@ import Footer from "../../../components/layout/Footer";
 import { AUTH_COOKIE_KEY } from "../../../constants";
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation";
+import { ReactElement } from 'react'
+import { I18nProviderClient } from "../../../locales/client";
 
 const roboto = Roboto({ 
   subsets: ["latin"],
@@ -16,17 +18,12 @@ export const metadata = {
   description: "BUY PRODUCTS FOR A FAIR PRICE",
 };
 
-interface RootLayoutProps {
-  children: React.ReactNode;
-  params: { lang: string };
-}
-
 export async function generateStaticParams() {
   return [{ lang: "en"}, {lang: "ge"}]
 }
 
 
-export default async function RootLayout({ children, params: {lang} }: Readonly<RootLayoutProps>) {
+export default async function RootLayout({ params: { locale }, children }: { params: { locale: string }, children: ReactElement }) {
   const cookieStore = cookies();
 
   const cookie = cookieStore.get(AUTH_COOKIE_KEY);
@@ -38,15 +35,17 @@ export default async function RootLayout({ children, params: {lang} }: Readonly<
   
 
   return (
-    <html lang={lang}>
+    <html>
       <body>
-        <div className={`app ${roboto.className}`}>
-          <Header lang={lang} />
-          <main className='content'>
-            {children}
-          </main>
-          <Footer lang={lang} />
-        </div>
+        <I18nProviderClient locale={locale}>
+          <div className={`app ${roboto.className}`}>
+            <Header />
+            <main className='content'>
+              {children}
+            </main>
+            <Footer />
+          </div>
+        </I18nProviderClient>
       </body>
     </html>
   );

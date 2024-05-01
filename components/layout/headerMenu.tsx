@@ -1,23 +1,22 @@
 // HeaderMenu.js
+import { getScopedI18n } from '../../locales/server';
 import React from "react";
 import Link from 'next/link';
-import { getDictionary } from "../../app/[lang]/dictionaries";
 
 interface HeaderMenuProps {
   openBurger: boolean;
-  lang: string;
 }
 
-async function HeaderMenu({ openBurger, lang }: HeaderMenuProps) {
-  const dict = await getDictionary(lang)
+async function HeaderMenu({ openBurger }: HeaderMenuProps) {
+  const scopedT = await getScopedI18n('header')
 
   return (
     <div className={`menu ${openBurger ? 'is-active' : ''}`} id="menu">
       <ul className="menu-inner">
-        <li className="menu-item"><Link href="/">{dict.header.home}</Link></li>
-        <li className="menu-item"><Link href="/blog">{dict.header.blog}</Link></li>
-        <li className="menu-item"><Link href="/about">{dict.header.about}</Link></li>
-        <li className="menu-item"><Link href="/contact">{dict.header.contact}</Link></li>
+        <li className="menu-item"><Link href="/">{scopedT('home')}</Link></li>
+        <li className="menu-item"><Link href="/blog">{scopedT('blog')}</Link></li>
+        <li className="menu-item"><Link href="/about">{scopedT('about')}</Link></li>
+        <li className="menu-item"><Link href="/contact">{scopedT('contact')}</Link></li>
       </ul>
     </div>
   );

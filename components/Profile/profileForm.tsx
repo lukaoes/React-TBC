@@ -1,4 +1,5 @@
 'use client'
+import { useScopedI18n } from "../../locales/client";
 import { useState } from "react";
 
 interface UserData {
@@ -16,6 +17,8 @@ interface ProfileFormProps {
 }
 
 const ProfileForm: React.FC<ProfileFormProps> = ({ userData, setUserData }) => {
+  const t = useScopedI18n('profile')
+
   const [edit, setEdit] = useState<{ [key: string]: boolean }>({
     name: false,
     last_name: false,
@@ -67,6 +70,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ userData, setUserData }) => {
   };
 
   const generateAboutInput = (fieldName: UserDataKey, label: string, type: string = "text") => {
+
     return (
       <div>
         <label htmlFor={fieldName}>{label}:</label>
@@ -90,7 +94,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ userData, setUserData }) => {
               }
             }}
           >
-            {edit[fieldName] ? "Save" : "Change"}
+            {edit[fieldName] ? t('save') : t('change')}
           </button>
         </div>
       </div>
@@ -100,7 +104,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ userData, setUserData }) => {
   return (
     <form className="profile-form">
       <fieldset>
-        <legend>About</legend>
+        <legend>{t('about')}</legend>
 
         {generateAboutInput("name", "Name")}
         {generateAboutInput("last_name", "Last Name")}
@@ -108,9 +112,9 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ userData, setUserData }) => {
       </fieldset>
 
       <fieldset>
-        <legend>Password</legend>
+        <legend>{t('password')}</legend>
         <div>
-          <label htmlFor="password">New Password:</label>
+          <label htmlFor="password">{t('newPassword')}:</label>
           <input
             type="password"
             id="password"
@@ -120,7 +124,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ userData, setUserData }) => {
           />
         </div>
         <div>
-          <label htmlFor="confirmPassword">Confirm Password:</label>
+          <label htmlFor="confirmPassword">{t('confirmPassword')}:</label>
           <input
             type="password"
             id="confirmPassword"
@@ -128,11 +132,11 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ userData, setUserData }) => {
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
           />
-          {!passwordsMatch && <p style={{ color: "red" }}>Passwords do not match.</p>}
+          {!passwordsMatch && <p style={{ color: "red" }}>{t('passwordsNotMatch')}</p>}
         </div>
       </fieldset>
 
-      <button type="button" onClick={handleSave}>Save Changes</button>
+      <button type="button" onClick={handleSave}>{t('saveChanges')}</button>
     </form>
   );
 };

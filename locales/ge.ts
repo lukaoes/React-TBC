@@ -1,0 +1,57 @@
+export default {
+  'main.popular': 'პოპულარული პროდუქტები',
+  'main.noItems': 'არ არის პროდუქტი :(',
+  'main.category': 'კატეგორია',
+
+  'profile.logOut': 'გამოსვლა',
+  'profile.save': 'შენახვა',
+  'profile.change': 'შეცვლა',
+  'profile.about': 'ჩემს შესახებ',
+  'profile.password': 'პაროლი',
+  'profile.newPassword': 'ახალი პაროლი',
+  'profile.confirmPassword': 'გაიმეორეთ პაროლი',
+  'profile.passwordsNotMatch': 'პაროლები არ ემთხვევა',
+  'profile.saveChanges': 'ცვლილებების შენახვა',
+
+  'contact.title': "ვისაუბროთ თქვენს პროდუქტზე",
+  'contact.about': "ლორემ იპსუმ ზედ ხელხლად აზიის ვაგროვებთ ხვიხვინსა ზღვარია დარაჯობდა გადასასვლელებში, დავეხეტებოდი მოკლესო ჩასახლდნენ. დაგლეჯილი ჩართვა ვაკვირდები წაიკითხა აზიის წესიერ დადეგ. აზიის არავისთან გამოძვრები.",
+  'contact.city': "თბილისი",
+  'contact.firstName': "სახელი",
+  'contact.lastName': "გვარი",
+  'contact.email': "იმეილი",
+  'contact.number': "ნომერი",
+  'contact.text': "მოგვწერეთ რამე...",
+  'contact.send': "გაგზავნა",
+
+  'blog.title': "ჩვენი ბლოგი",
+  'blog.intro': "უკანასკნელი სიახლეები სტრატეგიების გასაუმჯობესებლად",
+  'blog.allBlogPosts': "ყველა სტატია",
+
+  'blogPost.introduction': "შესავალი",
+  'blogPost.tools': "პროგრამა და ხელსაწყოები",
+  'blogPost.otherResources': "სხვა რესურსები",
+  'blogPost.tableOfContents': "სარჩევი",
+  'blogPost.authorAndDate': "ავტორი & თარიღი",
+
+  'singleProduct.by': "მწარმოებელია",
+  'singleProduct.category': "კატეგორია",
+  'singleProduct.save': "დაზოგეთ",
+  'singleProduct.deal': "დღის საუკეთესო შეთავაზება",
+  'singleProduct.stock': "მარაგშია",
+  'singleProduct.rating': "რეიტინგი",
+  'singleProduct.addToCart': "კალათაში დამატება",
+
+  'header.profile': "პროფილი",
+  'header.home': "მთავარი",
+  'header.blog': "ბლოგი",
+  'header.about': "ჩვენს შესახებ",
+  'header.contact': "კონტაქტი",
+
+  'footer.paragraph': "გსურთ გაიგოთ რას ვაკეთებთ? მიიღეთ სიახლეები და შეუერთდით ტომს.",
+  'footer.subscribe': "გამოგვიწერეთ",
+  'footer.company': "კომპანია",
+  'footer.terms': "წესები & პირობები",
+  'footer.privacy': "კონფიდენციალურობის პოლიტიკა",
+  'footer.email': "თქვენი მეილი",
+
+} as const
