@@ -1,10 +1,11 @@
 // 'use client'
 import FeaturedProducts from '../../../components/Home/featuredProducts';
-import { getDictionary } from '../dictionaries';
 // import SearchBar from '@/components/Home/searchBar';
 // import { useEffect, useState } from 'react';
 // import axios from 'axios';
 const API = 'https://dummyjson.com/products'
+import { getI18n } from '../../../locales/server';
+
 
 async function fetchMain() {
     const response = await fetch(API);
@@ -14,12 +15,9 @@ async function fetchMain() {
 }
 
 
-export default async function Home({params} : {params: {lang :string}}) {
-  const {lang} = params
-  console.log("home", lang)
-  const dict = await getDictionary(lang)
-
+export default async function Home() {
   const products = await fetchMain();
+  const t = await getI18n()
 
   // const [products, setProducts] = useState([])
   // const [filteredCardData, setFilteredCardData] = useState([]);
@@ -45,9 +43,9 @@ export default async function Home({params} : {params: {lang :string}}) {
       {/* <SearchBar cardData={products} onSearch={handleSearch} /> */}
       <main>
         <div className="main-container">
-          <h1 className="title">{dict.main.popular}</h1>
+          <h1 className="title">{t('main.popular')}</h1>
           <div className="featured-products"> 
-            <FeaturedProducts products={products.products} lang={lang} />
+            <FeaturedProducts products={products.products} />
           </div>
         </div>
       </main>

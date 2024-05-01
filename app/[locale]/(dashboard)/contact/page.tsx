@@ -1,13 +1,13 @@
-import { getDictionary } from "../../dictionaries"
+import { getScopedI18n } from "../../../../locales/server"
 
-export default async function Contact({params} : {params : {lang: string}}) {
-  const {lang} = params
-  const dict = await getDictionary(lang) // en
+export default async function Contact() {
+  const t = await getScopedI18n('contact')
+
   return (
     <div className="contact-layout">
       <div className="contact-static">
-        <h1>{dict.contact.title}</h1>
-        <p>{dict.contact.about}</p>
+        <h1>{t('title')}</h1>
+        <p>{t('about')}</p>
         <div className="contact-static-info">
           <div>
           <svg height="20px" width="20px" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" 
@@ -24,7 +24,7 @@ export default async function Contact({params} : {params : {lang: string}}) {
               </g>
             </g>
           </svg>
-            <span>{dict.contact.city}</span>
+            <span>{t('city')}</span>
           </div>
           <div>
           <svg width="20px" height="20px" viewBox="0 -3.5 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -53,23 +53,23 @@ export default async function Contact({params} : {params : {lang: string}}) {
       <div className="contact-form">
         <form>
           <div className="input-wrap">
-            <label htmlFor="first_name">{dict.contact.firstName}</label>
+            <label htmlFor="first_name">{t('firstName')}</label>
             <input type="text" name="first_name" id="first_name" />
           </div>
           <div className="input-wrap">
-            <label htmlFor="last_name">{dict.contact.lastName}</label>
+            <label htmlFor="last_name">{t('lastName')}</label>
             <input type="text" name="last_name" id="last_name" />
           </div>
           <div className="input-wrap">
-            <label htmlFor="email">{dict.contact.email}</label>
+            <label htmlFor="email">{t('email')}</label>
             <input type="email" name="email"  id="email" />
           </div>
           <div className="input-wrap">
-            <label htmlFor="number">{dict.contact.number}</label>
+            <label htmlFor="number">{t('number')}</label>
             <input type="number" name="number"  id="number" />
           </div>
-          <textarea placeholder={dict.contact.text} rows={5}></textarea>
-          <button>{dict.contact.send} ↗️</button>
+          <textarea placeholder={t('text')} rows={5}></textarea>
+          <button>{t('send')} ↗️</button>
         </form>
       </div>
     </div>

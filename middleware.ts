@@ -1,37 +1,16 @@
-import { match } from '@formatjs/intl-localematcher'
-import Negotiator from 'negotiator'
+import { createI18nMiddleware } from 'next-international/middleware'
+import { NextRequest } from 'next/server'
  
-let headers = { 'accept-language': 'en,en;q=0.5' }
-let languages = new Negotiator({ headers }).languages()
-import { defaultLocale } from './constants'
-import { i18n } from './i18n-config'
- 
-
-import { NextRequest, NextResponse } from "next/server";
+const I18nMiddleware = createI18nMiddleware({
+  locales: ['en', 'ge'],
+  defaultLocale: 'en',
+  urlMappingStrategy: 'rewrite'
+})
  
 export function middleware(request: NextRequest) {
-  // Check if there is any supported locale in the pathname
-  const { pathname } = request.nextUrl
-  const pathnameHasLocale = i18n.locales.some(
-    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
-    
-  )
-
-  if (pathnameHasLocale) return
-
-  // Redirect if there is no locale
-  const locale = match(languages, i18n.locales, defaultLocale) // -> 'en'
-  request.nextUrl.pathname = `/${locale}${pathname}`
-  // e.g. incoming request is /products
-  // The new URL is now /en/products
-  return NextResponse.redirect(request.nextUrl)
+  return I18nMiddleware(request)
 }
  
 export const config = {
-  matcher: [
-    // Skip all internal paths (_next)
-    '/((?!_next).*)',
-    // Optional: only run on root (/) URL
-    // '/'
-  ],
+  matcher: ['/((?!api|static|.*\\..*|_next|favicon.ico|robots.txt).*)']
 }

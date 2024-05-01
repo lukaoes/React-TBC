@@ -1,5 +1,5 @@
+import { getScopedI18n } from "../../../../../locales/server"
 import Image from 'next/image'
-import { getDictionary } from '../../../dictionaries';
 
 // export async function generateStaticParams() {
 //   const response = await fetch('https://dummyjson.com/posts');
@@ -10,7 +10,7 @@ import { getDictionary } from '../../../dictionaries';
 //   }))
 
 //   return paths
-// }
+// }npm
 
 async function fetchPosts(blogPost: string) {
   const response = await fetch(`https://dummyjson.com/posts/${blogPost}`)
@@ -19,10 +19,10 @@ async function fetchPosts(blogPost: string) {
   return posts
 }
 
-export default async function BlogPost({ params } : {params : {lang: string, blogPost: string}}) {
-  const {lang} = params
+export default async function BlogPost({ params } : {params : { blogPost: string}}) {
+  const t = await getScopedI18n('blogPost')
   const {blogPost} = params
-  const dict = await getDictionary(lang) // en
+  console.log(blogPost)
   const singleBlog = await fetchPosts(blogPost)
 
   return (
@@ -51,19 +51,19 @@ export default async function BlogPost({ params } : {params : {lang: string, blo
       </div>
       <div className="px-[20px] py-[0] max-w-[1000px] mx-[auto] my-[0] flex flex-col md:flex-row md:mt-[400px]">
         <div>
-          <h2 className="text-[22px] mb-[15px] md:text-2xl md:mb-4">{dict.blogPost.introduction}</h2>
+          <h2 className="text-[22px] mb-[15px] md:text-2xl md:mb-4">{t('introduction')}</h2>
           <p className="mb-[25px] md:mb-6 md:text-base">{singleBlog.body}</p>
-          <h2 className="text-[22px] mb-[15px] md:text-2xl md:mb-4">{dict.blogPost.tools}</h2>
+          <h2 className="text-[22px] mb-[15px] md:text-2xl md:mb-4">{t('tools')}</h2>
           <p className="mb-[25px] md:mb-6 md:text-base">{singleBlog.body}</p>
-          <h2 className="text-[22px] mb-[15px] md:text-2xl md:mb-4">{dict.blogPost.otherResources}</h2>
+          <h2 className="text-[22px] mb-[15px] md:text-2xl md:mb-4">{t('otherResources')}</h2>
           <p className="mb-[25px] md:mb-6 md:text-base">{singleBlog.body}</p>
         </div>
         <div className="order-[-1] text-center mb-[15px] md:order-1 md:w-full md:text-center md:mb-4">
-          <h3 className="mx-[0] my-[15px] font-medium">{dict.blogPost.tableOfContents}</h3>
-          <span className="block cursor-pointer mb-[8px] hover:underline">{dict.blogPost.introduction}</span>
-          <span className="block cursor-pointer mb-[8px] hover:underline">{dict.blogPost.tools}</span>
-          <span className="block cursor-pointer mb-[8px] hover:underline">{dict.blogPost.otherResources}</span>
-          <h3 className="mx-[0] my-[15px] font-medium">{dict.blogPost.authorAndDate}</h3>
+          <h3 className="mx-[0] my-[15px] font-medium">{t('tableOfContents')}</h3>
+          <span className="block cursor-pointer mb-[8px] hover:underline">{t('introduction')}</span>
+          <span className="block cursor-pointer mb-[8px] hover:underline">{t('tools')}</span>
+          <span className="block cursor-pointer mb-[8px] hover:underline">{t('otherResources')}</span>
+          <h3 className="mx-[0] my-[15px] font-medium">{t('authorAndDate')}</h3>
           <div className="blog-post-author">
             <div className="flex items-center justify-center text-left gap-[10px] font-medium">
               <Image

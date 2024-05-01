@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getDictionary } from "../../app/[lang]/dictionaries";
+import { getI18n } from "../../locales/server";
 
 interface CardProps {
   cardData: {
@@ -11,11 +11,10 @@ interface CardProps {
     stock: number;
     price: number;
   }[];
-  lang: string;
 }
 
-async function Card({ cardData, lang }: CardProps) {
-  const dict = await getDictionary(lang)
+async function Card({ cardData }: CardProps) {
+  const t = await getI18n()
 
   return (
     <>
@@ -36,7 +35,7 @@ async function Card({ cardData, lang }: CardProps) {
               <h4>{item.title}</h4>
               <div className="cate-rating">
                 <span>
-                  <span>{dict.main.category}:</span>
+                  <span>{t('main.category')}:</span>
                   {item.category}
                 </span>
                 <span>⭐ {item.rating} ({item.stock})</span>

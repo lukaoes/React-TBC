@@ -1,5 +1,5 @@
-import { getDictionary } from "../../app/[lang]/dictionaries";
 import Card from "../cards/Card"
+import { getI18n } from "../../locales/server";
 
 interface FeaturedProductsProps {
   products: {
@@ -11,17 +11,16 @@ interface FeaturedProductsProps {
     stock: number;
     price: number;
   }[];
-  lang: string;
 }
-async function FeaturedProducts({products, lang}: FeaturedProductsProps) {
-  const dict = await getDictionary(lang)
+async function FeaturedProducts({products}: FeaturedProductsProps) {
+  const t = await getI18n()
 
   return (
     <>
       {products.length > 0 ? (
-        <Card cardData={products} lang={lang} />
+        <Card cardData={products} />
       ) : (
-        <p style={{ fontSize: '18px', fontWeight: '700'}}>{dict.main.noItems}</p>
+        <p style={{ fontSize: '18px', fontWeight: '700'}}>{t('main.noItems')}</p>
       )}
     </>
   )
