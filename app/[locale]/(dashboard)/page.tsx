@@ -5,7 +5,12 @@ import FeaturedProducts from '../../../components/Home/featuredProducts';
 // import axios from 'axios';
 const API = 'https://dummyjson.com/products'
 import { getI18n } from '../../../locales/server';
+import { setStaticParamsLocale } from 'next-international/server'
+import { getStaticParams } from '../../../locales/server';
 
+export function generateStaticParams() {
+  return getStaticParams()
+}
 
 async function fetchMain() {
     const response = await fetch(API);
@@ -15,7 +20,8 @@ async function fetchMain() {
 }
 
 
-export default async function Home() {
+export default async function Home({ params: { locale } }: { params: { locale: string } }) {
+  setStaticParamsLocale(locale)
   const products = await fetchMain();
   const t = await getI18n()
 

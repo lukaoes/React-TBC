@@ -1,6 +1,12 @@
 import { getScopedI18n } from "../../../../locales/server"
 import BlogCard from '../../../../components/cards/blogCard';
 import BlogRecentCard from '../../../../components/cards/blogRecentCard';
+import { setStaticParamsLocale } from 'next-international/server'
+import { getStaticParams } from "../../../../locales/server";
+
+export function generateStaticParams() {
+  return getStaticParams()
+}
 
 async function fetchBlog() {
   const response = await fetch('https://dummyjson.com/posts');
@@ -10,7 +16,8 @@ async function fetchBlog() {
 }
 
 
-export default async function Blog() {
+export default async function Blog({ params: { locale } }: { params: { locale: string } }) {
+  setStaticParamsLocale(locale)
   const t = await getScopedI18n('blog')
   const blogCardData = await fetchBlog();
 
