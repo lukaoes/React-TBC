@@ -1,8 +1,8 @@
 import { FC } from "react";
-import Logout from "../../script/logout";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useI18n } from "../../locales/client";
+import { logOut } from "../../app/[locale]/(dashboard)/profile/actions";
 
 interface ProfileUserProps {
   name: string;
@@ -14,7 +14,8 @@ const ProfileUser: FC<ProfileUserProps> = ({ name, lastName }) => {
   const t = useI18n()
 
   const handleLogOut = () => {
-    Logout().then(() => router.push("/login"));
+    logOut()
+    router.push("/login")
   };
 
   return (

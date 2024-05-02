@@ -1,7 +1,7 @@
 'use client'
-import Login from "../../script/login"
 import { useState } from "react"
 import { useRouter } from "next/navigation";
+import Login from "../../app/[locale]/login/login";
 
 const LoginForm = () => {
   const router = useRouter();
