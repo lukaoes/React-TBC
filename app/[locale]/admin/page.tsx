@@ -1,8 +1,15 @@
-const Admin = () => {
+import { Users, getUsers } from "../../../api"
+import DeleteButton from "../../../components/Admin/deleteButton"
+
+const Admin = async () => {
+  const users = await getUsers()
   return (
     <div>
     <div className="admin-table">
       <div className="row admin-table-header blue">
+        <div className="cell">
+          Amount
+        </div>
         <div className="cell">
           ID
         </div>
@@ -15,35 +22,38 @@ const Admin = () => {
         <div className="cell">
           Age
         </div>
-      </div>
-      <div className="row">
-        <div className="cell" data-title="Id">
-          1
+        <div className="cell">
+          Edit
         </div>
-        <div className="cell" data-title="Name">
-          Luke Peters
-        </div>
-        <div className="cell" data-title="Email">
-          luke.peters@gmail.com
-        </div>
-        <div className="cell" data-title="Age">
-          25
+        <div className="cell">
+          Delete
         </div>
       </div>
-      <div className="row">
-        <div className="cell" data-title="Id">
-          2
+      {users.map((item: Users, index: number) => (
+        <div className="row" key={`get-users-${index}`}>
+          <div className="cell" data-title="Id">
+            {index}
+          </div>
+          <div className="cell" data-title="Id">
+            {item.id}
+          </div>
+          <div className="cell" data-title="Name">
+            {item.name}
+          </div>
+          <div className="cell" data-title="Email">
+            {item.email}
+          </div>
+          <div className="cell" data-title="amount">
+            {item.age}
+          </div>
+          <div className="cell" data-title="edit">
+            <button>✏️</button>
+          </div>
+          <div className="cell" data-title="delete">
+            <DeleteButton id={item.id} />
+          </div>
         </div>
-        <div className="cell" data-title="Name">
-          Joseph Smith
-        </div>
-        <div className="cell" data-title="Email">
-          joseph.smith@gmail.com
-        </div>
-        <div className="cell" data-title="Age">
-          27
-        </div>
-      </div>
+      ))}
     </div>
   </div>
   )
