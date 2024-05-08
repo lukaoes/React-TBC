@@ -1,5 +1,7 @@
+'use server'
 import { Users, getUsers } from "../../../api"
 import DeleteButton from "../../../components/Admin/deleteButton"
+import EditButton from "../../../components/Admin/editButton"
 
 const Admin = async () => {
   const users = await getUsers()
@@ -46,9 +48,7 @@ const Admin = async () => {
           <div className="cell" data-title="amount">
             {item.age}
           </div>
-          <div className="cell" data-title="edit">
-            <button>✏️</button>
-          </div>
+          <EditButton id={item.id} />
           <div className="cell" data-title="delete">
             <DeleteButton id={item.id} />
           </div>

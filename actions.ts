@@ -16,3 +16,15 @@ export async function createUserAction(formData: FormData) {
 export async function deleteUserAction(id: number) {
   await deleteUser(id);
 }
+
+export async function editUser(id: number, formData: FormData) {
+  const name = formData.get("name");
+  const email = formData.get("email");
+  const age = formData.get("age");
+  await fetch(
+    `${BASE_URL}/api/edit-user/${id}?name=${name}&email=${email}&age=${age}`,
+    {
+      method: "PUT",
+    }
+  );
+}

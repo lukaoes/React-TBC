@@ -6,9 +6,13 @@ const Add = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [age, setAge] = useState('');
+  const reloadPage = () => {
+    window.location.href = window.location.pathname + '?refresh=' + Date.now();
+  };
 
   const handleSubmit = async (event: { preventDefault: () => void; }) => {
     event.preventDefault();
+    reloadPage()
 
     try {
       const response = await fetch(`${BASE_URL}/api/create-user`, {

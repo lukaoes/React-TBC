@@ -217,3 +217,36 @@
 .admin-add-submit:active {
   background-color: #06b;
 }
+
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #000;
+  width: auto;
+
+  .modal-content {
+    color: #fff;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+      font-size: 24px;
+      text-align: center;
+    }
+
+    span {
+      font-size: 40px;
+      cursor: pointer;
+      margin-left: auto;
+    }
+
+    input {
+      color: #000;
+      display: block;
+    }
+  }
+}
