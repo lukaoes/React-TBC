@@ -5,7 +5,7 @@ export interface Users {
   age: number,
 }
 
-export const BASE_URL = 'http://localhost:3000'
+export const BASE_URL = 'https://lukmart.vercel.app'
 
 export async function getUsers() {
   const response = await fetch(process.env.BASE_URL + '/api/get-users')
