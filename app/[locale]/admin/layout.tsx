@@ -1,5 +1,8 @@
+import { cookies } from "next/headers";
 import AdminNav from "../../../components/Admin/adminNav"
 import '../../../styles/index.scss'
+import { AUTH_COOKIE_KEY } from "../../../constants";
+import { redirect } from "next/navigation";
 
 export const metadata = {
   title: 'Next.js',
@@ -11,6 +14,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const cookieStore = cookies();
+
+  const cookie = cookieStore.get(AUTH_COOKIE_KEY);
+ 
+  if(!cookie) {
+    redirect('/login')
+  }
   return (
     <html lang="en">
       <body>
