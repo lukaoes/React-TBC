@@ -6,6 +6,7 @@ import HeaderMenu from "./headerMenu";
 import Link from 'next/link';
 import LangSelect from "./langSelect";
 import ThemeButton from './themeButton';
+import CartIcon from './cartIcon';
 
 
 async function Header() {
@@ -20,6 +21,7 @@ async function Header() {
             <BurgerMenu openBurger={openBurger} />
             <HeaderMenu openBurger={openBurger} />
             <Link href={`/profile`} className="menu-block">{t('header.profile')}</Link>
+            <CartIcon />
             <LangSelect />
             <ThemeButton />
         </nav>
