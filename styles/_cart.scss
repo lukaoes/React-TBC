@@ -6,13 +6,23 @@
   h1 {
     font-size: 28px;
     font-weight: 700;
-    margin: 30px 0;
+    max-width: 1024px;
+    margin: 30px auto;
+  }
+}
+
+.cart-details-layout {
+  @media only screen and (min-width: 1024px) {
+    display: flex;
+    gap: 40px;
+    justify-content: center;
   }
 }
 
 // cart card
 
 .cart-wrapper {
+  background-color: #fff;
   border-radius: 12px;
   border: 1px solid rgb(245, 246, 246);
   padding: 24px;
@@ -214,5 +224,97 @@
   svg {
     height: 16px;
     width: auto;
+  }
+}
+
+// cart total
+
+.cart-total-wrapper {
+  background-color: #fff;
+  border-radius: 12px;
+  border: 1px solid rgb(245, 246, 246);
+  padding: 24px;
+
+  .cart-total-header {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    margin-bottom: 16px;
+
+    h2 {
+      font-size: 16px;
+      color: rgb(3, 3, 3);
+      font-weight: 700;
+    }
+  }
+
+  .cart-total-pricing {
+    font-size: 12px;
+    font-weight: 400;
+    margin-top: 26px;
+    margin-bottom: 20px;
+
+    li {
+      display: flex;
+      -webkit-box-align: center;
+      align-items: center;
+      text-transform: capitalize;
+
+      .cart-total-value {
+        margin-left: auto;
+      }
+    }
+
+    li:not(:last-of-type) {
+      margin-bottom: 16px;
+    }
+
+    .accent {
+      color: rgb(82, 176, 131);
+    }
+  }
+
+  .cart-total-total {
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 16px 0px;
+    border-top: 1px solid rgb(245, 246, 246);
+    border-bottom: 1px solid rgb(245, 246, 246);
+
+    h2 {
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .cart-total-sum {
+      margin-left: auto;
+    }
+  }
+
+  .cart-total-secure {
+    margin-top: 16px;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+
+    svg {
+      margin-right: 8px;
+    }
+  }
+
+  .cart-total-checkout {
+    a {
+      width: 100%;
+      margin-top: 20px;
+      display: block;
+      text-align: center;
+      line-height: 56px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: bold;
+      background-color: #b4d984;
+      color: rgb(0, 0, 0);
+    }
   }
 }
