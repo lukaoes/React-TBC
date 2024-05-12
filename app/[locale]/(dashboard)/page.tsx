@@ -1,29 +1,32 @@
 // 'use client'
-import FeaturedProducts from '../../../components/Home/featuredProducts';
+import FeaturedProducts from "../../../components/Home/featuredProducts";
 // import SearchBar from '@/components/Home/searchBar';
 // import { useEffect, useState } from 'react';
 // import axios from 'axios';
-const API = 'https://dummyjson.com/products'
-import { getI18n } from '../../../locales/server';
-import { setStaticParamsLocale } from 'next-international/server'
-import { getStaticParams } from '../../../locales/server';
+const API = "https://dummyjson.com/products";
+import { getI18n } from "../../../locales/server";
+import { setStaticParamsLocale } from "next-international/server";
+import { getStaticParams } from "../../../locales/server";
 
 export function generateStaticParams() {
-  return getStaticParams()
+  return getStaticParams();
 }
 
 async function fetchMain() {
-    const response = await fetch(API);
-    const mainData = await response.json();
-  
-    return mainData
+  const response = await fetch(API);
+  const mainData = await response.json();
+
+  return mainData;
 }
 
-
-export default async function Home({ params: { locale } }: { params: { locale: string } }) {
-  setStaticParamsLocale(locale)
+export default async function Home({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  setStaticParamsLocale(locale);
   const products = await fetchMain();
-  const t = await getI18n()
+  const t = await getI18n();
 
   // const [products, setProducts] = useState([])
   // const [filteredCardData, setFilteredCardData] = useState([]);
@@ -43,18 +46,17 @@ export default async function Home({ params: { locale } }: { params: { locale: s
   //     });
   // }, []);
 
-
   return (
     <>
       {/* <SearchBar cardData={products} onSearch={handleSearch} /> */}
       <main>
         <div className="main-container">
-          <h1 className="title">{t('main.popular')}</h1>
-          <div className="featured-products"> 
+          <h1 className="title">{t("main.popular")}</h1>
+          <div className="featured-products">
             <FeaturedProducts products={products.products} />
           </div>
         </div>
       </main>
     </>
-  )
+  );
 }
