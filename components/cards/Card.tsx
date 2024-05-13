@@ -2,7 +2,8 @@
 import Image from "next/image";
 import { useI18n } from "../../locales/client";
 import FeaturedCardButton from "../Home/featuredCardButton";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
+import { useLocalStorage } from "../../hooks";
 
 export interface CardProps {
   id: number;
@@ -16,26 +17,29 @@ export interface CardProps {
 
 interface SelectedProduct {
   id: number;
-  // product: CardProps;
+  product: CardProps;
   count: number;
 }
 
 const initialState: SelectedProduct[] = [];
 
 type Action =
-  | { type: "INCREMENT"; payload: number }
-  | { type: "DECREMENT"; payload: number }
+  | { type: "INCREMENT"; payload: CardProps }
+  | { type: "DECREMENT"; payload: CardProps }
   | { type: "RESET" };
 
 function reducer(state: SelectedProduct[], action: Action) {
   switch (action.type) {
     case "INCREMENT": {
       const selectedProductIdx = state.findIndex(
-        (p) => p.id === action.payload
+        (p) => p.id === action.payload.id
       );
 
       if (selectedProductIdx === -1)
-        return [...state, { id: action.payload, count: 1 }];
+        return [
+          ...state,
+          { id: action.payload.id, product: action.payload, count: 1 },
+        ];
 
       const clone = [...state];
 
@@ -52,81 +56,55 @@ function reducer(state: SelectedProduct[], action: Action) {
     }
     case "DECREMENT": {
       const selectedProductIdx = state.findIndex(
-        (p) => p.id === action.payload
+        (p) => p.id === action.payload.id
       );
 
-      if (selectedProductIdx === -1)
-        return [...state, { id: action.payload, count: 1 }];
+      if (selectedProductIdx === -1) return state;
 
       const clone = [...state];
 
       const selectedProduct = clone[selectedProductIdx];
 
-      const updatedSelectedProduct = {
-        ...selectedProduct,
-        count: selectedProduct.count - 1,
-      };
+      if (selectedProduct.count === 1) {
+        // If count is 1, remove the item from the list
+        clone.splice(selectedProductIdx, 1);
+      } else {
+        const updatedSelectedProduct = {
+          ...selectedProduct,
+          count: selectedProduct.count - 1,
+        };
 
-      clone[selectedProductIdx] = updatedSelectedProduct;
+        clone[selectedProductIdx] = updatedSelectedProduct;
+      }
 
       return clone;
     }
     case "RESET":
       return initialState;
+    default:
+      return state;
   }
 }
 
 function Card({ cardData }: { cardData: CardProps[] }) {
-  // const [selectedProducts, setSelectedProducts] = useState<SelectedProduct[]>(
-  //   []
-  // );
   const [selectedProducts, dispatch] = useReducer(reducer, initialState);
+  const [, setCachedValue] = useLocalStorage("selectedProducts", initialState);
   console.log(selectedProducts);
   const t = useI18n();
 
+  useEffect(() => {
+    setCachedValue(() => selectedProducts);
+  }, [selectedProducts, setCachedValue]);
+
   const handleClick = async (product: CardProps) => {
-    dispatch({ type: "INCREMENT", payload: product.id });
-
-    // const selectedProductIdx = selectedProducts.findIndex(
-    //   (p) => p.id === product.id
-    // );
-
-    // if (selectedProductIdx === -1) {
-    //   setSelectedProducts((prev) => [
-    //     ...prev,
-    //     { id: product.id, product, count: 1 },
-    //   ]);
-    // } else {
-    //   const clone = [...selectedProducts];
-    //   const selectedProduct = selectedProducts[selectedProductIdx];
-    //   const updatedSelectedProduct = {
-    //     ...selectedProduct,
-    //     count: selectedProduct.count + 1,
-    //   };
-
-    //   clone[selectedProductIdx] = updatedSelectedProduct;
-
-    //   setSelectedProducts(clone);
-    // }
-
-    // const selectedProduct = selectedProducts.find((p) => p.id === product.id);
-
-    // if (!selectedProduct) {
-    //   setSelectedProducts((prev) => [
-    //     ...prev,
-    //     { id: product.id, product, count: 1 },
-    //   ]);
-    // } else {
-    //   const updatedSelectedProduct = {
-    //     ...selectedProduct,
-    //     count: selectedProduct.count + 1,
-    //   };
-
-    //   setSelectedProducts((prev) => [...prev, updatedSelectedProduct]);
-    // }
+    dispatch({ type: "INCREMENT", payload: product });
   };
 
-  // console.log(selectedProducts);
+  // const selectedNumber = selectedProducts.reduce((acc, curr) => {
+  //   return acc + curr.count;
+  // }, 0);
+
+  // localStorage.setItem("cartCount", String(selectedNumber));
 
   return (
     <>

@@ -1,17 +1,20 @@
+import { setStaticParamsLocale } from "next-international/server";
 import CartCard from "../../../../components/Cart/cartCard";
-import CartTotal from "../../../../components/Cart/cartTotal";
+import { getStaticParams } from "../../../../locales/server";
 
-const Cart = () => {
+export function generateStaticParams() {
+  return getStaticParams();
+}
+
+const Cart = ({ params: { locale } }: { params: { locale: string } }) => {
+  setStaticParamsLocale(locale);
+
   return (
     <div className="container cart-layout">
-      <h1>შენს კალათაში 2 ნივთია</h1>
-      <div className="cart-details-layout">
+      <h1>ნივთები თქვენს კალათაში:</h1>
+      <div className="">
         <div>
           <CartCard />
-          <CartCard />
-        </div>
-        <div>
-          <CartTotal />
         </div>
       </div>
     </div>
