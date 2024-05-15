@@ -1,8 +1,8 @@
 "use client";
+import { useEffect, useReducer } from "react";
 import Image from "next/image";
 import { useI18n } from "../../locales/client";
 import FeaturedCardButton from "../Home/featuredCardButton";
-import { useEffect, useReducer } from "react";
 import { useLocalStorage } from "../../hooks";
 
 export interface CardProps {
@@ -42,16 +42,12 @@ function reducer(state: SelectedProduct[], action: Action) {
         ];
 
       const clone = [...state];
-
       const selectedProduct = clone[selectedProductIdx];
-
       const updatedSelectedProduct = {
         ...selectedProduct,
         count: selectedProduct.count + 1,
       };
-
       clone[selectedProductIdx] = updatedSelectedProduct;
-
       return clone;
     }
     case "DECREMENT": {
@@ -62,18 +58,15 @@ function reducer(state: SelectedProduct[], action: Action) {
       if (selectedProductIdx === -1) return state;
 
       const clone = [...state];
-
       const selectedProduct = clone[selectedProductIdx];
 
       if (selectedProduct.count === 1) {
-        // If count is 1, remove the item from the list
         clone.splice(selectedProductIdx, 1);
       } else {
         const updatedSelectedProduct = {
           ...selectedProduct,
           count: selectedProduct.count - 1,
         };
-
         clone[selectedProductIdx] = updatedSelectedProduct;
       }
 
@@ -88,23 +81,27 @@ function reducer(state: SelectedProduct[], action: Action) {
 
 function Card({ cardData }: { cardData: CardProps[] }) {
   const [selectedProducts, dispatch] = useReducer(reducer, initialState);
-  const [, setCachedValue] = useLocalStorage("selectedProducts", initialState);
-  console.log(selectedProducts);
+  const [cachedProducts, setCachedProducts] = useLocalStorage(
+    "selectedProducts",
+    initialState
+  );
   const t = useI18n();
 
   useEffect(() => {
-    setCachedValue(() => selectedProducts);
-  }, [selectedProducts, setCachedValue]);
+    if (cachedProducts.length > 0) {
+      cachedProducts.forEach((product: { product: any }) =>
+        dispatch({ type: "INCREMENT", payload: product.product })
+      );
+    }
+  }, []);
+
+  useEffect(() => {
+    setCachedProducts(selectedProducts);
+  }, [selectedProducts, setCachedProducts]);
 
   const handleClick = async (product: CardProps) => {
     dispatch({ type: "INCREMENT", payload: product });
   };
-
-  // const selectedNumber = selectedProducts.reduce((acc, curr) => {
-  //   return acc + curr.count;
-  // }, 0);
-
-  // localStorage.setItem("cartCount", String(selectedNumber));
 
   return (
     <>
