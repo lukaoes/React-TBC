@@ -14,15 +14,24 @@ const CartCard = () => {
   const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
-    const fetchData = () => {
+    const fetchProductsFromLocalStorage = () => {
       const storedProducts = localStorage.getItem("selectedProducts");
       if (storedProducts) {
         const parsedProducts = JSON.parse(storedProducts);
-        setProducts(parsedProducts);
+        setProducts(
+          parsedProducts.map((product: Product) => {
+            const existingProduct = products.find((p) => p.id === product.id);
+            if (existingProduct) {
+              return { ...existingProduct, count: product.count };
+            } else {
+              return product;
+            }
+          })
+        );
       }
     };
 
-    fetchData();
+    fetchProductsFromLocalStorage();
   }, []);
 
   const handleQuantityChange = (index: number, newCount: number) => {

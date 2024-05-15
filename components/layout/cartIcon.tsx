@@ -35,7 +35,7 @@ const CartIcon = () => {
           />
         </g>
       </svg>
-      <span>99</span>
+      {/* <span>99</span> */}
     </Link>
   );
 };
