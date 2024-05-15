@@ -242,7 +242,38 @@
             width: 45%;
             box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, 
             rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-          }
+         }
       }
    }
  }
+
+
+.cart-icon {
+   display: block;
+   border: 1px solid #000;
+   border-radius: 8px;
+   padding: 5px;
+   position: relative;
+   cursor: pointer;
+
+   svg {
+      height: 25px;
+      width: 25px;
+   }
+
+   span {
+      width: 22px;
+      height: 22px;
+      font-size: 14px;
+      text-align: center;
+      line-height: 22px;
+      display: block;
+      position: absolute;
+      top: -9px;
+      right: -10px;
+      background-color: #fff;
+      border-radius: 100%;
+      border: 1px solid #000;
+      font-weight: 800;
+   }
+}

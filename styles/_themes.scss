@@ -47,6 +47,19 @@ $dark-main: #424242;
       }
     }
 
+    .cart-icon {
+      border: 1px solid $background-color-light;
+      svg {
+        fill: $background-color-light;
+      }
+
+      span {
+        background-color: $background-color-dark;
+        border: 1px solid $background-color-light;
+        font-weight: 800;
+      }
+  }
+
     // main
     .featured-products {
       background: rgba(255, 255, 255, 0.1);
