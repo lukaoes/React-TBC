@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useI18n } from "../../locales/client";
 import FeaturedCardButton from "../Home/featuredCardButton";
 import { useLocalStorage } from "../../hooks";
+import { useAppContext } from "../../context";
 
 export interface CardProps {
   id: number;
@@ -31,73 +32,83 @@ type Action =
 function reducer(state: SelectedProduct[], action: Action) {
   switch (action.type) {
     case "INCREMENT": {
+      if (state === undefined) {
+        state = [];
+      }
+
       const selectedProductIdx = state.findIndex(
-        (p) => p.id === action.payload.id
+        (product) => Number(product.id) === action.payload.id
       );
 
-      if (selectedProductIdx === -1)
+      if (selectedProductIdx === -1) {
         return [
           ...state,
           { id: action.payload.id, product: action.payload, count: 1 },
         ];
+      }
 
       const clone = [...state];
+
       const selectedProduct = clone[selectedProductIdx];
-      const updatedSelectedProduct = {
+
+      const updateSelectedProduct = {
         ...selectedProduct,
         count: selectedProduct.count + 1,
       };
-      clone[selectedProductIdx] = updatedSelectedProduct;
+
+      clone[selectedProductIdx] = updateSelectedProduct;
+
       return clone;
     }
-    case "DECREMENT": {
-      const selectedProductIdx = state.findIndex(
-        (p) => p.id === action.payload.id
-      );
 
+    case "DECREMENT": {
+      if (state === undefined) {
+        state = [];
+      }
+      const selectedProductIdx = state.findIndex(
+        (product) => product.id === action.payload.id
+      );
       if (selectedProductIdx === -1) return state;
 
       const clone = [...state];
       const selectedProduct = clone[selectedProductIdx];
-
-      if (selectedProduct.count === 1) {
-        clone.splice(selectedProductIdx, 1);
-      } else {
-        const updatedSelectedProduct = {
-          ...selectedProduct,
-          count: selectedProduct.count - 1,
-        };
-        clone[selectedProductIdx] = updatedSelectedProduct;
-      }
+      if (selectedProduct.count < 2) return clone;
+      const updateSelectedProduct = {
+        ...selectedProduct,
+        count: selectedProduct.count - 1,
+      };
+      clone[selectedProductIdx] = updateSelectedProduct;
 
       return clone;
     }
+
     case "RESET":
       return initialState;
-    default:
-      return state;
   }
 }
 
 function Card({ cardData }: { cardData: CardProps[] }) {
-  const [selectedProducts, dispatch] = useReducer(reducer, initialState);
   const [cachedProducts, setCachedProducts] = useLocalStorage(
     "selectedProducts",
     initialState
   );
+  const [selectedProducts, dispatch] = useReducer(reducer, cachedProducts);
+  console.log(selectedProducts);
+  const { state, setState } = useAppContext();
   const t = useI18n();
+  console.log("asdasd", state);
 
   useEffect(() => {
-    if (cachedProducts.length > 0) {
-      cachedProducts.forEach((product: { product: any }) =>
-        dispatch({ type: "INCREMENT", payload: product.product })
+    if (selectedProducts && selectedProducts.length > 0) {
+      setState(
+        selectedProducts.reduce((acc: number, curr: any) => {
+          return acc + curr.count;
+        }, 0)
       );
-    }
-  }, []);
 
-  useEffect(() => {
-    setCachedProducts(selectedProducts);
-  }, [selectedProducts, setCachedProducts]);
+      setCachedProducts(selectedProducts);
+    }
+  }, [selectedProducts, setCachedProducts, setState]);
 
   const handleClick = async (product: CardProps) => {
     dispatch({ type: "INCREMENT", payload: product });

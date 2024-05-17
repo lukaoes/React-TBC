@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CartCount from "./cartCount";
 
 const CartIcon = () => {
   return (
@@ -35,7 +36,7 @@ const CartIcon = () => {
           />
         </g>
       </svg>
-      {/* <span>99</span> */}
+      <CartCount />
     </Link>
   );
 };

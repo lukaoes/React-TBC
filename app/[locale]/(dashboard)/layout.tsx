@@ -7,6 +7,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { ReactElement } from "react";
 import { I18nProviderClient } from "../../../locales/client";
+import { AppWrapper } from "../../../context";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -41,11 +42,13 @@ export default async function RootLayout({
     <html>
       <body>
         <I18nProviderClient locale={locale}>
-          <div className={`app ${roboto.className}`}>
-            <Header />
-            <main className="content">{children}</main>
-            <Footer />
-          </div>
+          <AppWrapper>
+            <div className={`app ${roboto.className}`}>
+              <Header />
+              <main className="content">{children}</main>
+              <Footer />
+            </div>
+          </AppWrapper>
         </I18nProviderClient>
       </body>
     </html>

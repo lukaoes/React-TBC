@@ -3,6 +3,7 @@ import Image from "next/image";
 import { CardProps } from "../cards/Card";
 import { useEffect, useState } from "react";
 import CartTotal from "./cartTotal";
+import { useAppContext } from "../../context";
 
 interface Product {
   id: number;
@@ -12,12 +13,18 @@ interface Product {
 
 const CartCard = () => {
   const [products, setProducts] = useState<Product[]>([]);
+  const { setState } = useAppContext();
 
   useEffect(() => {
     const fetchProductsFromLocalStorage = () => {
       const storedProducts = localStorage.getItem("selectedProducts");
       if (storedProducts) {
         const parsedProducts = JSON.parse(storedProducts);
+        setState(
+          parsedProducts.reduce((acc: number, curr: any) => {
+            return acc + curr.count;
+          }, 0)
+        );
         setProducts(
           parsedProducts.map((product: Product) => {
             const existingProduct = products.find((p) => p.id === product.id);
@@ -38,6 +45,11 @@ const CartCard = () => {
     const updatedProducts = [...products];
     updatedProducts[index].count = newCount;
     setProducts(updatedProducts);
+    setState(
+      updatedProducts.reduce((acc: number, curr: any) => {
+        return acc + curr.count;
+      }, 0)
+    );
     localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
   };
 
@@ -45,6 +57,11 @@ const CartCard = () => {
     const updatedProducts = [...products];
     updatedProducts.splice(index, 1);
     setProducts(updatedProducts);
+    setState(
+      updatedProducts.reduce((acc: number, curr: any) => {
+        return acc + curr.count;
+      }, 0)
+    );
     localStorage.setItem("selectedProducts", JSON.stringify(updatedProducts));
   };
 
@@ -146,10 +163,14 @@ const CartCard = () => {
         ))}
       </div>
       <div>
-        <CartTotal
-          totalPrice={totalPrice}
-          selectedNumber={totalSelectedProducts}
-        />
+        {totalSelectedProducts > 0 ? (
+          <CartTotal
+            totalPrice={totalPrice}
+            selectedNumber={totalSelectedProducts}
+          />
+        ) : (
+          <h1>იტვირთება...(ან ცარიელია)</h1>
+        )}
       </div>
     </div>
   );

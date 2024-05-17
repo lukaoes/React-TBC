@@ -23,7 +23,7 @@ const CartTotal: FC<CartTotalProps> = ({ totalPrice, selectedNumber }) => {
       </ul>
       <div className="cart-total-total">
         <h2>ჯამური ღირებულება</h2>
-        <span className="cart-total-sum">45.43 ₾</span>
+        <span className="cart-total-sum">{totalPrice} ₾</span>
       </div>
       <span className="cart-total-secure">
         <svg
