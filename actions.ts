@@ -1,25 +1,23 @@
-'use server'
+"use server";
 
 import { revalidatePath } from "next/cache";
 import { BASE_URL, deleteUser } from "./api";
 
 export async function createUserAction(formData: FormData) {
-  revalidatePath("/admin")
-
   const { name, email, age } = Object.fromEntries(formData);
 
-  const response = await fetch(BASE_URL + '/api/create-user', {
-    method: 'POST',
+  await fetch(BASE_URL + "/api/create-user", {
+    method: "POST",
     body: JSON.stringify({ name, email, age }),
   });
+  revalidatePath("/admin/add");
 
-  return response
-
+  // return response
 }
 
 export async function deleteUserAction(id: number) {
   await deleteUser(id);
-  revalidatePath("/admin")
+  revalidatePath("/admin");
 }
 
 export async function editUser(id: number, formData: FormData) {
@@ -33,5 +31,5 @@ export async function editUser(id: number, formData: FormData) {
     }
   );
 
-  revalidatePath("/admin")
+  revalidatePath("/admin");
 }
