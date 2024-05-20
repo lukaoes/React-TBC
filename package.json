@@ -13,6 +13,7 @@
     "@types/negotiator": "^0.6.3",
     "@vercel/postgres": "^0.8.0",
     "axios": "^1.6.8",
+    "hamburger-react": "^2.5.1",
     "negotiator": "^0.6.3",
     "next": "14.1.4",
     "next-international": "^1.2.4",

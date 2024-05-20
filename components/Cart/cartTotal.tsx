@@ -36,9 +36,9 @@ const CartTotal: FC<CartTotalProps> = ({ totalPrice, selectedNumber }) => {
           <path
             d="M7.00008 14.6666C7.00008 14.6666 12.3334 11.9999 12.3334 7.99992V3.33325L7.00008 1.33325L1.66675 3.33325V7.99992C1.66675 11.9999 7.00008 14.6666 7.00008 14.6666Z"
             stroke="#52B083"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
           ></path>
         </svg>{" "}
         გადახდის დაცული მეთოდები
