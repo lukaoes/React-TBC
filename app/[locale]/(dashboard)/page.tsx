@@ -9,8 +9,9 @@ import { setStaticParamsLocale } from "next-international/server";
 import { getStaticParams } from "../../../locales/server";
 import { getProducts } from "../../../api";
 import Image from "next/image";
+import ProductCard from "../../../components/cards/ProductCard";
 
-interface Product {
+export interface Product {
   id: number;
   title: string;
   description: string;
@@ -68,23 +69,7 @@ export default async function Home({
         <div className="main-container">
           <h1 className="title">{t("main.popular")}</h1>
           <div className="featured-products">
-            {newProds.map((item: Product, index: number) => (
-              <div key={`own-prods-${index}`} className="w-[250px]">
-                <h2>{item.title}</h2>
-                <p className="h-[100px] overflow-hidden">{item.description}</p>
-                <p>Price: ${item.price}</p>
-                <p>Discount: {item.discount}%</p>
-                <p>Stock: {item.stock}</p>
-                <p>Brand: {item.brand}</p>
-                <p>Category: {item.category}</p>
-                <Image
-                  src={item.thumbnail}
-                  alt={item.title}
-                  width={200}
-                  height={400}
-                />
-              </div>
-            ))}
+            <ProductCard newProds={newProds} />
             <FeaturedProducts products={products.products} />
           </div>
         </div>

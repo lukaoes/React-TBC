@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import "../../../styles/index.scss";
 import { cookies } from "next/headers";
 import { AUTH_COOKIE_KEY } from "../../../constants";
+import { revalidatePath } from "next/cache";
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -20,6 +21,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
   if (cookie) {
     redirect("/");
   }
+
+  revalidatePath("/login");
   return (
     <html lang="en">
       <body>{children}</body>
