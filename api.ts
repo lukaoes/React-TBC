@@ -32,7 +32,9 @@ export async function getUserCart(userId: number) {
 }
 
 export async function getProducts() {
-  const response = await fetch(BASE_URL + "/api/products/get-products");
+  const response = await fetch(BASE_URL + "/api/products/get-products", {
+    cache: "no-store",
+  });
   const data = await response.json();
 
   const products = data.users.rows;
