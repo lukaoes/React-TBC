@@ -8,14 +8,18 @@ interface CartProductsProps {
   filteredProducts: Product[];
   initialQuantities: Record<string, number>;
   handleQuantityChange: (productId: string, quantityChange: number) => void;
+  handleProductRemove: (productId: string) => Promise<void>;
 }
 
 const CartProducts = ({
   filteredProducts,
   initialQuantities,
   handleQuantityChange,
+  handleProductRemove,
 }: CartProductsProps) => {
   const [productQuantities, setProductQuantities] = useState(initialQuantities);
+  const [localFilteredProducts, setLocalFilteredProducts] =
+    useState(filteredProducts);
 
   const updateQuantity = async (productId: string, quantityChange: number) => {
     const newQuantity = (productQuantities[productId] || 0) + quantityChange;
@@ -30,9 +34,26 @@ const CartProducts = ({
     }));
   };
 
+  const removeProduct = async (productId: string) => {
+    // Call the parent function to update the backend
+    await handleProductRemove(productId);
+
+    // Update the local state to remove the product
+    setProductQuantities((prevQuantities) => {
+      const updatedQuantities = { ...prevQuantities };
+      delete updatedQuantities[productId];
+      return updatedQuantities;
+    });
+
+    // Update local filtered products
+    setLocalFilteredProducts((prevProducts) =>
+      prevProducts.filter((product) => product.id.toString() !== productId)
+    );
+  };
+
   return (
     <div>
-      {filteredProducts.map((item: Product, index: number) => (
+      {localFilteredProducts.map((item: Product, index: number) => (
         <div key={`filteredProducss-${index}`}>
           <h2>{item.title}</h2>
           <p>Price: ${item.price}</p>
@@ -51,6 +72,9 @@ const CartProducts = ({
             </span>
             <button onClick={() => updateQuantity(item.id.toString(), 1)}>
               +
+            </button>
+            <button onClick={() => removeProduct(item.id.toString())}>
+              Remove
             </button>
           </div>
         </div>

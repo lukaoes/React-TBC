@@ -3,6 +3,7 @@ import CartCard from "../../../../components/Cart/cartCard";
 import { getStaticParams } from "../../../../locales/server";
 import { getProducts, getUserCart } from "../../../../api";
 import CartProducts from "../../../../components/Cart/cartProducts";
+import { revalidatePath } from "next/cache";
 
 export function generateStaticParams() {
   return getStaticParams();
@@ -61,6 +62,32 @@ const Cart = async ({ params: { locale } }: { params: { locale: string } }) => {
     }
   };
 
+  const handleProductRemove = async (productId: string) => {
+    "use server";
+    try {
+      const response = await fetch(
+        "http://localhost:3000/api/cart/single-remove",
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userId: 2, // Assuming you have a user ID
+            productId,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        console.error("Error removing product:", response.statusText);
+        revalidatePath("/cart");
+      }
+    } catch (error) {
+      console.error("Error removing product:", error);
+    }
+  };
+
   return (
     <div className="container cart-layout">
       <h1>ნივთები თქვენს კალათაში:</h1>
@@ -69,6 +96,7 @@ const Cart = async ({ params: { locale } }: { params: { locale: string } }) => {
           filteredProducts={filteredProducts}
           handleQuantityChange={handleQuantityChange}
           initialQuantities={initialQuantities}
+          handleProductRemove={handleProductRemove}
         />
         <div></div>
         <div>
