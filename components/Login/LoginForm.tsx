@@ -1,44 +1,63 @@
-'use client'
-import { useState } from "react"
-import { useRouter } from "next/navigation";
-import Login from "../../app/[locale]/login/login";
+"use client";
+import React, { useState } from "react";
+import { setCookie } from "nookies";
+import { AUTH_COOKIE_KEY } from "../../constants";
 
-const LoginForm = () => {
-  const router = useRouter();
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+interface User {
+  id: number;
+  name: string;
+  surname: string;
+  email: string;
+  password: string;
+  role: string;
+}
 
-  const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
+interface LoginFormProps {
+  users: User[];
+}
+
+const LoginForm: React.FC<LoginFormProps> = ({ users }) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    Login(username, password).then(() => router.push("/"));
-  }
+    const user = users.find(
+      (u) => u.email === username && u.password === password
+    );
+
+    if (user) {
+      setCookie(null, AUTH_COOKIE_KEY, JSON.stringify(user), { path: "/" });
+      window.location.reload();
+    } else {
+      setError("Invalid username or password");
+    }
+  };
 
   return (
-    <form onSubmit={handleLogin}>
-      <label htmlFor="username">Username:</label>
-      <input 
-        type="username"
-        id="username"
-        placeholder="Username..."
+    <form onSubmit={handleSubmit}>
+      <label htmlFor="username">Email:</label>
+      <input
+        type="email"
+        id="Email"
         value={username}
-        onChange={(e) => {
-          setUsername(e.target.value)
-        }}
+        onChange={(e) => setUsername(e.target.value)}
+        placeholder="Email..."
       />
       <label htmlFor="password">Password:</label>
-      <input 
+      <input
         type="password"
         id="password"
-        placeholder="Password..."
         value={password}
-        onChange={(e) => {
-          setPassword(e.target.value)
-        }}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password..."
       />
+      {error && <p>{error}</p>}
       <button type="submit">LOGIN</button>
     </form>
-  )
-}
+  );
+};
 
 export default LoginForm;

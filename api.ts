@@ -39,3 +39,10 @@ export async function getProducts() {
 
   return products;
 }
+
+export async function getUsersAuth() {
+  const response = await fetch(BASE_URL + "/api/users/get-users");
+  const { users } = await response.json();
+
+  return users.rows;
+}
