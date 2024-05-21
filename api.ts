@@ -20,16 +20,22 @@ export async function deleteUser(id: number) {
   });
 }
 
-// export async function createUser(name: string, email: string, age ) {
-//   return await fetch(BASE_URL + '/api/create-user', {
-//     method: 'POST',
-//     body: JSON.stringify({ name, email }),
-//   });
-// }
+export async function getUserCart(userId: number) {
+  const response = await fetch(BASE_URL + `/api/cart/get-cart/${userId}`, {
+    cache: "no-store",
+  });
+  const carts = await response.json();
 
-// export async function createUserss(name: string, email: string, age: number) {
-//   return await fetch(BASE_URL + '/api/create-user', {
-//     method: 'POST',
-//     body: JSON.stringify({ name, email, age }),
-//   });
-// }
+  const [cart] = carts.carts.rows;
+
+  return cart;
+}
+
+export async function getProducts() {
+  const response = await fetch(BASE_URL + "/api/products/get-products");
+  const data = await response.json();
+
+  const products = data.users.rows;
+
+  return products;
+}

@@ -7,6 +7,20 @@ const API = "https://dummyjson.com/products";
 import { getI18n } from "../../../locales/server";
 import { setStaticParamsLocale } from "next-international/server";
 import { getStaticParams } from "../../../locales/server";
+import { getProducts } from "../../../api";
+import Image from "next/image";
+
+interface Product {
+  id: number;
+  title: string;
+  description: string;
+  price: string;
+  discount: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+}
 
 export function generateStaticParams() {
   return getStaticParams();
@@ -27,6 +41,7 @@ export default async function Home({
   setStaticParamsLocale(locale);
   const products = await fetchMain();
   const t = await getI18n();
+  const newProds = await getProducts();
 
   // const [products, setProducts] = useState([])
   // const [filteredCardData, setFilteredCardData] = useState([]);
@@ -53,6 +68,23 @@ export default async function Home({
         <div className="main-container">
           <h1 className="title">{t("main.popular")}</h1>
           <div className="featured-products">
+            {newProds.map((item: Product, index: number) => (
+              <div key={`own-prods-${index}`} className="w-[250px]">
+                <h2>{item.title}</h2>
+                <p className="h-[100px] overflow-hidden">{item.description}</p>
+                <p>Price: ${item.price}</p>
+                <p>Discount: {item.discount}%</p>
+                <p>Stock: {item.stock}</p>
+                <p>Brand: {item.brand}</p>
+                <p>Category: {item.category}</p>
+                <Image
+                  src={item.thumbnail}
+                  alt={item.title}
+                  width={200}
+                  height={400}
+                />
+              </div>
+            ))}
             <FeaturedProducts products={products.products} />
           </div>
         </div>
