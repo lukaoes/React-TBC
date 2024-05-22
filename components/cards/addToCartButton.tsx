@@ -1,22 +1,14 @@
-import Link from "next/link";
-// import CartCount from "./cartCount";
-// import Cart from "../../public/assets/images/cart.svg";
-// import Image from "next/image";
-import { getUserCart } from "../../api";
-// import { getUserCart } from "../../api";
+"use client";
+import React from "react";
+import { handleAddToCart } from "../../actions";
 
-const CartIcon = async () => {
-  const userId = 2;
-  const cart = await getUserCart(userId);
-  const productQuantities = cart.products;
+interface AddToCartButtonProps {
+  productId: string;
+}
 
-  const totalCount = Object.values<number>(productQuantities).reduce(
-    (acc, quantity) => acc + quantity,
-    0
-  );
-
+const AddToCartButton: React.FC<AddToCartButtonProps> = ({ productId }) => {
   return (
-    <Link href="/cart" className="cart-icon">
+    <button onClick={() => handleAddToCart(productId)}>
       <svg
         width="20"
         height="20"
@@ -53,10 +45,8 @@ const CartIcon = async () => {
           </clipPath>
         </defs>
       </svg>
-      {/* <CartCount /> */}
-      <span>{totalCount}</span>
-    </Link>
+    </button>
   );
 };
 
-export default CartIcon;
+export default AddToCartButton;

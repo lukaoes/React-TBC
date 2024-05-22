@@ -1,23 +1,38 @@
 // 'use client'
-import FeaturedProducts from "../../../components/Home/featuredProducts";
+// import FeaturedProducts from "../../../components/Home/featuredProducts";
 // import SearchBar from '@/components/Home/searchBar';
 // import { useEffect, useState } from 'react';
 // import axios from 'axios';
-const API = "https://dummyjson.com/products";
+// const API = "https://dummyjson.com/products";
 import { getI18n } from "../../../locales/server";
 import { setStaticParamsLocale } from "next-international/server";
 import { getStaticParams } from "../../../locales/server";
+import { getProducts } from "../../../api";
+// import Image from "next/image";
+import ProductCard from "../../../components/cards/ProductCard";
+
+export interface Product {
+  id: number;
+  title: string;
+  description: string;
+  price: string;
+  discount: number;
+  stock: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+}
 
 export function generateStaticParams() {
   return getStaticParams();
 }
 
-async function fetchMain() {
-  const response = await fetch(API);
-  const mainData = await response.json();
+// async function fetchMain() {
+//   const response = await fetch(API);
+//   const mainData = await response.json();
 
-  return mainData;
-}
+//   return mainData;
+// }
 
 export default async function Home({
   params: { locale },
@@ -25,8 +40,9 @@ export default async function Home({
   params: { locale: string };
 }) {
   setStaticParamsLocale(locale);
-  const products = await fetchMain();
+  // const products = await fetchMain();
   const t = await getI18n();
+  const newProds = await getProducts();
 
   // const [products, setProducts] = useState([])
   // const [filteredCardData, setFilteredCardData] = useState([]);
@@ -53,7 +69,8 @@ export default async function Home({
         <div className="main-container">
           <h1 className="title">{t("main.popular")}</h1>
           <div className="featured-products">
-            <FeaturedProducts products={products.products} />
+            <ProductCard newProds={newProds} />
+            {/* <FeaturedProducts products={products.products} /> */}
           </div>
         </div>
       </main>
