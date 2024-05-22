@@ -8,28 +8,6 @@ interface ProductCardProps {
 }
 
 const ProductCard: FC<ProductCardProps> = ({ newProds }) => {
-  const handleAddToCart = async (productId: string) => {
-    "use server";
-    try {
-      const response = await fetch("http://localhost:3000/api/cart/add-cart", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: 2,
-          productId: productId,
-          quantity: 1,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to add item to cart");
-      }
-    } catch (error) {
-      console.error("Error adding item to cart:", error);
-    }
-  };
   return (
     <div className="flex">
       {newProds.map((item: Product, index: number) => (
@@ -43,7 +21,6 @@ const ProductCard: FC<ProductCardProps> = ({ newProds }) => {
           <p>Category: {item.category}</p>
           <AddToCartButton
             productId={String(item.id)}
-            handleAddToCart={handleAddToCart}
           />
           <Image
             src={item.thumbnail}

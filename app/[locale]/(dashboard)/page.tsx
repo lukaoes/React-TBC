@@ -8,7 +8,7 @@ import { getI18n } from "../../../locales/server";
 import { setStaticParamsLocale } from "next-international/server";
 import { getStaticParams } from "../../../locales/server";
 import { getProducts } from "../../../api";
-import Image from "next/image";
+// import Image from "next/image";
 import ProductCard from "../../../components/cards/ProductCard";
 
 export interface Product {
