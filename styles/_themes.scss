@@ -2,8 +2,10 @@ $background-color-dark: #292a32;
 $background-color-light: #eef6f0;
 $complimentary-color-dark: #393b43;
 $complimentary-color-light: #feffff;
-$light-main: #dee4e7;
+$light-main: #f2f2f2;
 $dark-main: #424242;
+
+// #192E2F
 
 .app {
   background-color: $light-main;
@@ -19,6 +21,11 @@ $dark-main: #424242;
 .app.dark-mode {
   background-color: $dark-main;
   color: $light-main;
+
+  path {
+    stroke: #fff;
+    fill: $dark-main;
+  }
 
   // header & footer
   header,
