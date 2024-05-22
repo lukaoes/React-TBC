@@ -1,49 +1,73 @@
-import { getScopedI18n } from "../../../../locales/server"
-import BlogCard from '../../../../components/cards/blogCard';
-import BlogRecentCard from '../../../../components/cards/blogRecentCard';
-import { setStaticParamsLocale } from 'next-international/server'
+import { getScopedI18n } from "../../../../locales/server";
+import BlogCard from "../../../../components/cards/blogCard";
+import BlogRecentCard from "../../../../components/cards/blogRecentCard";
+import { setStaticParamsLocale } from "next-international/server";
 import { getStaticParams } from "../../../../locales/server";
+// import SecondHeader from "../../../../components/layout/secondHeader";
 
 export function generateStaticParams() {
-  return getStaticParams()
+  return getStaticParams();
 }
 
 async function fetchBlog() {
-  const response = await fetch('https://dummyjson.com/posts');
+  const response = await fetch("https://dummyjson.com/posts");
   const blogPosts = await response.json();
 
-  return blogPosts
+  return blogPosts;
 }
 
-
-export default async function Blog({ params: { locale } }: { params: { locale: string } }) {
-  setStaticParamsLocale(locale)
-  const t = await getScopedI18n('blog')
+export default async function Blog({
+  params: { locale },
+}: {
+  params: { locale: string };
+}) {
+  setStaticParamsLocale(locale);
+  const t = await getScopedI18n("blog");
   const blogCardData = await fetchBlog();
 
   return (
     <main>
+      {/* <SecondHeader title={"Blog"} /> */}
+
       <div className="blog-recent">
         <div className="blog-recent_header">
-          <h1>{t('title')}</h1>
-          <h5>{t('intro')}</h5>
+          <h1>{t("title")}</h1>
+          <h5>{t("intro")}</h5>
         </div>
         <div className="blog-container">
           <div className="blog-recent-post">
-            {blogCardData.posts.slice(15, 19).map((data: { id: string; title: string; tags: string[]; body: string; }, index: number) => (
-              <BlogRecentCard key={`blog-card-recent-${index}`} blogRecentPost={data} />
-            ))}
+            {blogCardData.posts.slice(15, 19).map(
+              (
+                data: {
+                  id: string;
+                  title: string;
+                  tags: string[];
+                  body: string;
+                },
+                index: number
+              ) => (
+                <BlogRecentCard
+                  key={`blog-card-recent-${index}`}
+                  blogRecentPost={data}
+                />
+              )
+            )}
           </div>
         </div>
       </div>
-        <div className="main-container">
-          <h1 className="title">{t('allBlogPosts')}</h1>
-          <div className="blog-posts">
-            {blogCardData.posts.map((data: { id: string; title: string; tags: string[]; body: string; }, index: number) => (
+      <div className="main-container">
+        <h1 className="title">{t("allBlogPosts")}</h1>
+        <div className="blog-posts">
+          {blogCardData.posts.map(
+            (
+              data: { id: string; title: string; tags: string[]; body: string },
+              index: number
+            ) => (
               <BlogCard key={`blog-card-${index}`} blogCardData={data} />
-            ))}
-          </div>
+            )
+          )}
         </div>
+      </div>
     </main>
   );
-};
+}
