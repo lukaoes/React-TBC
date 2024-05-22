@@ -1,5 +1,5 @@
 import { setStaticParamsLocale } from "next-international/server";
-import CartCard from "../../../../components/Cart/cartCard";
+// import CartCard from "../../../../components/Cart/cartCard";
 import { getStaticParams } from "../../../../locales/server";
 import { getProducts, getUserCart } from "../../../../api";
 import CartProducts from "../../../../components/Cart/cartProducts";
@@ -30,13 +30,13 @@ const Cart = async ({ params: { locale } }: { params: { locale: string } }) => {
   return (
     <div className="container cart-layout">
       <h1>ნივთები თქვენს კალათაში:</h1>
-      <div className="">
+      <div>
         <CartProducts
           filteredProducts={filteredProducts}
           initialQuantities={initialQuantities}
         />
-        <div></div>
-        <div>{/* <CartCard /> */}</div>
+        {/* <div></div> */}
+        {/* <div><CartCard /></div> */}
       </div>
     </div>
   );
