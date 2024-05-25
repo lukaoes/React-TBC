@@ -1,7 +1,9 @@
+"use client";
 // import { cookies } from "next/headers";
 // import { AUTH_COOKIE_KEY } from "../../constants";
 import Link from "next/link";
 import Image from "next/image";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 export default function HeaderProfile() {
   // const cookieStore = cookies();
@@ -11,22 +13,27 @@ export default function HeaderProfile() {
   // const newValue = value ? value[1] : null;
   // const match = newValue ? newValue.match(/"name"\s*:\s*"([^"]+)"/) : null;
   // const name = match ? match[1] : null;
-
+  const { user } = useUser();
+  const name = user?.name ? user.name.split(" ") : [];
+  const firstName = name.length > 0 ? name[0] : "";
   return (
     <div>
-      {/* <Link href="/profile" className="menu-block">
-        <span>{name}</span>
-        <Image
-          src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
-          alt="user"
-          width={40}
-          height={40}
-        />
-      </Link> */}
+      {user ? (
+        <Link href="/profile" className="menu-block">
+          <span>{firstName}</span>
+          {user.picture && (
+            <Image
+              src={user.picture}
+              alt={user.name || "Profile Picture"}
+              width={40}
+              height={40}
+            />
+          )}
+        </Link>
       ) : (
         <div className="header-auth">
-          <Link href="/auth/login">Login / Register</Link>
-          <Link href="/auth/register"> Register</Link>
+          <Link href="/api/auth/login">Login </Link> /
+          <Link href="/api/auth/login">Register</Link>
         </div>
       )}
     </div>

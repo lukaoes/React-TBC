@@ -8,6 +8,7 @@ import Footer from "../../../components/layout/Footer";
 import { ReactElement } from "react";
 import { I18nProviderClient } from "../../../locales/client";
 import { AppWrapper } from "../../../context";
+import { UserProvider } from "@auth0/nextjs-auth0/client";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -40,17 +41,20 @@ export default async function RootLayout({
 
   return (
     <html>
-      <body>
-        <I18nProviderClient locale={locale}>
-          <AppWrapper>
-            <div className={`app ${roboto.className}`}>
-              <Header />
-              <main className="content">{children}</main>
-              <Footer />
-            </div>
-          </AppWrapper>
-        </I18nProviderClient>
-      </body>
-    </html>
+      <UserProvider>
+        <body>
+          <I18nProviderClient locale={locale}>
+            <AppWrapper>
+              <div id="modal-container"></div>
+              <div className={`app ${roboto.className}`}>
+                <Header />
+                <main className="content">{children}</main>
+                <Footer />
+              </div>
+            </AppWrapper>
+          </I18nProviderClient>
+        </body>
+      </UserProvider>
+    </html >
   );
 }
