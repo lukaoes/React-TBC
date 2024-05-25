@@ -4,6 +4,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { useEffect } from "react";
 
 export default function HeaderProfile() {
   // const cookieStore = cookies();
@@ -17,6 +18,36 @@ export default function HeaderProfile() {
   // console.log(user);
   const name = user?.name ? user.name.split(" ") : [];
   const firstName = name.length > 0 ? name[0] : "";
+
+  useEffect(() => {
+    console.log("User changed:", user);
+    if (user && user.sid) {
+      console.log("Saving user profile...");
+      saveUserProfile(user);
+    }
+  }, [user]);
+
+  const saveUserProfile = async (user: any) => {
+    if (user) {
+      try {
+        const response = await fetch("/api/users/save-user", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            sid: user.sid,
+            email: user.email,
+            picture: user.picture,
+          }),
+        });
+        const data = await response.json();
+        console.log(data.message);
+      } catch (error) {
+        console.error("Error saving profile:", error);
+      }
+    }
+  };
   return (
     <div>
       {user ? (
