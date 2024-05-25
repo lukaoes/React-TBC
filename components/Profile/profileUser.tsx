@@ -2,6 +2,7 @@ import { FC } from "react";
 import Image from "next/image";
 // import { useRouter } from "next/navigation";
 import { useI18n } from "../../locales/client";
+import Link from "next/link";
 // import { logOut } from "../../app/[locale]/(dashboard)/profile/actions";
 
 interface userData {
@@ -35,7 +36,7 @@ const ProfileUser: FC<ProfileUserProps> = ({ userData }) => {
 
       <p>{userData?.name}</p>
       {/* <button onClick={handleLogOut}>{t('profile.logOut')}</button>  */}
-      <button>{t("profile.logOut")}</button>
+      <Link href="/api/auth/logout">{t("profile.logOut")}</Link>
     </div>
   );
 };
