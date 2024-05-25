@@ -6,15 +6,16 @@ import Link from "next/link";
 // import { logOut } from "../../app/[locale]/(dashboard)/profile/actions";
 
 interface userData {
-  picture?: string | null | undefined;
+  // picture?: string | null | undefined;
   name?: string | null | undefined;
 }
 
 interface ProfileUserProps {
   userData: userData;
+  picture: any;
 }
 
-const ProfileUser: FC<ProfileUserProps> = ({ userData }) => {
+const ProfileUser: FC<ProfileUserProps> = ({ userData, picture }) => {
   // const router = useRouter();
   const t = useI18n();
 
@@ -25,10 +26,10 @@ const ProfileUser: FC<ProfileUserProps> = ({ userData }) => {
 
   return (
     <div className="profile-user">
-      {userData?.picture && (
+      {picture[0].picture && (
         <Image
-          src={userData?.picture}
-          alt={userData?.name || "Profile Picture"}
+          src={picture[0].picture}
+          alt={"Profile Picture"}
           width={100}
           height={100}
         />
