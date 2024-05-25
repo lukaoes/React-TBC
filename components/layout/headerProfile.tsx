@@ -42,7 +42,7 @@ export default function HeaderProfile() {
           }),
         });
         const data = await response.json();
-        console.log(data.message);
+        // console.log(data.message);
       } catch (error) {
         console.error("Error saving profile:", error);
       }

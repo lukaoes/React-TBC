@@ -6,6 +6,8 @@ import { cookies } from "next/headers";
 import { AUTH_COOKIE_KEY } from "../../../../constants";
 import Modal from "../../../../components/layout/modal";
 import Link from "next/link";
+import { getPictureAction } from "../../../../actions";
+import { getSession } from "@auth0/nextjs-auth0";
 
 export function generateStaticParams() {
   return getStaticParams();
@@ -17,6 +19,12 @@ export default async function Profile({
   params: { locale: string };
 }) {
   setStaticParamsLocale(locale);
+
+  const session = await getSession();
+  const user = session?.user;
+
+  const picture = await getPictureAction(user?.sid);
+  // console.log("picture", picture);
 
   // redirect to homepage if user is unauthorized
   const cookieStore = cookies();
@@ -34,5 +42,5 @@ export default async function Profile({
     );
   }
 
-  return <ProfileLayout />;
+  return <ProfileLayout picture={picture} />;
 }
