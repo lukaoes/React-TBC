@@ -7,7 +7,7 @@
     display: flex;
     gap: 30px;
     justify-content: center;
- }
+  }
 }
 
 .profile-user {
@@ -21,7 +21,8 @@
   padding: 30px;
   margin-bottom: 40px;
   background: rgba(255, 255, 255, 0.6);
-  box-shadow: 0px 10px 1px rgba(221, 221, 221, 1), 0 10px 20px rgba(204, 204, 204, 1);
+  box-shadow: 0px 10px 1px rgba(221, 221, 221, 1),
+    0 10px 20px rgba(204, 204, 204, 1);
 
   img {
     width: 100px;
@@ -36,7 +37,8 @@
     font-weight: 600;
   }
 
-  button {
+  a {
+    display: inline-block;
     padding: 5px 20px;
     border-radius: 5px;
     font-weight: 800;
@@ -56,7 +58,7 @@
     p {
       font-size: 22px;
     }
- }
+  }
 }
 
 .profile-form {
@@ -64,7 +66,8 @@
   border-radius: 15px;
   width: 100%;
   background: rgba(255, 255, 255, 0.6);
-  box-shadow: 0px 10px 1px rgba(221, 221, 221, 1), 0 10px 20px rgba(204, 204, 204, 1);
+  box-shadow: 0px 10px 1px rgba(221, 221, 221, 1),
+    0 10px 20px rgba(204, 204, 204, 1);
 
   fieldset {
     border: none;
@@ -75,7 +78,7 @@
       padding: 10px 0;
     }
   }
-  
+
   label {
     display: block;
     font-size: 17px;
@@ -121,7 +124,6 @@
     }
   }
 
-  
   @media only screen and (min-width: $tablet) {
     legend {
       font-size: 22px;
@@ -141,7 +143,7 @@
       font-size: 18px;
     }
   }
-} 
+}
 
 .profile-input-container {
   display: flex;
