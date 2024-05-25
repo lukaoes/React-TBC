@@ -14,6 +14,7 @@ export default function HeaderProfile() {
   // const match = newValue ? newValue.match(/"name"\s*:\s*"([^"]+)"/) : null;
   // const name = match ? match[1] : null;
   const { user } = useUser();
+  // console.log(user);
   const name = user?.name ? user.name.split(" ") : [];
   const firstName = name.length > 0 ? name[0] : "";
   return (
