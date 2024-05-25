@@ -45,6 +45,7 @@ export default async function RootLayout({
         <body>
           <I18nProviderClient locale={locale}>
             <AppWrapper>
+              <div id="modal-container"></div>
               <div className={`app ${roboto.className}`}>
                 <Header />
                 <main className="content">{children}</main>
@@ -54,6 +55,6 @@ export default async function RootLayout({
           </I18nProviderClient>
         </body>
       </UserProvider>
-    </html>
+    </html >
   );
 }
