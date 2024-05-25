@@ -4,12 +4,16 @@ import Image from "next/image";
 import { useI18n } from "../../locales/client";
 // import { logOut } from "../../app/[locale]/(dashboard)/profile/actions";
 
-interface ProfileUserProps {
-  name: string;
-  lastName: string;
+interface userData {
+  picture?: string | null | undefined;
+  name?: string | null | undefined;
 }
 
-const ProfileUser: FC<ProfileUserProps> = ({ name, lastName }) => {
+interface ProfileUserProps {
+  userData: userData;
+}
+
+const ProfileUser: FC<ProfileUserProps> = ({ userData }) => {
   // const router = useRouter();
   const t = useI18n();
 
@@ -20,15 +24,16 @@ const ProfileUser: FC<ProfileUserProps> = ({ name, lastName }) => {
 
   return (
     <div className="profile-user">
-      <Image
-        src="https://picsum.photos/450/450"
-        alt="profile"
-        width={100}
-        height={100}
-      />
-      <p>
-        {name} {lastName}
-      </p>
+      {userData?.picture && (
+        <Image
+          src={userData?.picture}
+          alt={userData?.name || "Profile Picture"}
+          width={100}
+          height={100}
+        />
+      )}
+
+      <p>{userData?.name}</p>
       {/* <button onClick={handleLogOut}>{t('profile.logOut')}</button>  */}
       <button>{t("profile.logOut")}</button>
     </div>
