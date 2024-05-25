@@ -2,9 +2,9 @@ import { Roboto } from "next/font/google";
 import "../../../styles/index.scss";
 import Header from "../../../components/layout/Header";
 import Footer from "../../../components/layout/Footer";
-import { AUTH_COOKIE_KEY } from "../../../constants";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
+// import { AUTH_COOKIE_KEY } from "../../../constants";
+// import { cookies } from "next/headers";
+// import { redirect } from "next/navigation";
 import { ReactElement } from "react";
 import { I18nProviderClient } from "../../../locales/client";
 import { AppWrapper } from "../../../context";
@@ -30,13 +30,13 @@ export default async function RootLayout({
   params: { locale: string };
   children: ReactElement;
 }) {
-  const cookieStore = cookies();
+  // const cookieStore = cookies();
 
-  const cookie = cookieStore.get(AUTH_COOKIE_KEY);
+  // const cookie = cookieStore.get(AUTH_COOKIE_KEY);
 
-  if (!cookie) {
-    redirect("/login");
-  }
+  // if (!cookie) {
+  //   redirect("/login");
+  // }
 
   return (
     <html>
