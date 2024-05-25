@@ -104,3 +104,23 @@ export const handleAddToCart = async (productId: string) => {
     console.error("Error adding item to cart:", error);
   }
 };
+
+export async function getPictureAction(sid: string) {
+ 
+  await fetch(BASE_URL + "/api/get-user-picture/", {
+    method: "POST",
+    body: JSON.stringify({ sid }),
+  });
+  revalidatePath("/profile");
+ 
+}
+export async function changePictureAction(sid: string, picture:string) {
+ 
+  await fetch(BASE_URL + "/api/change-user-picture/", {
+    method: "POST",
+    body: JSON.stringify({ sid, picture }),
+  });
+  revalidatePath("/profile");
+ 
+}
+
