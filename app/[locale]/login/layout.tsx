@@ -1,7 +1,7 @@
-import { redirect } from "next/navigation";
+// import { redirect } from "next/navigation";
 import "../../../styles/index.scss";
-import { cookies } from "next/headers";
-import { AUTH_COOKIE_KEY } from "../../../constants";
+// import { cookies } from "next/headers";
+// import { AUTH_COOKIE_KEY } from "../../../constants";
 import { revalidatePath } from "next/cache";
 
 interface RootLayoutProps {
@@ -14,13 +14,13 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  const cookieStore = cookies();
+  // const cookieStore = cookies();
 
-  const cookie = cookieStore.get(AUTH_COOKIE_KEY);
+  // const cookie = cookieStore.get(AUTH_COOKIE_KEY);
 
-  if (cookie) {
-    redirect("/");
-  }
+  // if (cookie) {
+  //   redirect("/");
+  // }
 
   revalidatePath("/login");
   return (

@@ -26,14 +26,17 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "forceConsistentCasingInFileNames": true
   },
   "include": [
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
-, "app/[lang]/dictionaries.ts", "app/api/login/route.ts"  ],
+    "**/*.tsx",
+    "app/[lang]/dictionaries.ts",
+    "app/api/login/route.ts"
+  ],
   "exclude": [
     "node_modules"
   ]
