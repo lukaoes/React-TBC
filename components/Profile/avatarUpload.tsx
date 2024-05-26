@@ -1,16 +1,26 @@
 "use client";
 
 import type { PutBlobResult } from "@vercel/blob";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { BASE_URL } from "../../api";
+import { changePictureAction } from "../../actions";
 
-export default function AvatarUploadPage() {
+interface AvatarUploadPageProps {
+  sub: string;
+}
+
+export default function AvatarUploadPage({ sub }: AvatarUploadPageProps) {
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
-  return (
-    <>
-      <h1>Upload Your Avatar</h1>
 
+  useEffect(() => {
+    if (blob && sub.length > 0) {
+      changePictureAction(sub, blob?.url);
+    }
+  }, [sub, blob]);
+
+  return (
+    <div className="upload-image-container">
       <form
         onSubmit={async (event) => {
           event.preventDefault();
@@ -34,14 +44,32 @@ export default function AvatarUploadPage() {
           setBlob(newBlob);
         }}
       >
-        <input name="file" ref={inputFileRef} type="file" required />
-        <button type="submit">Upload</button>
+        <label htmlFor="file-upload" className="custom-file-upload">
+          Change Picture
+        </label>
+        <input
+          name="file"
+          ref={inputFileRef}
+          type="file"
+          required
+          id="file-upload"
+          style={{ display: "none" }}
+          onChange={() => {
+            // Show the button when a file is selected
+            const hasFile =
+              inputFileRef.current?.files &&
+              inputFileRef.current?.files.length > 0;
+            if (hasFile) {
+              inputFileRef.current?.parentNode
+                ?.querySelector("button")
+                ?.classList.remove("hidden");
+            }
+          }}
+        />
+        <button type="submit" className="hidden">
+          Upload
+        </button>
       </form>
-      {blob && (
-        <div>
-          Blob url: <a href={blob.url}>{blob.url}</a>
-        </div>
-      )}
-    </>
+    </div>
   );
 }

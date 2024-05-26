@@ -1,24 +1,16 @@
 "use client";
-// import { cookies } from "next/headers";
-// import { AUTH_COOKIE_KEY } from "../../constants";
 import Link from "next/link";
 import Image from "next/image";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { getPictureAction } from "../../actions";
 import ProfileDropdown from "./profileDropdown";
 
 export default function HeaderProfile() {
-  // const cookieStore = cookies();
-  // const cookie = cookieStore.get(AUTH_COOKIE_KEY);
-
-  // const value = cookie?.value.split(",");
-  // const newValue = value ? value[1] : null;
-  // const match = newValue ? newValue.match(/"name"\s*:\s*"([^"]+)"/) : null;
-  // const name = match ? match[1] : null;
-  const { user } = useUser();
-  // console.log(user);
-  const name = user?.name ? user.name.split(" ") : [];
-  const firstName = name.length > 0 ? name[0] : "";
+  const [profilePicture, setProfilePicture] = useState<Array<{
+    picture: string;
+  }> | null>(null);
+  const [pic, setPic] = useState<string | null>(null);
 
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -28,7 +20,10 @@ export default function HeaderProfile() {
   };
 
   const handleClickOutside = useCallback((event: Event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+    if (
+      dropdownRef.current &&
+      !dropdownRef.current.contains(event.target as Node)
+    ) {
       setDropdownVisible(false);
     }
   }, []);
@@ -43,9 +38,16 @@ export default function HeaderProfile() {
   }, [handleClickOutside]);
 
   useEffect(() => {
-    console.log("User changed:", user);
-    if (user && user.sid) {
-      console.log("Saving user profile...");
+    if (profilePicture && profilePicture.length > 0) {
+      setPic(profilePicture[0].picture);
+    }
+  }, [profilePicture]);
+
+  const { user } = useUser();
+  const name = user?.name ? user.name.split(" ") : [];
+  const firstName = name.length > 0 ? name[0] : "";
+  useEffect(() => {
+    if (user && user.sub) {
       saveUserProfile(user);
     }
   }, [user]);
@@ -53,19 +55,22 @@ export default function HeaderProfile() {
   const saveUserProfile = async (user: any) => {
     if (user) {
       try {
+        const pictureUrl = await getPictureAction(user.sub);
+        console.log(pictureUrl);
+
+        setProfilePicture(pictureUrl);
         const response = await fetch("/api/users/save-user", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            sid: user.sid,
+            sub: user.sub,
             email: user.email,
             picture: user.picture,
           }),
         });
         const data = await response.json();
-        // console.log(data.message);
       } catch (error) {
         console.error("Error saving profile:", error);
       }
@@ -76,9 +81,9 @@ export default function HeaderProfile() {
       {user ? (
         <div className="menu-block" ref={dropdownRef}>
           <span onClick={toggleDropdown}>{firstName}</span>
-          {user.picture && (
+          {pic && (
             <Image
-              src={user.picture}
+              src={pic}
               alt={user.name || "Profile Picture"}
               onClick={toggleDropdown}
               width={40}

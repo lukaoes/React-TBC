@@ -13,7 +13,7 @@
 .profile-user {
   height: 100%;
   display: flex;
-  min-width: 300px;
+  min-width: 280px;
   gap: 20px;
   align-items: center;
   flex-direction: column;
@@ -151,12 +151,51 @@
   .input-button {
     margin: 5px 0;
     border-radius: 0 6px 6px 0;
-    height: 37px;
+    height: 46px;
   }
 
   @media only screen and (min-width: $tablet) {
     .input-button {
-      height: 43px;
+      height: 49px;
+    }
+  }
+}
+
+.big-profile-picture {
+  img {
+    margin: 0 auto;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      filter: grayscale(1);
+    }
+  }
+
+  .upload-image-container {
+    form {
+      display: flex;
+      flex-direction: column;
+
+      .hidden {
+        display: none;
+      }
+
+      button {
+        text-decoration: underline;
+      }
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .custom-file-upload {
+      border: 1px solid #ccc;
+      display: inline-block;
+      border-radius: 4px;
+      padding: 6px 12px;
+      cursor: pointer;
+      margin: 10px 0;
     }
   }
 }

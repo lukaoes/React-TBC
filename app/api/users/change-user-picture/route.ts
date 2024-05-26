@@ -1,11 +1,12 @@
 import { sql } from "@vercel/postgres";
 import { NextResponse } from "next/server";
- 
+
 export const revalidate = 0;
 export async function PUT(request: Request) {
   try {
-    const { sid, picture} = await request.json();
-    const users = await sql`UPDATE user_info SET picture = ${picture} WHERE sid = ${sid}`;
+    const { sub, picture } = await request.json();
+    const users =
+      await sql`UPDATE user_info SET picture = ${picture} WHERE sub = ${sub}`;
     const response = users.rows;
     return NextResponse.json({ response }, { status: 200 });
   } catch (error) {
@@ -14,4 +15,3 @@ export async function PUT(request: Request) {
     return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
- 
