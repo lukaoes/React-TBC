@@ -1,12 +1,24 @@
 "use client";
 
 import type { PutBlobResult } from "@vercel/blob";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { BASE_URL } from "../../api";
+import { changePictureAction } from "../../actions";
 
-export default function AvatarUploadPage() {
+interface AvatarUploadPageProps {
+  sid: string;
+}
+
+export default function AvatarUploadPage({ sid }: AvatarUploadPageProps) {
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
+
+  useEffect(() => {
+    if (blob && sid.length > 0) {
+      changePictureAction(sid, blob?.url);
+    }
+  }, [sid, blob]);
+
   return (
     <>
       <h1>Upload Your Avatar</h1>
@@ -37,11 +49,6 @@ export default function AvatarUploadPage() {
         <input name="file" ref={inputFileRef} type="file" required />
         <button type="submit">Upload</button>
       </form>
-      {blob && (
-        <div>
-          Blob url: <a href={blob.url}>{blob.url}</a>
-        </div>
-      )}
     </>
   );
 }

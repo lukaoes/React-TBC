@@ -1,13 +1,13 @@
 import { FC } from "react";
 import Image from "next/image";
-// import { useRouter } from "next/navigation";
 import { useI18n } from "../../locales/client";
 import Link from "next/link";
-// import { logOut } from "../../app/[locale]/(dashboard)/profile/actions";
+import AvatarUploadPage from "./avatarUpload";
 
 interface userData {
   // picture?: string | null | undefined;
   name?: string | null | undefined;
+  sid?: string;
 }
 
 interface ProfileUserProps {
@@ -16,13 +16,7 @@ interface ProfileUserProps {
 }
 
 const ProfileUser: FC<ProfileUserProps> = ({ userData, picture }) => {
-  // const router = useRouter();
   const t = useI18n();
-
-  // const handleLogOut = () => {
-  //   logOut()
-  //   router.push("/login")
-  // };
 
   return (
     <div className="profile-user">
@@ -35,8 +29,9 @@ const ProfileUser: FC<ProfileUserProps> = ({ userData, picture }) => {
         />
       )}
 
+      <AvatarUploadPage sid={userData?.sid ?? ""} />
+
       <p>{userData?.name}</p>
-      {/* <button onClick={handleLogOut}>{t('profile.logOut')}</button>  */}
       <Link href="/api/auth/logout">{t("profile.logOut")}</Link>
     </div>
   );

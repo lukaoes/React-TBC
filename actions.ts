@@ -106,22 +106,17 @@ export const handleAddToCart = async (productId: string) => {
 };
 
 export async function getPictureAction(sid: string) {
- 
   const response = await fetch(BASE_URL + "/api/users/get-user-picture/", {
     method: "POST",
     body: JSON.stringify({ sid }),
   });
-  const data = await response.json()
+  const data = await response.json();
   return data.response;
- 
 }
-export async function changePictureAction(sid: string, picture:string) {
- 
+export async function changePictureAction(sid: string, picture: string) {
   await fetch(BASE_URL + "/api/users/change-user-picture/", {
     method: "PUT",
     body: JSON.stringify({ sid, picture }),
   });
   revalidatePath("/profile");
- 
 }
-
