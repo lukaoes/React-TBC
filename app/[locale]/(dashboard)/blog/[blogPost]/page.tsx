@@ -22,7 +22,6 @@ async function fetchPosts(blogPost: string) {
 export default async function BlogPost({ params } : {params : { blogPost: string}}) {
   const t = await getScopedI18n('blogPost')
   const {blogPost} = params
-  console.log(blogPost)
   const singleBlog = await fetchPosts(blogPost)
 
   return (

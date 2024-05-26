@@ -1,41 +1,40 @@
 import { FC } from "react";
 import Image from "next/image";
-// import { useRouter } from "next/navigation";
 import { useI18n } from "../../locales/client";
-// import { logOut } from "../../app/[locale]/(dashboard)/profile/actions";
+import Link from "next/link";
+import AvatarUploadPage from "./avatarUpload";
 
 interface userData {
-  picture?: string | null | undefined;
+  // picture?: string | null | undefined;
   name?: string | null | undefined;
+  sub?: string | null | undefined;
 }
 
 interface ProfileUserProps {
   userData: userData;
+  picture: any;
 }
 
-const ProfileUser: FC<ProfileUserProps> = ({ userData }) => {
-  // const router = useRouter();
+const ProfileUser: FC<ProfileUserProps> = ({ userData, picture }) => {
   const t = useI18n();
-
-  // const handleLogOut = () => {
-  //   logOut()
-  //   router.push("/login")
-  // };
 
   return (
     <div className="profile-user">
-      {userData?.picture && (
-        <Image
-          src={userData?.picture}
-          alt={userData?.name || "Profile Picture"}
-          width={100}
-          height={100}
-        />
-      )}
+      <div className="big-profile-picture">
+        {picture[0].picture && (
+          <Image
+            src={picture[0].picture}
+            alt={userData?.name || "Profile Picture"}
+            width={100}
+            height={100}
+          />
+        )}
+
+        <AvatarUploadPage sub={userData?.sub ?? ""} />
+      </div>
 
       <p>{userData?.name}</p>
-      {/* <button onClick={handleLogOut}>{t('profile.logOut')}</button>  */}
-      <button>{t("profile.logOut")}</button>
+      <Link href="/api/auth/logout">{t("profile.logOut")}</Link>
     </div>
   );
 };

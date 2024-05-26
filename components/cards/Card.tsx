@@ -93,10 +93,8 @@ function Card({ cardData }: { cardData: CardProps[] }) {
     initialState
   );
   const [selectedProducts, dispatch] = useReducer(reducer, cachedProducts);
-  console.log(selectedProducts);
   const { state, setState } = useAppContext();
   const t = useI18n();
-  console.log("asdasd", state);
 
   useEffect(() => {
     if (selectedProducts && selectedProducts.length > 0) {
