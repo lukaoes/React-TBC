@@ -71,6 +71,9 @@ export default function HeaderProfile() {
           }),
         });
         const data = await response.json();
+        if (data.success) {
+          console.log("Profile saved successfully!");
+        }
       } catch (error) {
         console.error("Error saving profile:", error);
       }

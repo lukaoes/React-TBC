@@ -93,7 +93,7 @@ function Card({ cardData }: { cardData: CardProps[] }) {
     initialState
   );
   const [selectedProducts, dispatch] = useReducer(reducer, cachedProducts);
-  const { state, setState } = useAppContext();
+  const { setState } = useAppContext();
   const t = useI18n();
 
   useEffect(() => {
