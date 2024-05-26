@@ -23,7 +23,7 @@ export default async function Profile({
   const session = await getSession();
   const user = session?.user;
 
-  const picture = await getPictureAction(user?.sid);
+  const picture = await getPictureAction(user?.sub);
 
   // redirect to homepage if user is unauthorized
   const cookieStore = cookies();

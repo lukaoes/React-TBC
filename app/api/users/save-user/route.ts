@@ -3,28 +3,28 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const { sid, email, picture } = await request.json();
+    const { sub, email, picture } = await request.json();
 
-    if (!sid) {
-      throw new Error("sid, email, picture are required");
+    if (!sub) {
+      throw new Error("sub, email, picture are required");
     }
 
-    const existingUser = await sql`SELECT * FROM user_info WHERE sid = ${sid};`;
+    const existingUser = await sql`SELECT * FROM user_info WHERE sub = ${sub};`;
 
     if (existingUser && existingUser.rows.length > 0) {
       return NextResponse.json(
-        { error: "sid already exists" },
+        { error: "sub already exists" },
         { status: 400 }
       );
+    } else {
+      await sql`
+      INSERT INTO user_info (sub, email, picture)
+      VALUES (${sub}, ${email}, ${picture});
+    `;
     }
 
-    await sql`
-      INSERT INTO user_info (sid, email, picture)
-      VALUES (${sid}, ${email}, ${picture});
-    `;
-
     const singleUser =
-      await sql`SELECT picture FROM user_info WHERE sid = ${sid};`;
+      await sql`SELECT picture FROM user_info WHERE sub = ${sub};`;
 
     return NextResponse.json({ singleUser }, { status: 200 });
   } catch (error: any) {

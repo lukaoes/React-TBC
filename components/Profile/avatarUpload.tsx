@@ -6,18 +6,18 @@ import { BASE_URL } from "../../api";
 import { changePictureAction } from "../../actions";
 
 interface AvatarUploadPageProps {
-  sid: string;
+  sub: string;
 }
 
-export default function AvatarUploadPage({ sid }: AvatarUploadPageProps) {
+export default function AvatarUploadPage({ sub }: AvatarUploadPageProps) {
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
 
   useEffect(() => {
-    if (blob && sid.length > 0) {
-      changePictureAction(sid, blob?.url);
+    if (blob && sub.length > 0) {
+      changePictureAction(sub, blob?.url);
     }
-  }, [sid, blob]);
+  }, [sub, blob]);
 
   return (
     <div className="upload-image-container">

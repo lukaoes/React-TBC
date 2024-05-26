@@ -2,25 +2,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { useEffect, useRef, useState, useCallback } from "react";
-import ProfileDropdown from "./profileDropdown";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { getPictureAction } from "../../actions";
+import ProfileDropdown from "./profileDropdown";
 
 export default function HeaderProfile() {
   const [profilePicture, setProfilePicture] = useState<Array<{
     picture: string;
   }> | null>(null);
   const [pic, setPic] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (profilePicture && profilePicture.length > 0) {
-      setPic(profilePicture[0].picture);
-    }
-  }, [profilePicture]);
-
-  const { user } = useUser();
-  const name = user?.name ? user.name.split(" ") : [];
-  const firstName = name.length > 0 ? name[0] : "";
 
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -48,7 +38,16 @@ export default function HeaderProfile() {
   }, [handleClickOutside]);
 
   useEffect(() => {
-    if (user && user.sid) {
+    if (profilePicture && profilePicture.length > 0) {
+      setPic(profilePicture[0].picture);
+    }
+  }, [profilePicture]);
+
+  const { user } = useUser();
+  const name = user?.name ? user.name.split(" ") : [];
+  const firstName = name.length > 0 ? name[0] : "";
+  useEffect(() => {
+    if (user && user.sub) {
       saveUserProfile(user);
     }
   }, [user]);
@@ -56,7 +55,8 @@ export default function HeaderProfile() {
   const saveUserProfile = async (user: any) => {
     if (user) {
       try {
-        const pictureUrl = await getPictureAction(user.sid);
+        const pictureUrl = await getPictureAction(user.sub);
+        console.log(pictureUrl);
 
         setProfilePicture(pictureUrl);
         const response = await fetch("/api/users/save-user", {
@@ -65,7 +65,7 @@ export default function HeaderProfile() {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            sid: user.sid,
+            sub: user.sub,
             email: user.email,
             picture: user.picture,
           }),
@@ -81,7 +81,7 @@ export default function HeaderProfile() {
       {user ? (
         <div className="menu-block" ref={dropdownRef}>
           <span onClick={toggleDropdown}>{firstName}</span>
-          {user.picture && (
+          {pic && (
             <Image
               src={pic}
               alt={user.name || "Profile Picture"}

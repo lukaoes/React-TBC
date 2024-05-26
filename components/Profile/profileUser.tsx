@@ -7,7 +7,7 @@ import AvatarUploadPage from "./avatarUpload";
 interface userData {
   // picture?: string | null | undefined;
   name?: string | null | undefined;
-  sid?: string;
+  sub?: string | null | undefined;
 }
 
 interface ProfileUserProps {
@@ -30,7 +30,7 @@ const ProfileUser: FC<ProfileUserProps> = ({ userData, picture }) => {
           />
         )}
 
-        <AvatarUploadPage sid={userData?.sid ?? ""} />
+        <AvatarUploadPage sub={userData?.sub ?? ""} />
       </div>
 
       <p>{userData?.name}</p>
