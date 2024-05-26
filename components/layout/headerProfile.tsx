@@ -4,7 +4,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { useEffect } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
+import ProfileDropdown from "./profileDropdown";
 
 export default function HeaderProfile() {
   // const cookieStore = cookies();
@@ -18,6 +19,28 @@ export default function HeaderProfile() {
   // console.log(user);
   const name = user?.name ? user.name.split(" ") : [];
   const firstName = name.length > 0 ? name[0] : "";
+
+  const [isDropdownVisible, setDropdownVisible] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!isDropdownVisible);
+  };
+
+  const handleClickOutside = useCallback((event: Event) => {
+    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      setDropdownVisible(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [handleClickOutside]);
 
   useEffect(() => {
     console.log("User changed:", user);
@@ -51,17 +74,19 @@ export default function HeaderProfile() {
   return (
     <div>
       {user ? (
-        <Link href="/profile" className="menu-block">
-          <span>{firstName}</span>
+        <div className="menu-block" ref={dropdownRef}>
+          <span onClick={toggleDropdown}>{firstName}</span>
           {user.picture && (
             <Image
               src={user.picture}
               alt={user.name || "Profile Picture"}
+              onClick={toggleDropdown}
               width={40}
               height={40}
             />
           )}
-        </Link>
+          {isDropdownVisible && <ProfileDropdown />}
+        </div>
       ) : (
         <div className="header-auth">
           <Link href="/api/auth/login">Login </Link> /
