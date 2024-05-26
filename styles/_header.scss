@@ -160,6 +160,7 @@ header {
   img {
     border-radius: 9999px;
     border: 1px solid #9b9b9b;
+    cursor: pointer;
   }
 
   span {
@@ -172,6 +173,7 @@ header {
     background-color: #fff;
     border-radius: 15px;
     padding: 0 4px;
+    cursor: pointer;
   }
 
   &:hover {
