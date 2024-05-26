@@ -6,7 +6,6 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import Loading from "../../app/[locale]/(dashboard)/loading";
 
 export default function ProfileLayout({ picture }: { picture: object[] }) {
-  console.log(picture);
   const { user, isLoading } = useUser();
   const [userData, setUserData] = useState({ user });
 

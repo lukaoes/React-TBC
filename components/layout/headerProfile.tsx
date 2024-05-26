@@ -21,9 +21,7 @@ export default function HeaderProfile() {
   const name = user?.name ? user.name.split(" ") : [];
   const firstName = name.length > 0 ? name[0] : "";
   useEffect(() => {
-    console.log("User changed:", user);
     if (user && user.sid) {
-      console.log("Saving user profile...");
       saveUserProfile(user);
     }
   }, [user]);
@@ -46,7 +44,6 @@ export default function HeaderProfile() {
           }),
         });
         const data = await response.json();
-        // console.log(data.message);
       } catch (error) {
         console.error("Error saving profile:", error);
       }

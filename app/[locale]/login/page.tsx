@@ -6,7 +6,6 @@ import Image from "next/image";
 
 export default async function Login() {
   const users = await getUsersAuth();
-  console.log(users);
 
   return (
     <main className="login-layout">

@@ -13,7 +13,7 @@
 .profile-user {
   height: 100%;
   display: flex;
-  min-width: 300px;
+  min-width: 280px;
   gap: 20px;
   align-items: center;
   flex-direction: column;
@@ -151,12 +151,12 @@
   .input-button {
     margin: 5px 0;
     border-radius: 0 6px 6px 0;
-    height: 37px;
+    height: 46px;
   }
 
   @media only screen and (min-width: $tablet) {
     .input-button {
-      height: 43px;
+      height: 49px;
     }
   }
 }
