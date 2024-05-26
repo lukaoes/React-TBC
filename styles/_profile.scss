@@ -160,3 +160,42 @@
     }
   }
 }
+
+.big-profile-picture {
+  img {
+    margin: 0 auto;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      filter: grayscale(1);
+    }
+  }
+
+  .upload-image-container {
+    form {
+      display: flex;
+      flex-direction: column;
+
+      .hidden {
+        display: none;
+      }
+
+      button {
+        text-decoration: underline;
+      }
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .custom-file-upload {
+      border: 1px solid #ccc;
+      display: inline-block;
+      border-radius: 4px;
+      padding: 6px 12px;
+      cursor: pointer;
+      margin: 10px 0;
+    }
+  }
+}

@@ -20,16 +20,18 @@ const ProfileUser: FC<ProfileUserProps> = ({ userData, picture }) => {
 
   return (
     <div className="profile-user">
-      {picture[0].picture && (
-        <Image
-          src={picture[0].picture}
-          alt={"Profile Picture"}
-          width={100}
-          height={100}
-        />
-      )}
+      <div className="big-profile-picture">
+        {picture[0].picture && (
+          <Image
+            src={picture[0].picture}
+            alt={userData?.name || "Profile Picture"}
+            width={100}
+            height={100}
+          />
+        )}
 
-      <AvatarUploadPage sid={userData?.sid ?? ""} />
+        <AvatarUploadPage sid={userData?.sid ?? ""} />
+      </div>
 
       <p>{userData?.name}</p>
       <Link href="/api/auth/logout">{t("profile.logOut")}</Link>

@@ -20,9 +20,7 @@ export default function AvatarUploadPage({ sid }: AvatarUploadPageProps) {
   }, [sid, blob]);
 
   return (
-    <>
-      <h1>Upload Your Avatar</h1>
-
+    <div className="upload-image-container">
       <form
         onSubmit={async (event) => {
           event.preventDefault();
@@ -46,9 +44,32 @@ export default function AvatarUploadPage({ sid }: AvatarUploadPageProps) {
           setBlob(newBlob);
         }}
       >
-        <input name="file" ref={inputFileRef} type="file" required />
-        <button type="submit">Upload</button>
+        <label htmlFor="file-upload" className="custom-file-upload">
+          Change Picture
+        </label>
+        <input
+          name="file"
+          ref={inputFileRef}
+          type="file"
+          required
+          id="file-upload"
+          style={{ display: "none" }}
+          onChange={() => {
+            // Show the button when a file is selected
+            const hasFile =
+              inputFileRef.current?.files &&
+              inputFileRef.current?.files.length > 0;
+            if (hasFile) {
+              inputFileRef.current?.parentNode
+                ?.querySelector("button")
+                ?.classList.remove("hidden");
+            }
+          }}
+        />
+        <button type="submit" className="hidden">
+          Upload
+        </button>
       </form>
-    </>
+    </div>
   );
 }
