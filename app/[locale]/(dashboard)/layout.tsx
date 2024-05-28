@@ -1,4 +1,5 @@
 import { Roboto } from "next/font/google";
+import { Noto_Sans_Georgian } from "next/font/google";
 import "../../../styles/index.scss";
 import Header from "../../../components/layout/Header";
 import Footer from "../../../components/layout/Footer";
@@ -12,14 +13,15 @@ const roboto = Roboto({
   weight: ["300", "400", "500", "700", "900"],
 });
 
+const sans = Noto_Sans_Georgian({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700", "900"],
+});
+
 export const metadata = {
   title: "LUKMART",
   description: "BUY PRODUCTS FOR A FAIR PRICE",
 };
-
-export async function generateStaticParams() {
-  return [{ lang: "en" }, { lang: "ge" }];
-}
 
 export default async function RootLayout({
   params: { locale },
@@ -34,8 +36,11 @@ export default async function RootLayout({
         <body>
           <I18nProviderClient locale={locale}>
             <AppWrapper>
-              <div id="modal-container"></div>
-              <div className={`app ${roboto.className}`}>
+              <div
+                className={`app ${
+                  locale === "en" ? roboto.className : sans.className
+                }`}
+              >
                 <Header />
                 <main className="content">{children}</main>
                 <Footer />

@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+// import Link from "next/link";
 import Image from "next/image";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -97,8 +97,8 @@ export default function HeaderProfile() {
         </div>
       ) : (
         <div className="header-auth">
-          <Link href="/api/auth/login">Login </Link> /
-          <Link href="/api/auth/login">Register</Link>
+          <a href="/api/auth/login">Login </a> /
+          <a href="/api/auth/login">Register</a>
         </div>
       )}
     </div>

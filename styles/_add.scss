@@ -1,0 +1,52 @@
+.add-layout {
+  max-width: 1200px;
+  padding: 0 20px;
+  margin: 40px auto;
+
+  .add-container {
+    display: flex;
+    gap: 50px;
+    a {
+      width: 100%;
+      flex-wrap: wrap;
+      flex: 1;
+      background-color: #e3d6b3;
+      display: block;
+      border: 2px solid #e3d6b3;
+      padding: 20px;
+      border-radius: 30px;
+      transition: transform 0.2s ease-in-out 0s, box-shadow 0.2s ease-in-out 0s;
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px 0px;
+      }
+
+      img {
+        max-height: 511px;
+      }
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 24px;
+      font-weight: 600;
+      margin: 0 0 30px 0;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.6;
+      text-align: center;
+      font-weight: 500;
+      margin-bottom: 30px;
+    }
+
+    @media screen and (max-width: 650px) {
+      display: block;
+      a {
+        margin-bottom: 40px;
+      }
+    }
+  }
+}

@@ -4,17 +4,16 @@ import type { PutBlobResult } from "@vercel/blob";
 import { useState, useRef, useEffect } from "react";
 import { BASE_URL } from "../../api";
 import { changePictureAction } from "../../actions";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
-interface AvatarUploadPageProps {
-  sub: string;
-}
-
-export default function AvatarUploadPage({ sub }: AvatarUploadPageProps) {
+export default function AvatarUploadPage() {
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
+  const { user } = useUser();
+  const sub = user?.sub;
 
   useEffect(() => {
-    if (blob && sub.length > 0) {
+    if (blob && sub) {
       changePictureAction(sub, blob?.url);
     }
   }, [sub, blob]);

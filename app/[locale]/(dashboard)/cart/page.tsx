@@ -1,12 +1,6 @@
 import { setStaticParamsLocale } from "next-international/server";
-// import CartCard from "../../../../components/Cart/cartCard";
-import { getStaticParams } from "../../../../locales/server";
 import { getProducts, getUserCart } from "../../../../api";
 import CartProducts from "../../../../components/Cart/cartProducts";
-
-export function generateStaticParams() {
-  return getStaticParams();
-}
 
 const Cart = async ({ params: { locale } }: { params: { locale: string } }) => {
   setStaticParamsLocale(locale);

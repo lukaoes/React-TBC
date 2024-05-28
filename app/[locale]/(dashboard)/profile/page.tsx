@@ -1,12 +1,6 @@
 import { setStaticParamsLocale } from "next-international/server";
-import { getStaticParams } from "../../../../locales/server";
 import ProfileLayout from "../../../../components/Profile/profileLayout";
-import { getPictureAction } from "../../../../actions";
-import { getSession } from "@auth0/nextjs-auth0";
-
-export function generateStaticParams() {
-  return getStaticParams();
-}
+// import { cookies } from "next/headers";
 
 const Profile = async ({
   params: { locale },
@@ -15,19 +9,11 @@ const Profile = async ({
 }) => {
   setStaticParamsLocale(locale);
 
-  const session = await getSession();
-  const user = session?.user;
-  const picture = await getPictureAction(user?.sub);
+  // redirect to homepage if user is unauthorized
+  // const cookieStore = cookies();
+  // const cookie = cookieStore.get("appSession");
 
-  return (
-    <>
-      {session?.user ? (
-        <ProfileLayout picture={picture} />
-      ) : (
-        <div>Log In to see this page</div>
-      )}
-    </>
-  );
+  return <ProfileLayout />;
 };
 
 export default Profile;

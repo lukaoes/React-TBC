@@ -6,7 +6,6 @@
 // const API = "https://dummyjson.com/products";
 import { getI18n } from "../../../locales/server";
 import { setStaticParamsLocale } from "next-international/server";
-import { getStaticParams } from "../../../locales/server";
 import { getProducts } from "../../../api";
 // import Image from "next/image";
 import ProductCard from "../../../components/cards/ProductCard";
@@ -21,18 +20,8 @@ export interface Product {
   brand: string;
   category: string;
   thumbnail: string;
+  descriptionge: string;
 }
-
-export function generateStaticParams() {
-  return getStaticParams();
-}
-
-// async function fetchMain() {
-//   const response = await fetch(API);
-//   const mainData = await response.json();
-
-//   return mainData;
-// }
 
 export default async function Home({
   params: { locale },

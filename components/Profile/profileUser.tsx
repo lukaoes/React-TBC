@@ -1,23 +1,33 @@
-import { FC } from "react";
+"use client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+// import Link from "next/link";
 import AvatarUploadPage from "./avatarUpload";
+import { useUser } from "@auth0/nextjs-auth0/client";
+import { getPictureAction } from "../../actions";
 
-interface user {
-  name?: string | null | undefined;
-  sub?: string | null | undefined;
+interface PictureData {
+  picture: string;
 }
 
-interface ProfileUserProps {
-  user: user;
-  picture: any;
-}
+const ProfileUser = () => {
+  const [picture, setPicture] = useState<PictureData[] | null>(null);
+  const { user } = useUser();
 
-const ProfileUser: FC<ProfileUserProps> = ({ user, picture }) => {
+  useEffect(() => {
+    const fetchPicture = async () => {
+      if (user?.sub) {
+        const pic = await getPictureAction(user.sub);
+        setPicture(pic);
+      }
+    };
+    fetchPicture();
+  }, [user?.sub]);
+
   return (
     <div className="profile-user">
       <div className="big-profile-picture">
-        {picture[0].picture && (
+        {picture && (
           <Image
             src={picture[0].picture}
             alt={user?.name || "Profile Picture"}
@@ -26,11 +36,11 @@ const ProfileUser: FC<ProfileUserProps> = ({ user, picture }) => {
           />
         )}
 
-        <AvatarUploadPage sub={user?.sub ?? ""} />
+        <AvatarUploadPage />
       </div>
 
       <p>{user?.name}</p>
-      <Link href="/api/auth/logout">Log Out</Link>
+      <a href="/api/auth/logout">Log Out</a>
     </div>
   );
 };
