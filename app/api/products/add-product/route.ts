@@ -4,36 +4,47 @@ import { NextResponse } from "next/server";
 export async function POST(request: Request) {
   try {
     const {
-      title,
-      description,
-      price,
-      discount,
-      stock,
-      brand,
+      user_id,
+      type,
       category,
-      thumbnail,
+      subcategory,
+      shoe_size,
+      clothing_size,
+      backpack_capacity,
+      tent_capacity,
+      main_photo,
+      photo_urls,
+      title_ge,
+      description_ge,
+      title_en,
+      description_en,
+      price,
+      negotiable,
+      location,
+      first_name,
+      phone,
     } = await request.json();
 
-    if (
-      !title ||
-      !description ||
-      !price ||
-      discount === undefined ||
-      stock === undefined ||
-      !category ||
-      !thumbnail
-    ) {
-      throw new Error(
-        "Title, description, price, discount, stock, category, and thumbnail are required"
-      );
-    }
-
     await sql`
-      INSERT INTO products (title, description, price, discount, stock, brand, category, thumbnail)
-      VALUES (${title}, ${description}, ${price}, ${discount}, ${stock}, ${brand}, ${category}, ${thumbnail});
+    INSERT INTO user_products (
+      user_id, type, category, subcategory, shoe_size, clothing_size,
+      backpack_capacity, tent_capacity, main_photo, photo_urls, title_ge,
+      description_ge, title_en, description_en, price, negotiable, location,
+      first_name, phone
+    ) VALUES (
+      ${user_id}, ${type}, ${category}, ${subcategory || null}, ${
+      shoe_size || null
+    }, ${clothing_size || null},
+      ${backpack_capacity || null}, ${tent_capacity || null}, ${main_photo}, ${
+      photo_urls || []
+    }, ${title_ge}, ${description_ge},
+      ${title_en || null}, ${
+      description_en || null
+    }, ${price}, ${negotiable}, ${location}, ${first_name}, ${phone}
+    )
     `;
 
-    const products = await sql`SELECT * FROM products;`;
+    const products = await sql`SELECT * FROM user_products;`;
 
     return NextResponse.json({ products }, { status: 200 });
   } catch (error: any) {

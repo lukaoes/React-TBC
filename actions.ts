@@ -120,3 +120,22 @@ export async function changePictureAction(sub: string, picture: string) {
   });
   revalidatePath("/profile");
 }
+
+export async function addAdvertisement(formData: any) {
+  try {
+    const response = await fetch(BASE_URL + "/api/products/add-product", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      return await response.json();
+    } else {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    throw new Error("Submission failed");
+  }
+}
