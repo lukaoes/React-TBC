@@ -139,3 +139,22 @@ export async function addAdvertisement(formData: any) {
     throw new Error("Submission failed");
   }
 }
+
+export async function addCampsite(formData: any) {
+  try {
+    const response = await fetch(BASE_URL + "/api/campsites/add-campsite", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      return await response.json();
+    } else {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    throw new Error("Submission failed");
+  }
+}
