@@ -82,7 +82,7 @@ export const handleQuantityChange = async (
   }
 };
 
-export const handleAddToCart = async (productId: string) => {
+export const handleAddToCart = async (productId: string, userId: string) => {
   try {
     const response = await fetch(`${BASE_URL}/api/cart/add-cart`, {
       method: "PUT",
@@ -90,7 +90,7 @@ export const handleAddToCart = async (productId: string) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userId: 2,
+        userId,
         productId: productId,
         quantity: 1,
       }),

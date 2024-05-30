@@ -1,14 +1,23 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { handleAddToCart } from "../../actions";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 interface AddToCartButtonProps {
   productId: string;
 }
 
 const AddToCartButton: React.FC<AddToCartButtonProps> = ({ productId }) => {
+  const { user } = useUser();
+  const [id, setId] = useState("");
+  console.log(id);
+  useEffect(() => {
+    if (user && user.sub) {
+      setId(user.sub);
+    }
+  }, [user]);
   return (
-    <button onClick={() => handleAddToCart(productId)}>
+    <button onClick={() => handleAddToCart(productId, id)}>
       <svg
         width="20"
         height="20"

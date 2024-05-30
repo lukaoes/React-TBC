@@ -12,13 +12,18 @@ export async function PUT(req: NextRequest) {
     // Fetch existing cart data from the database
     const result = await sql`
       SELECT products FROM carts
-      WHERE user_id = ${Number(userId)}
+      WHERE user_id = ${userId}
     `;
 
     let products: Products = {};
 
     if (result.rowCount > 0) {
       products = result.rows[0].products || {};
+    } else {
+      await sql`
+        INSERT INTO carts (user_id)
+        VALUES (${userId})
+      `;
     }
 
     // Ensure products is a proper object
@@ -38,7 +43,7 @@ export async function PUT(req: NextRequest) {
     const updatedCart = await sql`
       UPDATE carts 
       SET products = ${JSON.stringify(products)}::jsonb
-      WHERE user_id = ${Number(userId)}
+      WHERE user_id = ${userId}
       RETURNING *
     `;
 
