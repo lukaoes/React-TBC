@@ -1,19 +1,38 @@
 import Link from "next/link";
-// import CartCount from "./cartCount";
-// import Cart from "../../public/assets/images/cart.svg";
-// import Image from "next/image";
 import { getUserCart } from "../../api";
-// import { getUserCart } from "../../api";
+import { getSession } from "@auth0/nextjs-auth0";
+
+const getCartData = async () => {
+  try {
+    const session = await getSession();
+
+    if (!session || !session.user || !session.user.sub) {
+      return { totalCount: 0 };
+    }
+
+    const userId = session.user.sub;
+    const cart = await getUserCart(userId);
+
+    if (!cart || !cart.products) {
+      return { totalCount: 0 };
+    }
+
+    const productQuantities = cart.products;
+
+    const totalCount = Object.values<number>(productQuantities).reduce(
+      (acc, quantity) => acc + quantity,
+      0
+    );
+
+    return { totalCount };
+  } catch (error) {
+    console.error("Error fetching cart data:", error);
+    return { totalCount: 0 };
+  }
+};
 
 const CartIcon = async () => {
-  const userId = 2;
-  const cart = await getUserCart(userId);
-  const productQuantities = cart.products;
-
-  const totalCount = Object.values<number>(productQuantities).reduce(
-    (acc, quantity) => acc + quantity,
-    0
-  );
+  const { totalCount } = await getCartData();
 
   return (
     <Link href="/cart" className="cart-icon">
@@ -53,7 +72,6 @@ const CartIcon = async () => {
           </clipPath>
         </defs>
       </svg>
-      {/* <CartCount /> */}
       <span>{totalCount}</span>
     </Link>
   );
