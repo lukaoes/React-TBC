@@ -36,16 +36,16 @@ export default function ContactForm(): JSX.Element {
     }));
     setErrors((prevErrors) => ({
       ...prevErrors,
-      [name]: undefined, // Clear the error for the field being edited
+      [name]: undefined,
     }));
   };
 
   const validateForm = (): FormErrors => {
     const errors: FormErrors = {};
-    if (!formData.name) errors.name = "You have to fill this field.";
-    if (!formData.email) errors.email = "You have to fill this field.";
-    if (!formData.number) errors.number = "You have to fill this field.";
-    if (!formData.message) errors.message = "You have to fill this field.";
+    if (!formData.name) errors.name = "ჩაწერეთ სახელი.";
+    if (!formData.email) errors.email = "ჩაწერეთ თქვენი მეილი.";
+    if (!formData.number) errors.number = "ჩაწერეთ თქვენი ტელეფონის ნომერი";
+    if (!formData.message) errors.message = "ჩაწერეთ შეტყობინება.";
     return errors;
   };
 
@@ -83,7 +83,7 @@ export default function ContactForm(): JSX.Element {
           value={formData.name}
           onChange={handleChange}
         />
-        {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
+        {errors.name && <p>{errors.name}</p>}
       </div>
       <div>
         <label htmlFor="email">თქვენი მეილი</label>
@@ -94,7 +94,7 @@ export default function ContactForm(): JSX.Element {
           value={formData.email}
           onChange={handleChange}
         />
-        {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
+        {errors.email && <p>{errors.email}</p>}
       </div>
       <div>
         <label htmlFor="number">ტელეფონის ნომერი</label>
@@ -105,7 +105,7 @@ export default function ContactForm(): JSX.Element {
           value={formData.number}
           onChange={handleChange}
         />
-        {errors.number && <p style={{ color: "red" }}>{errors.number}</p>}
+        {errors.number && <p>{errors.number}</p>}
       </div>
       <div>
         <label htmlFor="message">შეტყობინება</label>
@@ -116,7 +116,7 @@ export default function ContactForm(): JSX.Element {
           value={formData.message}
           onChange={handleChange}
         ></textarea>
-        {errors.message && <p style={{ color: "red" }}>{errors.message}</p>}
+        {errors.message && <p>{errors.message}</p>}
       </div>
       <div className="contact-form-button">
         <button type="submit">გაგზავნა</button>
