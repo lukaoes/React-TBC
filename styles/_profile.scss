@@ -62,18 +62,37 @@
 }
 
 .profile-form {
-  padding: 10px;
+  padding: 30px;
   border-radius: 15px;
   width: 100%;
   background: rgba(255, 255, 255, 0.6);
   box-shadow: 0px 10px 1px rgba(221, 221, 221, 1),
     0 10px 20px rgba(204, 204, 204, 1);
 
+  img {
+    margin: 0 auto;
+    max-height: 350px;
+    max-width: 500px;
+  }
+
+  .profile-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  span {
+    display: inline-block;
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
   fieldset {
     border: none;
 
     legend {
-      font-size: 20px;
+      text-align: center;
+      font-size: 28px;
       font-weight: 700;
       padding: 10px 0;
     }

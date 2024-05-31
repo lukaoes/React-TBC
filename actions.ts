@@ -180,3 +180,20 @@ export async function sendContactMessage(formData: any) {
     console.error("Error submitting message:", error);
   }
 }
+
+export async function changeNicknameAction(sub: string, nickname: string) {
+  await fetch(BASE_URL + "/api/users/change-user-nickname/", {
+    method: "PUT",
+    body: JSON.stringify({ sub, nickname }),
+  });
+  revalidatePath("/profile");
+}
+
+export async function getNicknameAction(sub: string) {
+  const response = await fetch(BASE_URL + "/api/users/get-user-nickname/", {
+    method: "POST",
+    body: JSON.stringify({ sub }),
+  });
+  const data = await response.json();
+  return data.response;
+}

@@ -1,117 +1,121 @@
 "use client";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import { useScopedI18n } from "../../locales/client";
 import { useEffect, useState } from "react";
+import { changeNicknameAction, getNicknameAction } from "../../actions";
+import profileIllustration from "../../public/assets/images/profileIllustration.webp";
+import Image from "next/image";
 
-interface UserData {
-  given_name: string | undefined;
-  family_name: string;
-  email: string;
+interface ProfileFormProps {}
+
+interface ProfileFormState {
+  newNickname: string;
+  originalNickname: string;
 }
 
-type UserDataKey = keyof UserData;
-
-interface ProfileFormProps {
-  userData: UserData | undefined;
-  setUserData: (userData: UserData) => void;
-}
-
-const ProfileForm: React.FC<ProfileFormProps> = ({ userData, setUserData }) => {
-  const t = useScopedI18n("profile");
-
-  const [edit, setEdit] = useState<{ [key: string]: boolean }>({
-    given_name: false,
-    family_name: false,
-    email: false,
+const ProfileForm: React.FC<ProfileFormProps> = () => {
+  const [state, setState] = useState<ProfileFormState>({
+    newNickname: "",
+    originalNickname: "",
   });
-  const [formData, setFormData] = useState<UserData | undefined>(userData);
+
+  const t = useScopedI18n("profile");
+  const { user } = useUser();
+
   useEffect(() => {
-    setFormData(userData);
-  }, [userData]);
-
-  if (!formData) {
-    return <div>Loading...</div>;
-  }
-
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    fieldName: UserDataKey
-  ) => {
-    const { value } = event.target;
-    setFormData((prevFormData) => {
-      if (!prevFormData) {
-        return prevFormData;
+    const fetchNickname = async () => {
+      if (user?.sub) {
+        const response = await getNicknameAction(user.sub);
+        const nickname = response[0].nickname;
+        setState((prevState) => ({
+          ...prevState,
+          originalNickname: nickname,
+          newNickname: nickname,
+        }));
       }
+    };
+    fetchNickname();
+  }, [user?.sub]);
 
-      return {
-        ...prevFormData,
-        [fieldName]: value as UserData[UserDataKey],
-      };
-    });
-  };
-  const handleEdit = (field: UserDataKey) => {
-    setEdit({ ...edit, [field]: !edit[field] });
-  };
-
-  const handleSave = () => {
-    const updatedUserData: UserData = { ...formData };
-
-    setUserData(updatedUserData);
-
-    setEdit({
-      given_name: false,
-      family_name: false,
-      email: false,
-    });
+  const handleSave = async () => {
+    if (user?.sub && state.newNickname) {
+      await changeNicknameAction(
+        user.sub,
+        state.newNickname.toLocaleLowerCase()
+      );
+    }
   };
 
-  const generateAboutInput = (
-    fieldName: UserDataKey,
-    label: string,
-    type: string = "text"
-  ) => {
-    return (
-      <div>
-        <label htmlFor={fieldName}>{label}:</label>
-        <div className="profile-input-container">
-          <input
-            type={type}
-            id={fieldName}
-            name={fieldName}
-            value={formData[fieldName]}
-            onChange={(e) => handleChange(e, fieldName)}
-            readOnly={!edit[fieldName]}
-          />
-          <button
-            className="input-button"
-            type="button"
-            onClick={() => {
-              if (edit[fieldName]) {
-                handleSave();
-              } else {
-                handleEdit(fieldName);
-              }
-            }}
-          >
-            {edit[fieldName] ? t("save") : t("change")}
-          </button>
-        </div>
-      </div>
-    );
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let value = e.target.value.replace(/\s+/g, "");
+    value = value.substring(0, 15);
+    setState((prevState) => ({
+      ...prevState,
+      newNickname: value,
+    }));
+  };
+
+  const handleInputBlur = () => {
+    if (state.newNickname.trim() === "") {
+      setState((prevState) => ({
+        ...prevState,
+        newNickname: state.originalNickname,
+      }));
+    }
   };
 
   return (
     <form className="profile-form">
+      <Image
+        src={profileIllustration}
+        width={550}
+        height={400}
+        alt="profile-illustration"
+      />
       <fieldset>
         <legend>{t("about")}</legend>
+        <div>
+          <div>
+            <h2 className="profile-title">Email:</h2>
+            <span>{user?.email || ""}</span>
+            {user?.email !== user?.name && user?.name ? (
+              <>
+                <h2>Name:</h2>
+                <span>{user.name}</span>
+              </>
+            ) : null}
+            <h2 className="profile-title">Nickname:</h2>
+            <span>
+              {state.newNickname.trim() === ""
+                ? state.originalNickname
+                : state.newNickname}
+            </span>
+          </div>
 
-        {generateAboutInput("given_name", "Name")}
-        {generateAboutInput("family_name", "Last Name")}
-        {generateAboutInput("email", "Email", "email")}
+          <label className="profile-title" htmlFor="nickname">
+            Change Your Nickname:
+          </label>
+          <div className="profile-input-container">
+            <input
+              type="text"
+              id="nickname"
+              name="nickname"
+              maxLength={15}
+              value={state.newNickname}
+              onChange={handleInputChange}
+              onBlur={handleInputBlur}
+              onKeyDown={(e) => {
+                if (e.key === " ") {
+                  e.preventDefault();
+                }
+              }}
+            />
+            <button className="input-button" type="button" onClick={handleSave}>
+              {t("save")}
+            </button>
+          </div>
+        </div>
       </fieldset>
-
-      <button type="button" onClick={handleSave}>
-        {t("saveChanges")}
-      </button>
     </form>
   );
 };

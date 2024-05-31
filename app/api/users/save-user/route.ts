@@ -3,10 +3,10 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   try {
-    const { sub, email, picture } = await request.json();
+    const { sub, email, picture, nickname } = await request.json();
 
     if (!sub) {
-      throw new Error("sub, email, picture are required");
+      throw new Error("sub, email, picture and nickname are required");
     }
 
     const existingUser = await sql`SELECT * FROM user_info WHERE sub = ${sub};`;
@@ -18,8 +18,8 @@ export async function POST(request: Request) {
       );
     } else {
       await sql`
-      INSERT INTO user_info (sub, email, picture)
-      VALUES (${sub}, ${email}, ${picture});
+      INSERT INTO user_info (sub, email, picture, nickname)
+      VALUES (${sub}, ${email}, ${picture}, ${nickname});
     `;
     }
 

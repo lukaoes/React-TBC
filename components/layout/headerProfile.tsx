@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { getPictureAction } from "../../actions";
+import { getPictureAction, getNicknameAction } from "../../actions";
 import ProfileDropdown from "./profileDropdown";
 
 export default function HeaderProfile() {
@@ -11,7 +11,7 @@ export default function HeaderProfile() {
     picture: string;
   }> | null>(null);
   const [pic, setPic] = useState<string | null>(null);
-
+  const [displayName, setDisplayName] = useState<string>("");
   const [isDropdownVisible, setDropdownVisible] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -44,11 +44,26 @@ export default function HeaderProfile() {
   }, [profilePicture]);
 
   const { user } = useUser();
-  const name = user?.name ? user.name.split(" ") : [];
-  const firstName = name.length > 0 ? name[0] : "";
+
+  const fetchAndSetNickname = async (sub: string, fallbackNickname: string) => {
+    try {
+      const nickname = await getNicknameAction(sub);
+      setDisplayName(nickname[0].nickname ?? fallbackNickname);
+    } catch (error) {
+      console.error("Error fetching nickname:", error);
+      setDisplayName(fallbackNickname);
+    }
+  };
+
   useEffect(() => {
     if (user && user.sub) {
       saveUserProfile(user);
+      if (user.email === user.name) {
+        fetchAndSetNickname(user.sub, user.nickname ?? "");
+      } else {
+        const name = user.name?.split(" ");
+        setDisplayName(name && name.length > 0 ? name[0] : "");
+      }
     }
   }, [user]);
 
@@ -68,6 +83,7 @@ export default function HeaderProfile() {
             sub: user.sub,
             email: user.email,
             picture: user.picture,
+            nickname: user.nickname,
           }),
         });
         const data = await response.json();
@@ -79,14 +95,17 @@ export default function HeaderProfile() {
       }
     }
   };
+
+  const imageSrc = pic || user?.picture || "";
+
   return (
     <div>
       {user ? (
         <div className="menu-block" ref={dropdownRef}>
-          <span onClick={toggleDropdown}>{firstName}</span>
-          {pic && (
+          <span onClick={toggleDropdown}>{displayName}</span>
+          {imageSrc && (
             <Image
-              src={pic}
+              src={imageSrc}
               alt={user.name || "Profile Picture"}
               onClick={toggleDropdown}
               width={40}
