@@ -20,7 +20,7 @@ export async function deleteUser(id: number) {
   });
 }
 
-export async function getUserCart(userId: number) {
+export async function getUserCart(userId: string) {
   const response = await fetch(BASE_URL + `/api/cart/get-cart/${userId}`, {
     cache: "no-store",
   });
