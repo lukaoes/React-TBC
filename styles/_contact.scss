@@ -2,128 +2,137 @@
   max-width: 1280px;
   margin: 0 auto;
   padding: 60px 20px;
+  display: flex;
+  gap: 30px;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
 
-  .contact-static {
-    padding-bottom: 40px;
-    margin-bottom: 40px;
-    h1 {
-      font-weight: 300;
-      font-size: 48px;
-      margin-bottom: 40px;
+  .contact-info {
+    max-width: 500px;
+    width: 100%;
+
+    h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+    h3 {
+      font-size: 24px;
+      line-height: 35px;
       letter-spacing: 2px;
+      margin-bottom: 60px;
     }
 
-    p {
-      font-size: 18px;
-      font-weight: 300;
-      line-height: 1.7;
-      margin-bottom: 40px;
-    }
-
-    &-info {
+    .contact-info-contact {
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 30px;
+      justify-content: space-between;
 
-      div {
-        display: flex;
-        align-items: center;
-        gap: 10px;
+      h4 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+
+      p {
+        margin-bottom: 6px;
       }
     }
   }
 
   .contact-form {
-    background-color: rgba($color: #fff, $alpha: 0.3);
-    border-radius: 10px;
-    padding: 30px;
-    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, 
-    rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px,
-    rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, 
-    rgba(0, 0, 0, 0.07) 0px 32px 64px;
+    background-color: #6b7946;
+    border-radius: 15px;
+    color: #e1ffff;
+    padding: 40px;
+    max-width: 500px;
+    width: 100%;
+
     input,
     textarea {
-      background-color: transparent;
-      border: none;
-      outline: none;
-      border: 1px solid #ccc;
-      font-size: 18px;
-      margin: 10px 0 40px 0;
-      border-radius: 10px;
-      padding: 10px 18px;
-      width: 100%;
       display: block;
-    }
-
-    .input-wrap {
-      position:relative;
-  
-      label {
-        font-weight:500;
-        font-size:15px;
-        text-transform: capitalize;
-        letter-spacing:1px;
-        -webkit-transition: all .2s ease-in-out;
-        transition: all .2s ease-in-out;
-      }
-    }
-
-    button {
-      width: 122px;
-      padding: 5px 15px;
-      font-size: 18px;
+      width: 100%;
+      margin: 10px 0 0 0;
+      padding: 10px;
+      color: #464f2e;
       font-weight: 600;
+      border-radius: 4px;
+      background-color: #f3f2f1;
+    }
+
+    label {
+      font-size: 18px;
+      font-weight: 500;
       letter-spacing: 2px;
-      border: 0;
-      background-color: #000;
-      color: #fff;
-      margin: 0 auto;
-      cursor: pointer;
-      margin-left: calc(100% - 132px);
-      z-index: 2;
-      position: relative;
+    }
 
-      &:active {
-        left: 10px;
-        top: 9px;
+    div {
+      margin-bottom: 25px;
+    }
 
-        &::before {
-            top: 0;
-            left: 0;
+    .contact-form-button {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0;
+
+      button {
+        padding: 10px 25px;
+        font-size: 18px;
+        font-weight: 600;
+        border: 2px solid #e1ffff;
+        border-radius: 10px;
+        margin: 0 auto;
+        transition: all 0.3s ease-in-out;
+
+        &:hover {
+          background-color: #e1ffff;
+          color: #6b7946;
         }
-      }
-
-      &::before {
-        content: '';
-        width: 122px;
-        z-index: 1;
-        height: 33px;
-        position: absolute;
-        background-color: transparent;
-        border: 1px solid #000;
-        left: 10px;
-        top: 9px;
       }
     }
   }
 
-  @media only screen and (min-width: $tablet) {
-    display: flex;
-    gap: 30px;
-    justify-content: space-between;
-    .contact-static {
-      max-width: 555px;
-      border-bottom: none;
-      padding: 0 30px 0 0;
-      margin: 0;
+  .contact-map {
+    margin-top: 40px;
+  }
 
-      .contact-static-info {
-        justify-content: space-between;
+  @media only screen and (max-width: $tablet) {
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+    .contact-info {
+      h2 {
+        font-size: 24px;
+        text-align: center;
+      }
+      h3 {
+        font-size: 20px;
+        text-align: center;
       }
     }
+  }
+  @media only screen and (max-width: 450px) {
+    .contact-info-contact {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 30px;
+    }
+
     .contact-form {
-      width: 100%;
+      padding: 20px;
+
+      input,
+      textarea {
+        padding: 6px;
+      }
+
+      label {
+        font-size: 16px;
+        letter-spacing: 1px;
+      }
     }
   }
 }

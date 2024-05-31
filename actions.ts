@@ -162,3 +162,21 @@ export async function addCampsite(formData: any) {
     throw new Error("Submission failed");
   }
 }
+
+export async function sendContactMessage(formData: any) {
+  try {
+    const res = await fetch(BASE_URL + "/api/contact/send-message", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+    const data = await res.json();
+    if (data) {
+      revalidatePath("/contact");
+    }
+  } catch (error) {
+    console.error("Error submitting message:", error);
+  }
+}
