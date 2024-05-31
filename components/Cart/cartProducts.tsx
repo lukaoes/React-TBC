@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Product } from "../../app/[locale]/(dashboard)/page";
 import { handleProductRemove, handleQuantityChange } from "../../actions";
 import CartTotal from "./cartTotal";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 interface CartProductsProps {
   filteredProducts: Product[];
@@ -15,14 +16,22 @@ const CartProducts = ({
   filteredProducts,
   initialQuantities,
 }: CartProductsProps) => {
+  const { user } = useUser();
   const [productQuantities, setProductQuantities] = useState(initialQuantities);
   const [localFilteredProducts, setLocalFilteredProducts] =
     useState(filteredProducts);
+  const [id, setId] = useState("");
+
+  useEffect(() => {
+    if (user && user.sub) {
+      setId(user.sub);
+    }
+  }, [user]);
 
   const updateQuantity = async (productId: string, quantityChange: number) => {
     const newQuantity = (productQuantities[productId] || 0) + quantityChange;
 
-    await handleQuantityChange(productId, quantityChange);
+    await handleQuantityChange(productId, quantityChange, id);
 
     if (newQuantity <= 0) {
       await removeProduct(productId);
@@ -35,7 +44,7 @@ const CartProducts = ({
   };
 
   const removeProduct = async (productId: string) => {
-    await handleProductRemove(productId);
+    await handleProductRemove(productId, id);
 
     setProductQuantities((prevQuantities) => {
       const updatedQuantities = { ...prevQuantities };

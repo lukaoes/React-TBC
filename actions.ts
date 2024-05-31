@@ -34,14 +34,17 @@ export async function editUser(id: number, formData: FormData) {
   revalidatePath("/admin");
 }
 
-export const handleProductRemove = async (productId: string) => {
+export const handleProductRemove = async (
+  productId: string,
+  userId: string
+) => {
   await fetch(`${BASE_URL}/api/cart/single-remove`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      userId: 2,
+      userId,
       productId,
     }),
   });
@@ -50,7 +53,8 @@ export const handleProductRemove = async (productId: string) => {
 
 export const handleQuantityChange = async (
   productId: string,
-  quantityChange: number
+  quantityChange: number,
+  userId: string
 ) => {
   try {
     const response = await fetch(`${BASE_URL}/api/cart/add-cart`, {
@@ -59,7 +63,7 @@ export const handleQuantityChange = async (
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userId: 2,
+        userId: userId,
         productId,
         quantity: quantityChange,
       }),

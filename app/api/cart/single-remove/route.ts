@@ -11,7 +11,7 @@ export async function DELETE(req: NextRequest) {
 
     const result = await sql`
       SELECT products FROM carts
-      WHERE user_id = ${Number(userId)}
+      WHERE user_id = ${userId}
     `;
 
     let products: Products = {};
@@ -29,7 +29,7 @@ export async function DELETE(req: NextRequest) {
     const updatedCart = await sql`
       UPDATE carts 
       SET products = ${JSON.stringify(products)}::jsonb
-      WHERE user_id = ${Number(userId)}
+      WHERE user_id = ${userId}
       RETURNING *
     `;
 
