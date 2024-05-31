@@ -16,7 +16,7 @@ interface FormErrors {
   message?: string;
 }
 
-export default function ContactForm(): JSX.Element {
+export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
