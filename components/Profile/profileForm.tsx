@@ -80,7 +80,7 @@ const ProfileForm: React.FC<ProfileFormProps> = () => {
             <span>{user?.email || ""}</span>
             {user?.email !== user?.name && user?.name ? (
               <>
-                <h2>Name:</h2>
+                <h2 className="profile-title">Name:</h2>
                 <span>{user.name}</span>
               </>
             ) : null}
