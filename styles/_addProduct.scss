@@ -1,11 +1,26 @@
+.add-product-title {
+  text-align: center;
+  font-size: 28px;
+  margin: 50px 0;
+}
+
 .add-product-layout {
   max-width: 800px;
   margin: 0 auto;
+  padding: 0 20px;
+
+  .add-product-detail-container {
+    background-color: #f3f2ef;
+    padding: 30px 20px;
+    border-radius: 15px;
+    margin: 20px 0;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
 
   select,
   input,
   textarea {
-    border-radius: 2px;
+    border-radius: 6px;
     padding: 4px 8px;
     border: 1px solid #ccc;
     background-color: #f3f2f1;
@@ -30,6 +45,12 @@
       gap: 10px;
       align-items: center;
       margin-bottom: 10px;
+    }
+
+    @media only screen and (max-width: 450px) {
+      label {
+        font-size: 16px;
+      }
     }
   }
 
@@ -89,6 +110,7 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+    padding-bottom: 20px;
 
     span {
       display: inline-block;
@@ -109,7 +131,7 @@
     }
 
     input {
-      max-width: 500px;
+      max-width: 470px;
       width: 100%;
       display: block;
     }
@@ -157,6 +179,50 @@
         margin-right: 10px;
         display: inline;
       }
+    }
+  }
+
+  .add-product-contact {
+    padding-bottom: 20px;
+    select {
+      margin: 10px 0;
+    }
+    label {
+      display: block;
+      margin: 10px;
+    }
+
+    input {
+      max-width: 500px;
+      width: 100%;
+    }
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 40px 0;
+    button {
+      width: 200px;
+
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #669a3e;
+      color: #fff;
+      border: 1px solid #669a3e;
+      border-radius: 6px;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background-color: transparent;
+        color: #000;
+      }
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    .add-product-type {
+      gap: 65px;
     }
   }
 }

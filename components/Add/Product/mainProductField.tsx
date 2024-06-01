@@ -201,85 +201,90 @@ const MainProductField = () => {
     <div className="add-product-layout">
       <form onSubmit={handleSubmit}>
         <div>
-          <h2>განცხადების ტიპი*</h2>
-          <div className="add-product-type">
-            <div>
-              <input
-                type="radio"
-                name="type"
-                id="sell"
-                value="sell"
-                onChange={handleInputChange}
-              />
-              <label htmlFor="sell" className="form-control">
-                გაყიდვა
-              </label>
+          <div className="add-product-detail-container">
+            <h2>განცხადების ტიპი*</h2>
+            <div className="add-product-type">
+              <div>
+                <input
+                  type="radio"
+                  name="type"
+                  id="sell"
+                  value="sell"
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="sell" className="form-control">
+                  გაყიდვა
+                </label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  name="type"
+                  id="rent"
+                  value="rent"
+                  onChange={handleInputChange}
+                />
+                <label htmlFor="rent">გაქირავება</label>
+              </div>
+              {errors.type && <p>{errors.type}</p>}
             </div>
-            <div>
-              <input
-                type="radio"
-                name="type"
-                id="rent"
-                value="rent"
-                onChange={handleInputChange}
-              />
-              <label htmlFor="rent">გაქირავება</label>
-            </div>
-            {errors.type && <p>{errors.type}</p>}
           </div>
-
-          <h2>აირჩიეთ კატეგორია*</h2>
-          <GearSelector
-            formData={formData}
-            setFormData={setFormData}
-            errors={errors}
-          />
+          <div className="add-product-detail-container">
+            <h2>აირჩიეთ კატეგორია*</h2>
+            <GearSelector
+              formData={formData}
+              setFormData={setFormData}
+              errors={errors}
+            />
+          </div>
         </div>
         <div className="add-product-main-img">
-          <h2>დაამატეთ ფოტო</h2>
-          <p>
-            უფრო მეტი ადამიანი დაინტერესდება განცხადებით, რომელსაც ფოტო აქვს.
-          </p>
-          <span>აირჩიეთ მოწყობილობიდან</span>
-          <input type="file" name="file" />
-          <label htmlFor="img-url">ან ატვირთეთ URL-ს გამოყენებით:</label>
-          <input
-            type="text"
-            name="main_photo"
-            id="img-url"
-            onChange={handleInputChange}
-          />
-          <span>დამატებითი სურათები:</span>
-          <div className="add-products-additional-img">
-            <span>1</span>
+          <div className="add-product-detail-container">
+            <h2>დაამატეთ ფოტო</h2>
+            <p>
+              უფრო მეტი ადამიანი დაინტერესდება განცხადებით, რომელსაც ფოტო აქვს.
+            </p>
+            <span>აირჩიეთ მოწყობილობიდან</span>
+            <input type="file" name="file" />
+            <label htmlFor="img-url">ან ატვირთეთ URL-ს გამოყენებით:</label>
             <input
               type="text"
-              name="photo_urls"
-              id="img-additional-0"
+              name="main_photo"
+              id="img-url"
               onChange={handleInputChange}
             />
-          </div>
-          <div className="add-products-additional-img">
-            <span>2</span>
-            <input
-              type="text"
-              name="photo_urls"
-              id="img-additional-1"
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="add-products-additional-img">
-            <span>3</span>
-            <input
-              type="text"
-              name="photo_urls"
-              id="img-additional-2"
-              onChange={handleInputChange}
-            />
+            <span>დამატებითი სურათები:</span>
+            <div className="add-products-additional-img">
+              <span>1</span>
+              <input
+                type="text"
+                name="photo_urls"
+                id="img-additional-0"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="add-products-additional-img">
+              <span>2</span>
+              <input
+                type="text"
+                name="photo_urls"
+                id="img-additional-1"
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="add-products-additional-img">
+              <span>3</span>
+              <input
+                type="text"
+                name="photo_urls"
+                id="img-additional-2"
+                onChange={handleInputChange}
+              />
+            </div>
           </div>
         </div>
         <div className="add-product-description">
-          <div>
+          <div className="add-product-detail-container">
             <h2>პროდუქტის აღწერა ქართულად</h2>
             <label htmlFor="title_ge">სათაური*</label>
             <input
@@ -294,74 +299,82 @@ const MainProductField = () => {
               id="description"
               name="description_ge"
               onChange={handleInputChange}
+              rows={5}
             ></textarea>
-          </div>
-          <h2>პროდუქტის აღწერა ინგლისურად</h2>
-          <label htmlFor="title_en">სათაური</label>
-          <input
-            type="text"
-            name="title_en"
-            id="entitle"
-            onChange={handleInputChange}
-          />
-          <label htmlFor="description_en">აღწერა</label>
-          <textarea
-            id="endescription"
-            name="description_en"
-            onChange={handleInputChange}
-          ></textarea>
-        </div>
-        <div className="add-product-price">
-          <h2>ფასი</h2>
-          <label htmlFor="price">ნივთის ფასი*</label>
-          <input
-            type="number"
-            name="price"
-            id="price"
-            value="0"
-            onChange={handleInputChange}
-          />
-          {errors.price && <p>{errors.price}</p>}
-          <div className="add-products-price-negotation">
-            <input
-              type="checkbox"
-              name="negotiable"
-              id="negotiable"
-              onChange={handleInputChange}
-            />
-            <label htmlFor="negotiable">ფასი შეთანხმებით</label>
-          </div>
-        </div>
-        <div>
-          <h2>საკონტაქტო ინფორმაცია</h2>
-          <label htmlFor="location">აირჩიეთ ლოკაცია*</label>
-          <select name="location" onChange={handleInputChange}>
-            {cities.map((city, index) => (
-              <option key={`select-cities-${index}`} value={city}>
-                {city}
-              </option>
-            ))}
-          </select>
-          {errors.location && <p>{errors.location}</p>}
-          <div>
-            <label htmlFor="firstName">სახელი*</label>
+            <h2>პროდუქტის აღწერა ინგლისურად</h2>
+            <label htmlFor="title_en">სათაური</label>
             <input
               type="text"
-              name="first_name"
-              id="firstName"
+              name="title_en"
+              id="entitle"
               onChange={handleInputChange}
             />
-            {errors.first_name && <p>{errors.first_name}</p>}
-            <label htmlFor="phone">ტელეფონის ნომერი*</label>
+            <label htmlFor="description_en">აღწერა</label>
+            <textarea
+              id="endescription"
+              name="description_en"
+              onChange={handleInputChange}
+              rows={5}
+            ></textarea>
+          </div>
+        </div>
+
+        <div className="add-product-price">
+          <div className="add-product-detail-container">
+            <h2>ფასი</h2>
+            <label htmlFor="price">ნივთის ფასი*</label>
             <input
               type="number"
-              name="phone"
-              id="phone"
+              name="price"
+              id="price"
+              value="0"
               onChange={handleInputChange}
             />
-            {errors.phone && <p>{errors.phone}</p>}
+            {errors.price && <p>{errors.price}</p>}
+            <div className="add-products-price-negotation">
+              <input
+                type="checkbox"
+                name="negotiable"
+                id="negotiable"
+                onChange={handleInputChange}
+              />
+              <label htmlFor="negotiable">ფასი შეთანხმებით</label>
+            </div>
           </div>
-
+        </div>
+        <div className="add-product-contact">
+          <div className="add-product-detail-container">
+            <h2>საკონტაქტო ინფორმაცია</h2>
+            <label htmlFor="location">აირჩიეთ ლოკაცია*</label>
+            <select name="location" onChange={handleInputChange}>
+              {cities.map((city, index) => (
+                <option key={`select-cities-${index}`} value={city}>
+                  {city}
+                </option>
+              ))}
+            </select>
+            {errors.location && <p>{errors.location}</p>}
+            <div>
+              <label htmlFor="firstName">სახელი*</label>
+              <input
+                type="text"
+                name="first_name"
+                id="firstName"
+                onChange={handleInputChange}
+              />
+              {errors.first_name && <p>{errors.first_name}</p>}
+              <label htmlFor="phone">ტელეფონის ნომერი*</label>
+              <input
+                type="number"
+                name="phone"
+                id="phone"
+                onChange={handleInputChange}
+              />
+              {errors.phone && <p>{errors.phone}</p>}
+            </div>
+          </div>
+        </div>
+        <div className="button-container">
           {user?.sub && <button type="submit">დამატება</button>}
         </div>
       </form>
