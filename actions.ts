@@ -197,3 +197,24 @@ export async function getNicknameAction(sub: string) {
   const data = await response.json();
   return data.response;
 }
+
+export async function addAddressAction(formData: any) {
+  try {
+    const response = await fetch(`${BASE_URL}/api/address/save-address`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Address added:", data);
+    } else {
+      console.error("Error adding address", response.statusText);
+    }
+  } catch (error) {
+    console.error("Error adding address", error);
+  }
+}

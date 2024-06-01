@@ -10,8 +10,35 @@
   }
 }
 
+.profile-user-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: auto;
+}
+
+.profile-navigation-head {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.profile-navigation {
+  width: 100%;
+  margin: 0;
+  text-align: center;
+  display: inline-block;
+  padding: 10px 20px;
+  font-weight: 500;
+  color: #000;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #d3d3d3;
+  }
+}
+
 .profile-user {
-  height: 100%;
   display: flex;
   min-width: 260px;
   gap: 20px;
@@ -37,7 +64,7 @@
     font-weight: 600;
   }
 
-  a {
+  .logout-profile {
     display: inline-block;
     padding: 5px 20px;
     border-radius: 5px;

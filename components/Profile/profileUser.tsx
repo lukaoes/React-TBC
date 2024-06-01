@@ -5,6 +5,7 @@ import AvatarUploadPage from "./avatarUpload";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { getNicknameAction, getPictureAction } from "../../actions";
 import userIcon from "../../public/assets/images/userIcon.png";
+import ProfileNavigation from "./profileNavigation";
 
 interface PictureData {
   picture: string;
@@ -44,33 +45,38 @@ const ProfileUser = () => {
   }, [user?.sub]);
 
   return (
-    <div className="profile-user">
-      <div className="big-profile-picture">
-        {picture ? (
-          <Image
-            src={picture[0].picture}
-            alt={user?.name || "Profile Picture"}
-            width={100}
-            height={100}
-          />
-        ) : (
-          <Image
-            src={userIcon}
-            alt={user?.name || "Profile Picture"}
-            width={100}
-            height={100}
-          />
-        )}
-        <AvatarUploadPage />
-      </div>
-      {user ? (
-        <p>{displayName}</p>
-      ) : (
-        <div className="w-[100%]">
-          <div className="max-w-sm rounded overflow-hidden animate-pulse h-6 bg-gray-300 mb-2"></div>
+    <div className="profile-user-container">
+      <div className="profile-user">
+        <div className="big-profile-picture">
+          {picture ? (
+            <Image
+              src={picture[0].picture}
+              alt={user?.name || "Profile Picture"}
+              width={100}
+              height={100}
+            />
+          ) : (
+            <Image
+              src={userIcon}
+              alt={user?.name || "Profile Picture"}
+              width={100}
+              height={100}
+            />
+          )}
+          <AvatarUploadPage />
         </div>
-      )}
-      <a href="/api/auth/logout">Log Out</a>
+        {user ? (
+          <p>{displayName}</p>
+        ) : (
+          <div className="w-[100%]">
+            <div className="max-w-sm rounded overflow-hidden animate-pulse h-6 bg-gray-300 mb-2"></div>
+          </div>
+        )}
+        <a href="/api/auth/logout" className="logout-profile">
+          Log Out
+        </a>
+      </div>
+      <ProfileNavigation />
     </div>
   );
 };
