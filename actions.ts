@@ -228,3 +228,14 @@ export async function getAddyAction(sub: string) {
   const data = await response.json();
   return data.response;
 }
+
+export async function deleteAddyAction(sub: string) {
+  const response = await fetch(BASE_URL + "/api/address/delete-addy/", {
+    method: "DELETE",
+    body: JSON.stringify({ sub }),
+  });
+  revalidatePath("profile/address");
+
+  const data = await response.json();
+  return data.response;
+}

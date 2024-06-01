@@ -1,13 +1,10 @@
-"use client";
-
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useEffect, useState } from "react";
-import { getAddyAction } from "../../actions";
+import { getAddyAction, deleteAddyAction } from "../../actions";
 
 const ProfileAddyDisplay = () => {
   const [addyData, setAddyData] = useState<any>();
   const { user } = useUser();
-  console.log(user);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,12 +21,21 @@ const ProfileAddyDisplay = () => {
     fetchData();
   }, [user, user?.sub]);
 
-  console.log("dataaaaaaaa", addyData);
+  const handleDeleteAddress = async () => {
+    try {
+      if (user && user.sub) {
+        await deleteAddyAction(user.sub);
+        setAddyData(null); // Clear the address data after deletion
+      }
+    } catch (error) {
+      console.error("Error deleting address:", error);
+    }
+  };
 
   return (
     <div>
       {addyData ? (
-        <div>
+        <div className="addy-container">
           <h2>
             {addyData.first_name} {addyData.last_name}
           </h2>
@@ -39,13 +45,14 @@ const ProfileAddyDisplay = () => {
             {addyData.phone} <br />
             {addyData.email}
           </p>
-          <div>
+          <div className="addy-buttons-container">
             <button>Edit</button>
-            <button>Remove</button>
+            <button onClick={handleDeleteAddress}>Remove</button>{" "}
+            {/* Button for deleting address */}
           </div>
         </div>
       ) : (
-        ""
+        <p>No address found.</p>
       )}
     </div>
   );
