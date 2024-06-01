@@ -239,3 +239,20 @@ export async function deleteAddyAction(sub: string) {
   const data = await response.json();
   return data.response;
 }
+
+export const updateAddyAction = async (sub: string, updatedData: any) => {
+  const response = await fetch(BASE_URL + "/api/address/edit-addy", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ sub, ...updatedData }),
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to update address");
+  }
+
+  const data = await response.json();
+  return data;
+};

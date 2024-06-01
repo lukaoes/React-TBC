@@ -1,9 +1,27 @@
+"use client";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useEffect, useState } from "react";
-import { getAddyAction, deleteAddyAction } from "../../actions";
+import {
+  getAddyAction,
+  deleteAddyAction,
+  updateAddyAction,
+} from "../../actions";
+import EditAddressModal from "./addressEditModal";
 
-const ProfileAddyDisplay = () => {
-  const [addyData, setAddyData] = useState<any>();
+interface AddressData {
+  first_name: string;
+  last_name: string;
+  country: string;
+  city: string;
+  street_address: string;
+  postal_code: string;
+  phone: string;
+  email: string;
+}
+
+const ProfileAddyDisplay: React.FC = () => {
+  const [addyData, setAddyData] = useState<AddressData | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { user } = useUser();
 
   useEffect(() => {
@@ -32,6 +50,19 @@ const ProfileAddyDisplay = () => {
     }
   };
 
+  const handleSaveAddress = async (updatedData: AddressData) => {
+    try {
+      if (user && user.sub) {
+        await updateAddyAction(user.sub, updatedData);
+        const updatedDataFromServer = await getAddyAction(user.sub); // Fetch the updated address data
+        setAddyData(updatedDataFromServer[0]);
+        setIsModalOpen(false);
+      }
+    } catch (error) {
+      console.error("Error updating address:", error);
+    }
+  };
+
   return (
     <div>
       {addyData ? (
@@ -46,14 +77,20 @@ const ProfileAddyDisplay = () => {
             {addyData.email}
           </p>
           <div className="addy-buttons-container">
-            <button>Edit</button>
-            <button onClick={handleDeleteAddress}>Remove</button>{" "}
-            {/* Button for deleting address */}
+            <button onClick={() => setIsModalOpen(true)}>Edit</button>
+            <button onClick={handleDeleteAddress}>Remove</button>
           </div>
         </div>
       ) : (
         <p>No address found.</p>
       )}
+
+      <EditAddressModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        initialData={addyData}
+        onSave={handleSaveAddress}
+      />
     </div>
   );
 };
