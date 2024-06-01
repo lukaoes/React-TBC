@@ -209,6 +209,7 @@ export async function addAddressAction(formData: any) {
     });
 
     if (response.ok) {
+      revalidatePath("profile/address");
       const data = await response.json();
       console.log("Address added:", data);
     } else {
@@ -217,4 +218,13 @@ export async function addAddressAction(formData: any) {
   } catch (error) {
     console.error("Error adding address", error);
   }
+}
+
+export async function getAddyAction(sub: string) {
+  const response = await fetch(BASE_URL + "/api/address/get-addy/", {
+    method: "POST",
+    body: JSON.stringify({ sub }),
+  });
+  const data = await response.json();
+  return data.response;
 }

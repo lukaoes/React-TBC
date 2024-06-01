@@ -2,6 +2,7 @@
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useEffect, useState } from "react";
 import { addAddressAction } from "../../../../../actions";
+import ProfileAddyDisplay from "../../../../../components/Profile/profileAddyDisplay";
 
 const ProfileAddress = () => {
   const { user } = useUser();
@@ -16,7 +17,6 @@ const ProfileAddress = () => {
     phone: "",
     email: "",
   });
-  console.log(formData);
 
   const [errors, setErrors] = useState({
     firstName: "",
@@ -71,6 +71,7 @@ const ProfileAddress = () => {
   return (
     <div className="profile-form">
       <h1 className="address-title">Shipping Address</h1>
+      <ProfileAddyDisplay />
       <div className="profile-address">
         <form onSubmit={handleSubmit}>
           <div>

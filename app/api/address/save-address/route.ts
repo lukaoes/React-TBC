@@ -29,6 +29,16 @@ export async function POST(request: Request) {
       throw new Error("All fields are required");
     }
 
+    const existingUser =
+      await sql`SELECT * FROM user_address WHERE sub = ${sub};`;
+
+    if (existingUser.rows.length > 0) {
+      return NextResponse.json(
+        { error: "User with the same sub already exists" },
+        { status: 400 }
+      );
+    }
+
     await sql`INSERT INTO user_address (
       first_name, sub, last_name, country, city, street_address, postal_code, phone, email
     ) VALUES (
