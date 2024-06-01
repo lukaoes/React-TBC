@@ -1,0 +1,162 @@
+.add-product-layout {
+  max-width: 800px;
+  margin: 0 auto;
+
+  select,
+  input,
+  textarea {
+    border-radius: 2px;
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    background-color: #f3f2f1;
+    font-size: 16px;
+  }
+
+  h2 {
+    font-size: 20px;
+    margin: 20px 0;
+    font-weight: 600;
+  }
+
+  label {
+    font-size: 18px;
+  }
+
+  .add-product-type {
+    display: flex;
+    gap: 100px;
+    div {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+  }
+
+  .form-control {
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.5em;
+  }
+
+  .form-control + .form-control {
+    margin-top: 1em;
+  }
+
+  .form-control:focus-within {
+    color: transparent;
+  }
+
+  input[type="radio"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    margin: 0;
+
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 0.15em solid currentColor;
+    border-radius: 50%;
+    transform: translateY(-0.075em);
+
+    display: grid;
+    place-content: center;
+  }
+
+  input[type="radio"]::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em red;
+    background-color: CanvasText;
+  }
+
+  input[type="radio"]:checked::before {
+    transform: scale(1);
+  }
+
+  input[type="radio"]:focus {
+    outline: max(2px, 0.15em) solid currentColor;
+    outline-offset: max(2px, 0.15em);
+  }
+
+  .add-product-category {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    span {
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+  }
+  #img-url {
+    margin: 5px 0 20px 0;
+  }
+  .add-product-main-img {
+    span {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    p {
+      margin: 0 0 25px 0;
+    }
+
+    input {
+      max-width: 500px;
+      width: 100%;
+      display: block;
+    }
+
+    label {
+      display: block;
+      margin: 20px 0;
+    }
+  }
+
+  .add-products-additional-img {
+    span {
+      font-size: 18px;
+      margin: 0;
+    }
+    gap: 20px;
+    display: flex;
+    margin-bottom: 20px;
+    align-items: center;
+  }
+
+  .add-product-description {
+    label {
+      display: block;
+      margin: 10px 0;
+    }
+
+    input,
+    textarea {
+      margin-bottom: 15px;
+      max-width: 500px;
+      width: 100%;
+    }
+  }
+
+  .add-product-price {
+    input {
+      display: block;
+      margin-top: 10px;
+    }
+
+    .add-products-price-negotation {
+      margin: 10px 0;
+      input {
+        margin-right: 10px;
+        display: inline;
+      }
+    }
+  }
+}

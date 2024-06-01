@@ -113,13 +113,14 @@ const MainProductField = () => {
     description_ge: "",
     title_en: "",
     description_en: "",
-    price: "",
+    price: "0",
     negotiable: false,
     location: "",
     first_name: "",
     phone: "",
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  console.log(formData);
 
   useEffect(() => {
     if (user && user.sub) {
@@ -197,27 +198,33 @@ const MainProductField = () => {
   };
 
   return (
-    <div>
+    <div className="add-product-layout">
       <form onSubmit={handleSubmit}>
         <div>
           <h2>განცხადების ტიპი*</h2>
-          <div>
-            <input
-              type="radio"
-              name="type"
-              id="sell"
-              value="sell"
-              onChange={handleInputChange}
-            />
-            <label htmlFor="sell">გაყიდვა</label>
-            <input
-              type="radio"
-              name="type"
-              id="rent"
-              value="rent"
-              onChange={handleInputChange}
-            />
-            <label htmlFor="rent">გაქირავება</label>
+          <div className="add-product-type">
+            <div>
+              <input
+                type="radio"
+                name="type"
+                id="sell"
+                value="sell"
+                onChange={handleInputChange}
+              />
+              <label htmlFor="sell" className="form-control">
+                გაყიდვა
+              </label>
+            </div>
+            <div>
+              <input
+                type="radio"
+                name="type"
+                id="rent"
+                value="rent"
+                onChange={handleInputChange}
+              />
+              <label htmlFor="rent">გაქირავება</label>
+            </div>
             {errors.type && <p>{errors.type}</p>}
           </div>
 
@@ -228,10 +235,10 @@ const MainProductField = () => {
             errors={errors}
           />
         </div>
-        <div>
+        <div className="add-product-main-img">
           <h2>დაამატეთ ფოტო</h2>
           <p>
-            უფრო მეტი ადამიანი დაინტერესდება განცხადებით, რომელსაც ფოტო აქვს
+            უფრო მეტი ადამიანი დაინტერესდება განცხადებით, რომელსაც ფოტო აქვს.
           </p>
           <span>აირჩიეთ მოწყობილობიდან</span>
           <input type="file" name="file" />
@@ -243,26 +250,35 @@ const MainProductField = () => {
             onChange={handleInputChange}
           />
           <span>დამატებითი სურათები:</span>
-          <input
-            type="text"
-            name="photo_urls"
-            id="img-additional-0"
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="photo_urls"
-            id="img-additional-1"
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="photo_urls"
-            id="img-additional-2"
-            onChange={handleInputChange}
-          />
+          <div className="add-products-additional-img">
+            <span>1</span>
+            <input
+              type="text"
+              name="photo_urls"
+              id="img-additional-0"
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="add-products-additional-img">
+            <span>2</span>
+            <input
+              type="text"
+              name="photo_urls"
+              id="img-additional-1"
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="add-products-additional-img">
+            <span>3</span>
+            <input
+              type="text"
+              name="photo_urls"
+              id="img-additional-2"
+              onChange={handleInputChange}
+            />
+          </div>
         </div>
-        <div>
+        <div className="add-product-description">
           <div>
             <h2>პროდუქტის აღწერა ქართულად</h2>
             <label htmlFor="title_ge">სათაური*</label>
@@ -295,23 +311,26 @@ const MainProductField = () => {
             onChange={handleInputChange}
           ></textarea>
         </div>
-        <div>
+        <div className="add-product-price">
           <h2>ფასი</h2>
           <label htmlFor="price">ნივთის ფასი*</label>
           <input
             type="number"
             name="price"
             id="price"
+            value="0"
             onChange={handleInputChange}
           />
           {errors.price && <p>{errors.price}</p>}
-          <input
-            type="checkbox"
-            name="negotiable"
-            id="negotiable"
-            onChange={handleInputChange}
-          />
-          <label htmlFor="negotiable">ფასი შეთანხმებით</label>
+          <div className="add-products-price-negotation">
+            <input
+              type="checkbox"
+              name="negotiable"
+              id="negotiable"
+              onChange={handleInputChange}
+            />
+            <label htmlFor="negotiable">ფასი შეთანხმებით</label>
+          </div>
         </div>
         <div>
           <h2>საკონტაქტო ინფორმაცია</h2>

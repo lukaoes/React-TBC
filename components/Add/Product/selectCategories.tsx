@@ -148,7 +148,7 @@ const GearSelector: React.FC<GearSelectorProps> = ({
     if (selectedCategory === "Footwear") {
       return (
         <label>
-          Shoe Size:
+          <span>ფეხსაცმლის ზომა:</span> <br />
           <input
             type="text"
             name="shoe_size"
@@ -164,7 +164,7 @@ const GearSelector: React.FC<GearSelectorProps> = ({
     } else if (selectedCategory === "Clothing") {
       return (
         <label>
-          Size:
+          <span>ზომა:</span> <br />
           <select
             name="clothing_size"
             onChange={(e) =>
@@ -187,7 +187,7 @@ const GearSelector: React.FC<GearSelectorProps> = ({
     } else if (selectedCategory === "Backpacks and Bags") {
       return (
         <label>
-          Capacity (liters):
+          <span>ტევადობა (ლიტრი):</span> <br />
           <input
             type="text"
             name="backpack_capacity"
@@ -206,7 +206,7 @@ const GearSelector: React.FC<GearSelectorProps> = ({
     ) {
       return (
         <label>
-          Capacity:
+          <span>ტევადობა:</span> <br />
           <select
             name="tent_capacity"
             onChange={(e) =>
@@ -216,11 +216,11 @@ const GearSelector: React.FC<GearSelectorProps> = ({
               }))
             }
           >
-            <option value="1-person">1 person</option>
-            <option value="2-person">2 person</option>
-            <option value="3-person">3 person</option>
-            <option value="4-person">4 person</option>
-            <option value="5-person">5+ person</option>
+            <option value="1-person">1 კაცი</option>
+            <option value="2-person">2 კაცი</option>
+            <option value="3-person">3 კაცი</option>
+            <option value="4-person">4 კაცი</option>
+            <option value="5-person">5+ კაცი</option>
           </select>
         </label>
       );
@@ -229,12 +229,12 @@ const GearSelector: React.FC<GearSelectorProps> = ({
   };
 
   return (
-    <div>
+    <div className="add-product-category">
       <label>
-        Category:
+        <span>კატეგორია:</span> <br />
         <select value={selectedCategory} onChange={handleCategoryChange}>
           <option value="" disabled>
-            Select a category
+            აირჩიეთ კატეგორია
           </option>
           {Object.keys(gearData).map((category) => (
             <option key={category} value={category}>
@@ -247,13 +247,13 @@ const GearSelector: React.FC<GearSelectorProps> = ({
 
       {subcategories.length > 0 && (
         <label>
-          Subcategory:
+          <span>ქვეკატეგორია:</span> <br />
           <select
             value={formData.subcategory}
             onChange={handleSubcategoryChange}
           >
             <option value="" disabled>
-              Select a subcategory
+              აირჩიეთ ქვეკატეგორია
             </option>
             {subcategories.map((subcategory) => (
               <option key={subcategory} value={subcategory}>
