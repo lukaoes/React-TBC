@@ -1,11 +1,14 @@
 import { FC } from "react";
 
 interface CartTotalProps {
-  totalPrice: any;
-  selectedNumber: any;
+  totalPrice: number;
+  selectedNumber: number;
 }
 
 const CartTotal: FC<CartTotalProps> = ({ totalPrice, selectedNumber }) => {
+  const deliveryPrice = 12;
+  const totalWithDelivery = totalPrice + deliveryPrice;
+
   return (
     <div className="cart-total-wrapper">
       <div className="cart-total-header">
@@ -17,13 +20,13 @@ const CartTotal: FC<CartTotalProps> = ({ totalPrice, selectedNumber }) => {
           <span className="cart-total-value">{totalPrice.toFixed(2)} ₾</span>
         </li>
         <li>
-          <span>ფასდაკლება</span>
-          <span className="cart-total-value accent">0 ₾</span>
+          <span>მიტანის საფასური</span>
+          <span className="cart-total-value accent">{deliveryPrice} ₾</span>
         </li>
       </ul>
       <div className="cart-total-total">
         <h2>ჯამური ღირებულება</h2>
-        <span className="cart-total-sum">{totalPrice} ₾</span>
+        <span className="cart-total-sum">{totalWithDelivery.toFixed(2)} ₾</span>
       </div>
       <span className="cart-total-secure">
         <svg

@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Product } from "../../app/[locale]/(dashboard)/page";
 import { handleProductRemove, handleQuantityChange } from "../../actions";
 import CartTotal from "./cartTotal";
 import { useUser } from "@auth0/nextjs-auth0/client";
@@ -10,6 +9,13 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 interface CartProductsProps {
   filteredProducts: Product[];
   initialQuantities: Record<string, number>;
+}
+
+interface Product {
+  id: string;
+  title: string;
+  price: number;
+  thumbnail: string;
 }
 
 const CartProducts = ({
@@ -57,6 +63,20 @@ const CartProducts = ({
     );
   };
 
+  const calculateTotalPrice = () => {
+    return localFilteredProducts.reduce((total, product) => {
+      const quantity = productQuantities[product.id.toString()] || 0;
+      return total + product.price * quantity;
+    }, 0);
+  };
+
+  const calculateTotalItems = () => {
+    return Object.values(productQuantities).reduce(
+      (total, quantity) => total + quantity,
+      0
+    );
+  };
+
   return (
     <div className="cart-container">
       <div className="cart-products-list-container">
@@ -101,7 +121,12 @@ const CartProducts = ({
                       +
                     </button>
                   </div>
-                  <div className="cart-item-subtotal">${item.price}</div>
+                  <div className="cart-item-subtotal">
+                    $
+                    {(
+                      item.price * (productQuantities[item.id.toString()] || 0)
+                    ).toFixed(2)}
+                  </div>
                   <button
                     className="cart-item-remove-btn"
                     onClick={() => removeProduct(item.id.toString())}
@@ -114,7 +139,10 @@ const CartProducts = ({
           </div>
         ))}
       </div>
-      <CartTotal totalPrice={1} selectedNumber={2} />
+      <CartTotal
+        totalPrice={calculateTotalPrice()}
+        selectedNumber={calculateTotalItems()}
+      />
     </div>
   );
 };
