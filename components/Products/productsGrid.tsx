@@ -1,35 +1,19 @@
+import { FC } from "react";
+import { ProductsDisplay } from "../../types";
 import MainProductCard from "../cards/mainProductCard";
 
-const ProductsGrid = () => {
+type ProductsGridProps = {
+  products: ProductsDisplay[];
+};
+
+const ProductsGrid: FC<ProductsGridProps> = ({ products }) => {
   return (
     <div className="products-grid-container">
-      <div className="grid-product">
-        <MainProductCard />
-      </div>
-      <div className="grid-product">
-        <MainProductCard />
-      </div>
-      <div className="grid-product">
-        <MainProductCard />
-      </div>
-      <div className="grid-product">
-        <MainProductCard />
-      </div>
-      <div className="grid-product">
-        <MainProductCard />
-      </div>
-      <div className="grid-product">
-        <MainProductCard />
-      </div>
-      <div className="grid-product">
-        <MainProductCard />
-      </div>
-      <div className="grid-product">
-        <MainProductCard />
-      </div>
-      <div className="grid-product">
-        <MainProductCard />
-      </div>
+      {products.map((product, index) => (
+        <div className="grid-product" key={`display-products-${index}`}>
+          <MainProductCard product={product} />
+        </div>
+      ))}
     </div>
   );
 };

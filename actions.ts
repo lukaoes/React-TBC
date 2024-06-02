@@ -256,3 +256,17 @@ export const updateAddyAction = async (sub: string, updatedData: any) => {
   const data = await response.json();
   return data;
 };
+
+export async function getUserProductsDisplay() {
+  const response = await fetch(
+    BASE_URL + "/api/products/get-user-products-display",
+    {
+      cache: "no-store",
+    }
+  );
+  const data = await response.json();
+
+  const products = data.users.rows;
+
+  return products;
+}
