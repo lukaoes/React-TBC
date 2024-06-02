@@ -37,87 +37,72 @@ interface FormData {
 }
 
 const gearData: GearData = {
-  Footwear: {
-    Types: ["Hiking Boots", "Sandals", "Socks"],
+  ფეხსაცმელი: {
+    Types: ["სალაშქრო ფეხსაცმელები", "სანდალები", "წინდები"],
   },
-  Clothing: {
+  ტანსაცმელი: {
     Types: [
-      "Jackets",
-      "Pants and Shorts",
-      "Base Layers",
-      "Mid Layers",
-      "Headwear (Hats, Caps, Beanies...)",
-      "Handwear (Gloves, Mittens...)",
-      "Rain Gear",
+      "ჟაკეტი",
+      "შარვალი და შორტი",
+      "Base ფენა",
+      "Mid ფენა",
+      "ქუდები (ქუდი, კიპი...)",
+      "ხელთათმანი",
+      "წვიმის აღჭურვილობა",
     ],
   },
-  "Backpacks and Bags": {
-    Types: ["Hiking Backpacks", "Backpack Accessories"],
+  "ზურგჩანთები და ჩანთები": {
+    Types: ["სალაშქრო ზურგჩანთები", "ზურგჩანთის აქსესუარები"],
   },
-  Shelter: {
-    Types: ["Tents", "Tarps"],
+  თავშესაფარი: {
+    Types: ["კარავი", "ტარპი"],
   },
-  "Sleeping Bags": {
-    Types: ["Down", "Synthetic", "Seasonal"],
+  "საძილე ტომარა": {
+    Types: ["პოლიესტერი", "ბამბა", "საძილე ტომარაში ჩასაფენი"],
   },
-  "Cooking and Food Storage": {
+  "სამზარეულო და კონტეინერები": {
     Types: [
-      "Camping Stoves",
-      "Fuel and Fuel Bottles",
-      "Cookware (Pots, Pans...)",
-      "Portable Grills",
-      "Coolers and Ice Packs",
-      "Food Storage (Containers, Cutting Boards...)",
+      "გაზქურა",
+      "გაზქურის საწვავი",
+      "ჭურჭელი (ტაფა, ჭიქა...)",
+      "პორტატული მაყალი",
+      "ქულერები",
+      "საჭმლის კონტეინერები",
     ],
   },
-  Lighting: {
+  განათება: {
+    Types: ["თავის სანათი", "ფანარი"],
+  },
+  "ნავიგაცია და უსაფრთხოება": {
+    Types: ["GPS მოწყობილობა", "კომპასი", "პირველადი დახმარება"],
+  },
+  "საცოცი აღჭურვილობა": {
+    Types: ["თოკები", "წერაყინი", "კარაბინი", "საცოცი ფეხსაცმელი", "ჩაფხუტი"],
+  },
+  აქსესუარები: {
     Types: [
-      "Headlamps",
-      "Flashlights",
-      "Lanterns (Battery-Powered, Solar)",
-      "String Lights",
+      "მზის სათვალე",
+      "ხელსაწყოები",
+      "ბინოკლი",
+      "პორტატული დამტენი",
+      "ჯოხები",
     ],
   },
-  "Navigation and Safety": {
+  "ბავშვების აღჭურვილობა": {
+    Types: ["ტანსაცმელი", "ფეხსაცმელი"],
+  },
+  პიკნიკი: {
     Types: [
-      "GPS Devices",
-      "Compasses",
-      "First Aid Kits",
-      "Emergency Gear (Whistles, Fire Starters, Emergency Blankets)",
+      "ჰამაკი",
+      "აქსესუარები",
+      "სკამები",
+      "მაგიდები",
+      "საპიკნიკე სამზარეულო",
+      "დანები და ცულები",
+      "ასანთი, სანთებელა...)",
     ],
   },
-  "Climbing Gear": {
-    Types: ["Ropes", "Harnesses", "Carabiners", "Climbing Shoes", "Helmets"],
-  },
-  Accessories: {
-    Types: [
-      "Sunglasses",
-      "Multi-Tools",
-      "Binoculars",
-      "Portable Chargers",
-      "Insect Repellent",
-      "Poles",
-    ],
-  },
-  "Kids' Gear": {
-    Types: ["Clothing", "Footwear"],
-  },
-  Camping: {
-    Types: [
-      "Hammocks",
-      "Accessories",
-      "Camping Chairs",
-      "Camping Tables",
-      "Hammocks and Hammock Accessories",
-      "Camp Kitchen Stations",
-      "First Aid Kits",
-      "Multi-Tools and Knives",
-      "Axes and Hatchets",
-      "Fire Starters (Matches, Lighters, Ferro Rods...)",
-      "Whistles",
-    ],
-  },
-  Other: {
+  სხვა: {
     Types: [],
   },
 };
@@ -145,7 +130,7 @@ const GearSelector: React.FC<GearSelectorProps> = ({
   };
 
   const renderSubcategoryInput = () => {
-    if (selectedCategory === "Footwear") {
+    if (selectedCategory === "ფეხსაცმელი") {
       return (
         <label>
           <span>ფეხსაცმლის ზომა:</span> <br />
@@ -161,7 +146,7 @@ const GearSelector: React.FC<GearSelectorProps> = ({
           />
         </label>
       );
-    } else if (selectedCategory === "Clothing") {
+    } else if (selectedCategory === "ტანსაცმელი") {
       return (
         <label>
           <span>ზომა:</span> <br />
@@ -184,7 +169,7 @@ const GearSelector: React.FC<GearSelectorProps> = ({
           </select>
         </label>
       );
-    } else if (selectedCategory === "Backpacks and Bags") {
+    } else if (selectedCategory === "ზურგჩანთები და ჩანთები") {
       return (
         <label>
           <span>ტევადობა (ლიტრი):</span> <br />
@@ -201,8 +186,8 @@ const GearSelector: React.FC<GearSelectorProps> = ({
         </label>
       );
     } else if (
-      selectedCategory === "Shelter" &&
-      formData.subcategory === "Tents"
+      selectedCategory === "თავშესაფარი" &&
+      formData.subcategory === "კარავი"
     ) {
       return (
         <label>
