@@ -22,6 +22,8 @@ interface FormData {
   price: string;
   negotiable: boolean;
   location: string;
+  condition: string;
+  quantity: string;
   first_name: string;
   phone: string;
   [key: string]: any;
@@ -113,9 +115,11 @@ const MainProductField = () => {
     description_ge: "",
     title_en: "",
     description_en: "",
-    price: "0",
+    price: "",
+    condition: "",
+    quantity: "",
     negotiable: false,
-    location: "",
+    location: "თბილისი",
     first_name: "",
     phone: "",
   });
@@ -171,6 +175,8 @@ const MainProductField = () => {
       "title_ge",
       "price",
       "location",
+      "condition",
+      "quantity",
       "first_name",
       "phone",
     ];
@@ -319,26 +325,59 @@ const MainProductField = () => {
           </div>
         </div>
 
-        <div className="add-product-price">
-          <div className="add-product-detail-container">
-            <h2>ფასი</h2>
-            <label htmlFor="price">ნივთის ფასი*</label>
+        <div className="add-product-detail-container">
+          <div className="add-product-price">
+            <h2>პროდუქტის ფასი*</h2>
+            <label htmlFor="quantity">ფასი:</label>
             <input
               type="number"
+              placeholder="ფასი"
               name="price"
               id="price"
-              value="0"
               onChange={handleInputChange}
             />
-            {errors.price && <p>{errors.price}</p>}
-            <div className="add-products-price-negotation">
+          </div>
+        </div>
+
+        <div className="add-product-condition-quantity">
+          <div className="add-product-detail-container">
+            <div className="add-product-price">
+              <h2>პროდუქტის მდგომარეობა და რაოდენობა*</h2>
+              <div className="add-product-type mb-[20px]">
+                <div>
+                  <input
+                    type="radio"
+                    name="condition"
+                    id="new"
+                    value="new"
+                    onChange={handleInputChange}
+                  />
+                  <label htmlFor="new" className="form-control">
+                    ახალი
+                  </label>
+                </div>
+                <div>
+                  <input
+                    type="radio"
+                    name="condition"
+                    placeholder="რაოდენობა"
+                    id="used"
+                    value="used"
+                    onChange={handleInputChange}
+                  />
+                  <label htmlFor="used" className="form-control">
+                    მეორადი
+                  </label>
+                </div>
+                {errors.type && <p>{errors.type}</p>}
+              </div>
+              <label htmlFor="quantity">რაოდენობა:</label>
               <input
-                type="checkbox"
-                name="negotiable"
-                id="negotiable"
+                type="number"
+                name="quantity"
+                id="quantity"
                 onChange={handleInputChange}
               />
-              <label htmlFor="negotiable">ფასი შეთანხმებით</label>
             </div>
           </div>
         </div>

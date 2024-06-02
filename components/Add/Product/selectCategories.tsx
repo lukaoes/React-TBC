@@ -29,6 +29,8 @@ interface FormData {
   title_en: string;
   description_en: string;
   price: string;
+  condition: string;
+  quantity: string;
   negotiable: boolean;
   location: string;
   first_name: string;

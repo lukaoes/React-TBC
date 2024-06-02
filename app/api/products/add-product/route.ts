@@ -23,6 +23,8 @@ export async function POST(request: Request) {
       location,
       first_name,
       phone,
+      quantity,
+      condition,
     } = await request.json();
 
     await sql`
@@ -30,7 +32,7 @@ export async function POST(request: Request) {
       user_id, type, category, subcategory, shoe_size, clothing_size,
       backpack_capacity, tent_capacity, main_photo, photo_urls, title_ge,
       description_ge, title_en, description_en, price, negotiable, location,
-      first_name, phone
+      first_name, phone, quantity, condition
     ) VALUES (
       ${user_id}, ${type}, ${category}, ${subcategory || null}, ${
       shoe_size || null
@@ -40,7 +42,7 @@ export async function POST(request: Request) {
     }, ${title_ge}, ${description_ge},
       ${title_en || null}, ${
       description_en || null
-    }, ${price}, ${negotiable}, ${location}, ${first_name}, ${phone}
+    }, ${price}, ${negotiable}, ${location}, ${first_name}, ${phone}, ${quantity}, ${condition}
     )
     `;
 
