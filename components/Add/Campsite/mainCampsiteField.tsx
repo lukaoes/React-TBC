@@ -77,7 +77,7 @@ const MainCampsiteField = () => {
     descriptionen: "",
     first_name: "",
     phone: "",
-    price: "",
+    price: "0",
     negotiable: false,
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});

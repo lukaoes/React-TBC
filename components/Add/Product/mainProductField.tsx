@@ -115,7 +115,7 @@ const MainProductField = () => {
     description_ge: "",
     title_en: "",
     description_en: "",
-    price: "",
+    price: "0",
     condition: "",
     quantity: "",
     negotiable: false,
@@ -336,6 +336,16 @@ const MainProductField = () => {
               id="price"
               onChange={handleInputChange}
             />
+            <div className="flex items-center	gap-[5px] mt-[15px]">
+              <input
+                type="checkbox"
+                name="negotiable"
+                id="negotiable"
+                onChange={handleInputChange}
+                className="my-0"
+              />
+              <label htmlFor="negotiable">ფასი შეთანხმებით</label>
+            </div>
           </div>
         </div>
 
