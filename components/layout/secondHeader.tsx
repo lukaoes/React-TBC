@@ -96,8 +96,8 @@ export const SecondHeader: FC<SecondHeaderProps> = ({
             y2="196.278"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stop-color="#EBE9DF" />
-            <stop offset="1" stop-color="#EBE9DF" />
+            <stop stopColor="#EBE9DF" />
+            <stop offset="1" stopColor="#EBE9DF" />
           </linearGradient>
         </defs>
       </svg>
