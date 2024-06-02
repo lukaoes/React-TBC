@@ -132,8 +132,10 @@ const MainProductCard: FC<MainProductCardProps> = ({ product }) => {
           <h3>
             {locale === "ge"
               ? product.title_ge
+                ? product.title_ge
+                : product.title_en
               : product.title_en
-              ? product.title_en.length === 0
+              ? product.title_en
               : product.title_ge}
           </h3>
         </Link>
