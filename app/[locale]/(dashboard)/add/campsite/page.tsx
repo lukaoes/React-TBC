@@ -3,6 +3,7 @@ import MainCampsiteField from "../../../../../components/Add/Campsite/mainCampsi
 const AddCampsite = () => {
   return (
     <div>
+      <h1 className="add-product-title">დაამატეთ თქვენი სივრცე</h1>
       <MainCampsiteField />
     </div>
   );
