@@ -67,9 +67,7 @@ const ProductsFilter = () => {
         <h3 className="products-filter-title">მდებარეობა</h3>
 
         <select className="products-city-select">
-          <option selected disabled>
-            აირჩიეთ ქალაქი
-          </option>
+          <option disabled>აირჩიეთ ქალაქი</option>
           {cities.map((city, index) => (
             <option key={`select-cities-products-page-${index}`} value={city}>
               {city}

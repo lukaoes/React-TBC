@@ -3,7 +3,6 @@
   margin: 0 auto;
   display: flex;
   gap: 50px;
-  margin-top: 70px;
   padding: 0 20px;
 }
 
@@ -31,7 +30,7 @@
 }
 
 .products-city-select {
-  background-color: transparent;
+  background-color: #fcf9f4;
   border: 2px solid #ccc;
   border-radius: 8px;
   width: 100%;
@@ -52,5 +51,79 @@
     min-width: 250px;
     box-sizing: border-box;
     text-align: center;
+  }
+}
+
+// products top filter
+
+.products-top-filter-container {
+  max-width: 1300px;
+  margin: 60px auto 20px auto;
+  display: flex;
+  padding: 0 20px;
+  gap: 50px;
+
+  .products-top-filter-left {
+    width: 280px;
+    min-width: 280px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .products-top-filter-right {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .products-top-filter-sort-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .products-top-filter-search {
+    max-width: 350px;
+    width: 100%;
+    padding-right: 20px;
+    input {
+      padding: 6px 12px;
+      background-color: #fcf9f4;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      width: 100%;
+    }
+  }
+
+  .products-top-filter-sort {
+    padding: 0 20px;
+    border-left: 2px solid #ccc;
+
+    select {
+      border: 1px solid #ccc;
+      background-color: #fcf9f4;
+      padding: 6px 12px;
+      border-radius: 10px;
+    }
+  }
+
+  .products-top-filter-view {
+    height: 38px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-left: 20px;
+    border-left: 2px solid #ccc;
+    svg {
+      opacity: 0.6;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
   }
 }
