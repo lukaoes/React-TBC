@@ -5,17 +5,25 @@ import ProductWideCard from "../cards/productWideCard";
 
 type ProductsGridProps = {
   gridView: boolean;
+  openModal: (product: ProductsDisplay) => void;
   products: ProductsDisplay[];
 };
 
-const ProductsGrid: FC<ProductsGridProps> = ({ products, gridView }) => {
+const ProductsGrid: FC<ProductsGridProps> = ({
+  products,
+  gridView,
+  openModal,
+}) => {
   return (
     <>
       {gridView ? (
         <div className="products-grid-container">
           {products.map((product, index) => (
             <div className="grid-product" key={`display-products-${index}`}>
-              <MainProductCard product={product} />
+              <MainProductCard
+                product={product}
+                openModal={() => openModal(product)}
+              />
             </div>
           ))}
         </div>

@@ -6,9 +6,10 @@ import { useCurrentLocale } from "../../locales/client";
 
 type MainProductCardProps = {
   product: ProductsDisplay;
+  openModal: () => void;
 };
 
-const MainProductCard: FC<MainProductCardProps> = ({ product }) => {
+const MainProductCard: FC<MainProductCardProps> = ({ product, openModal }) => {
   const locale = useCurrentLocale();
   return (
     <div className="main-product-card">
@@ -17,7 +18,7 @@ const MainProductCard: FC<MainProductCardProps> = ({ product }) => {
       </span>
 
       <div className="main-product-card-buttons">
-        <button>
+        <button onClick={openModal}>
           <svg
             width="24px"
             height="24px"
@@ -49,7 +50,7 @@ const MainProductCard: FC<MainProductCardProps> = ({ product }) => {
           </svg>
         </button>
       </div>
-      <Link href="" className="main-product-card-image">
+      <Link href={`/product/${product.id}`} className="main-product-card-image">
         {product.main_photo.length > 0 ? (
           <Image
             src={product.main_photo}
@@ -128,7 +129,7 @@ const MainProductCard: FC<MainProductCardProps> = ({ product }) => {
           </svg>
           {product.location}
         </span>
-        <Link href="">
+        <Link href={`/product/${product.id}`}>
           <h3>
             {locale === "ge"
               ? product.title_ge
