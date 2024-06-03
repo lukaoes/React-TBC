@@ -4,11 +4,14 @@ import { FC, useEffect } from "react";
 interface ProductsTopFilterProps {
   gridView: boolean;
   setGridView: React.Dispatch<React.SetStateAction<boolean>>;
+  sortByPrice: (order: "high-low" | "low-high") => void; // Update function signature
+  sortByDate: (order: "new-old" | "old-new") => void; // Update function signature
 }
-
 const ProductsTopFilter: FC<ProductsTopFilterProps> = ({
   gridView,
   setGridView,
+  sortByPrice,
+  sortByDate,
 }) => {
   useEffect(() => {
     const handleResize = () => {
@@ -61,9 +64,39 @@ const ProductsTopFilter: FC<ProductsTopFilterProps> = ({
         </div>
         <div className="products-top-filter-sort-right">
           <div className="products-top-filter-sort">
-            <select>
-              <option>სორტირება</option>
-            </select>
+            <div className="products-top-filter-sort">
+              <select
+                onChange={(e) => {
+                  const value = e.target.value;
+                  const option = value.split(":");
+                  if (option.length === 2) {
+                    const type = option[0] as "price" | "date";
+                    const order = option[1] as
+                      | "high-low"
+                      | "low-high"
+                      | "new-old"
+                      | "old-new";
+                    if (
+                      type === "price" &&
+                      (order === "high-low" || order === "low-high")
+                    ) {
+                      sortByPrice(order);
+                    } else if (
+                      type === "date" &&
+                      (order === "new-old" || order === "old-new")
+                    ) {
+                      sortByDate(order);
+                    }
+                  }
+                }}
+              >
+                <option value="">სორტირება</option>
+                <option value="price:low-high">ფასი: მცირე-დიდი</option>
+                <option value="price:high-low">ფასი: დიდი-მცირე</option>
+                <option value="date:new-old">თარიღი: ახალი-ძველი</option>
+                <option value="date:old-new">თარიღი: ძველი-ახალი</option>
+              </select>
+            </div>
           </div>
           <div className="products-top-filter-view">
             <button

@@ -5,6 +5,7 @@ import ProductsFilter from "./productsFilter";
 import ProductsGrid from "./productsGrid";
 import ProductsTopFilter from "./productsTopFilter";
 import MainProductCardModal from "../modals/mainProductCardModal";
+import { sortByDate, sortByPrice } from "../../utilis/sortingProducts";
 
 interface IProductsLayout {
   products: ProductsDisplay[];
@@ -15,6 +16,25 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
   const [modal, setModal] = useState(false);
   const [selectedProduct, setSelectedProduct] =
     useState<ProductsDisplay | null>(null);
+  const [sortedProducts, setSortedProducts] =
+    useState<ProductsDisplay[]>(products);
+  const [, setSortBy] = useState("");
+
+  useEffect(() => {
+    setSortedProducts(products);
+  }, [products]);
+
+  const handleSortByPrice = (order: "high-low" | "low-high") => {
+    const sortedByPrice = sortByPrice(products, order);
+    setSortedProducts(sortedByPrice);
+    setSortBy(`price:${order}`);
+  };
+
+  const handleSortByDate = (order: "new-old" | "old-new") => {
+    const sortedByDate = sortByDate(products, order);
+    setSortedProducts(sortedByDate);
+    setSortBy(`date:${order}`);
+  };
 
   useEffect(() => {
     if (modal) {
@@ -39,11 +59,16 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
 
   return (
     <>
-      <ProductsTopFilter gridView={gridView} setGridView={setGridView} />
+      <ProductsTopFilter
+        gridView={gridView}
+        setGridView={setGridView}
+        sortByPrice={handleSortByPrice}
+        sortByDate={handleSortByDate}
+      />
       <div className="products-container">
         <ProductsFilter />
         <ProductsGrid
-          products={products}
+          products={sortedProducts}
           gridView={gridView}
           openModal={openModal}
         />
