@@ -22,6 +22,16 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
     useState<ProductsDisplay[]>(products);
   const [, setSortBy] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
+  const minPrice = Math.min(
+    ...products.map((product) => Number(product.price))
+  );
+  const maxPrice = Math.max(
+    ...products.map((product) => Number(product.price))
+  );
+  const [priceRange, setPriceRange] = useState<[number, number]>([
+    minPrice,
+    maxPrice,
+  ]);
 
   useEffect(() => {
     setFilteredProducts(products);
@@ -63,21 +73,24 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
 
   const handleSearch = (term: string) => {
     setSearchTerm(term);
-    if (term === "") {
-      setFilteredProducts(products);
-      setSortedProducts(products);
-    } else {
-      const filteredProducts = products.filter((product) => {
-        const titleGe = product.title_ge ? product.title_ge.toLowerCase() : "";
-        const titleEn = product.title_en ? product.title_en.toLowerCase() : "";
-        return (
-          titleGe.includes(term.toLowerCase()) ||
-          titleEn.includes(term.toLowerCase())
-        );
-      });
-      setFilteredProducts(filteredProducts);
-      setSortedProducts(filteredProducts);
-    }
+    filterProducts(term, priceRange);
+  };
+
+  const handlePriceChange = (range: [number, number]) => {
+    setPriceRange(range);
+    filterProducts(searchTerm, range);
+  };
+
+  const filterProducts = (term: string, range: [number, number]) => {
+    let filtered = products.filter(
+      (product) =>
+        (product.title_ge?.toLowerCase().includes(term.toLowerCase()) ||
+          product.title_en?.toLowerCase().includes(term.toLowerCase())) &&
+        Number(product.price) >= range[0] &&
+        Number(product.price) <= range[1]
+    );
+    setFilteredProducts(filtered);
+    setSortedProducts(filtered);
   };
 
   return (
@@ -91,7 +104,11 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
         handleSearch={handleSearch}
       />
       <div className="products-container">
-        <ProductsFilter />
+        <ProductsFilter
+          minPrice={minPrice}
+          maxPrice={maxPrice}
+          handlePriceChange={handlePriceChange}
+        />
         <ProductsGrid
           products={sortedProducts}
           gridView={gridView}

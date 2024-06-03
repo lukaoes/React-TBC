@@ -132,3 +132,40 @@
   gap: 30px;
   margin-bottom: 40px;
 }
+
+// price slider
+
+.products-price-slider {
+  margin: 30px 0;
+  cursor: pointer;
+}
+
+.horizontal-slider {
+  background-color: rgb(255, 255, 255);
+  height: 4px;
+}
+
+.example-track-0,
+.example-track-2 {
+  height: 5px;
+  background-color: #c74f2d;
+}
+
+.example-track-1 {
+  height: 6px;
+  background-color: #669a3e;
+}
+
+.example-thumb-0,
+.example-thumb-1 {
+  top: -17px;
+  cursor: pointer;
+  background-color: #31463a;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  text-align: center;
+  padding: 5px;
+  border-radius: 10px;
+  // border-radius: 0 0 15px 15px;
+}

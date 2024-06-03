@@ -1,13 +1,52 @@
 "use client";
 import Link from "next/link";
+import { FC, useState } from "react";
 import { cities } from "../Add/Product/mainProductField";
+import ReactSlider from "react-slider";
 
-const ProductsFilter = () => {
+interface ProductsFilterProps {
+  minPrice: number;
+  maxPrice: number;
+  handlePriceChange: (values: [number, number]) => void;
+}
+
+const ProductsFilter: FC<ProductsFilterProps> = ({
+  minPrice,
+  maxPrice,
+  handlePriceChange,
+}) => {
+  const [priceRange, setPriceRange] = useState<[number, number]>([
+    minPrice,
+    maxPrice,
+  ]);
+
+  const handleSliderChange = (values: [number, number]) => {
+    setPriceRange(values);
+    handlePriceChange(values);
+  };
+
   return (
     <div className="products-filter-container">
       <div>
         <h3 className="products-filter-title">ფასი</h3>
-        <div>120132</div>
+        <div className="products-price-slider">
+          <ReactSlider
+            className="horizontal-slider"
+            thumbClassName="example-thumb"
+            trackClassName="example-track"
+            value={priceRange}
+            min={minPrice}
+            max={maxPrice}
+            ariaLabel={["Lower thumb", "Upper thumb"]}
+            ariaValuetext={(state) => `Thumb value ${state.valueNow}`}
+            renderThumb={(props, state) => (
+              <div {...props}>{state.valueNow}</div>
+            )}
+            pearling
+            minDistance={1}
+            onChange={handleSliderChange}
+          />
+        </div>
         <h3 className="products-filter-title">კატეგორია</h3>
         <ul className="products-filter-list">
           <li>
