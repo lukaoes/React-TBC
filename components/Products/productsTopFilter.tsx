@@ -1,23 +1,28 @@
 "use client";
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 
 interface ProductsTopFilterProps {
   gridView: boolean;
   setGridView: React.Dispatch<React.SetStateAction<boolean>>;
-  sortByPrice: (order: "high-low" | "low-high") => void; // Update function signature
-  sortByDate: (order: "new-old" | "old-new") => void; // Update function signature
+  sortByPrice: (order: "high-low" | "low-high") => void;
+  sortByDate: (order: "new-old" | "old-new") => void;
 }
+
 const ProductsTopFilter: FC<ProductsTopFilterProps> = ({
   gridView,
   setGridView,
   sortByPrice,
   sortByDate,
 }) => {
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 1100) {
+        setIsButtonDisabled(true);
         setGridView(true);
       } else {
+        setIsButtonDisabled(false);
         setGridView(gridView);
       }
     };
@@ -31,6 +36,7 @@ const ProductsTopFilter: FC<ProductsTopFilterProps> = ({
         window.removeEventListener("resize", handleResize);
       };
     }
+    return;
   }, [gridView, setGridView]);
 
   return (
@@ -101,14 +107,8 @@ const ProductsTopFilter: FC<ProductsTopFilterProps> = ({
           <div className="products-top-filter-view">
             <button
               onClick={() => setGridView(false)}
-              disabled={
-                typeof window !== "undefined" && window.innerWidth < 1100
-              }
-              className={
-                typeof window !== "undefined" && window.innerWidth < 1100
-                  ? "cursor-not-allowed"
-                  : ""
-              }
+              disabled={isButtonDisabled}
+              className={isButtonDisabled ? "cursor-not-allowed" : ""}
               style={
                 !gridView ? { opacity: 1, color: "black" } : { opacity: 0.6 }
               }
