@@ -169,3 +169,14 @@
   border-radius: 10px;
   // border-radius: 0 0 15px 15px;
 }
+
+.products-filter-condition,
+.products-filter-type {
+  margin-bottom: 30px;
+  div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+}

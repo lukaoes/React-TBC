@@ -22,16 +22,13 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
     useState<ProductsDisplay[]>(products);
   const [, setSortBy] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
-  const minPrice = Math.min(
-    ...products.map((product) => Number(product.price))
-  );
-  const maxPrice = Math.max(
-    ...products.map((product) => Number(product.price))
-  );
   const [priceRange, setPriceRange] = useState<[number, number]>([
-    minPrice,
-    maxPrice,
+    Math.min(...products.map((product) => Number(product.price))),
+    Math.max(...products.map((product) => Number(product.price))),
   ]);
+  const [selectedCondition, setSelectedCondition] = useState<string>("");
+  const [selectedType, setSelectedType] = useState<string>("");
+  const [selectedLocation, setSelectedLocation] = useState<string>("");
 
   useEffect(() => {
     setFilteredProducts(products);
@@ -73,24 +70,82 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
 
   const handleSearch = (term: string) => {
     setSearchTerm(term);
-    filterProducts(term, priceRange);
+    filterProducts(
+      term,
+      priceRange,
+      selectedCondition,
+      selectedType,
+      selectedLocation
+    );
   };
 
   const handlePriceChange = (range: [number, number]) => {
     setPriceRange(range);
-    filterProducts(searchTerm, range);
+    filterProducts(
+      searchTerm,
+      range,
+      selectedCondition,
+      selectedType,
+      selectedLocation
+    );
   };
 
-  const filterProducts = (term: string, range: [number, number]) => {
+  const handleConditionChange = (condition: string) => {
+    setSelectedCondition(condition);
+    filterProducts(
+      searchTerm,
+      priceRange,
+      condition,
+      selectedType,
+      selectedLocation
+    );
+  };
+
+  const handleTypeChange = (type: string) => {
+    setSelectedType(type);
+    filterProducts(
+      searchTerm,
+      priceRange,
+      selectedCondition,
+      type,
+      selectedLocation
+    );
+  };
+
+  const handleLocationChange = (location: string) => {
+    setSelectedLocation(location);
+    filterProducts(
+      searchTerm,
+      priceRange,
+      selectedCondition,
+      selectedType,
+      location
+    );
+  };
+
+  const filterProducts = (
+    term: string,
+    range: [number, number],
+    condition: string,
+    type: string,
+    location: string
+  ) => {
     let filtered = products.filter(
       (product) =>
         (product.title_ge?.toLowerCase().includes(term.toLowerCase()) ||
           product.title_en?.toLowerCase().includes(term.toLowerCase())) &&
         Number(product.price) >= range[0] &&
-        Number(product.price) <= range[1]
+        Number(product.price) <= range[1] &&
+        (condition === "" || product.condition === condition) &&
+        (type === "" || product.type === type) &&
+        (location === "" || product.location === location)
     );
     setFilteredProducts(filtered);
     setSortedProducts(filtered);
+  };
+
+  const getCategoryCount = (category: string) => {
+    return products.filter((product) => product.category === category).length;
   };
 
   return (
@@ -105,9 +160,13 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
       />
       <div className="products-container">
         <ProductsFilter
-          minPrice={minPrice}
-          maxPrice={maxPrice}
+          minPrice={priceRange[0]}
+          maxPrice={priceRange[1]}
           handlePriceChange={handlePriceChange}
+          handleConditionChange={handleConditionChange}
+          handleTypeChange={handleTypeChange}
+          handleLocationChange={handleLocationChange}
+          getCategoryCount={getCategoryCount}
         />
         <ProductsGrid
           products={sortedProducts}
