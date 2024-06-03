@@ -6,6 +6,8 @@ interface ProductsTopFilterProps {
   setGridView: React.Dispatch<React.SetStateAction<boolean>>;
   sortByPrice: (order: "high-low" | "low-high") => void;
   sortByDate: (order: "new-old" | "old-new") => void;
+  searchTerm: string;
+  handleSearch: (term: string) => void;
 }
 
 const ProductsTopFilter: FC<ProductsTopFilterProps> = ({
@@ -13,6 +15,8 @@ const ProductsTopFilter: FC<ProductsTopFilterProps> = ({
   setGridView,
   sortByPrice,
   sortByDate,
+  searchTerm,
+  handleSearch,
 }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
@@ -66,7 +70,13 @@ const ProductsTopFilter: FC<ProductsTopFilterProps> = ({
       </div>
       <div className="products-top-filter-right">
         <div className="products-top-filter-search">
-          <input type="text" name="search" placeholder="პროდუქტის ძიება..." />
+          <input
+            type="text"
+            name="search"
+            placeholder="პროდუქტის ძიება..."
+            value={searchTerm}
+            onChange={(e) => handleSearch(e.target.value)}
+          />
         </div>
         <div className="products-top-filter-sort-right">
           <div className="products-top-filter-sort">

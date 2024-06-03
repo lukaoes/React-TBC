@@ -16,22 +16,26 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
   const [modal, setModal] = useState(false);
   const [selectedProduct, setSelectedProduct] =
     useState<ProductsDisplay | null>(null);
+  const [filteredProducts, setFilteredProducts] =
+    useState<ProductsDisplay[]>(products);
   const [sortedProducts, setSortedProducts] =
     useState<ProductsDisplay[]>(products);
   const [, setSortBy] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
+    setFilteredProducts(products);
     setSortedProducts(products);
   }, [products]);
 
   const handleSortByPrice = (order: "high-low" | "low-high") => {
-    const sortedByPrice = sortByPrice(products, order);
+    const sortedByPrice = sortByPrice(filteredProducts, order);
     setSortedProducts(sortedByPrice);
     setSortBy(`price:${order}`);
   };
 
   const handleSortByDate = (order: "new-old" | "old-new") => {
-    const sortedByDate = sortByDate(products, order);
+    const sortedByDate = sortByDate(filteredProducts, order);
     setSortedProducts(sortedByDate);
     setSortBy(`date:${order}`);
   };
@@ -57,6 +61,25 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
     setSelectedProduct(null);
   };
 
+  const handleSearch = (term: string) => {
+    setSearchTerm(term);
+    if (term === "") {
+      setFilteredProducts(products);
+      setSortedProducts(products);
+    } else {
+      const filteredProducts = products.filter((product) => {
+        const titleGe = product.title_ge ? product.title_ge.toLowerCase() : "";
+        const titleEn = product.title_en ? product.title_en.toLowerCase() : "";
+        return (
+          titleGe.includes(term.toLowerCase()) ||
+          titleEn.includes(term.toLowerCase())
+        );
+      });
+      setFilteredProducts(filteredProducts);
+      setSortedProducts(filteredProducts);
+    }
+  };
+
   return (
     <>
       <ProductsTopFilter
@@ -64,6 +87,8 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
         setGridView={setGridView}
         sortByPrice={handleSortByPrice}
         sortByDate={handleSortByDate}
+        searchTerm={searchTerm}
+        handleSearch={handleSearch}
       />
       <div className="products-container">
         <ProductsFilter />
