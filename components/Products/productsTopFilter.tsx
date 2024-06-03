@@ -1,4 +1,35 @@
-const ProductsTopFilter = () => {
+"use client";
+import { FC, useEffect } from "react";
+
+interface ProductsTopFilterProps {
+  gridView: boolean;
+  setGridView: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const ProductsTopFilter: FC<ProductsTopFilterProps> = ({
+  gridView,
+  setGridView,
+}) => {
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 1100) {
+        setGridView(true);
+      } else {
+        setGridView(gridView);
+      }
+    };
+
+    if (typeof window !== "undefined") {
+      handleResize();
+
+      window.addEventListener("resize", handleResize);
+
+      return () => {
+        window.removeEventListener("resize", handleResize);
+      };
+    }
+  }, [gridView, setGridView]);
+
   return (
     <div className="products-top-filter-container">
       <div className="products-top-filter-left">
@@ -35,7 +66,20 @@ const ProductsTopFilter = () => {
             </select>
           </div>
           <div className="products-top-filter-view">
-            <button>
+            <button
+              onClick={() => setGridView(false)}
+              disabled={
+                typeof window !== "undefined" && window.innerWidth < 1100
+              }
+              className={
+                typeof window !== "undefined" && window.innerWidth < 1100
+                  ? "cursor-not-allowed"
+                  : ""
+              }
+              style={
+                !gridView ? { opacity: 1, color: "black" } : { opacity: 0.6 }
+              }
+            >
               <svg
                 width="20"
                 height="17"
@@ -49,7 +93,12 @@ const ProductsTopFilter = () => {
                 />
               </svg>
             </button>
-            <button>
+            <button
+              onClick={() => setGridView(true)}
+              style={
+                gridView ? { opacity: 1, color: "black" } : { opacity: 0.6 }
+              }
+            >
               <svg
                 width="20"
                 height="21"

@@ -1,4 +1,5 @@
-import { FC } from "react";
+"use client";
+import { FC, useState } from "react";
 import { ProductsDisplay } from "../../types";
 import ProductsFilter from "./productsFilter";
 import ProductsGrid from "./productsGrid";
@@ -9,12 +10,13 @@ interface IProductsLayout {
 }
 
 export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
+  const [gridView, setGridView] = useState(true);
   return (
     <>
-      <ProductsTopFilter />
+      <ProductsTopFilter gridView={gridView} setGridView={setGridView} />
       <div className="products-container">
         <ProductsFilter />
-        <ProductsGrid products={products} />
+        <ProductsGrid products={products} gridView={gridView} />
       </div>
     </>
   );

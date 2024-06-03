@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { ProductsDisplay } from "../../types";
 import { FC } from "react";
-import { getCurrentLocale } from "../../locales/server";
+import { useCurrentLocale } from "../../locales/client";
 import Link from "next/link";
 
 type MainProductCardProps = {
@@ -9,7 +9,7 @@ type MainProductCardProps = {
 };
 
 const ProductWideCard: FC<MainProductCardProps> = ({ product }) => {
-  const locale = getCurrentLocale();
+  const locale = useCurrentLocale();
   return (
     <div className="product-wide-card">
       <Link href="" className="product-wide-card-image-container">

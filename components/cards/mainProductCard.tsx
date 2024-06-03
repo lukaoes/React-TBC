@@ -2,14 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 import { ProductsDisplay } from "../../types";
-import { getCurrentLocale } from "../../locales/server";
+import { useCurrentLocale } from "../../locales/client";
 
 type MainProductCardProps = {
   product: ProductsDisplay;
 };
 
 const MainProductCard: FC<MainProductCardProps> = ({ product }) => {
-  const locale = getCurrentLocale();
+  const locale = useCurrentLocale();
   return (
     <div className="main-product-card">
       <span className="main-product-card-type">
