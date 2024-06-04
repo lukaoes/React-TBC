@@ -77,7 +77,7 @@ const MainProductCardModal: FC<MainProductCardProps> = ({
         )}
         <div className="main-product-card-modal-content">
           <div className="card-modal-content-header">
-            <Link href={`/product/${product.id}`}>
+            <Link href={`/products/${product.id}`}>
               <h2>
                 {locale === "ge"
                   ? product.title_ge
@@ -146,7 +146,7 @@ const MainProductCardModal: FC<MainProductCardProps> = ({
             </div>
             <div className="card-modal-content-buttons">
               <button className="">კალათში დამატება</button>
-              <Link href={`/product/${product.id}`}>დეტალურად</Link>
+              <Link href={`/products/${product.id}`}>დეტალურად</Link>
             </div>
           </div>
         </div>

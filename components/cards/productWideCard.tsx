@@ -12,7 +12,10 @@ const ProductWideCard: FC<MainProductCardProps> = ({ product }) => {
   const locale = useCurrentLocale();
   return (
     <div className="product-wide-card">
-      <Link href="" className="product-wide-card-image-container">
+      <Link
+        href={`/products/${product.id}`}
+        className="product-wide-card-image-container"
+      >
         {product.main_photo ? (
           <Image
             src={product.main_photo}
@@ -70,7 +73,7 @@ const ProductWideCard: FC<MainProductCardProps> = ({ product }) => {
       </Link>
       <div className="product-wide-card-right">
         <div className="product-wide-card-title">
-          <Link href="">
+          <Link href={`/products/${product.id}`}>
             <h2>
               {locale === "ge"
                 ? product.title_ge

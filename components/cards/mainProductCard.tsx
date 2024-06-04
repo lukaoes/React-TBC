@@ -50,7 +50,10 @@ const MainProductCard: FC<MainProductCardProps> = ({ product, openModal }) => {
           </svg>
         </button>
       </div>
-      <Link href={`/product/${product.id}`} className="main-product-card-image">
+      <Link
+        href={`/products/${product.id}`}
+        className="main-product-card-image"
+      >
         {product.main_photo.length > 0 ? (
           <Image
             src={product.main_photo}
@@ -129,7 +132,7 @@ const MainProductCard: FC<MainProductCardProps> = ({ product, openModal }) => {
           </svg>
           {product.location}
         </span>
-        <Link href={`/product/${product.id}`}>
+        <Link href={`/products/${product.id}`}>
           <h3>
             {locale === "ge"
               ? product.title_ge
