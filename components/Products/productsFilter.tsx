@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { FC, useState, useEffect, useRef } from "react";
+import { FC, useState, useRef } from "react";
 import { cities } from "../Add/Product/mainProductField";
 import ReactSlider from "react-slider";
 
@@ -12,6 +12,7 @@ interface ProductsFilterProps {
   handleTypeChange: (type: string) => void;
   handleLocationChange: (location: string) => void;
   getCategoryCount: (category: string) => number;
+  filterState: boolean;
 }
 
 const ProductsFilter: FC<ProductsFilterProps> = ({
@@ -22,6 +23,7 @@ const ProductsFilter: FC<ProductsFilterProps> = ({
   handleTypeChange,
   handleLocationChange,
   getCategoryCount,
+  filterState,
 }) => {
   const [priceRange, setPriceRange] = useState<[number, number]>([
     minPrice,
@@ -31,9 +33,9 @@ const ProductsFilter: FC<ProductsFilterProps> = ({
   const sliderMinPriceRef = useRef<number>(minPrice);
   const sliderMaxPriceRef = useRef<number>(maxPrice);
 
-  useEffect(() => {
-    setPriceRange([minPrice, maxPrice]);
-  }, [minPrice, maxPrice]);
+  // useEffect(() => {
+  //   setPriceRange([minPrice, maxPrice]);
+  // }, [minPrice, maxPrice]);
 
   const handleSliderChange = (values: [number, number]) => {
     setPriceRange(values);
@@ -41,8 +43,8 @@ const ProductsFilter: FC<ProductsFilterProps> = ({
   };
 
   return (
-    <div className="products-filter-container">
-      <div>
+    <div className={`${filterState ? "active" : ""} products-filter-container`}>
+      <div className="inside-products-filter-container">
         <h3 className="products-filter-title">ფასი</h3>
         <div className="products-price-slider">
           <ReactSlider

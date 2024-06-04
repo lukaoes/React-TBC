@@ -8,6 +8,8 @@ interface ProductsTopFilterProps {
   sortByDate: (order: "new-old" | "old-new") => void;
   searchTerm: string;
   handleSearch: (term: string) => void;
+  setFilterState: React.Dispatch<React.SetStateAction<boolean>>;
+  filterState: boolean;
 }
 
 const ProductsTopFilter: FC<ProductsTopFilterProps> = ({
@@ -17,6 +19,8 @@ const ProductsTopFilter: FC<ProductsTopFilterProps> = ({
   sortByDate,
   searchTerm,
   handleSearch,
+  setFilterState,
+  filterState,
 }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
@@ -28,6 +32,10 @@ const ProductsTopFilter: FC<ProductsTopFilterProps> = ({
       } else {
         setIsButtonDisabled(false);
         setGridView(gridView);
+      }
+
+      if (window.innerWidth < 900) {
+        setFilterState(false);
       }
     };
 
@@ -41,11 +49,24 @@ const ProductsTopFilter: FC<ProductsTopFilterProps> = ({
       };
     }
     return;
-  }, [gridView, setGridView]);
+  }, [gridView, setFilterState, setGridView]);
 
   return (
     <div className="products-top-filter-container">
-      <div className="products-top-filter-left">
+      {filterState &&
+      typeof window !== "undefined" &&
+      window.innerWidth < 900 ? (
+        <div
+          className="open-filter-bg"
+          onClick={() => setFilterState(false)}
+        ></div>
+      ) : (
+        ""
+      )}
+      <div
+        className="products-top-filter-left"
+        onClick={() => setFilterState(true)}
+      >
         <svg
           width="21"
           height="20"

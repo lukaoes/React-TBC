@@ -29,6 +29,7 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
   const [selectedCondition, setSelectedCondition] = useState<string>("");
   const [selectedType, setSelectedType] = useState<string>("");
   const [selectedLocation, setSelectedLocation] = useState<string>("");
+  const [filterState, setFilterState] = useState(false);
 
   useEffect(() => {
     setFilteredProducts(products);
@@ -151,6 +152,8 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
   return (
     <>
       <ProductsTopFilter
+        setFilterState={setFilterState}
+        filterState={filterState}
         gridView={gridView}
         setGridView={setGridView}
         sortByPrice={handleSortByPrice}
@@ -160,6 +163,7 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
       />
       <div className="products-container">
         <ProductsFilter
+          filterState={filterState}
           minPrice={priceRange[0]}
           maxPrice={priceRange[1]}
           handlePriceChange={handlePriceChange}
