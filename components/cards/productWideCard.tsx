@@ -3,6 +3,7 @@ import { ProductsDisplay } from "../../types";
 import { FC } from "react";
 import { useCurrentLocale } from "../../locales/client";
 import Link from "next/link";
+import ProductWideCardButton from "./productWideCardButton";
 
 type MainProductCardProps = {
   product: ProductsDisplay;
@@ -141,7 +142,7 @@ const ProductWideCard: FC<MainProductCardProps> = ({ product }) => {
               <p>{product.location}</p>
             </div>
           </div>
-          <button>კალათაში დამატება</button>
+          <ProductWideCardButton product={product} />
         </div>
       </div>
     </div>
