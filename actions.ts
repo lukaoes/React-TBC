@@ -270,3 +270,17 @@ export async function getUserProductsDisplay() {
 
   return products;
 }
+
+export async function getSingleProduct(id: string) {
+  const response = await fetch(
+    `${BASE_URL}/api/products/get-single-product/${id}`,
+    {
+      cache: "no-store",
+    }
+  );
+  const data = await response.json();
+
+  const product = data.product.rows;
+
+  return product;
+}
