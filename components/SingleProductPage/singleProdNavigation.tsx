@@ -14,38 +14,40 @@ const SingleProdNavigation: FC<SingleProdNavigationNames> = (props) => {
 
   return (
     <div className="single-prod-navigation">
-      <Link href="/">მთავარი</Link>
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 18 18"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M6.75 13.5L11.25 9L6.75 4.5"
-          stroke="black"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        ></path>
-      </svg>
-      <Link href="/products">პროდუქტები</Link>
-      <svg
-        width="20"
-        height="20"
-        viewBox="0 0 18 18"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          d="M6.75 13.5L11.25 9L6.75 4.5"
-          stroke="black"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        ></path>
-      </svg>
+      <div>
+        <Link href="/">მთავარი</Link>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 18 18"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6.75 13.5L11.25 9L6.75 4.5"
+            stroke="black"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          ></path>
+        </svg>
+        <Link href="/products">პროდუქტები</Link>
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 18 18"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M6.75 13.5L11.25 9L6.75 4.5"
+            stroke="black"
+            strokeWidth="1.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          ></path>
+        </svg>
+      </div>
       <Link href={`/products/${id}`}>
         {locale === "ge"
           ? titlege
