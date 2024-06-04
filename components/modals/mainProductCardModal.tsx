@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FC } from "react";
 import { ProductsDisplay } from "../../types";
 import { useCurrentLocale } from "../../locales/client";
+import MainProductCardModalButton from "./mainProductCardModalButton";
 
 type MainProductCardProps = {
   product: ProductsDisplay;
@@ -145,7 +146,7 @@ const MainProductCardModal: FC<MainProductCardProps> = ({
               </div>
             </div>
             <div className="card-modal-content-buttons">
-              <button className="">კალათში დამატება</button>
+              <MainProductCardModalButton product={product} />
               <Link href={`/products/${product.id}`}>დეტალურად</Link>
             </div>
           </div>
