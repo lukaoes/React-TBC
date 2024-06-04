@@ -2,11 +2,13 @@ import { getSingleProduct } from "../../../../../actions";
 import SingleProdImageSlider from "../../../../../components/SingleProductPage/singleProdImageSlider";
 import SingleProdMainDescription from "../../../../../components/SingleProductPage/singleProdMainDesription";
 import SingleProdNavigation from "../../../../../components/SingleProductPage/singleProdNavigation";
+import SingleProdUser from "../../../../../components/SingleProductPage/singleProdUser";
 
 const SingleProductPage = async ({ params }: { params: { id: string } }) => {
   const prodId = params.id;
   const product = await getSingleProduct(prodId);
   const displayProd = product[0];
+  console.log(displayProd);
   return (
     <div className="single-product-layout">
       <SingleProdNavigation
@@ -20,7 +22,7 @@ const SingleProductPage = async ({ params }: { params: { id: string } }) => {
           mainphoto={displayProd.main_photo}
         />
         <SingleProdMainDescription product={displayProd} />
-        <div>იუზერის ინფორმაცია</div>
+        <SingleProdUser product={displayProd} />
       </div>
       <div>დეტალები</div>
       <div>მსგავსი პროდუქცია</div>
