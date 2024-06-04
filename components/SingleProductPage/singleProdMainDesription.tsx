@@ -3,6 +3,7 @@ import { getNicknameAction, getPictureAction } from "../../actions";
 import { getCurrentLocale } from "../../locales/server";
 import { Product } from "../../types";
 import Link from "next/link";
+import SingleProdMainDescriptionButton from "./singleProdMainDescriptionButton";
 
 interface IProduct {
   product: Product;
@@ -239,7 +240,7 @@ const SingleProdMainDescription = async ({ product }: IProduct) => {
             ? `${product.price} ₾`
             : `${product.price} ₾/დღე`}
         </span>
-        <button>კალათში დამატება</button>
+        <SingleProdMainDescriptionButton product={product} />
       </div>
     </div>
   );
