@@ -24,8 +24,6 @@ const SingleProductPage = async ({ params }: { params: { id: string } }) => {
           <SingleProdMainDescription product={displayProd} />
         </div>
       </div>
-      <div>დეტალები</div>
-      <div>მსგავსი პროდუქცია</div>
     </div>
   );
 };

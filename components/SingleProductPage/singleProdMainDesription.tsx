@@ -17,12 +17,30 @@ const SingleProdMainDescription = async ({ product }: IProduct) => {
       <div className="small-details">
         <div>
           <span>ID: {product.id}</span>
-          <span>{product.created_at.slice(0, 10)}</span>
+          <span className="small-details-created-at">
+            <svg
+              width="20px"
+              height="20px"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M23 12C23 18.0751 18.0751 23 12 23C5.92487 23 1 18.0751 1 12C1 5.92487 5.92487 1 12 1C18.0751 1 23 5.92487 23 12ZM3.00683 12C3.00683 16.9668 7.03321 20.9932 12 20.9932C16.9668 20.9932 20.9932 16.9668 20.9932 12C20.9932 7.03321 16.9668 3.00683 12 3.00683C7.03321 3.00683 3.00683 7.03321 3.00683 12Z"
+                fill="#455A64"
+              />
+              <path
+                d="M12 5C11.4477 5 11 5.44771 11 6V12.4667C11 12.4667 11 12.7274 11.1267 12.9235C11.2115 13.0898 11.3437 13.2343 11.5174 13.3346L16.1372 16.0019C16.6155 16.278 17.2271 16.1141 17.5032 15.6358C17.7793 15.1575 17.6155 14.5459 17.1372 14.2698L13 11.8812V6C13 5.44772 12.5523 5 12 5Z"
+                fill="#455A64"
+              />
+            </svg>{" "}
+            {product.created_at.slice(0, 10)}
+          </span>
         </div>
-        <div>
+        {/* <div>
           <span>{product.condition === "used" ? "მეორადი" : "ახალი"}</span>
           <span>{product.type === "sell" ? "იყიდება" : "ქირავდება"}</span>
-        </div>
+        </div> */}
       </div>
 
       <h1 className="single-prod-main-title">
@@ -34,6 +52,47 @@ const SingleProdMainDescription = async ({ product }: IProduct) => {
           ? product.title_en
           : product.title_ge}
       </h1>
+
+      <div className="single-prod-labels">
+        <span>
+          <svg
+            width="20px"
+            height="20px"
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+          >
+            <path
+              stroke="#ffffff"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15.414 5.586l-11 11a2 2 0 000 2.828l8.172 8.172a2 2 0 002.828 0l11-11A2 2 0 0027 15.172V7a2 2 0 00-2-2h-8.172a2 2 0 00-1.414.586zM10 19l5.5-5.5M13 22l2.5-2.5"
+            ></path>
+            <path fill="#ffffff" d="M23 10a1 1 0 11-2 0 1 1 0 012 0z"></path>
+          </svg>{" "}
+          {product.type === "sell" ? "იყიდება" : "ქირავდება"}{" "}
+        </span>
+        <span>
+          <svg
+            width="20px"
+            height="20px"
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+          >
+            <path
+              stroke="#ffffff"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M15.414 5.586l-11 11a2 2 0 000 2.828l8.172 8.172a2 2 0 002.828 0l11-11A2 2 0 0027 15.172V7a2 2 0 00-2-2h-8.172a2 2 0 00-1.414.586zM10 19l5.5-5.5M13 22l2.5-2.5"
+            ></path>
+            <path fill="#ffffff" d="M23 10a1 1 0 11-2 0 1 1 0 012 0z"></path>
+          </svg>{" "}
+          {product.condition === "used" ? "მეორადი" : "ახალი"}
+        </span>
+      </div>
 
       <p className="single-prod-main-desc">
         {" "}
