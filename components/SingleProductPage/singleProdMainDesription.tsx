@@ -42,6 +42,11 @@ const SingleProdMainDescription = ({ product }: IProduct) => {
       </p>
 
       <div className="stock-and-stuff">
+        {product.location && (
+          <p>
+            მდებარეობა: <span>{product.location}</span>
+          </p>
+        )}
         {product.category && (
           <p>
             კატეგორია: <span>{product.category}</span>
