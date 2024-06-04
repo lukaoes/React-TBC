@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { FC } from "react";
+import Lightbox from "react-image-lightbox";
+import "react-image-lightbox/style.css";
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
@@ -21,6 +23,8 @@ interface SingleProdSlider {
 const SingleProdImageSlider: FC<SingleProdSlider> = ({ photos, mainphoto }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   const allPhotos = [mainphoto, ...photos];
+  const [isOpen, setIsOpen] = useState(false);
+  const [photoIndex, setPhotoIndex] = useState(0);
 
   return (
     <section className="single-product-slider">
@@ -37,7 +41,13 @@ const SingleProdImageSlider: FC<SingleProdSlider> = ({ photos, mainphoto }) => {
           className="single-prod-slider-top"
         >
           {allPhotos.map((image, index) => (
-            <SwiperSlide key={`single-product-photo-slider-${index}`}>
+            <SwiperSlide
+              key={`single-product-photo-slider-${index}`}
+              onClick={() => {
+                setIsOpen(true);
+                setPhotoIndex(index);
+              }}
+            >
               <Image
                 src={image}
                 width={400}
@@ -66,7 +76,25 @@ const SingleProdImageSlider: FC<SingleProdSlider> = ({ photos, mainphoto }) => {
             </SwiperSlide>
           ))}
         </Swiper>
-      </div>
+      </div>{" "}
+      {isOpen && (
+        <Lightbox
+          mainSrc={allPhotos[photoIndex]}
+          nextSrc={allPhotos[(photoIndex + 1) % allPhotos.length]}
+          prevSrc={
+            allPhotos[(photoIndex + allPhotos.length - 1) % allPhotos.length]
+          }
+          onCloseRequest={() => setIsOpen(false)}
+          onMovePrevRequest={() =>
+            setPhotoIndex(
+              (photoIndex + allPhotos.length - 1) % allPhotos.length
+            )
+          }
+          onMoveNextRequest={() =>
+            setPhotoIndex((photoIndex + 1) % allPhotos.length)
+          }
+        />
+      )}
     </section>
   );
 };
