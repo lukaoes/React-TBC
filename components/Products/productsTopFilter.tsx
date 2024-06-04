@@ -73,7 +73,7 @@ const ProductsTopFilter: FC<ProductsTopFilterProps> = ({
           <input
             type="text"
             name="search"
-            placeholder="პროდუქტის ძიება..."
+            placeholder="ძებნა..."
             value={searchTerm}
             onChange={(e) => handleSearch(e.target.value)}
           />
