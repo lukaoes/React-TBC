@@ -1,5 +1,5 @@
 import { setStaticParamsLocale } from "next-international/server";
-import { getProducts, getUserCart } from "../../../../api";
+import { getCartProducts, getUserCart } from "../../../../api";
 import CartProducts from "../../../../components/Cart/cartProducts";
 import { getSession } from "@auth0/nextjs-auth0";
 
@@ -22,7 +22,7 @@ const Cart = async ({ params: { locale } }: { params: { locale: string } }) => {
     }
 
     const products = Object.entries<string>(cart.products);
-    const allProducts = await getProducts();
+    const allProducts = await getCartProducts();
     const productIdsInCart = products.map((product) => product[0]);
     const filteredProducts = allProducts.filter((product: any) =>
       productIdsInCart.includes(product.id.toString())

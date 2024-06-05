@@ -42,6 +42,17 @@ export async function getProducts() {
   return products;
 }
 
+export async function getCartProducts() {
+  const response = await fetch(BASE_URL + "/api/products/get-cart-products", {
+    cache: "no-store",
+  });
+  const data = await response.json();
+
+  const products = data.users.rows;
+
+  return products;
+}
+
 export async function getUsersAuth() {
   const response = await fetch(BASE_URL + "/api/users/get-users");
   const { users } = await response.json();

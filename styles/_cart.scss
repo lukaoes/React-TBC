@@ -378,10 +378,11 @@
     }
 
     &-image-placeholder {
-      width: 60px;
+      min-width: 60px;
       height: 60px;
       background-color: #c0c0c0;
       border-radius: 8px;
+      object-fit: cover;
       margin-right: 16px;
     }
 

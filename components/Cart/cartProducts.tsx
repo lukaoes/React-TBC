@@ -5,6 +5,7 @@ import Image from "next/image";
 import { handleProductRemove, handleQuantityChange } from "../../actions";
 import CartTotal from "./cartTotal";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { useCurrentLocale } from "../../locales/client";
 
 interface CartProductsProps {
   filteredProducts: Product[];
@@ -13,15 +14,17 @@ interface CartProductsProps {
 
 interface Product {
   id: string;
-  title: string;
+  title_ge: string;
+  title_en: string;
   price: number;
-  thumbnail: string;
+  main_photo: string;
 }
 
 const CartProducts = ({
   filteredProducts,
   initialQuantities,
 }: CartProductsProps) => {
+  const locale = useCurrentLocale();
   const { user } = useUser();
   const [productQuantities, setProductQuantities] = useState(initialQuantities);
   const [localFilteredProducts, setLocalFilteredProducts] =
@@ -93,14 +96,22 @@ const CartProducts = ({
                 <div className="cart-item-row">
                   <div className="cart-item-product">
                     <Image
-                      src={item.thumbnail}
-                      alt={item.title}
+                      src={item.main_photo}
+                      alt={item.title_en || item.title_ge}
                       width={60}
                       height={60}
                       className="cart-item-image-placeholder"
                     />
                     <div className="cart-item-details">
-                      <span>{item.title}</span>
+                      <span>
+                        {locale === "ge"
+                          ? item.title_ge
+                            ? item.title_ge
+                            : item.title_en
+                          : item.title_en
+                          ? item.title_en
+                          : item.title_ge}
+                      </span>
                     </div>
                   </div>
                   <div className="cart-item-price">${item.price}</div>
