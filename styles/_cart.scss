@@ -408,9 +408,26 @@
 
     &-quantity {
       display: flex;
+      flex-direction: column;
       align-items: center;
+      gap: 5px;
       flex: 1;
       justify-content: center;
+
+      .quant-changer {
+        display: flex;
+      }
+
+      .quant-stock {
+        font-size: 13px;
+        text-align: center;
+        span {
+          font-size: 14px;
+
+          font-weight: 600;
+          margin: 0;
+        }
+      }
 
       span {
         margin: 0 8px;

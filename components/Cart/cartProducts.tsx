@@ -18,6 +18,7 @@ interface Product {
   title_en: string;
   price: number;
   main_photo: string;
+  quantity: number;
 }
 
 const CartProducts = ({
@@ -30,6 +31,7 @@ const CartProducts = ({
   const [localFilteredProducts, setLocalFilteredProducts] =
     useState(filteredProducts);
   const [id, setId] = useState("");
+  const [loading, setLoading] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     if (user && user.sub) {
@@ -38,32 +40,59 @@ const CartProducts = ({
   }, [user]);
 
   const updateQuantity = async (productId: string, quantityChange: number) => {
-    const newQuantity = (productQuantities[productId] || 0) + quantityChange;
+    const currentQuantity = productQuantities[productId] || 0;
+    const product = localFilteredProducts.find((p) => p.id === productId);
 
-    await handleQuantityChange(productId, quantityChange, id);
+    const newQuantity = currentQuantity + quantityChange;
 
-    if (newQuantity <= 0) {
-      await removeProduct(productId);
-    } else {
+    if (
+      newQuantity < 0 ||
+      (product?.quantity !== undefined && newQuantity > product.quantity)
+    ) {
+      return;
+    }
+
+    // Optimistically update the UI
+    setProductQuantities((prevQuantities) => ({
+      ...prevQuantities,
+      [productId]: newQuantity,
+    }));
+
+    setLoading((prevLoading) => ({ ...prevLoading, [productId]: true }));
+
+    try {
+      await handleQuantityChange(productId, quantityChange, id);
+    } catch (error) {
+      console.error("Failed to update quantity:", error);
       setProductQuantities((prevQuantities) => ({
         ...prevQuantities,
-        [productId]: newQuantity,
+        [productId]: currentQuantity,
       }));
+    } finally {
+      setLoading((prevLoading) => ({ ...prevLoading, [productId]: false }));
     }
   };
 
   const removeProduct = async (productId: string) => {
-    await handleProductRemove(productId, id);
+    setLoading((prevLoading) => ({ ...prevLoading, [productId]: true }));
+    try {
+      setLocalFilteredProducts((prevProducts) =>
+        prevProducts.filter((product) => product.id.toString() !== productId)
+      );
+      setProductQuantities((prevQuantities) => {
+        const updatedQuantities = { ...prevQuantities };
+        delete updatedQuantities[productId];
+        return updatedQuantities;
+      });
 
-    setProductQuantities((prevQuantities) => {
-      const updatedQuantities = { ...prevQuantities };
-      delete updatedQuantities[productId];
-      return updatedQuantities;
-    });
-
-    setLocalFilteredProducts((prevProducts) =>
-      prevProducts.filter((product) => product.id.toString() !== productId)
-    );
+      await handleProductRemove(productId, id);
+    } catch (error) {
+      console.error("Failed to remove product:", error);
+      setLocalFilteredProducts(filteredProducts);
+      setProductQuantities(initialQuantities);
+    } finally {
+      setLoading((prevLoading) => ({ ...prevLoading, [productId]: false }));
+    }
   };
 
   const calculateTotalPrice = () => {
@@ -116,21 +145,32 @@ const CartProducts = ({
                   </div>
                   <div className="cart-item-price">${item.price}</div>
                   <div className="cart-item-quantity">
-                    <button
-                      className="cart-item-quantity-btn"
-                      onClick={() => updateQuantity(item.id.toString(), -1)}
-                    >
-                      -
-                    </button>
-                    <span id={`qty-${item.id}`}>
-                      {productQuantities[item.id?.toString()] || 0}
-                    </span>
-                    <button
-                      className="cart-item-quantity-btn"
-                      onClick={() => updateQuantity(item.id.toString(), 1)}
-                    >
-                      +
-                    </button>
+                    <div className="quant-changer">
+                      <button
+                        className="cart-item-quantity-btn"
+                        onClick={() => updateQuantity(item.id.toString(), -1)}
+                        disabled={loading[item.id.toString()]}
+                      >
+                        -
+                      </button>
+                      <span id={`qty-${item.id}`}>
+                        {productQuantities[item.id?.toString()] || 0}
+                      </span>
+                      <button
+                        className="cart-item-quantity-btn"
+                        onClick={() => updateQuantity(item.id.toString(), 1)}
+                        disabled={
+                          loading[item.id.toString()] ||
+                          (productQuantities[item.id.toString()] || 0) >=
+                            item.quantity
+                        }
+                      >
+                        +
+                      </button>
+                    </div>
+                    <div className="quant-stock">
+                      მარაგში: <span>{item.quantity}</span>
+                    </div>
                   </div>
                   <div className="cart-item-subtotal">
                     $
@@ -141,6 +181,7 @@ const CartProducts = ({
                   <button
                     className="cart-item-remove-btn"
                     onClick={() => removeProduct(item.id.toString())}
+                    disabled={loading[item.id.toString()]}
                   >
                     ×
                   </button>
