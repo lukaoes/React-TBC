@@ -1,7 +1,7 @@
 .similar-product-card {
   border-radius: 15px;
   overflow: hidden;
-  // min-width: 260px;
+  min-width: 260px;
   flex: 1;
   img {
     width: 100%;
@@ -17,6 +17,9 @@
 
     h3 {
       font-weight: 600;
+      max-height: 24px;
+      overflow: hidden;
+      margin-bottom: 10px;
     }
 
     span {

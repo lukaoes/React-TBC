@@ -31,7 +31,7 @@ const SingleProductPage = async ({ params }: { params: { id: string } }) => {
         titleen={displayProd.title_en}
         titlege={displayProd.title_ge}
       />
-      <SingleProdSimilar />
+      <SingleProdSimilar category={displayProd.category} />
     </div>
   );
 };

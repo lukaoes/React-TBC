@@ -294,5 +294,5 @@ export async function getSimilarProducts(category: string) {
     }
   );
   const data = await response.json();
-  return data.response;
+  return data;
 }
