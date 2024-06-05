@@ -104,6 +104,8 @@ export const handleAddToCart = async (productId: string, userId: string) => {
     if (!response.ok) {
       throw new Error("Failed to add item to cart");
     }
+
+    return response.json();
   } catch (error) {
     console.error("Error adding item to cart:", error);
   }
