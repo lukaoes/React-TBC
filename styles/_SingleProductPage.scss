@@ -295,6 +295,8 @@
     gap: 30px;
     justify-content: center;
     margin-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ccc;
   }
 
   a {
@@ -316,6 +318,43 @@
 
     &:hover {
       background-color: #999999;
+    }
+  }
+}
+
+.single-prod-similar {
+  background-color: #fcf9f4;
+  border-radius: 10px;
+  padding: 20px;
+  flex-wrap: wrap;
+  display: flex;
+  justify-content: space-around;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+.single-prod-similar-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin: 40px 0 20px 0;
+  gap: 20px;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 600;
+  }
+
+  a {
+    display: inline-block;
+    // padding: 0 0 5px 0;
+    text-decoration: underline;
+    text-align: right;
+  }
+
+  @media screen and (max-width: 650px) {
+    h1 {
+      font-size: 18px;
     }
   }
 }

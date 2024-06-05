@@ -2,6 +2,7 @@ import { getSingleProduct } from "../../../../../actions";
 import SingleProdImageSlider from "../../../../../components/SingleProductPage/singleProdImageSlider";
 import SingleProdMainDescription from "../../../../../components/SingleProductPage/singleProdMainDesription";
 import SingleProdNavigation from "../../../../../components/SingleProductPage/singleProdNavigation";
+import SingleProdSimilar from "../../../../../components/SingleProductPage/singleProdSimilar";
 import SingleProdSocialShare from "../../../../../components/SingleProductPage/singleProdSocialShare";
 
 const SingleProductPage = async ({ params }: { params: { id: string } }) => {
@@ -30,6 +31,7 @@ const SingleProductPage = async ({ params }: { params: { id: string } }) => {
         titleen={displayProd.title_en}
         titlege={displayProd.title_ge}
       />
+      <SingleProdSimilar />
     </div>
   );
 };
