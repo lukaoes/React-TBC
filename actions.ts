@@ -285,12 +285,12 @@ export async function getSingleProduct(id: string) {
   return product;
 }
 
-export async function getSimilarProducts(category: string) {
+export async function getSimilarProducts(category: string, excludedId: number) {
   const response = await fetch(
     BASE_URL + "/api/products/get-similar-by-category",
     {
       method: "POST",
-      body: JSON.stringify({ category }),
+      body: JSON.stringify({ category, excludedId }),
     }
   );
   const data = await response.json();
