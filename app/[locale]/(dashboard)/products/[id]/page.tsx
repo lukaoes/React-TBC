@@ -2,6 +2,7 @@ import { getSingleProduct } from "../../../../../actions";
 import SingleProdImageSlider from "../../../../../components/SingleProductPage/singleProdImageSlider";
 import SingleProdMainDescription from "../../../../../components/SingleProductPage/singleProdMainDesription";
 import SingleProdNavigation from "../../../../../components/SingleProductPage/singleProdNavigation";
+import SingleProdSocialShare from "../../../../../components/SingleProductPage/singleProdSocialShare";
 
 const SingleProductPage = async ({ params }: { params: { id: string } }) => {
   const prodId = params.id;
@@ -24,6 +25,11 @@ const SingleProductPage = async ({ params }: { params: { id: string } }) => {
           <SingleProdMainDescription product={displayProd} />
         </div>
       </div>
+      <SingleProdSocialShare
+        type={displayProd.type}
+        titleen={displayProd.title_en}
+        titlege={displayProd.title_ge}
+      />
     </div>
   );
 };
