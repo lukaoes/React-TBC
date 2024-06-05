@@ -3,6 +3,7 @@
 import { FC, useState } from "react";
 import SingleProdEditModal from "./singleProdEditModal";
 import { Product } from "../../types";
+import { useUser } from "@auth0/nextjs-auth0/client";
 
 interface IProd {
   product: Product;
@@ -11,6 +12,14 @@ interface IProd {
 const SingleProdEditButton: FC<IProd> = ({ product }) => {
   const [isEditModalOpen, setEditModalOpen] = useState(false);
   const [currentProduct, setCurrentProduct] = useState<Product>(product);
+  const { user } = useUser();
+
+  const isAdmin = Array.isArray(user?.role) && user.role.includes("admin");
+  const isProductOwner = user?.sub === product.user_id;
+
+  if (!isAdmin && !isProductOwner) {
+    return null;
+  }
 
   if (isEditModalOpen && typeof window !== "undefined") {
     document.body.style.overflow = "hidden";
