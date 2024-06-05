@@ -19,7 +19,7 @@ const SimilarProductCard: FC<ISimilar> = (products) => {
           key={`similar-single-prod-bottom-${index}`}
         >
           <Link href={`/products/${item.id}`}>
-            {item.main_photo.length > 0 ? (
+            {item.main_photo ? (
               <Image
                 src={item.main_photo}
                 alt={item.title_en || item.title_ge}

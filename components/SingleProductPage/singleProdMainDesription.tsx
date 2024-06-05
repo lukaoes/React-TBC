@@ -4,6 +4,7 @@ import { getCurrentLocale } from "../../locales/server";
 import { Product } from "../../types";
 import Link from "next/link";
 import SingleProdMainDescriptionButton from "./singleProdMainDescriptionButton";
+import SingleProdEditButton from "./singleProdEditButton";
 
 interface IProduct {
   product: Product;
@@ -42,8 +43,8 @@ const SingleProdMainDescription = async ({ product }: IProduct) => {
           <span>{product.condition === "used" ? "მეორადი" : "ახალი"}</span>
           <span>{product.type === "sell" ? "იყიდება" : "ქირავდება"}</span>
         </div> */}
+        <SingleProdEditButton product={product} />
       </div>
-
       <h1 className="single-prod-main-title">
         {locale === "ge"
           ? product.title_ge
@@ -53,7 +54,6 @@ const SingleProdMainDescription = async ({ product }: IProduct) => {
           ? product.title_en
           : product.title_ge}
       </h1>
-
       <div className="single-prod-labels">
         <span>
           <svg
@@ -94,7 +94,6 @@ const SingleProdMainDescription = async ({ product }: IProduct) => {
           {product.condition === "used" ? "მეორადი" : "ახალი"}
         </span>
       </div>
-
       <p className="single-prod-main-desc">
         {" "}
         {locale === "ge"
@@ -105,7 +104,6 @@ const SingleProdMainDescription = async ({ product }: IProduct) => {
           ? product.description_en
           : product.description_ge}
       </p>
-
       <div className="single-prod-user">
         <div className="user-details-product">
           <Link href={`/user/${userNickname[0].nickname}`}>
@@ -187,7 +185,6 @@ const SingleProdMainDescription = async ({ product }: IProduct) => {
           <span>{product.first_name}</span>
         </div>
       </div>
-
       <div className="stock-and-stuff">
         {product.location && (
           <p>
@@ -231,7 +228,6 @@ const SingleProdMainDescription = async ({ product }: IProduct) => {
           </p>
         )}
       </div>
-
       <div className="single-prod-main-price">
         <span>
           {product.negotiable

@@ -38,7 +38,7 @@ const MainProductCard: FC<MainProductCardProps> = ({ product, openModal }) => {
         href={`/products/${product.id}`}
         className="main-product-card-image"
       >
-        {product.main_photo.length > 0 ? (
+        {product.main_photo ? (
           <Image
             src={product.main_photo}
             alt={product.title_en || product.title_ge}
