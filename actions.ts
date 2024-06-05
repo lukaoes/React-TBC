@@ -284,3 +284,15 @@ export async function getSingleProduct(id: string) {
 
   return product;
 }
+
+export async function getSimilarProducts(category: string) {
+  const response = await fetch(
+    BASE_URL + "/api/products/get-similar-by-category",
+    {
+      method: "POST",
+      body: JSON.stringify({ category }),
+    }
+  );
+  const data = await response.json();
+  return data.response;
+}
