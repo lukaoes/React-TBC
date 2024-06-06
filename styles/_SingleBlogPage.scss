@@ -57,3 +57,18 @@
     line-height: 1.7;
   }
 }
+
+.single-blog-footer {
+  display: flex;
+  justify-content: space-between;
+  max-width: 850px;
+  padding: 20px 0;
+  margin: 30px auto 70px auto;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+
+  .blog-socials {
+    display: flex;
+    gap: 20px;
+  }
+}

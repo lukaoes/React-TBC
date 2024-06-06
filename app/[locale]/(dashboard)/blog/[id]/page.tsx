@@ -1,4 +1,5 @@
 import { getSingleBlog } from "../../../../../actions";
+import SingleBlogFooter from "../../../../../components/SingleBlogPage/singleBlogFooter";
 import SingleBlogHeader from "../../../../../components/SingleBlogPage/singleBlogHeader";
 import SingleBlogText from "../../../../../components/SingleBlogPage/singleBlogText";
 
@@ -10,7 +11,7 @@ const SingleBlogPage = async ({ params }: { params: { id: string } }) => {
     <div>
       <SingleBlogHeader blogPost={blogPost} />
       <SingleBlogText blogPost={blogPost} />
-      <div>{blogId}</div>
+      <SingleBlogFooter blogPost={blogPost} />
     </div>
   );
 };
