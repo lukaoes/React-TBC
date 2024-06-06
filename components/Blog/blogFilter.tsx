@@ -1,3 +1,5 @@
+import BlogPageRecentCard from "../cards/blogPageRecentCard";
+
 const BlogFilter = () => {
   return (
     <div className="blog-filter">
@@ -244,6 +246,11 @@ const BlogFilter = () => {
       </div>
       <div>
         <h2>ბოლო პოსტები</h2>
+        <div className="blog-filter-recent-posts">
+          <BlogPageRecentCard />
+          <BlogPageRecentCard />
+          <BlogPageRecentCard />
+        </div>
       </div>
       <div>
         <h2>თეგები</h2>
