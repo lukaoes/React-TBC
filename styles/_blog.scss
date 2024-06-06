@@ -1,65 +1,83 @@
-.blog-recent {
+.blog-layout {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.blog-main-section {
+  display: flex;
+  gap: 50px;
+}
+
+.blog-post-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 50px;
   width: 100%;
-  padding: 0 0 30px 0;
-  background-color: $primary-color;
-  // background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1155" fill="%23eef6f0"><path d="M968.99 1033c-187.45.85-174.59 47.22-449 48-352 1-463-239-463-548 0-273.09 190-474 496-472 277.28 1.81 277.22 60.83 470 57 252-5 217.88-56.12 487-57 305-1 431 290 433 526s-117.08 502.4-432 507c-342 5-322-62-542-61Z"></path></svg>');
-  // background-repeat: no-repeat;
-  // background-size: 150%;
-  // background-position: 50% 400px;
-  .blog-recent_header {
-    width: 100%;
-    h1 {
-      padding: 50px 0 20px 0;
-      font-weight: 300;
-      font-size: 36px;
-      text-align: center;
-    }
-    h5 {
-      font-weight: 600;
-      opacity: 0.9;
-      font-size: 20px;
+
+  .post-grid-item {
+    min-width: 280px;
+    box-sizing: border-box;
+  }
+}
+
+.blog-top-section {
+  margin: 40px 0 20px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.blog-filter {
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  align-items: flex-end;
+  width: 100%;
+
+  .blog-filter-search {
+    position: relative;
+    input {
       width: 100%;
-      text-align: center;
-      padding-bottom: 30px;
+      border: 2px solid #ccc;
+      padding: 10px 15px;
+      border-radius: 10px;
+      background-color: transparent;
+    }
+
+    svg {
+      right: 10px;
+      bottom: 15px;
+      position: absolute;
     }
   }
 
-  .blog-container {
-    max-width: 1200px;
-    padding: 20px;
-    margin: 0 auto;
-
-    .blog-recent-post{
-      margin-top: 20px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 40px;
-      & > div { 
-        display: flex;
-        gap: 20px;
-      }
-
-      a {
-        text-decoration: none;
-        color: #000;
-        font-size: 16px;
-        font-weight: 500;
-      }
-    }
+  div {
+    width: 100%;
+  }
+  h2 {
+    width: 100%;
+    font-size: 18px;
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: 15px;
   }
 
-  @media only screen and (min-width: $tablet) {
-    .blog-container {
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    div {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    li {
       display: flex;
       justify-content: space-between;
-      gap: 30px;
     }
-    .blog-recent-post{
-      display: flex;
-      gap: 0;
-      margin-top: 0;
-      justify-content: space-between;
-    }
- }
+  }
 }
