@@ -1,13 +1,16 @@
 import Image from "next/image";
-import example from "../../public/assets/images/secondHeader/blog.webp";
 import Link from "next/link";
+import { Blog } from "../../types";
 
-const SingleBlogHeader = () => {
+interface IBlog {
+  blogPost: Blog;
+}
+const SingleBlogHeader = ({ blogPost }: IBlog) => {
   return (
     <div className="single-blog-header">
-      <h1>The Sustainable Wardrobe A Greener Approach to Fashion</h1>
+      <h1>{blogPost.title}</h1>
       <div>
-        <span>11-20-2024</span>
+        <span>{blogPost.created_at.slice(0, 10)}</span>
         <span>
           <svg
             width="14"
@@ -24,7 +27,7 @@ const SingleBlogHeader = () => {
           ავტორი <Link href={`user/id`}>lukaostore</Link>
         </span>
       </div>
-      <Image src={example} width={1400} height={700} alt="nature" />
+      <Image src={blogPost.main_photo} width={1400} height={700} alt="nature" />
     </div>
   );
 };

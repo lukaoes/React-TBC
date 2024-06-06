@@ -333,3 +333,14 @@ export async function deleteSingleProduct(id: number) {
   const data = await response.json();
   return data.response;
 }
+
+export async function getSingleBlog(id: string) {
+  const response = await fetch(`${BASE_URL}/api/blog/get-single-blog/${id}`, {
+    cache: "no-store",
+  });
+  const data = await response.json();
+
+  const blog = data.blog.rows;
+
+  return blog;
+}

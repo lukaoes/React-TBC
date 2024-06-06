@@ -44,3 +44,13 @@ export interface Product {
   quantity: string;
   condition: string;
 }
+
+export interface Blog {
+  id: number;
+  category: string;
+  main_photo: string;
+  blog_post: string;
+  title: string;
+  description: string;
+  created_at: string;
+}
