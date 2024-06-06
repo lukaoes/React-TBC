@@ -54,3 +54,14 @@ export interface Blog {
   description: string;
   created_at: string;
 }
+
+export interface BlogsDisplay {
+  map(
+    arg0: (blog: BlogsDisplay, index: number) => import("react").JSX.Element
+  ): import("react").ReactNode;
+  id: number;
+  category: string;
+  main_photo: string;
+  title: string;
+  created_at: string;
+}

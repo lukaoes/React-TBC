@@ -1,23 +1,16 @@
+import { BlogsDisplay } from "../../types";
 import MainBlogCard from "../cards/mainBlogCard";
-
-const BlogPostSection = () => {
+interface IBlog {
+  displayBlogs: BlogsDisplay;
+}
+const BlogPostSection = ({ displayBlogs }: IBlog) => {
   return (
     <div className="blog-post-section">
-      <div className="post-grid-item">
-        <MainBlogCard />
-      </div>
-      <div className="post-grid-item">
-        <MainBlogCard />
-      </div>
-      <div className="post-grid-item">
-        <MainBlogCard />
-      </div>{" "}
-      <div className="post-grid-item">
-        <MainBlogCard />
-      </div>{" "}
-      <div className="post-grid-item">
-        <MainBlogCard />
-      </div>
+      {displayBlogs.map((blog, index) => (
+        <div key={`main-blog-${index}`} className="post-grid-item">
+          <MainBlogCard blog={blog} />
+        </div>
+      ))}
     </div>
   );
 };

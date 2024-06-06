@@ -1,12 +1,14 @@
+import { getBlogDisplay } from "../../../../actions";
 import BlogLayout from "../../../../components/Blog/blogLayout";
 import SecondHeader from "../../../../components/layout/secondHeader";
 import blogImage from "../../../../public/assets/images/secondHeader/blog.webp";
 
-const Blog = () => {
+const Blog = async () => {
+  const displayBlogs = await getBlogDisplay();
   return (
     <div>
       <SecondHeader title="ბლოგი" backgroundImage={blogImage} />
-      <BlogLayout />
+      <BlogLayout displayBlogs={displayBlogs} />
     </div>
   );
 };

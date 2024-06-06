@@ -1,20 +1,27 @@
 import Image from "next/image";
-import blogImage from "../../public/assets/images/secondHeader/blog.webp";
 import Link from "next/link";
+import { BlogsDisplay } from "../../types";
 
-const MainBlogCard = () => {
+interface IBlog {
+  blog: BlogsDisplay;
+}
+
+const MainBlogCard = ({ blog }: IBlog) => {
+  console.log(blog, "blog");
   return (
     <div className="main-blog-card-layout">
-      <Image src={blogImage} alt="blog" width={500} height={500} />
+      <Image src={blog.main_photo} alt="blog" width={500} height={500} />
       <div className="main-blog-card-info">
         <div className="main-blog-card-details">
-          <span>11-02-2024</span>
+          <span>{blog.created_at.slice(0, 10)}</span>
           <h3>
             ავტორი: <Link href="">lukaostore</Link>
           </h3>
         </div>
-        <h2>როგორ გადავკვეთოთ მდინარე ლაშქრობის დროს და არ წაგვიღოს წყალმა</h2>
-        <Link href="/blog">წაიკითხეთ ვრცლად </Link>
+        <Link href={`/blog/${blog.id}`}>
+          <h2>{blog.title.slice(0, 42)}</h2>
+        </Link>
+        <Link href={`/blog/${blog.id}`}>ვრცლად </Link>
       </div>
     </div>
   );

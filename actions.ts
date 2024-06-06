@@ -344,3 +344,14 @@ export async function getSingleBlog(id: string) {
 
   return blog;
 }
+
+export async function getBlogDisplay() {
+  const response = await fetch(BASE_URL + "/api/blog/get-blog-display", {
+    cache: "no-store",
+  });
+  const data = await response.json();
+
+  const products = data.users.rows;
+
+  return products;
+}
