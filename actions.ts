@@ -322,3 +322,14 @@ export const updateProductAction = async (updatedData: any) => {
     throw error;
   }
 };
+
+export async function deleteSingleProduct(id: number) {
+  const response = await fetch(BASE_URL + "/api/products/delete-product/", {
+    method: "DELETE",
+    body: JSON.stringify({ id }),
+  });
+  revalidatePath("/products");
+
+  const data = await response.json();
+  return data.response;
+}

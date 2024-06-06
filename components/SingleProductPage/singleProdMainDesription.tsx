@@ -5,6 +5,7 @@ import { Product } from "../../types";
 import Link from "next/link";
 import SingleProdMainDescriptionButton from "./singleProdMainDescriptionButton";
 import SingleProdEditButton from "./singleProdEditButton";
+import SingleProdRemoveButton from "./singleProdRemoveButton";
 
 interface IProduct {
   product: Product;
@@ -43,7 +44,10 @@ const SingleProdMainDescription = async ({ product }: IProduct) => {
           <span>{product.condition === "used" ? "მეორადი" : "ახალი"}</span>
           <span>{product.type === "sell" ? "იყიდება" : "ქირავდება"}</span>
         </div> */}
-        <SingleProdEditButton product={product} />
+        <div className="single-product-edit-remove-buttons">
+          <SingleProdEditButton product={product} />
+          <SingleProdRemoveButton product={product} />
+        </div>
       </div>
       <h1 className="single-prod-main-title">
         {locale === "ge"

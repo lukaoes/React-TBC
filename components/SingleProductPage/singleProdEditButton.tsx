@@ -86,7 +86,7 @@ const SingleProdEditButton: FC<IProd> = ({ product }) => {
             />
           </g>
         </svg>
-        პროდუქტის რედაქტირება
+        რედაქტირება
       </button>
     </div>
   );
