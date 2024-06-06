@@ -27,7 +27,15 @@ const SingleBlogHeader = ({ blogPost }: IBlog) => {
           ავტორი <Link href={`user/id`}>lukaostore</Link>
         </span>
       </div>
-      <Image src={blogPost.main_photo} width={1400} height={700} alt="nature" />
+      <div className="blog-header-container">
+        <Image
+          src={blogPost.main_photo}
+          width={1400}
+          height={700}
+          alt="nature"
+        />
+      </div>
+      <p>{blogPost.description}</p>
     </div>
   );
 };
