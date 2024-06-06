@@ -2,7 +2,9 @@ import { setStaticParamsLocale } from "next-international/server";
 import { getCartProducts, getUserCart } from "../../../../api";
 import CartProducts from "../../../../components/Cart/cartProducts";
 import { getSession } from "@auth0/nextjs-auth0";
-
+import LoginToAccess from "../../../../components/noAccess/loginToAccess";
+import SecondHeader from "../../../../components/layout/secondHeader";
+import cartImage from "../../../../public/assets/images/secondHeader/cart.jpg";
 const Cart = async ({ params: { locale } }: { params: { locale: string } }) => {
   setStaticParamsLocale(locale);
 
@@ -10,7 +12,7 @@ const Cart = async ({ params: { locale } }: { params: { locale: string } }) => {
     const session = await getSession();
 
     if (!session || !session.user || !session.user.sub) {
-      return <div>Please log in.</div>;
+      return <LoginToAccess />;
     }
 
     const userId = session.user.sub;
@@ -18,7 +20,7 @@ const Cart = async ({ params: { locale } }: { params: { locale: string } }) => {
     const cart = await getUserCart(userId);
 
     if (!cart || !cart.products) {
-      return <div>No items in your cart.</div>;
+      return <div>თქვენი კალათა ცარიელია.</div>;
     }
 
     const products = Object.entries<string>(cart.products);
@@ -36,18 +38,21 @@ const Cart = async ({ params: { locale } }: { params: { locale: string } }) => {
     );
 
     return (
-      <div className="container cart-layout">
-        <h1>ნივთები თქვენს კალათაში:</h1>
-        <div>
-          <CartProducts
-            filteredProducts={filteredProducts}
-            initialQuantities={initialQuantities}
-          />
+      <>
+        <SecondHeader title="კალათა" backgroundImage={cartImage} />
+        <div className="cart-layout">
+          <h1>ნივთები თქვენს კალათაში:</h1>
+          <div>
+            <CartProducts
+              filteredProducts={filteredProducts}
+              initialQuantities={initialQuantities}
+            />
+          </div>
         </div>
-      </div>
+      </>
     );
   } catch (error) {
-    return <div>An error occurred. Please try again later.</div>;
+    return <div>შეცდომაა, მოგვიანებით სცადეთ.</div>;
   }
 };
 

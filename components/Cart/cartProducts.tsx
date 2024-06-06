@@ -6,6 +6,7 @@ import { handleProductRemove, handleQuantityChange } from "../../actions";
 import CartTotal from "./cartTotal";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useCurrentLocale } from "../../locales/client";
+import Link from "next/link";
 
 interface CartProductsProps {
   filteredProducts: Product[];
@@ -52,7 +53,6 @@ const CartProducts = ({
       return;
     }
 
-    // Optimistically update the UI
     setProductQuantities((prevQuantities) => ({
       ...prevQuantities,
       [productId]: newQuantity,
@@ -113,10 +113,10 @@ const CartProducts = ({
     <div className="cart-container">
       <div className="cart-products-list-container">
         <div className="cart-header">
-          <div className="cart-header-item">Product</div>
-          <div className="cart-header-item">Price</div>
-          <div className="cart-header-item">Quantity</div>
-          <div className="cart-header-item">Subtotal</div>
+          <div className="cart-header-item">პროდუქტი</div>
+          <div className="cart-header-item">ფასი</div>
+          <div className="cart-header-item">რაოდენობა</div>
+          <div className="cart-header-item">ჯამი</div>
         </div>
         {localFilteredProducts.map((item: Product, index: number) => (
           <div key={`filteredProducts-${index}`}>
@@ -124,23 +124,27 @@ const CartProducts = ({
               <div className="cart-item">
                 <div className="cart-item-row">
                   <div className="cart-item-product">
-                    <Image
-                      src={item.main_photo}
-                      alt={item.title_en || item.title_ge}
-                      width={60}
-                      height={60}
-                      className="cart-item-image-placeholder"
-                    />
+                    <Link href={`/products/${item.id}`}>
+                      <Image
+                        src={item.main_photo}
+                        alt={item.title_en || item.title_ge}
+                        width={60}
+                        height={60}
+                        className="cart-item-image-placeholder"
+                      />
+                    </Link>
                     <div className="cart-item-details">
-                      <span>
-                        {locale === "ge"
-                          ? item.title_ge
+                      <Link href={`/products/${item.id}`}>
+                        <span>
+                          {locale === "ge"
                             ? item.title_ge
+                              ? item.title_ge
+                              : item.title_en
                             : item.title_en
-                          : item.title_en
-                          ? item.title_en
-                          : item.title_ge}
-                      </span>
+                            ? item.title_en
+                            : item.title_ge}
+                        </span>{" "}
+                      </Link>
                     </div>
                   </div>
                   <div className="cart-item-price">${item.price}</div>
@@ -169,7 +173,7 @@ const CartProducts = ({
                       </button>
                     </div>
                     <div className="quant-stock">
-                      მარაგში: <span>{item.quantity}</span>
+                      მარაგი: <span>{item.quantity}</span>
                     </div>
                   </div>
                   <div className="cart-item-subtotal">
