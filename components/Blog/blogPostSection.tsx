@@ -1,12 +1,10 @@
 import { BlogsDisplay } from "../../types";
 import MainBlogCard from "../cards/mainBlogCard";
-interface IBlog {
-  displayBlogs: BlogsDisplay;
-}
-const BlogPostSection = ({ displayBlogs }: IBlog) => {
+
+const BlogPostSection = ({ displayBlogs }: any) => {
   return (
     <div className="blog-post-section">
-      {displayBlogs.map((blog, index) => (
+      {displayBlogs.map((blog: BlogsDisplay, index: any) => (
         <div key={`main-blog-${index}`} className="post-grid-item">
           <MainBlogCard blog={blog} />
         </div>

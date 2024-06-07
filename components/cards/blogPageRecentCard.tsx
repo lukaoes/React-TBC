@@ -1,6 +1,7 @@
 // BlogPageRecentCard.tsx
 import Image from "next/image";
 import { Blog } from "../../types";
+import Link from "next/link";
 
 interface BlogPageRecentCardProps {
   blog: Blog;
@@ -9,10 +10,19 @@ interface BlogPageRecentCardProps {
 const BlogPageRecentCard = ({ blog }: BlogPageRecentCardProps) => {
   return (
     <div className="blog-page-recent-card">
-      <Image src={blog.main_photo} alt={blog.title} width={200} height={200} />
+      <Link href={`/blog/${blog.id}`}>
+        <Image
+          src={blog.main_photo}
+          alt={blog.title}
+          width={200}
+          height={200}
+        />
+      </Link>
       <div>
         <span>{blog.created_at.slice(0, 10)}</span>
-        <h3>{blog.title}</h3>
+        <h3>
+          <Link href={`/blog/${blog.id}`}>{blog.title}</Link>
+        </h3>
       </div>
     </div>
   );
