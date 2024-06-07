@@ -375,3 +375,21 @@ export async function addBlogPost(formData: any) {
     throw new Error("Submission failed");
   }
 }
+
+export const updateBlogAction = async (blogData: any) => {
+  const response = await fetch(`${BASE_URL}/api/blog/edit-blog`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(blogData),
+  });
+
+  revalidatePath("/");
+
+  if (!response.ok) {
+    const errorData = await response.json().catch(() => ({}));
+    const errorMessage = errorData.error || "Failed to update blog";
+    throw new Error(errorMessage);
+  }
+};
