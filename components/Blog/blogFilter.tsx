@@ -6,9 +6,14 @@ import { BlogsDisplay } from "../../types";
 interface BlogFilterProps {
   displayBlogs: BlogsDisplay;
   setFilteredBlogs: (blogs: BlogsDisplay) => void;
+  openFilter: boolean;
 }
 
-const BlogFilter = ({ displayBlogs, setFilteredBlogs }: BlogFilterProps) => {
+const BlogFilter = ({
+  displayBlogs,
+  setFilteredBlogs,
+  openFilter,
+}: BlogFilterProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("ყველა");
 
@@ -51,7 +56,7 @@ const BlogFilter = ({ displayBlogs, setFilteredBlogs }: BlogFilterProps) => {
   ];
 
   return (
-    <div className="blog-filter">
+    <div className={`blog-filter ${openFilter ? "active" : ""}`}>
       <div className="blog-filter-search">
         <h2>ძებნა</h2>
         <input
