@@ -5,6 +5,7 @@ import { BASE_URL } from "../../api";
 import { Blog } from "../../types";
 import BlogEditModal from "../modals/blogEditModal";
 import { useState } from "react";
+import SingleBlogRemoveButton from "./singleBlogRemoveButton";
 
 interface IBlog {
   blogPost: Blog;
@@ -28,7 +29,7 @@ const SingleBlogFooter = ({ blogPost }: IBlog) => {
     <>
       <div>
         <button onClick={() => setIsModalOpen(true)}>Edit</button>
-        <button>remove</button>
+        <SingleBlogRemoveButton blogPost={blogPost} />
       </div>
       <div className="single-blog-footer">
         <div>

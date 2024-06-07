@@ -393,3 +393,14 @@ export const updateBlogAction = async (blogData: any) => {
     throw new Error(errorMessage);
   }
 };
+
+export async function deleteBlog(id: number) {
+  const response = await fetch(BASE_URL + "/api/blog/delete-blog/", {
+    method: "DELETE",
+    body: JSON.stringify({ id }),
+  });
+  revalidatePath("/");
+
+  const data = await response.json();
+  return data.response;
+}
