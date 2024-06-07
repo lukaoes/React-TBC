@@ -157,13 +157,95 @@
   display: flex;
   justify-content: space-between;
   max-width: 850px;
-  padding: 20px 0;
-  margin: 30px auto 70px auto;
+  padding: 20px;
+  margin: 5px auto 70px auto;
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
 
   .blog-socials {
     display: flex;
     gap: 20px;
+  }
+}
+
+.single-blog-page-buttons {
+  display: flex;
+  max-width: 850px;
+  margin: 0 auto;
+  justify-content: space-between;
+  padding: 0 20px;
+  margin-top: 30px;
+}
+
+.blog-edit-modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  width: 85%;
+  max-height: 85%;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  background-color: #ebe9df;
+  z-index: 30;
+  overflow: auto;
+  padding: 20px;
+
+  .blog-edit-modal-content {
+    max-height: 85%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .blog-edit-modal-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 40px;
+      flex-wrap: wrap;
+      color: #fff;
+
+      button {
+        padding: 4px 10px;
+        border-radius: 10px;
+      }
+
+      button:first-child {
+        background-color: #c74f2d;
+      }
+
+      button:last-child {
+        background-color: #669a3e;
+      }
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    form {
+      width: 100%;
+
+      label {
+        margin-bottom: 4px;
+      }
+
+      input,
+      select,
+      textarea {
+        margin-bottom: 15px;
+        border-radius: 5px;
+        background-color: #fcf9f4;
+        padding: 4px 10px;
+      }
+    }
+
+    div {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
   }
 }
