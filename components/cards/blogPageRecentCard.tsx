@@ -1,13 +1,18 @@
+// BlogPageRecentCard.tsx
 import Image from "next/image";
-import blogImage from "../../public/assets/images/secondHeader/blog.webp";
+import { Blog } from "../../types";
 
-const BlogPageRecentCard = () => {
+interface BlogPageRecentCardProps {
+  blog: Blog;
+}
+
+const BlogPageRecentCard = ({ blog }: BlogPageRecentCardProps) => {
   return (
     <div className="blog-page-recent-card">
-      <Image src={blogImage} alt="blogimage" width={200} height={200} />
+      <Image src={blog.main_photo} alt={blog.title} width={200} height={200} />
       <div>
-        <span>11-20-2024</span>
-        <h3>როგორ გადავკვეთოთ მდინარე ლაშქრობის დროს და არ წაგვიღოს წყალმა</h3>
+        <span>{blog.created_at.slice(0, 10)}</span>
+        <h3>{blog.title}</h3>
       </div>
     </div>
   );

@@ -1,11 +1,66 @@
+"use client";
+import { useState, useEffect } from "react";
 import BlogPageRecentCard from "../cards/blogPageRecentCard";
+import { BlogsDisplay } from "../../types";
 
-const BlogFilter = () => {
+interface BlogFilterProps {
+  displayBlogs: BlogsDisplay;
+  setFilteredBlogs: (blogs: BlogsDisplay) => void;
+}
+
+const BlogFilter = ({ displayBlogs, setFilteredBlogs }: BlogFilterProps) => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("ყველა");
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleCategorySelect = (category: string) => {
+    setSelectedCategory(category);
+  };
+
+  useEffect(() => {
+    const filteredBlogs = displayBlogs.filter((blog) => {
+      const matchesCategory =
+        selectedCategory === "ყველა" || blog.category === selectedCategory;
+      const matchesSearch = blog.title
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
+      return matchesCategory && matchesSearch;
+    });
+
+    setFilteredBlogs(filteredBlogs);
+  }, [searchQuery, selectedCategory, displayBlogs, setFilteredBlogs]);
+
+  const getCategoryCount = (category: string) => {
+    return category === "ყველა"
+      ? displayBlogs.length
+      : displayBlogs.filter((blog) => blog.category === category).length;
+  };
+
+  const categories = [
+    "ყველა",
+    "ლაშქრობა",
+    "პიკნიკი",
+    "აღჭურვილობა",
+    "თევზაობა",
+    "უსაფრთხოება",
+    "ცოცვა",
+    "ველოსპორტი",
+  ];
+
   return (
     <div className="blog-filter">
       <div className="blog-filter-search">
         <h2>ძებნა</h2>
-        <input type="text" name="search" placeholder="ძებნა..." />
+        <input
+          type="text"
+          name="search"
+          placeholder="ძებნა..."
+          value={searchQuery}
+          onChange={handleSearchChange}
+        />
         <svg
           width="20"
           height="20"
@@ -32,224 +87,53 @@ const BlogFilter = () => {
       <div>
         <h2>კატეგორია</h2>
         <ul>
-          <li>
-            <div>
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clip-path="url(#clip0_45_18679)">
-                  <path
-                    d="M9.395 2.84912L8.8129 3.50763L13.933 8.03367H0.5V8.91258H13.933L8.8129 13.4386L9.395 14.0971L15.5 8.7005V8.24575L9.395 2.84912Z"
-                    fill="black"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_45_18679">
-                    <rect
-                      width="15"
-                      height="15"
-                      fill="white"
-                      transform="translate(0.5 0.973145)"
+          {categories.map((category) => (
+            <li
+              key={category}
+              onClick={() => handleCategorySelect(category)}
+              style={{
+                cursor: "pointer",
+                fontWeight: selectedCategory === category ? "bold" : "normal",
+              }}
+            >
+              <div>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clipPath="url(#clip0_45_18679)">
+                    <path
+                      d="M9.395 2.84912L8.8129 3.50763L13.933 8.03367H0.5V8.91258H13.933L8.8129 13.4386L9.395 14.0971L15.5 8.7005V8.24575L9.395 2.84912Z"
+                      fill="black"
                     />
-                  </clipPath>
-                </defs>
-              </svg>
-              ლაშქრობა
-            </div>
-            <span>(0)</span>
-          </li>
-          <li>
-            <div>
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clip-path="url(#clip0_45_18679)">
-                  <path
-                    d="M9.395 2.84912L8.8129 3.50763L13.933 8.03367H0.5V8.91258H13.933L8.8129 13.4386L9.395 14.0971L15.5 8.7005V8.24575L9.395 2.84912Z"
-                    fill="black"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_45_18679">
-                    <rect
-                      width="15"
-                      height="15"
-                      fill="white"
-                      transform="translate(0.5 0.973145)"
-                    />
-                  </clipPath>
-                </defs>
-              </svg>
-              პიკნიკი
-            </div>
-            <span>(0)</span>
-          </li>
-          <li>
-            <div>
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clip-path="url(#clip0_45_18679)">
-                  <path
-                    d="M9.395 2.84912L8.8129 3.50763L13.933 8.03367H0.5V8.91258H13.933L8.8129 13.4386L9.395 14.0971L15.5 8.7005V8.24575L9.395 2.84912Z"
-                    fill="black"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_45_18679">
-                    <rect
-                      width="15"
-                      height="15"
-                      fill="white"
-                      transform="translate(0.5 0.973145)"
-                    />
-                  </clipPath>
-                </defs>
-              </svg>
-              აღჭურვილობა
-            </div>
-            <span>(0)</span>
-          </li>
-          <li>
-            <div>
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clip-path="url(#clip0_45_18679)">
-                  <path
-                    d="M9.395 2.84912L8.8129 3.50763L13.933 8.03367H0.5V8.91258H13.933L8.8129 13.4386L9.395 14.0971L15.5 8.7005V8.24575L9.395 2.84912Z"
-                    fill="black"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_45_18679">
-                    <rect
-                      width="15"
-                      height="15"
-                      fill="white"
-                      transform="translate(0.5 0.973145)"
-                    />
-                  </clipPath>
-                </defs>
-              </svg>
-              თევზაობა
-            </div>
-            <span>(0)</span>
-          </li>
-          <li>
-            <div>
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clip-path="url(#clip0_45_18679)">
-                  <path
-                    d="M9.395 2.84912L8.8129 3.50763L13.933 8.03367H0.5V8.91258H13.933L8.8129 13.4386L9.395 14.0971L15.5 8.7005V8.24575L9.395 2.84912Z"
-                    fill="black"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_45_18679">
-                    <rect
-                      width="15"
-                      height="15"
-                      fill="white"
-                      transform="translate(0.5 0.973145)"
-                    />
-                  </clipPath>
-                </defs>
-              </svg>
-              უსაფრთხოება
-            </div>
-            <span>(0)</span>
-          </li>
-          <li>
-            <div>
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clip-path="url(#clip0_45_18679)">
-                  <path
-                    d="M9.395 2.84912L8.8129 3.50763L13.933 8.03367H0.5V8.91258H13.933L8.8129 13.4386L9.395 14.0971L15.5 8.7005V8.24575L9.395 2.84912Z"
-                    fill="black"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_45_18679">
-                    <rect
-                      width="15"
-                      height="15"
-                      fill="white"
-                      transform="translate(0.5 0.973145)"
-                    />
-                  </clipPath>
-                </defs>
-              </svg>
-              ცოცვა
-            </div>
-            <span>(0)</span>
-          </li>
-          <li>
-            <div>
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <g clip-path="url(#clip0_45_18679)">
-                  <path
-                    d="M9.395 2.84912L8.8129 3.50763L13.933 8.03367H0.5V8.91258H13.933L8.8129 13.4386L9.395 14.0971L15.5 8.7005V8.24575L9.395 2.84912Z"
-                    fill="black"
-                  />
-                </g>
-                <defs>
-                  <clipPath id="clip0_45_18679">
-                    <rect
-                      width="15"
-                      height="15"
-                      fill="white"
-                      transform="translate(0.5 0.973145)"
-                    />
-                  </clipPath>
-                </defs>
-              </svg>
-              ველოსპორტი
-            </div>
-            <span>(0)</span>
-          </li>
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_45_18679">
+                      <rect
+                        width="15"
+                        height="15"
+                        fill="white"
+                        transform="translate(0.5 0.973145)"
+                      />
+                    </clipPath>
+                  </defs>
+                </svg>
+                {category}
+              </div>
+              <span>({getCategoryCount(category)})</span>
+            </li>
+          ))}
         </ul>
       </div>
       <div>
         <h2>ბოლო პოსტები</h2>
         <div className="blog-filter-recent-posts">
-          <BlogPageRecentCard />
-          <BlogPageRecentCard />
-          <BlogPageRecentCard />
+          {displayBlogs.slice(0, 3).map((blog, index) => (
+            <BlogPageRecentCard key={index} blog={blog} />
+          ))}
         </div>
       </div>
       <div>

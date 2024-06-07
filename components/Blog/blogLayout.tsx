@@ -1,3 +1,5 @@
+"use client";
+import { useState } from "react";
 import { BlogsDisplay } from "../../types";
 import BlogFilter from "./blogFilter";
 import BlogPostSection from "./blogPostSection";
@@ -8,12 +10,18 @@ interface IBlog {
 }
 
 const BlogLayout = ({ displayBlogs }: IBlog) => {
+  const [filteredBlogs, setFilteredBlogs] =
+    useState<BlogsDisplay>(displayBlogs);
+
   return (
     <div className="blog-layout">
       <BlogTopSection />
       <div className="blog-main-section">
-        <BlogPostSection displayBlogs={displayBlogs} />
-        <BlogFilter />
+        <BlogPostSection displayBlogs={filteredBlogs} />
+        <BlogFilter
+          displayBlogs={displayBlogs}
+          setFilteredBlogs={setFilteredBlogs}
+        />
       </div>
     </div>
   );
