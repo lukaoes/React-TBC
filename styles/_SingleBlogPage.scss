@@ -112,6 +112,18 @@
   margin-top: 40px;
   padding: 0 20px;
 
+  ol {
+    li {
+      font-weight: 600;
+      padding-left: 5px;
+      margin: 10px 0;
+
+      &::before {
+        content: "- ";
+      }
+    }
+  }
+
   a {
     text-decoration: underline;
   }
