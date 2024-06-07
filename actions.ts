@@ -355,3 +355,23 @@ export async function getBlogDisplay() {
 
   return products;
 }
+
+export async function addBlogPost(formData: any) {
+  try {
+    const response = await fetch(BASE_URL + "/api/blog/add-blog", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData),
+    });
+
+    if (response.ok) {
+      revalidatePath("/blog");
+      return await response.json();
+    } else {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    throw new Error("Submission failed");
+  }
+}
