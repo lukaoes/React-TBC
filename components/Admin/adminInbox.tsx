@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { getContact } from "../../actions";
+import { deleteContact, getContact } from "../../actions";
 import { Contact } from "../../types";
 
 const AdminInbox = () => {
@@ -24,6 +24,13 @@ const AdminInbox = () => {
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedMessage("");
+  };
+
+  const handleDelete = async (id: number) => {
+    await deleteContact(id);
+    setContacts((prevContacts) =>
+      prevContacts.filter((contact) => contact.id !== id)
+    );
   };
 
   return (
@@ -62,7 +69,7 @@ const AdminInbox = () => {
               </button>
             </div>
             <div className="cell" data-title="წაშლა">
-              DEL
+              <button onClick={() => handleDelete(item.id)}>DEL</button>
             </div>
           </div>
         ))}

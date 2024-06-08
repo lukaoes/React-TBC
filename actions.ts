@@ -446,3 +446,10 @@ export async function getContact() {
 
   return contact;
 }
+
+export async function deleteContact(id: number) {
+  await fetch(`${BASE_URL}/api/contact/delete-message/${id}`, {
+    method: "DELETE",
+  });
+  revalidatePath("/admin");
+}
