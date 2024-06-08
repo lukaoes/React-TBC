@@ -25,7 +25,7 @@ const AdminNav = () => {
       <Link
         href="/admin/products"
         className={
-          path === "/admin/products" ? "active bg-[#27ae60] font-bold" : ""
+          path === "/admin/products" ? "active bg-[#2980b9] font-bold" : ""
         }
       >
         პროდუქტები
@@ -33,7 +33,7 @@ const AdminNav = () => {
       <Link
         href="/admin/blogs"
         className={
-          path === "/admin/products" ? "active bg-[#27ae60] font-bold" : ""
+          path === "/admin/blogs" ? "active bg-[#2980b9] font-bold" : ""
         }
       >
         ბლოგები
@@ -41,7 +41,7 @@ const AdminNav = () => {
       <Link
         href="/admin/users"
         className={
-          path === "/admin/products" ? "active bg-[#27ae60] font-bold" : ""
+          path === "/admin/users" ? "active bg-[#2980b9] font-bold" : ""
         }
       >
         მომხმარებლები
