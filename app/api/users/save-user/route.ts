@@ -14,7 +14,7 @@ export async function POST(request: Request) {
     if (existingUser && existingUser.rows.length > 0) {
       return NextResponse.json(
         { error: "sub already exists" },
-        { status: 400 }
+        { status: 200 }
       );
     } else {
       await sql`
