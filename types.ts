@@ -56,3 +56,13 @@ export interface Blog {
 }
 
 export type BlogsDisplay = Blog[];
+
+export interface Comments {
+  id: number;
+  user_id: string;
+  blog_id: string;
+  comment: string;
+  main_photo: string;
+  rating: number;
+  created_at: string;
+}
