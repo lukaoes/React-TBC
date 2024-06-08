@@ -14,19 +14,37 @@ const AdminNav = () => {
   };
 
   return (
-    <div className="flex justify-center">
+    <div className="admin-navigation">
       <Link
         href="/admin"
         className={path === "/admin" ? "active bg-[#2980b9] font-bold" : ""}
         onClick={handleUsersClick}
       >
-        Users
+        შეტყობინებები
       </Link>
       <Link
-        href="/admin/add"
-        className={path === "/admin/add" ? "active bg-[#27ae60] font-bold" : ""}
+        href="/admin/products"
+        className={
+          path === "/admin/products" ? "active bg-[#27ae60] font-bold" : ""
+        }
       >
-        Add
+        პროდუქტები
+      </Link>
+      <Link
+        href="/admin/blogs"
+        className={
+          path === "/admin/products" ? "active bg-[#27ae60] font-bold" : ""
+        }
+      >
+        ბლოგები
+      </Link>
+      <Link
+        href="/admin/users"
+        className={
+          path === "/admin/products" ? "active bg-[#27ae60] font-bold" : ""
+        }
+      >
+        მომხმარებლები
       </Link>
     </div>
   );

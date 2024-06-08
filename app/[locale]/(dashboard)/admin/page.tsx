@@ -1,7 +1,11 @@
+import AdminInbox from "../../../../components/Admin/adminInbox";
+
 const Admin = () => {
   return (
     <div>
-      <div>1</div>
+      <div>
+        <AdminInbox />
+      </div>
     </div>
   );
 };

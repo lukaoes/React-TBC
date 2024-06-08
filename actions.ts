@@ -435,3 +435,14 @@ export async function getBlogComments(id: string) {
 
   return comments;
 }
+
+export async function getContact() {
+  const response = await fetch(BASE_URL + "/api/contact/get-messages", {
+    cache: "no-store",
+  });
+  const data = await response.json();
+
+  const contact = data.contacts.rows;
+
+  return contact;
+}

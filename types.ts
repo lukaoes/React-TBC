@@ -66,3 +66,12 @@ export interface Comments {
   rating: number;
   created_at: string;
 }
+
+export interface Contact {
+  id: number;
+  name: string;
+  email: string;
+  number: string;
+  created_at: string;
+  message: string;
+}
