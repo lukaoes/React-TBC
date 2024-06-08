@@ -424,3 +424,14 @@ export async function addBlogComment(formData: any) {
     throw new Error("Submission failed");
   }
 }
+
+export async function getBlogComments(id: string) {
+  const response = await fetch(`${BASE_URL}/api/blog/get-blog-comments/${id}`, {
+    cache: "no-store",
+  });
+  const data = await response.json();
+
+  const comments = data.comments.rows;
+
+  return comments;
+}
