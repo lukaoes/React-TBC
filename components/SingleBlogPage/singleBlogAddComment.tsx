@@ -50,7 +50,6 @@ const SingleBlogAddComment = ({ blogPost }: IBlog) => {
 
     try {
       await addBlogComment(formData);
-      // Reset form fields after successful submission
       setComment("");
       setBlobUrl("");
       setPhotoUrl("");
@@ -59,6 +58,17 @@ const SingleBlogAddComment = ({ blogPost }: IBlog) => {
       console.error("Error submitting comment:", error);
     }
   };
+
+  if (!user || !user.sub) {
+    return (
+      <div className="single-blog-add-comment">
+        კომენტარის დასატოვებლად გაიარეთ{" "}
+        <a href="/api/auth/login" className="underline">
+          ავტორიზაცია
+        </a>
+      </div>
+    );
+  }
 
   return (
     <div className="single-blog-add-comment">
