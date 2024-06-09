@@ -34,6 +34,23 @@ const CartTotal: FC<CartTotalProps> = ({
       });
   };
 
+  const fetchPayments = async (email: string) => {
+    try {
+      const response = await fetch(`/api/stripe/payments?email=${email}`);
+      const data = await response.json();
+      if (!response.ok) {
+        console.error("Error fetching payments:", data.error);
+        return;
+      }
+      console.log(data.payments);
+    } catch (error) {
+      console.error("Error fetching payments", error);
+    }
+  };
+
+  const email = "luka.ficxelauri@gmail.com";
+  fetchPayments(email);
+
   return (
     <div className="cart-total-wrapper">
       <div className="cart-total-header">
