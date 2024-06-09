@@ -4,15 +4,31 @@ interface CartTotalProps {
   totalPrice: number;
   selectedNumber: number;
   localFilteredProducts: any[];
+  email: string; // New prop for email
 }
 
-const CartTotal: FC<CartTotalProps> = ({
+const CartTotal: FC<CartTotalProps> = async ({
   totalPrice,
   selectedNumber,
   localFilteredProducts,
+  email,
 }) => {
   const deliveryPrice = 12;
   const totalWithDelivery = totalPrice + deliveryPrice;
+
+  // const fetchPayments = async (email: string) => {
+  //   try {
+  //     const response = await fetch(`/api/stripe/payments?email=${email}`);
+  //     const data = await response.json();
+  //     if (!response.ok) {
+  //       console.error("Error fetching payments:", data.error);
+  //       return;
+  //     }
+  //     console.log(data.payments, "payments");
+  //   } catch (error) {
+  //     console.error("Error fetching payments", error);
+  //   }
+  // };
 
   const checkout = async () => {
     await fetch("http://localhost:3000/api/stripe/checkout", {
@@ -20,36 +36,22 @@ const CartTotal: FC<CartTotalProps> = ({
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ products: localFilteredProducts }),
+      body: JSON.stringify({ products: localFilteredProducts, email: email }),
     })
+      .then((response) => response.json())
       .then((response) => {
-        return response.json();
-      })
-      .then((response) => {
-        console.log(response);
         if (response.url) {
           window.location.href = response.url;
-          // console.log(response.url)
         }
+      })
+      .catch((error) => {
+        console.error("Error during checkout:", error);
       });
   };
 
-  const fetchPayments = async (email: string) => {
-    try {
-      const response = await fetch(`/api/stripe/payments?email=${email}`);
-      const data = await response.json();
-      if (!response.ok) {
-        console.error("Error fetching payments:", data.error);
-        return;
-      }
-      console.log(data.payments);
-    } catch (error) {
-      console.error("Error fetching payments", error);
-    }
-  };
-
-  const email = "luka.ficxelauri@gmail.com";
-  fetchPayments(email);
+  // if (email) {
+  //   fetchPayments(email);
+  // }
 
   return (
     <div className="cart-total-wrapper">
@@ -88,8 +90,10 @@ const CartTotal: FC<CartTotalProps> = ({
         </svg>{" "}
         გადახდის დაცული მეთოდები
       </span>
-      <div className="cart-total-checkout" onClick={checkout}>
-        <button className="cart-total-primary-hover">შეკვეთის გაფორმება</button>
+      <div className="cart-total-checkout">
+        <button className="cart-total-primary-hover" onClick={checkout}>
+          შეკვეთის გაფორმება
+        </button>
       </div>
     </div>
   );

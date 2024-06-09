@@ -32,12 +32,13 @@ const CartProducts = ({
   const [localFilteredProducts, setLocalFilteredProducts] =
     useState(filteredProducts);
   const [id, setId] = useState("");
+  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState<Record<string, boolean>>({});
-  console.log(filteredProducts);
 
   useEffect(() => {
-    if (user && user.sub) {
+    if (user && user.sub && user.email) {
       setId(user.sub);
+      setEmail(user.email);
     }
   }, [user]);
 
@@ -197,6 +198,7 @@ const CartProducts = ({
         ))}
       </div>
       <CartTotal
+        email={email}
         totalPrice={calculateTotalPrice()}
         selectedNumber={calculateTotalItems()}
         localFilteredProducts={localFilteredProducts}

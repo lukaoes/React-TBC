@@ -10,7 +10,7 @@ const getActiveProducts = async () => {
 };
 
 export const POST = async (request: any) => {
-  const { products } = await request.json();
+  const { products, email } = await request.json();
   const data: any[] = products;
 
   let activeProducts = await getActiveProducts();
@@ -19,10 +19,11 @@ export const POST = async (request: any) => {
     for (const product of data) {
       const stripeProduct = activeProducts?.find(
         (stripeProduct: any) =>
-          stripeProduct?.name?.toLowerCase() == product?.title_en?.toLowerCase()
+          stripeProduct?.name?.toLowerCase() ===
+          product?.title_en?.toLowerCase()
       );
 
-      if (stripeProduct == undefined) {
+      if (!stripeProduct) {
         const prod = await stripe.products.create({
           name: product.title_en || product.title_ge,
           default_price_data: {
@@ -34,7 +35,7 @@ export const POST = async (request: any) => {
       }
     }
   } catch (error) {
-    console.error("error in creating a new product", error);
+    console.error("Error in creating a new product", error);
     throw error;
   }
 
@@ -44,7 +45,7 @@ export const POST = async (request: any) => {
   for (const product of data) {
     const stripeProduct = activeProducts?.find(
       (prod: any) =>
-        prod?.name?.toLowerCase() == product?.title_en?.toLowerCase()
+        prod?.name?.toLowerCase() === product?.title_en?.toLowerCase()
     );
 
     if (stripeProduct) {
@@ -58,6 +59,7 @@ export const POST = async (request: any) => {
   const session = await stripe.checkout.sessions.create({
     line_items: stripeItems,
     mode: "payment",
+    customer_email: email,
     success_url: "http://localhost:3000/products",
     cancel_url: "http://localhost:3000/profile/address",
   });
