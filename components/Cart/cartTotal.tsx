@@ -1,3 +1,4 @@
+"use client";
 import { FC } from "react";
 
 interface CartTotalProps {
@@ -7,7 +8,7 @@ interface CartTotalProps {
   email: string; // New prop for email
 }
 
-const CartTotal: FC<CartTotalProps> = async ({
+const CartTotal: FC<CartTotalProps> = ({
   totalPrice,
   selectedNumber,
   localFilteredProducts,
@@ -15,20 +16,6 @@ const CartTotal: FC<CartTotalProps> = async ({
 }) => {
   const deliveryPrice = 12;
   const totalWithDelivery = totalPrice + deliveryPrice;
-
-  // const fetchPayments = async (email: string) => {
-  //   try {
-  //     const response = await fetch(`/api/stripe/payments?email=${email}`);
-  //     const data = await response.json();
-  //     if (!response.ok) {
-  //       console.error("Error fetching payments:", data.error);
-  //       return;
-  //     }
-  //     console.log(data.payments, "payments");
-  //   } catch (error) {
-  //     console.error("Error fetching payments", error);
-  //   }
-  // };
 
   const checkout = async () => {
     await fetch("http://localhost:3000/api/stripe/checkout", {
@@ -48,10 +35,6 @@ const CartTotal: FC<CartTotalProps> = async ({
         console.error("Error during checkout:", error);
       });
   };
-
-  // if (email) {
-  //   fetchPayments(email);
-  // }
 
   return (
     <div className="cart-total-wrapper">

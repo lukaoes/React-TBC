@@ -484,3 +484,20 @@ export const updateUserInfo = async (updatedData: any) => {
     throw error;
   }
 };
+
+export const fetchPayments = async (email: string): Promise<any[]> => {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/api/stripe/payments?email=${email}`
+    );
+    const data = await response.json();
+    if (!response.ok) {
+      console.error("Error fetching payments:", data.error);
+      return [];
+    }
+    return data.payments || [];
+  } catch (error) {
+    console.error("Error fetching payments", error);
+    return [];
+  }
+};
