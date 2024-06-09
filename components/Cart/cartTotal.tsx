@@ -15,7 +15,7 @@ const CartTotal: FC<CartTotalProps> = ({
   const totalWithDelivery = totalPrice + deliveryPrice;
 
   const checkout = async () => {
-    await fetch("http://localhost:3000/api/checkout", {
+    await fetch("http://localhost:3000/api/stripe/checkout", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
