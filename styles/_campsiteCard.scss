@@ -1,0 +1,67 @@
+.campsite-card-layout {
+  max-width: 100%;
+  .campsite-card-image {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    margin-bottom: 2px;
+    border-radius: 20px;
+  }
+
+  .campsite-card-info {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .campsite-card-rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+
+    span {
+      font-weight: 300;
+    }
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 600;
+    overflow: hidden;
+  }
+
+  .campsite-card-welcome {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .campsite-card-location {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .campsite-card-price {
+    span {
+      font-weight: 600;
+    }
+  }
+}
+
+.campsite-image-container {
+  position: relative;
+
+  .campsite-card-pitch {
+    position: absolute;
+    background-color: #fcf9f4;
+    top: 10px;
+    left: 10px;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 14px;
+  }
+}

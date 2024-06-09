@@ -1,0 +1,74 @@
+.campsites-container {
+  max-width: 1200px;
+  padding: 0 20px;
+  margin: 40px auto;
+}
+
+.campsite-ads-container {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+}
+
+.campsite-ad-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 600px) {
+  .campsite-ads-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .campsite-ads-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.campsite-count {
+  max-width: 1200px;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.campsite-search-filter {
+  width: 100%;
+  padding: 20px 0;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+
+  .campsite-search-filter-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
+  .campsite-search-filter-search {
+    max-width: 500px;
+    width: 100%;
+    padding: 7px 10px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: #fcf9f4;
+  }
+
+  .campsite-search-filter-filter {
+    padding: 7px 10px;
+    background-color: #fcf9f4;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+}
