@@ -39,6 +39,7 @@ const CartCard = () => {
     };
 
     fetchProductsFromLocalStorage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleQuantityChange = (index: number, newCount: number) => {
@@ -167,6 +168,7 @@ const CartCard = () => {
           <CartTotal
             totalPrice={totalPrice}
             selectedNumber={totalSelectedProducts}
+            localFilteredProducts={[]}
           />
         ) : (
           <h1>იტვირთება...(ან ცარიელია)</h1>

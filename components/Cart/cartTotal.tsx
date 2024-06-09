@@ -3,11 +3,36 @@ import { FC } from "react";
 interface CartTotalProps {
   totalPrice: number;
   selectedNumber: number;
+  localFilteredProducts: any[];
 }
 
-const CartTotal: FC<CartTotalProps> = ({ totalPrice, selectedNumber }) => {
+const CartTotal: FC<CartTotalProps> = ({
+  totalPrice,
+  selectedNumber,
+  localFilteredProducts,
+}) => {
   const deliveryPrice = 12;
   const totalWithDelivery = totalPrice + deliveryPrice;
+
+  const checkout = async () => {
+    await fetch("http://localhost:3000/api/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ products: localFilteredProducts }),
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((response) => {
+        console.log(response);
+        if (response.url) {
+          window.location.href = response.url;
+          // console.log(response.url)
+        }
+      });
+  };
 
   return (
     <div className="cart-total-wrapper">
@@ -46,10 +71,8 @@ const CartTotal: FC<CartTotalProps> = ({ totalPrice, selectedNumber }) => {
         </svg>{" "}
         გადახდის დაცული მეთოდები
       </span>
-      <div className="cart-total-checkout">
-        <a className="cart-total-primary-hover" href="/checkout/">
-          შეკვეთის გაფორმება
-        </a>
+      <div className="cart-total-checkout" onClick={checkout}>
+        <button className="cart-total-primary-hover">შეკვეთის გაფორმება</button>
       </div>
     </div>
   );

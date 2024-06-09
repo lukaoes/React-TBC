@@ -33,6 +33,7 @@ const CartProducts = ({
     useState(filteredProducts);
   const [id, setId] = useState("");
   const [loading, setLoading] = useState<Record<string, boolean>>({});
+  console.log(filteredProducts);
 
   useEffect(() => {
     if (user && user.sub) {
@@ -198,6 +199,7 @@ const CartProducts = ({
       <CartTotal
         totalPrice={calculateTotalPrice()}
         selectedNumber={calculateTotalItems()}
+        localFilteredProducts={localFilteredProducts}
       />
     </div>
   );
