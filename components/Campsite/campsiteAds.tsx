@@ -3,7 +3,7 @@ import { CampsitesDisplay } from "../../types";
 import CampsiteCard from "../cards/campsiteCard";
 
 interface ICamps {
-  displayCamps: CampsitesDisplay;
+  displayCamps: CampsitesDisplay[];
 }
 
 const CampsiteAds: FC<ICamps> = ({ displayCamps }) => {

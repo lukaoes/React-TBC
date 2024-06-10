@@ -1,4 +1,19 @@
-const CampsiteSearchFilter = () => {
+"use client";
+import { FC, ChangeEvent } from "react";
+
+interface CampsiteSearchFilterProps {
+  onSearch: (term: string) => void;
+  onFilter: () => void;
+}
+
+const CampsiteSearchFilter: FC<CampsiteSearchFilterProps> = ({
+  onSearch,
+  onFilter,
+}) => {
+  const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
+    onSearch(e.target.value);
+  };
+
   return (
     <>
       <div className="campsite-search-filter">
@@ -8,8 +23,9 @@ const CampsiteSearchFilter = () => {
             name="search"
             placeholder="ძებნა..."
             className="campsite-search-filter-search"
+            onChange={handleSearchChange}
           />
-          <div className="campsite-search-filter-filter">
+          <div className="campsite-search-filter-filter" onClick={onFilter}>
             <svg
               width="21"
               height="20"
@@ -34,7 +50,6 @@ const CampsiteSearchFilter = () => {
           </div>
         </div>
       </div>
-      <div className="campsite-count">14 ადგილი</div>
     </>
   );
 };
