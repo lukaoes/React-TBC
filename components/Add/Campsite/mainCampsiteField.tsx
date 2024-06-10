@@ -6,6 +6,7 @@ import { addCampsite } from "../../../actions";
 import barepitch from "../../../public/assets/images/barepitch.svg";
 import nicepitch from "../../../public/assets/images/nicepitch.svg";
 import Image from "next/image";
+
 const amenitiesList = [
   "ცხოველები დაშვებულია",
   "სასმელი წყალი",
@@ -56,6 +57,7 @@ interface FormData {
   descriptionen: string;
   price: string;
   negotiable: boolean;
+  map: string;
   [key: string]: any;
 }
 const MainCampsiteField = () => {
@@ -79,6 +81,7 @@ const MainCampsiteField = () => {
     phone: "",
     price: "0",
     negotiable: false,
+    map: "",
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
 
@@ -154,6 +157,7 @@ const MainCampsiteField = () => {
       "location",
       "size",
       "name",
+      "main_photo",
       "phone",
       "first_name",
       "price",
@@ -175,6 +179,29 @@ const MainCampsiteField = () => {
     if (validateForm()) {
       try {
         await addCampsite(formData);
+        if (typeof window !== "undefined") {
+          window.location.reload();
+        }
+        setFormData({
+          user_id: "",
+          space_type: "",
+          accepted_guests: [],
+          capacity: "1 ადამიანი",
+          location: "თბილისი",
+          main_photo: "",
+          photo_urls: [],
+          size: 0,
+          name: "",
+          amenities: [],
+          activities: [],
+          description: "",
+          descriptionen: "",
+          first_name: "",
+          phone: "",
+          price: "0",
+          negotiable: false,
+          map: "",
+        });
       } catch (error) {
         console.error("Error submitting form:", error);
       }
@@ -367,16 +394,16 @@ const MainCampsiteField = () => {
               <option value="" disabled>
                 აირჩიეთ რაოდენობა
               </option>
-              <option value="1 ადამიანი">1 ადამიანი</option>
-              <option value="2 ადამიანი">2 ადამიანი</option>
-              <option value="3 ადამიანი">3 ადამიანი</option>
-              <option value="4 ადამიანი">4 ადამიანი</option>
-              <option value="5 ადამიანი">5 ადამიანი</option>
-              <option value="5-10 ადამიანი">5-10 ადამიანი</option>
-              <option value="10-15 ადამიანი">5-15 ადამიანი</option>
-              <option value="15-20 ადამიანი">15-20 ადამიანი</option>
-              <option value="20-30 ადამიანი">20-30 ადამიანი</option>
-              <option value="30+ ადამიანი">30+ ადამიანი</option>
+              <option value="1">1 ადამიანი</option>
+              <option value="2">2 ადამიანი</option>
+              <option value="3">3 ადამიანი</option>
+              <option value="4">4 ადამიანი</option>
+              <option value="5">5 ადამიანი</option>
+              <option value="5-10">5-10 ადამიანი</option>
+              <option value="10-15">5-15 ადამიანი</option>
+              <option value="15-20">15-20 ადამიანი</option>
+              <option value="20-30">20-30 ადამიანი</option>
+              <option value="30+">30+ ადამიანი</option>
             </select>
           </div>
         </div>
@@ -401,7 +428,7 @@ const MainCampsiteField = () => {
             placeholder="თქვენი სახელი"
             onChange={handleInputChange}
           />
-          {errors.first_name && <p>{errors.first_name}</p>}
+          {errors.name && <p>{errors.name}</p>}
           <label htmlFor="phone">ტელეფონის ნომერი*</label>
           <input
             type="number"
@@ -450,6 +477,7 @@ const MainCampsiteField = () => {
             id="img-url"
             onChange={handleInputChange}
           />
+          {errors.main_photo && <p>{errors.main_photo}</p>}
         </div>
       </div>
       <div className="add-campsite-detail-container">
@@ -507,6 +535,14 @@ const MainCampsiteField = () => {
             name="name"
             onChange={handleInputChange}
             placeholder="ჩაწერეთ თქვნი სივრცის სახელი"
+          />
+          <label htmlFor="map">რუკის Iframe ლინკი</label>
+          <input
+            type="text"
+            name="map"
+            id="map"
+            placeholder="რუკის iframe ლინკი"
+            onChange={handleInputChange}
           />
         </div>
       </div>

@@ -153,6 +153,7 @@ export async function addCampsite(formData: any) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(formData),
     });
+    revalidatePath("/add/campsite");
 
     if (response.ok) {
       return await response.json();

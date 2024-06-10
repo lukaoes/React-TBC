@@ -21,17 +21,18 @@ export async function POST(request: Request) {
       phone,
       price,
       negotiable,
+      map,
     } = await request.json();
 
     await sql`
     INSERT INTO user_campsites (
       user_id, space_type, accepted_guests, capacity, location, main_photo,
       photo_urls, size, name, amenities, activities, description, descriptionen,
-      first_name, phone, price, negotiable
+      first_name, phone, price, negotiable, map
     ) VALUES (
       ${user_id}, ${space_type}, ${accepted_guests}, ${capacity}, ${location}, ${main_photo},
       ${photo_urls}, ${size}, ${name}, ${amenities}, ${activities}, ${description}, ${descriptionen},
-      ${first_name}, ${phone}, ${price}, ${negotiable}
+      ${first_name}, ${phone}, ${price}, ${negotiable}, ${map}
     )
     `;
 
