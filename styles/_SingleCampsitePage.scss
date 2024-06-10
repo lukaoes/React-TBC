@@ -352,3 +352,20 @@
     }
   }
 }
+
+.single-camp-header-buttons {
+  display: flex;
+  margin: 15px 0;
+  gap: 50px;
+  font-size: 14px;
+
+  button:last-child {
+    color: #f32013;
+  }
+
+  button {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+  }
+}

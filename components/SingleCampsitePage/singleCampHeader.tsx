@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Campsite } from "../../types";
 import { FC, useState } from "react";
 import SingleCampEditModal from "./singleCampEditModal";
+import SingleCampRemoveModal from "./singleCampRemoveModal";
+import SingleCampEditDeleteButton from "./singleCampEditDeleteButtons";
 
 interface ICamp {
   camp: Campsite;
@@ -10,9 +12,20 @@ interface ICamp {
 
 const SingleCampHeader: FC<ICamp> = ({ camp }) => {
   const [modal, setModal] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const onClose = () => {
     setModal(false);
   };
+  const onDeleteClose = () => {
+    setModal(false);
+  };
+  const editOpen = () => {
+    setModal(true);
+  };
+  const deleteOpen = () => {
+    setIsDeleteModalOpen(true);
+  };
+
   return (
     <div className="single-camp-header">
       <div className="single-camp-header-navigation">
@@ -45,9 +58,11 @@ const SingleCampHeader: FC<ICamp> = ({ camp }) => {
         </svg>{" "}
         100% •<span>32 შეფასება</span> • <span>{camp.location}</span>
       </div>
-      <div>
-        <button onClick={() => setModal(true)}>რედაქტირება</button>
-      </div>
+      <SingleCampEditDeleteButton
+        deleteOpen={deleteOpen}
+        editOpen={editOpen}
+        camp={camp}
+      />
       <div className="single-camp-share">
         <div>
           <svg
@@ -134,6 +149,15 @@ const SingleCampHeader: FC<ICamp> = ({ camp }) => {
         </a>
       </div>
       {modal && <SingleCampEditModal onClose={onClose} camp={camp} />}
+      {isDeleteModalOpen && (
+        <>
+          <div
+            className="main-product-card-modal-container-bg"
+            onClick={() => setIsDeleteModalOpen(false)}
+          ></div>
+          <SingleCampRemoveModal camp={camp} onClose={onDeleteClose} />
+        </>
+      )}
     </div>
   );
 };

@@ -554,3 +554,14 @@ export const updateCampsiteAction = async (updatedData: any) => {
     throw error;
   }
 };
+
+export async function deleteSingleCampsite(id: number) {
+  const response = await fetch(BASE_URL + "/api/campsites/delete-campsite/", {
+    method: "DELETE",
+    body: JSON.stringify({ id }),
+  });
+  revalidatePath("/products");
+
+  const data = await response.json();
+  return data.response;
+}
