@@ -133,3 +133,88 @@
     }
   }
 }
+
+.single-camp-welcome {
+  margin: 20px 0;
+  padding: 10px;
+  display: flex;
+  gap: 20px;
+  background-color: #fcf9f4;
+  border-radius: 10px;
+  flex-wrap: wrap;
+
+  .single-camp-welcome-child {
+    padding: 0 20px;
+    border-right: 1px solid #ccc;
+
+    &:last-child {
+      border: none;
+    }
+  }
+
+  span {
+    font-size: 14px;
+  }
+
+  p {
+    font-weight: 600;
+    margin-top: 8px;
+  }
+}
+
+.single-camp-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.single-camp-host {
+  margin: 30px 0;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+
+  .single-camp-host-image {
+    display: flex;
+    align-items: center;
+  }
+
+  .single-camp-host-number {
+    span {
+      margin-bottom: 5px;
+    }
+
+    p {
+      font-size: 18px;
+      font-weight: 600;
+    }
+  }
+
+  img {
+    max-width: 70px;
+    min-width: 70px;
+    // width: 100%;
+    min-height: 70px;
+    object-fit: cover;
+    border-radius: 100%;
+    margin-right: 20px;
+  }
+
+  h2 {
+    font-size: 18px;
+
+    a {
+      font-weight: 600;
+      text-decoration: underline;
+    }
+  }
+
+  .all-ads {
+    font-size: 14px;
+  }
+
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+}
