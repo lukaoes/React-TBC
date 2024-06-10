@@ -75,3 +75,19 @@ export interface Contact {
   created_at: string;
   message: string;
 }
+
+export interface CampsitesDisplay {
+  map: any;
+  id: number;
+  space_type: string;
+  accepted_guests: string[];
+  capacity: string;
+  location: string;
+  main_photo: string;
+  size: string;
+  name: string;
+  amenities: string[];
+  activities: string[];
+  price: string;
+  negotiable: boolean;
+}

@@ -501,3 +501,17 @@ export const fetchPayments = async (email: string): Promise<any[]> => {
     return [];
   }
 };
+
+export async function getCampsitesDisplay() {
+  const response = await fetch(
+    BASE_URL + "/api/campsites/get-campsites-display",
+    {
+      cache: "no-store",
+    }
+  );
+  const data = await response.json();
+
+  const products = data.campsites.rows;
+
+  return products;
+}

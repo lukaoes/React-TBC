@@ -1,13 +1,19 @@
+import { FC } from "react";
+import { CampsitesDisplay } from "../../types";
 import CampsiteAds from "./campsiteAds";
 import CampsiteSearchFilter from "./campsiteSearchFilter";
 
-const CampsiteLayout = () => {
+interface ICamps {
+  displayCamps: CampsitesDisplay;
+}
+
+const CampsiteLayout: FC<ICamps> = ({ displayCamps }) => {
   return (
     <>
       <CampsiteSearchFilter />
       <div className="campsites-container">
         <div>
-          <CampsiteAds />
+          <CampsiteAds displayCamps={displayCamps} />
         </div>
       </div>
     </>
