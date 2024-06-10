@@ -1,5 +1,4 @@
 "use client";
-import example from "../../public/assets/images/secondHeader/addCampsite.jpg";
 import { useState } from "react";
 import Image from "next/image";
 import { FC } from "react";
@@ -14,19 +13,18 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
+import { Campsite } from "../../types";
 
-// interface SingleProdSlider {
-//   photos: string[];
-//   mainphoto: string;
-// }
-// const SingleProdImageSlider: FC<SingleProdSlider> = ({ photos, mainphoto }) => {
+interface ICamp {
+  camp: Campsite;
+}
 
-const SingleCampImages = () => {
+const SingleCampImages: FC<ICamp> = ({ camp }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
-  // const allPhotos = [mainphoto, ...photos];
+  const allPhotos = [camp.main_photo, ...camp.photo_urls];
+  console.log(allPhotos, "alsdasdasd");
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
-  const allPhotos = [example, example, example, example];
 
   return (
     <section className="single-camp-slider">

@@ -515,3 +515,17 @@ export async function getCampsitesDisplay() {
 
   return products;
 }
+
+export async function getSingleCampsite(id: string) {
+  const response = await fetch(
+    `${BASE_URL}/api/campsites/get-single-campsite/${id}`,
+    {
+      cache: "no-store",
+    }
+  );
+  const data = await response.json();
+
+  const campsite = data.campsite.rows;
+
+  return campsite;
+}

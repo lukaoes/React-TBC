@@ -91,3 +91,25 @@ export interface CampsitesDisplay {
   price: string;
   negotiable: boolean;
 }
+
+export interface Campsite {
+  id: number;
+  user_id: string;
+  space_type: "nicepitch";
+  accepted_guests: string[];
+  capacity: string;
+  location: string;
+  main_photo: string;
+  photo_urls: string[];
+  size: string;
+  name: string;
+  amenities: string[];
+  activities: string[];
+  description: string;
+  descriptionen: string;
+  first_name: string;
+  phone: string;
+  price: string;
+  negotiable: boolean;
+  map: string;
+}
