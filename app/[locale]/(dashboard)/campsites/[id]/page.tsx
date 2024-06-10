@@ -2,6 +2,7 @@ import SingleCampDescription from "../../../../../components/SingleCampsitePage/
 import SingleCampHeader from "../../../../../components/SingleCampsitePage/singleCampHeader";
 import SingleCampHost from "../../../../../components/SingleCampsitePage/singleCampHost";
 import SingleCampImages from "../../../../../components/SingleCampsitePage/singleCampImages";
+import SingleCampLocation from "../../../../../components/SingleCampsitePage/singleCampLocation";
 
 const SingleCampsitePage = ({ params }: { params: { id: string } }) => {
   const { id } = params;
@@ -11,6 +12,7 @@ const SingleCampsitePage = ({ params }: { params: { id: string } }) => {
       <SingleCampImages />
       <SingleCampHost />
       <SingleCampDescription />
+      <SingleCampLocation />
     </div>
   );
 };
