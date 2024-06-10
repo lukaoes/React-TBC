@@ -289,3 +289,66 @@
     grid-template-columns: repeat(1, 1fr);
   }
 }
+
+.single-campsite-edit-modal {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 40;
+  max-width: 500px;
+  width: 100%;
+  max-height: 80%;
+  overflow: auto;
+  background-color: #fcf9f4;
+  padding: 20px;
+
+  .camp-edit-price {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  h2 {
+    font-weight: 600;
+    font-size: 18px;
+    margin: 20px 0 5px 0;
+  }
+
+  .input-block {
+    input,
+    textarea,
+    select {
+      display: block;
+      width: 100%;
+      padding: 4px;
+    }
+  }
+
+  label {
+    margin: 4px 0 10px 0;
+  }
+
+  .single-camp-edit-buttons {
+    margin: 10px 0;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    button:first-child {
+      background-color: #c74f2d;
+    }
+
+    button:last-child {
+      background-color: #22c03d;
+    }
+
+    button {
+      padding: 4px 10px;
+      color: #fff;
+
+      border-radius: 5px;
+    }
+  }
+}

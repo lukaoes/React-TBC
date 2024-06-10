@@ -530,3 +530,27 @@ export async function getSingleCampsite(id: string) {
 
   return campsite;
 }
+
+export const updateCampsiteAction = async (updatedData: any) => {
+  try {
+    const response = await fetch(BASE_URL + "/api/campsites/edit-campsite", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedData),
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.error || "Failed to update product");
+    }
+    revalidatePath(`/`);
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error updating product:", error);
+    throw error;
+  }
+};

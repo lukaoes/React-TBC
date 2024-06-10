@@ -6,8 +6,9 @@ import { addCampsite } from "../../../actions";
 import barepitch from "../../../public/assets/images/barepitch.svg";
 import nicepitch from "../../../public/assets/images/nicepitch.svg";
 import Image from "next/image";
+import { AddCampsite } from "../../../types";
 
-const amenitiesList = [
+export const amenitiesList = [
   "ცხოველები დაშვებულია",
   "სასმელი წყალი",
   "მაყალი",
@@ -29,7 +30,7 @@ const amenitiesList = [
   "კოცონის სივრცე",
   "ბავშვების სათამაშო სივრცე",
 ];
-const activitiesList = [
+export const activitiesList = [
   "პარკები",
   "ბარი / რესტორანი",
   "მდინარე",
@@ -39,31 +40,11 @@ const activitiesList = [
   "სალაშქრო ადგილები",
   "ცურვა",
 ];
-interface FormData {
-  user_id: string;
-  space_type: string;
-  accepted_guests: string[];
-  capacity: string;
-  location: string;
-  first_name: string;
-  phone: string;
-  main_photo: string;
-  photo_urls: string[];
-  size: number;
-  name: string;
-  amenities: string[];
-  activities: string[];
-  description: string;
-  descriptionen: string;
-  price: string;
-  negotiable: boolean;
-  map: string;
-  [key: string]: any;
-}
+
 const MainCampsiteField = () => {
   const { user } = useUser();
 
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<AddCampsite>({
     user_id: "",
     space_type: "",
     accepted_guests: [],

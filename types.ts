@@ -113,3 +113,25 @@ export interface Campsite {
   negotiable: boolean;
   map: string;
 }
+
+export interface AddCampsite {
+  user_id?: string;
+  space_type: string;
+  accepted_guests: string[];
+  capacity: string;
+  location: string;
+  first_name: string;
+  phone: string;
+  main_photo: string;
+  photo_urls: string[];
+  size: number;
+  name: string;
+  amenities: string[];
+  activities: string[];
+  description: string;
+  descriptionen: string;
+  price: string;
+  negotiable: boolean;
+  map: string;
+  [key: string]: any;
+}
