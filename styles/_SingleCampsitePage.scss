@@ -218,3 +218,23 @@
     align-items: center;
   }
 }
+
+.single-camp-description {
+  h3 {
+    font-weight: 600;
+    font-size: 18px;
+    margin: 25px 0 10px 0;
+  }
+
+  ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+.single-camp-activities {
+  margin: 30px 0;
+  display: flex;
+  justify-content: space-around;
+}

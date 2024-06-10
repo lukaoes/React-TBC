@@ -1,3 +1,4 @@
+import SingleCampDescription from "../../../../../components/SingleCampsitePage/singleCampDescription";
 import SingleCampHeader from "../../../../../components/SingleCampsitePage/singleCampHeader";
 import SingleCampHost from "../../../../../components/SingleCampsitePage/singleCampHost";
 import SingleCampImages from "../../../../../components/SingleCampsitePage/singleCampImages";
@@ -9,6 +10,7 @@ const SingleCampsitePage = ({ params }: { params: { id: string } }) => {
       <SingleCampHeader />
       <SingleCampImages />
       <SingleCampHost />
+      <SingleCampDescription />
     </div>
   );
 };
