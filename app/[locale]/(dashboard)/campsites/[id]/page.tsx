@@ -4,6 +4,7 @@ import SingleCampHeader from "../../../../../components/SingleCampsitePage/singl
 import SingleCampHost from "../../../../../components/SingleCampsitePage/singleCampHost";
 import SingleCampImages from "../../../../../components/SingleCampsitePage/singleCampImages";
 import SingleCampLocation from "../../../../../components/SingleCampsitePage/singleCampLocation";
+import SingleCampReviews from "../../../../../components/SingleCampsitePage/singleCampReviews";
 
 const SingleCampsitePage = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
@@ -16,6 +17,7 @@ const SingleCampsitePage = async ({ params }: { params: { id: string } }) => {
       <SingleCampHost camp={camp} />
       <SingleCampDescription camp={camp} />
       <SingleCampLocation camp={camp} />
+      <SingleCampReviews />
     </div>
   );
 };

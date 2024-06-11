@@ -565,3 +565,40 @@ export async function deleteSingleCampsite(id: number) {
   const data = await response.json();
   return data.response;
 }
+
+export async function addCampReview(formData: any) {
+  try {
+    const response = await fetch(
+      BASE_URL + "/api/campsites/add-campsite-review",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      }
+    );
+
+    if (response.ok) {
+      revalidatePath("/campsites");
+      return await response.json();
+    } else {
+      throw new Error(`Error: ${response.statusText}`);
+    }
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    throw new Error("Submission failed");
+  }
+}
+
+export async function getCampReviews(id: string) {
+  const response = await fetch(
+    `${BASE_URL}/api/campsites/get-campsite-reviews/${id}`,
+    {
+      cache: "no-store",
+    }
+  );
+  const data = await response.json();
+
+  const reviews = data.reviews.rows;
+
+  return reviews;
+}
