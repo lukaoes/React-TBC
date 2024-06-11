@@ -1,14 +1,16 @@
 import Image from "next/image";
-import example from "../../public/assets/images/secondHeader/addCampsite.jpg";
 import Link from "next/link";
 import { Campsite } from "../../types";
 import { FC } from "react";
+import { getNicknameAction, getPictureAction } from "../../actions";
 
 interface ICamp {
   camp: Campsite;
 }
 
-const SingleCampHost: FC<ICamp> = ({ camp }) => {
+const SingleCampHost: FC<ICamp> = async ({ camp }) => {
+  const nickname = await getNicknameAction(camp.user_id);
+  const pic = await getPictureAction(camp.user_id);
   return (
     <div>
       <div className="single-camp-welcome">
@@ -106,19 +108,28 @@ const SingleCampHost: FC<ICamp> = ({ camp }) => {
         </div>
         <div className="single-camp-welcome-child">
           <span>ტევადობა</span>
-          <p>{camp.capacity}</p>
+          <p>{camp.capacity} ადამიანი</p>
         </div>
       </div>
       <div className="single-camp-host">
         <div className="single-camp-host-image">
-          <Link href={`/user/id`}>
-            <Image src={example} alt="example" width={200} height={200} />
+          <Link href={`/user/${nickname[0].nickname}`}>
+            <Image
+              src={pic[0].picture}
+              alt={nickname[0].nickname}
+              width={200}
+              height={200}
+            />
           </Link>
           <div>
             <h2>
-              თქვენი მასპინძელია <Link href={`/user/id`}>lukaoes</Link>!
+              თქვენი მასპინძელია{" "}
+              <Link href={`/user/${nickname[0].nickname}`}>
+                {nickname[0].nickname}
+              </Link>
+              !
             </h2>
-            <Link href={`/user/id`} className="all-ads">
+            <Link href={`/user/${nickname[0].nickname}`} className="all-ads">
               ყველა განცხადება
             </Link>
           </div>
