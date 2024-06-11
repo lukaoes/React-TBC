@@ -1,10 +1,10 @@
 import { getSingleCampsite } from "../../../../../actions";
+import SingleCampAddReview from "../../../../../components/SingleCampsitePage/singleCampAddReview";
 import SingleCampDescription from "../../../../../components/SingleCampsitePage/singleCampDescription";
 import SingleCampHeader from "../../../../../components/SingleCampsitePage/singleCampHeader";
 import SingleCampHost from "../../../../../components/SingleCampsitePage/singleCampHost";
 import SingleCampImages from "../../../../../components/SingleCampsitePage/singleCampImages";
 import SingleCampLocation from "../../../../../components/SingleCampsitePage/singleCampLocation";
-import SingleCampReviews from "../../../../../components/SingleCampsitePage/singleCampReviews";
 
 const SingleCampsitePage = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
@@ -17,7 +17,7 @@ const SingleCampsitePage = async ({ params }: { params: { id: string } }) => {
       <SingleCampHost camp={camp} />
       <SingleCampDescription camp={camp} />
       <SingleCampLocation camp={camp} />
-      <SingleCampReviews />
+      <SingleCampAddReview camp={camp} />
     </div>
   );
 };

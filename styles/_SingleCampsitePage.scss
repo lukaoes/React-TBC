@@ -369,3 +369,90 @@
     align-items: center;
   }
 }
+
+.single-camp-add-review {
+  width: 100%;
+  padding: 20px 20px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  margin: 30px 0;
+
+  h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+
+  .upload-photo {
+    display: flex;
+    // flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background-color: #fcf9f4;
+    padding: 10px 0;
+    border-radius: 10px;
+    gap: 30px;
+
+    button {
+      background-color: #669a3e;
+      color: #fff;
+      padding: 5px 10px;
+      border-radius: 10px;
+    }
+
+    #file-upload {
+      max-width: 250px;
+    }
+
+    label {
+      font-weight: 600;
+    }
+    input {
+      margin: 0;
+      padding: 4px 4px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      min-width: 260px;
+    }
+  }
+
+  .single-blog-add-comment-form {
+    label {
+      margin: 20px 0 5px 0;
+      font-weight: 600;
+    }
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .add-comment-button {
+      display: flex;
+      justify-content: center;
+      button {
+        background-color: #669a3e;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 10px;
+        margin: 0 auto;
+      }
+    }
+
+    input,
+    textarea {
+      padding: 4px 15px;
+      border-radius: 6px;
+      background-color: #fcf9f4;
+    }
+
+    .campsite-add-recommend {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 20px;
+    }
+  }
+}
