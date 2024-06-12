@@ -616,3 +616,22 @@ export async function deleteCampsiteReview(id: number) {
   const data = await response.json();
   return data.response;
 }
+
+export async function createRefund(charge: string) {
+  revalidatePath("/orders");
+  await fetch(BASE_URL + "/api/stripe/create-refund", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ charge }),
+  });
+}
+
+export const getOrders = async () => {
+  const res = await fetch(`${BASE_URL}/api/stripe/get-orders`, {
+    cache: "no-store",
+  });
+  const orders = await res.json();
+  return orders;
+};
