@@ -210,9 +210,8 @@ export async function addAddressAction(formData: any) {
       },
       body: JSON.stringify(formData),
     });
-
+    revalidatePath("/");
     if (response.ok) {
-      revalidatePath("profile/address");
       const data = await response.json();
       console.log("Address added:", data);
     } else {

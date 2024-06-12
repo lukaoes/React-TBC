@@ -18,6 +18,8 @@ const ProfileAddress = () => {
     email: "",
   });
 
+  console.log(formData);
+
   const [errors, setErrors] = useState({
     firstName: "",
     lastName: "",
@@ -34,6 +36,15 @@ const ProfileAddress = () => {
       setFormData((prevFormData) => ({
         ...prevFormData,
         sub: user.sub || "",
+      }));
+    }
+  }, [user]);
+
+  useEffect(() => {
+    if (user && user.email) {
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        email: user.email || "",
       }));
     }
   }, [user]);
@@ -66,6 +77,9 @@ const ProfileAddress = () => {
     if (!validateForm()) return;
 
     addAddressAction(formData);
+    if (typeof window !== "undefined") {
+      window.location.reload();
+    }
   };
 
   return (
@@ -144,15 +158,15 @@ const ProfileAddress = () => {
             onChange={handleChange}
           />
           {errors.phone && <div className="error">{errors.phone}</div>}
-          <h2>Email Address</h2>
+          {/* <h2>Email Address</h2>
           <input
             type="email"
             name="email"
             value={formData.email}
             onChange={handleChange}
           />
-          {errors.email && <div className="error">{errors.email}</div>}
-          <button type="submit">Add Address</button>
+          {errors.email && <div className="error">{errors.email}</div>} */}
+          {user?.email && <button type="submit">Add Address</button>}
         </form>
       </div>
     </div>
