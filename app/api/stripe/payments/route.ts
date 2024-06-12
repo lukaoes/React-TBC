@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
 
-export const GET = async (request: { url: string | URL }) => {
+export const GET = async (request: any) => {
   const { searchParams } = new URL(request.url);
   const email = searchParams.get("email");
 

@@ -165,6 +165,7 @@ const CartCard = () => {
       </div>
       <div>
         {totalSelectedProducts > 0 ? (
+          // @ts-ignore
           <CartTotal
             totalPrice={totalPrice}
             selectedNumber={totalSelectedProducts}
