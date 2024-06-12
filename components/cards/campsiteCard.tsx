@@ -1,19 +1,35 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { CampsitesDisplay, Review } from "../../types";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { getCampReviews } from "../../actions";
 
 interface ICamps {
   camp: CampsitesDisplay;
 }
 
-const CampsiteCard: FC<ICamps> = async ({ camp }) => {
-  const review = await getCampReviews(String(camp.id));
+const CampsiteCard: FC<ICamps> = ({ camp }) => {
+  // Initialize review state
+  const [review, setReview] = useState<Review[]>([]);
 
-  const calculateSatisfactionPercentage = (review: Review[]): number => {
-    const totalReviews = review.length;
-    const recommendedReviews = review.filter(
+  // Fetch reviews when the component mounts
+  useEffect(() => {
+    const fetchReviews = async () => {
+      try {
+        const reviews = await getCampReviews(String(camp.id));
+        setReview(reviews);
+      } catch (error) {
+        console.error("Error fetching reviews:", error);
+      }
+    };
+
+    fetchReviews();
+  }, [camp.id]);
+
+  const calculateSatisfactionPercentage = (reviews: Review[]): number => {
+    const totalReviews = reviews.length;
+    const recommendedReviews = reviews.filter(
       (review) => review.recommended
     ).length;
     return (recommendedReviews / totalReviews) * 100;
