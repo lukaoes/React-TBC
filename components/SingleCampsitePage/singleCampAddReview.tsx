@@ -16,8 +16,7 @@ const SingleCampAddReview = ({ camp }: ICamp) => {
   const [review, setReview] = useState("");
   const [recommended, setRecommended] = useState(true);
   const [photoUrl, setPhotoUrl] = useState("");
-
-  console.log(blobUrl, userId, review, recommended, photoUrl);
+  const [photoError, setPhotoError] = useState("");
 
   useEffect(() => {
     if (user && user.sub) {
@@ -30,13 +29,28 @@ const SingleCampAddReview = ({ camp }: ICamp) => {
   };
 
   const handlePhotoUrlChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const url = e.target.value;
     if (!blobUrl) {
-      setPhotoUrl(e.target.value);
+      setPhotoUrl(url);
+      if (url && !url.startsWith("https://") && !url.startsWith("http://")) {
+        setPhotoError("Image URL is not correct");
+      } else {
+        setPhotoError("");
+      }
     }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (
+      photoUrl &&
+      !photoUrl.startsWith("https://") &&
+      !photoUrl.startsWith("http://")
+    ) {
+      setPhotoError("Image URL is not correct");
+      return;
+    }
 
     const formData = {
       user_id: userId,
@@ -93,6 +107,7 @@ const SingleCampAddReview = ({ camp }: ICamp) => {
             onChange={handlePhotoUrlChange}
             disabled={!!blobUrl}
           />
+          {photoError && <span className="error-message">{photoError}</span>}
         </div>
         <div className="campsite-add-recommend">
           <div
