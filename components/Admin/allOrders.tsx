@@ -1,31 +1,23 @@
 "use client";
-
-import { useUser } from "@auth0/nextjs-auth0/client";
 import { createRefund } from "../../actions";
 
-const OrdersList = ({ orders }: any) => {
-  const { user } = useUser();
-  const email = user?.email;
-
+const AllOrders = ({ orders }: any) => {
   const refundHandler = async (charge: string) => {
     await createRefund(charge);
   };
-
-  const filteredOrders = orders.filter(
-    (order: any) => order.latest_charge.billing_details.email === email
-  );
-
+  console.log(orders);
   return (
-    <div className="user-orders-layout">
+    <div>
       <div className="admin-table">
         <div className="row admin-table-header blue">
           <div className="cell">თანხა</div>
           <div className="cell">ინვოისი</div>
           <div className="cell">თანხა</div>
           <div className="cell">შეკვეთის გაუქმება</div>
+          <div className="cell">მისამართი</div>
         </div>
 
-        {filteredOrders.map((order: any) => (
+        {orders.map((order: any) => (
           <div key={order.latest_charge.id} className="row">
             <div className="cell" data-title="თანხა">
               ₾{(order.amount / 100).toFixed(2)}
@@ -57,6 +49,9 @@ const OrdersList = ({ orders }: any) => {
                 </button>
               )}
             </div>
+            <div className="cell" data-title="მისამართი">
+              <button>ნახვა</button>
+            </div>
           </div>
         ))}
       </div>
@@ -64,4 +59,4 @@ const OrdersList = ({ orders }: any) => {
   );
 };
 
-export default OrdersList;
+export default AllOrders;
