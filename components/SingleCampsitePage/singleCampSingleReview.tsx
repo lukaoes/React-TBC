@@ -3,6 +3,7 @@ import { Review } from "../../types";
 import { FC } from "react";
 import Image from "next/image";
 import { getNicknameAction, getPictureAction } from "../../actions";
+import SingleCampSingleReviewDelButton from "./singleCampSingleReviewDelButton";
 
 interface IRew {
   review: Review;
@@ -38,19 +39,23 @@ const SingleCampSingleReview: FC<IRew> = async ({ review }) => {
           </div>
         </div>
         <div className="single-camp-review-user">
-          <h3>
-            <Link href={`/user/${nickname[0].nickname}`}>
-              {nickname[0].nickname}{" "}
-            </Link>
-          </h3>
-          <span>
-            {review.recommended
-              ? " უწევს რეკომენდაციას"
-              : " არ უწევს რეკომენდაციას"}
-          </span>
-          <p>{review.created_at.slice(0, 10)}</p>
+          <div>
+            <h3>
+              <Link href={`/user/${nickname[0].nickname}`}>
+                {nickname[0].nickname}{" "}
+              </Link>
+            </h3>
+            <span>
+              {review.recommended
+                ? " უწევს რეკომენდაციას"
+                : " არ უწევს რეკომენდაციას"}
+            </span>
+            <p>{review.created_at.slice(0, 10)}</p>
+          </div>
+          <SingleCampSingleReviewDelButton review={review} />
         </div>
       </div>
+
       <p>{review.review}</p>
       {review.main_photo && (
         <Image

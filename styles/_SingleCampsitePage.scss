@@ -549,6 +549,9 @@
 }
 
 .single-camp-review-user {
+  display: flex;
+  gap: 10px;
+  width: 100%;
   span {
     font-size: 14px;
   }

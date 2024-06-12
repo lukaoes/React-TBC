@@ -602,3 +602,17 @@ export async function getCampReviews(id: string) {
 
   return reviews;
 }
+
+export async function deleteCampsiteReview(id: number) {
+  const response = await fetch(
+    BASE_URL + "/api/campsites/delete-campsite-review/",
+    {
+      method: "DELETE",
+      body: JSON.stringify({ id }),
+    }
+  );
+  revalidatePath("/campsites");
+
+  const data = await response.json();
+  return data.response;
+}
