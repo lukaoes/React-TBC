@@ -7,7 +7,8 @@ const AllOrders = ({ orders }: any) => {
   };
   console.log(orders);
   return (
-    <div>
+    <div className="admin-inbox">
+      <h1>ყველა შეკვეთა</h1>
       <div className="admin-table">
         <div className="row admin-table-header blue">
           <div className="cell">თანხა</div>

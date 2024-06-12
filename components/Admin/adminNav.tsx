@@ -46,6 +46,14 @@ const AdminNav = () => {
       >
         მომხმარებლები
       </Link>
+      <Link
+        href="/admin/orders"
+        className={
+          path === "/admin/orders" ? "active bg-[#2980b9] font-bold" : ""
+        }
+      >
+        შეკვეთები
+      </Link>
     </div>
   );
 };
