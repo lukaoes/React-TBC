@@ -1,40 +1,64 @@
 "use client";
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
+import { useUser } from "@auth0/nextjs-auth0/client";
 import { BASE_URL } from "../../api";
+import { getAddyByEmailAction } from "../../actions"; // Import the address fetching function
 
 interface CartTotalProps {
   totalPrice: number;
   selectedNumber: number;
   localFilteredProducts: any[];
-  email: string; // New prop for email
 }
 
 const CartTotal: FC<CartTotalProps> = ({
   totalPrice,
   selectedNumber,
   localFilteredProducts,
-  email,
 }) => {
+  const { user } = useUser();
+  const [hasAddress, setHasAddress] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    const checkAddress = async () => {
+      if (user && user.email) {
+        try {
+          const address = await getAddyByEmailAction(user.email);
+          setHasAddress(address.length > 0); // Check if address array is not empty
+        } catch (error) {
+          console.error("Error fetching address:", error);
+          setHasAddress(false);
+        }
+      }
+    };
+
+    checkAddress();
+  }, [user]);
+
   const deliveryPrice = 12;
   const totalWithDelivery = totalPrice + deliveryPrice;
 
   const checkout = async () => {
-    await fetch(`${BASE_URL}/api/stripe/checkout`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ products: localFilteredProducts, email: email }),
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.url) {
-          window.location.href = response.url;
-        }
+    if (hasAddress) {
+      await fetch(`${BASE_URL}/api/stripe/checkout`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          products: localFilteredProducts,
+          email: user?.email,
+        }),
       })
-      .catch((error) => {
-        console.error("Error during checkout:", error);
-      });
+        .then((response) => response.json())
+        .then((response) => {
+          if (response.url) {
+            window.location.href = response.url;
+          }
+        })
+        .catch((error) => {
+          console.error("Error during checkout:", error);
+        });
+    }
   };
 
   return (
@@ -75,9 +99,21 @@ const CartTotal: FC<CartTotalProps> = ({
         გადახდის დაცული მეთოდები
       </span>
       <div className="cart-total-checkout">
-        <button className="cart-total-primary-hover" onClick={checkout}>
-          შეკვეთის გაფორმება
-        </button>
+        {hasAddress === null ? (
+          <button>იტვირთება...</button>
+        ) : hasAddress ? (
+          <button className="cart-total-primary-hover" onClick={checkout}>
+            შეკვეთის გაფორმება
+          </button>
+        ) : (
+          <p className="w-auto">
+            თქვენ არ გაქვთ დამატებული მისამართი,{" "}
+            <a href="/profile/address" className="underline">
+              დაამატეთ მისამართი,
+            </a>{" "}
+            რომ გააგრძელოთ
+          </p>
+        )}
       </div>
     </div>
   );
