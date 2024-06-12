@@ -10,7 +10,9 @@ export async function POST(request: Request) {
     INSERT INTO user_campsite_reviews (
       user_id, campsite_id, review, main_photo, recommended
     ) VALUES (
-      ${user_id}, ${campsite_id}, ${review}, ${main_photo}, ${recommended})
+      ${user_id}, ${campsite_id}, ${review}, ${
+      main_photo || ""
+    }, ${recommended})
     `;
 
     const reviews = await sql`SELECT * FROM user_campsite_reviews;`;

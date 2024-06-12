@@ -99,13 +99,13 @@ const SingleCampAddReview = ({ camp }: ICamp) => {
             className={recommended ? "camp-recommend" : ""}
             onClick={() => setRecommended(true)}
           >
-            recommended
+            მომეწონა
           </div>
           <div
             className={!recommended ? "camp-recommend" : ""}
             onClick={() => setRecommended(false)}
           >
-            not recommended
+            არ მომეწონა
           </div>
         </div>
         <div className="add-comment-button">

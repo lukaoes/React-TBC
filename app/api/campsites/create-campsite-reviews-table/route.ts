@@ -1,6 +1,7 @@
 import { sql } from "@vercel/postgres";
 import { NextResponse } from "next/server";
 
+//  // review textad gadavakete querydan ar dagaviwydes luka!
 export async function GET() {
   try {
     const result = await sql`CREATE TABLE user_campsite_reviews (

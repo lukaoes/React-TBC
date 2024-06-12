@@ -135,3 +135,14 @@ export interface AddCampsite {
   map: string;
   [key: string]: any;
 }
+
+export interface Review {
+  map: any;
+  id: number;
+  user_id: string;
+  campsite_id: string;
+  review: string;
+  main_photo: string;
+  recommended: boolean;
+  created_at: string;
+}
