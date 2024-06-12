@@ -231,6 +231,15 @@ export async function getAddyAction(sub: string) {
   return data.response;
 }
 
+export async function getAddyByEmailAction(email: string) {
+  const response = await fetch(BASE_URL + "/api/address/get-addy-by-email/", {
+    method: "POST",
+    body: JSON.stringify({ email }),
+  });
+  const data = await response.json();
+  return data.response;
+}
+
 export async function deleteAddyAction(sub: string) {
   const response = await fetch(BASE_URL + "/api/address/delete-addy/", {
     method: "DELETE",
