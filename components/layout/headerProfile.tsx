@@ -102,7 +102,7 @@ export default function HeaderProfile() {
     <div>
       {user ? (
         <div className="menu-block" ref={dropdownRef}>
-          <span onClick={toggleDropdown}>{displayName}</span>
+          <span onClick={toggleDropdown}>{displayName.slice(0, 4)}...</span>
           {imageSrc && (
             <Image
               src={imageSrc}
@@ -116,8 +116,7 @@ export default function HeaderProfile() {
         </div>
       ) : (
         <div className="header-auth">
-          <a href="/api/auth/login">Login </a> /
-          <a href="/api/auth/login">Register</a>
+          <a href="/api/auth/login">Login</a>
         </div>
       )}
     </div>
