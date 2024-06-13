@@ -1,4 +1,10 @@
 export interface ProductsDisplay {
+  map(
+    arg0: (
+      products: ProductsDisplay,
+      index: number
+    ) => import("react").JSX.Element
+  ): import("react").ReactNode;
   id: number;
   type: string;
   category: string;
@@ -46,6 +52,9 @@ export interface Product {
 }
 
 export interface Blog {
+  map(
+    arg0: (item: any, index: number) => import("react").JSX.Element
+  ): import("react").ReactNode;
   id: number;
   category: string;
   main_photo: string;
@@ -58,6 +67,7 @@ export interface Blog {
 export type BlogsDisplay = Blog[];
 
 export interface Comments {
+  [x: string]: any;
   id: number;
   user_id: string;
   blog_id: string;

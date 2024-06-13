@@ -39,7 +39,7 @@ const CampsiteCard: FC<ICamps> = ({ camp }) => {
   const reviewCount = review.length;
   return (
     <div className="campsite-card-layout">
-      <Link href={`campsites/${camp.id}`} className="campsite-image-container">
+      <Link href={`/campsites/${camp.id}`} className="campsite-image-container">
         <span className="campsite-card-pitch">
           {camp.space_type === "nicepitch"
             ? "მოწყობილი სივრცე"
@@ -69,7 +69,7 @@ const CampsiteCard: FC<ICamps> = ({ camp }) => {
           {satisfactionPercentage ? satisfactionPercentage.toFixed(0) : "100"}%{" "}
           <span>({reviewCount})</span>
         </div>
-        <Link href={`campsites/`}>
+        <Link href={`/campsites/`}>
           <h3>{camp.name}</h3>
         </Link>
         <div className="campsite-card-welcome">

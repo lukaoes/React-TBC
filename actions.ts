@@ -643,3 +643,22 @@ export const getOrders = async () => {
   const orders = await res.json();
   return orders;
 };
+
+export async function getEverythingByNicknameAction(nickname: string) {
+  const response = await fetch(
+    BASE_URL + "/api/users/get-everything-by-nickname",
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ nickname }),
+      cache: "no-store",
+    }
+  );
+  const data = await response.json();
+
+  const res = data.response;
+
+  return res;
+}

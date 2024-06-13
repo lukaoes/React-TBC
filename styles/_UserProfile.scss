@@ -1,0 +1,137 @@
+.user-profile-layout {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.user-everything-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 15px;
+  align-items: center;
+  margin: 20px 0;
+  padding: 20px 0;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+
+  button {
+    text-decoration: underline;
+
+    &.active {
+      font-weight: 600;
+    }
+  }
+}
+
+.user-profile-info {
+  background-color: #fcf9f4;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin: 30px 0;
+
+  .user-profile-info-image {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    img {
+      max-width: 100px;
+      width: 100%;
+      max-height: 100px;
+      min-height: 100px;
+      height: 100%;
+      border-radius: 100%;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 600;
+    }
+  }
+
+  .user-profile-info-counter {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    h3 {
+      font-size: 16px;
+      span {
+        font-size: 18px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.user-profile-products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+
+  .user-profile-products-card {
+    // max-width: 300px;
+    width: 100%;
+    a {
+      img {
+        // max-width: 300px;
+        border-radius: 20px;
+        object-fit: cover;
+        width: 100%;
+        max-height: 300px;
+        min-height: 300px;
+        height: 100%;
+      }
+    }
+    a {
+      display: block;
+      padding: 10px;
+      font-size: 18px;
+    }
+
+    p {
+      padding: 0 10px;
+      font-weight: 600;
+    }
+  }
+
+  .user-profile-blogs-card {
+    position: relative;
+    a {
+      display: block;
+      img {
+        // max-width: 300px;
+        object-fit: cover;
+        width: 100%;
+        min-height: 300px;
+        max-height: 300px;
+        height: 100%;
+        border-radius: 20px;
+      }
+    }
+
+    a {
+      display: block;
+      padding: 10px;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .blog-tag {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 0 10px;
+      font-weight: 600;
+    }
+  }
+}
