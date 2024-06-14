@@ -1,7 +1,6 @@
 import { Roboto } from "next/font/google";
 import { Noto_Sans_Georgian } from "next/font/google";
 import "../../../styles/index.scss";
-import Header from "../../../components/layout/Header";
 import Footer from "../../../components/layout/Footer";
 import { ReactElement } from "react";
 import { I18nProviderClient } from "../../../locales/client";
@@ -33,9 +32,8 @@ export default async function RootLayout({
   return (
     <html>
       <UserProvider>
-        {" "}
-        <I18nProviderClient locale={locale}>
-          <body>
+        <body>
+          <I18nProviderClient locale={locale}>
             <div
               className={`app ${
                 locale === "en" ? roboto.className : sans.className
@@ -45,8 +43,8 @@ export default async function RootLayout({
               <main className="content">{children}</main>
               <Footer />
             </div>
-          </body>
-        </I18nProviderClient>
+          </I18nProviderClient>
+        </body>
       </UserProvider>
     </html>
   );

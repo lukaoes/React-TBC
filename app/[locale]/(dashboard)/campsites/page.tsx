@@ -1,7 +1,7 @@
 import { getCampsitesDisplay } from "../../../../actions";
 import CampsiteLayout from "../../../../components/Campsite/campsiteLayout";
 import SecondHeader from "../../../../components/layout/secondHeader";
-import campsitesImage from "../../../../public/assets/images/secondHeader/addCampsite.jpg";
+import campsitesImage from "../../../../public/assets/images/secondHeader/camping.png";
 
 const Campsites = async () => {
   const displayCamps = await getCampsitesDisplay();

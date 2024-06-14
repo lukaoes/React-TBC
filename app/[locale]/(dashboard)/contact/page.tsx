@@ -1,7 +1,7 @@
 import ContactForm from "../../../../components/Contact/contactForm";
 import ContactInfo from "../../../../components/Contact/contactInfo";
 import SecondHeader from "../../../../components/layout/secondHeader";
-import contact from "../../../../public/assets/images/secondHeader/contact.jpg";
+import contact from "../../../../public/assets/images/secondHeader/contact.png";
 const Contact = () => {
   return (
     <>

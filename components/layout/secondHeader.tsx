@@ -20,7 +20,7 @@ export const SecondHeader: FC<SecondHeaderProps> = ({
         backgroundImage: backgroundImage
           ? `url(${backgroundImage.src})`
           : undefined,
-        backgroundSize: "cover",
+        backgroundSize: "contain",
         backgroundPosition: "center",
         color: "white",
         padding: "20px",

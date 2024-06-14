@@ -7,9 +7,5 @@ export default async function Home({
 }) {
   setStaticParamsLocale(locale);
 
-  return (
-    <section>
-      <h1>bye bye</h1>
-    </section>
-  );
+  return <main></main>;
 }
