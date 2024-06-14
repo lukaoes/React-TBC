@@ -1,5 +1,6 @@
 import { setStaticParamsLocale } from "next-international/server";
 import HomeHero from "../../../components/Home/homeHero";
+import HomeAbout from "../../../components/Home/homeAbout";
 
 export default async function Home({
   params: { locale },
@@ -11,6 +12,7 @@ export default async function Home({
   return (
     <main>
       <HomeHero />
+      <HomeAbout />
     </main>
   );
 }
