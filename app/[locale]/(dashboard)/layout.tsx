@@ -5,8 +5,8 @@ import Header from "../../../components/layout/Header";
 import Footer from "../../../components/layout/Footer";
 import { ReactElement } from "react";
 import { I18nProviderClient } from "../../../locales/client";
-import { AppWrapper } from "../../../context";
 import { UserProvider } from "@auth0/nextjs-auth0/client";
+import HeaderLayout from "../../../components/layout/headerLayout";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -33,21 +33,20 @@ export default async function RootLayout({
   return (
     <html>
       <UserProvider>
-        <body>
-          <I18nProviderClient locale={locale}>
-            <AppWrapper>
-              <div
-                className={`app ${
-                  locale === "en" ? roboto.className : sans.className
-                }`}
-              >
-                <Header />
-                <main className="content">{children}</main>
-                <Footer />
-              </div>
-            </AppWrapper>
-          </I18nProviderClient>
-        </body>
+        {" "}
+        <I18nProviderClient locale={locale}>
+          <body>
+            <div
+              className={`app ${
+                locale === "en" ? roboto.className : sans.className
+              }`}
+            >
+              <HeaderLayout />
+              <main className="content">{children}</main>
+              <Footer />
+            </div>
+          </body>
+        </I18nProviderClient>
       </UserProvider>
     </html>
   );

@@ -33,6 +33,7 @@ const getCartData = async () => {
 
 const CartIcon = async () => {
   const { totalCount } = await getCartData();
+  console.log(totalCount);
 
   return (
     <Link href="/cart" className="cart-icon">

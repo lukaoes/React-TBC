@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import HamburgerMenu from "./hamburgerMenu";
-import HeaderTop from "./headerTop";
 import { useScopedI18n } from "../../locales/client";
 import { usePathname } from "next/navigation";
 
@@ -12,7 +11,6 @@ function Header() {
   return (
     <>
       <header>
-        <HeaderTop />
         <nav>
           <div className="header-desktop-nav">
             <ul>
