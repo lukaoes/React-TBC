@@ -1,2 +1,60 @@
 .home-hero {
+  padding: 60px 20px 60px 20px;
+  width: 100%;
+  height: 350px;
+  background-image: url(../public/assets/images/mainHero.jpg);
+  background-position: 10%;
+  .home-hero-layout {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+  h1 {
+    color: #000;
+    font-size: 38px;
+    font-weight: 600;
+    text-align: center;
+    text-shadow: 0 2px 0 rgba(255, 255, 255, 0.9);
+    -webkit-text-stroke-width: 0.5px;
+    -webkit-text-stroke-color: rgb(255, 255, 255);
+    span {
+      color: #001385;
+    }
+  }
+
+  p {
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    text-shadow: 0 -1px 0 #fff, 0 1px 0 #2e2e2e, 0 2px 0 #2c2c2c,
+      0 3px 0 #2a2a2a, 0 4px 0 #282828, 0 5px 0 #262626,
+      0 22px 30px rgba(0, 0, 0, 0.9);
+    max-width: 980px;
+    margin: 30px auto 0 auto;
+  }
+
+  @media screen and (max-width: 650px) {
+    padding: 60px 20px 60px 20px;
+
+    // h1 {
+    //   font-size: 28px;
+    // }
+
+    p {
+      margin-top: 15px;
+      font-size: 16px;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    padding: 30px 20px 60px 20px;
+
+    // h1 {
+    //   font-size: 28px;
+    // }
+
+    p {
+      margin-top: 15px;
+      font-size: 16px;
+    }
+  }
 }
