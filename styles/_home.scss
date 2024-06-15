@@ -233,3 +233,28 @@
     background-image: url(../public/assets/images/secondHeader/blog.webp);
   }
 }
+
+.home-recent-products-container {
+  max-width: 1300px;
+  padding: 0 20px;
+  margin: 80px auto 40px auto;
+}
+
+.recent-products-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+
+  div:first-child {
+    h3 {
+      font-size: 24px;
+      color: #444444;
+    }
+  }
+}
+
+.recent-products-slider {
+  .swiper-wrapper {
+    margin-bottom: 30px;
+  }
+}
