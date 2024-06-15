@@ -100,6 +100,8 @@ export interface CampsitesDisplay {
   activities: string[];
   price: string;
   negotiable: boolean;
+  description: string;
+  descriptionen: string;
 }
 
 export interface Campsite {

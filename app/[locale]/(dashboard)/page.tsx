@@ -3,6 +3,7 @@ import HomeHero from "../../../components/Home/homeHero";
 import HomeAbout from "../../../components/Home/homeAbout";
 import HomeRoadmap from "../../../components/Home/HomeRoadmap";
 import RecentProducts from "../../../components/Home/recentProducts";
+import RecentCampsites from "../../../components/Home/recentCampsites";
 
 export default async function Home({
   params: { locale },
@@ -17,6 +18,7 @@ export default async function Home({
       <HomeAbout />
       <HomeRoadmap />
       <RecentProducts />
+      <RecentCampsites />
     </main>
   );
 }

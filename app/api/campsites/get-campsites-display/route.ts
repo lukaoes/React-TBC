@@ -5,21 +5,27 @@ export const revalidate = 0;
 
 export async function GET() {
   try {
-    const campsites = await sql`SELECT 
-    id,
-    space_type,
-    accepted_guests,
-    capacity,
-    location,
-    main_photo,
-    size,
-    name,
-    amenities,
-    activities,
-    price,
-    negotiable
+    const campsites = await sql`
+      SELECT 
+        id,
+        space_type,
+        accepted_guests,
+        capacity,
+        location,
+        main_photo,
+        size,
+        name,
+        amenities,
+        activities,
+        price,
+        negotiable,
+        description,
+        descriptionen
       FROM 
-    user_campsites;`;
+        user_campsites
+      ORDER BY 
+        id DESC;
+    `;
     return NextResponse.json({ campsites }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
