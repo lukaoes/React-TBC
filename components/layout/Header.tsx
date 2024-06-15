@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import HamburgerMenu from "./hamburgerMenu";
 import { useScopedI18n } from "../../locales/client";
 import { usePathname } from "next/navigation";
