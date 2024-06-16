@@ -5,8 +5,10 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { getPictureAction, getNicknameAction } from "../../actions";
 import ProfileDropdown from "./profileDropdown";
+import { useI18n } from "../../locales/client";
 
 export default function HeaderProfile() {
+  const t = useI18n();
   const [profilePicture, setProfilePicture] = useState<Array<{
     picture: string;
   }> | null>(null);
@@ -116,7 +118,7 @@ export default function HeaderProfile() {
         </div>
       ) : (
         <div className="header-auth">
-          <a href="/api/auth/login">Login</a>
+          <a href="/api/auth/login">{t("header.login")}</a>
         </div>
       )}
     </div>

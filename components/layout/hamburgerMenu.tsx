@@ -4,8 +4,10 @@ import Link from "next/link";
 import { useState } from "react";
 import ThemeButton from "./themeButton";
 import MobileLangSelect from "./mobileLangSelect";
+import { useScopedI18n } from "../../locales/client";
 
 const HamburgerMenu = () => {
+  const t = useScopedI18n("header");
   const [isOpen, setOpen] = useState(false);
 
   const handleClose = () => {
@@ -50,19 +52,19 @@ const HamburgerMenu = () => {
           <div className="mobile-nav-top">
             <ul>
               <li onClick={handleClose}>
-                <Link href="/ ">მთავარი</Link>
+                <Link href="/ ">{t("home")}</Link>
               </li>
               <li onClick={handleClose}>
-                <Link href="/products">პროდუქტები</Link>
+                <Link href="/products">{t("products")}</Link>
               </li>
               <li onClick={handleClose}>
-                <Link href="/campsites">საპიკნიკე</Link>
+                <Link href="/campsites">{t("campsites")}</Link>
               </li>
               <li onClick={handleClose}>
-                <Link href="/blog">ბლოგი</Link>
+                <Link href="/blog">{t("blog")}</Link>
               </li>
               <li onClick={handleClose}>
-                <Link href="/contact">კონტაქტი</Link>
+                <Link href="/contact">{t("contact")}</Link>
               </li>
             </ul>
           </div>

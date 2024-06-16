@@ -5,8 +5,8 @@ import { useScopedI18n } from "../../locales/client";
 import { usePathname } from "next/navigation";
 
 function Header() {
+  const t = useScopedI18n("header");
   const path = usePathname();
-  const scopedT = useScopedI18n("header");
 
   return (
     <>
@@ -15,19 +15,19 @@ function Header() {
           <div className="header-desktop-nav">
             <ul>
               <li className={path == "/" ? "choosen-header-nav" : ""}>
-                <Link href="/">მთავარი</Link>
+                <Link href="/">{t("home")}</Link>
               </li>
               <li className={path == "/products" ? "choosen-header-nav" : ""}>
-                <Link href="/products">პროდუქტები</Link>
+                <Link href="/products">{t("products")}</Link>
               </li>
               <li className={path == "/campsites" ? "choosen-header-nav" : ""}>
-                <Link href="/campsites">საპიკნიკე</Link>
+                <Link href="/campsites">{t("campsites")}</Link>
               </li>
               <li className={path == "/blog" ? "choosen-header-nav" : ""}>
-                <Link href="/blog">{scopedT("blog")}</Link>
+                <Link href="/blog">{t("blog")}</Link>
               </li>
               <li className={path == "/contact" ? "choosen-header-nav" : ""}>
-                <Link href="/contact">{scopedT("contact")}</Link>
+                <Link href="/contact">{t("contact")}</Link>
               </li>
             </ul>
           </div>
