@@ -2,12 +2,14 @@ import Image from "next/image";
 import { Link } from "next-view-transitions";
 import { CampsitesDisplay } from "../../types";
 import { useCurrentLocale } from "../../locales/client";
+import { getI18n } from "../../locales/server";
 
 interface ICamp {
   campsite: CampsitesDisplay;
 }
 
-const RecentCampsitesCard = ({ campsite }: ICamp) => {
+const RecentCampsitesCard = async ({ campsite }: ICamp) => {
+  const t = await getI18n();
   const locale = useCurrentLocale();
   const desc =
     locale === "ge"
@@ -30,11 +32,11 @@ const RecentCampsitesCard = ({ campsite }: ICamp) => {
         </Link>
         <h4>
           {campsite.negotiable == true ? (
-            <span>ფასი შეთანხმებით</span>
+            <span>{t("camping.negotiable")}</span>
           ) : (
             <>
               ₾ {campsite.price}
-              <span> / დღე</span>
+              <span> / {t("main.perDay")}</span>
             </>
           )}
         </h4>
@@ -78,7 +80,7 @@ const RecentCampsitesCard = ({ campsite }: ICamp) => {
               </clipPath>
             </defs>
           </svg>{" "}
-          დეტალურად ნახვა
+          {t("main.seeMore")}
         </Link>
       </div>
     </div>

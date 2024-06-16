@@ -1,14 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ProductsDisplay } from "../../types";
-import { useCurrentLocale } from "../../locales/client";
+import { useCurrentLocale, useI18n } from "../../locales/client";
 
 interface IProd {
   product: ProductsDisplay;
 }
 
-const RecentProductCard = ({ product }: IProd) => {
+const RecentProductCard = async ({ product }: IProd) => {
   const locale = useCurrentLocale();
+  const t = useI18n();
   const name =
     locale === "ge"
       ? product.title_ge
@@ -20,7 +21,7 @@ const RecentProductCard = ({ product }: IProd) => {
   return (
     <div className="recent-product-card">
       <div className="recent-product-card-type">
-        {product.type === "sell" ? "იყიდება" : "ქირავდება"}
+        {product.type === "sell" ? t("main.forSale") : t("main.forRent")}
       </div>
       <Link href={`/products/${product.id}`}>
         <Image
@@ -58,10 +59,10 @@ const RecentProductCard = ({ product }: IProd) => {
           </h2>
           <h3>
             {product.negotiable
-              ? "ფასი შეთანხმებით"
+              ? t("camping.negotiable")
               : product.type === "sell"
               ? `${product.price} ₾`
-              : `${product.price} ₾/დღე`}
+              : `${product.price} ₾/${t("main.perDay")}`}
           </h3>
         </div>
       </Link>

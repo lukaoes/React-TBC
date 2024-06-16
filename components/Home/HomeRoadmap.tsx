@@ -1,36 +1,30 @@
 import Link from "next/link";
+import { getScopedI18n } from "../../locales/server";
 
-const HomeRoadmap = () => {
+const HomeRoadmap = async () => {
+  const t = await getScopedI18n("main");
+
   return (
     <div>
       <div className="home-roadmap-container">
-        <h2>პოპულარული სექციები</h2>
+        <h2>{t("popularSections")}</h2>
         <div className="home-roadmap-sections">
           <Link href="/products">
             <div>
-              <h2>პროდუქტები</h2>
-              <p>
-                აღიჭურვე შემდეგი ბუნებაში გასვლისთვის. იყიდე, იქირავე ან გაყიდე
-                სასურველი ნივთი.
-              </p>
+              <h2>{t("sectionProducts")}</h2>
+              <p>{t("sectionProductsDesc")}</p>
             </div>
           </Link>
           <Link href="/campsites">
             <div>
-              <h2>საპიკნიკე ადგილები</h2>
-              <p>
-                მოძებნე საპიკნიკე ადგილი ბუნებასთან ახლოს. იქირავე ან გააქირავე
-                ეზო.
-              </p>
+              <h2>{t("sectionCamping")}</h2>
+              <p>{t("sectionCampingDesc")}</p>
             </div>
           </Link>
           <Link href="/blog">
             <div>
-              <h2>ბლოგი</h2>
-              <p>
-                მიიღე ცოდნა სასურველ საკითხზე ჩვენი ბლოგების საშუალებით.
-                მოძებნეთ ან დაამატეთ ბლოგები.
-              </p>
+              <h2>{t("sectionBlog")}</h2>
+              <p>{t("sectionBlogDesc")}</p>
             </div>
           </Link>
         </div>

@@ -1,15 +1,11 @@
-const HomeHero = () => {
+import { getI18n } from "../../locales/server";
+
+const HomeHero = async () => {
+  const t = await getI18n();
   return (
     <section className="home-hero">
       <div className="home-hero-layout">
-        <h1>
-          აღმოაჩინე <span>საქართველო</span> და დაბანაკდი ყველგან
-        </h1>
-        {/* <p>
-          <span>ეზოეზო</span> არის პლატფორმა, სადაც შეგიძლიათ გაყიდოთ და
-          გააქირავოთ თქვენი სალაშქრო/საპიკნიკო აღჭურვილობა. <br />
-          აქ ასევე შეძლებთ საკუთარი ეზოს გაქირავებას ან ეზოს ქირაობას დღიურად.
-        </p> */}
+        <h1>{t("main.exploreGeorgia")}</h1>
       </div>
     </section>
   );

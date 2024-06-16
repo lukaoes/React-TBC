@@ -1,21 +1,17 @@
 import Link from "next/link";
+import { getScopedI18n } from "../../locales/server";
 
-const HomeAbout = () => {
+const HomeAbout = async () => {
+  const t = await getScopedI18n("main");
   return (
     <div className="h">
       <div className="home-about-us">
-        <h3>
-          რას აკეთებს <span>ეზოეზო</span>
-        </h3>
+        <h3>{t("whatEzoezoDoes")}</h3>
         <div className="home-about-us-container">
           <div className="home-about-us-types">
             <div>
-              <h4>აღჭურვილობა</h4>
-              <p>
-                <span>ეზოეზო</span> გაძლევთ საშუალებას იყიდოთ და იქირაოთ დღიურად
-                სალაშქრო და საპიკნიკე აღჭურვილობა. ასევე გაყიდოთ და გააქირაოთ
-                საკუთარი ნივთები.
-              </p>
+              <h4>{t("gear")}</h4>
+              <p>{t("gearDesc")}</p>
               <Link href="/products">
                 <svg
                   width="16"
@@ -41,16 +37,12 @@ const HomeAbout = () => {
                     </clipPath>
                   </defs>
                 </svg>
-                ყველა პროდუქცია
+                {t("allGearProducts")}
               </Link>
             </div>
             <div>
-              <h4>საპიკნიკე</h4>
-              <p>
-                <span>ეზოეზო</span> გაძლევთ იაფად მოგზაურობის საშუალებას
-                საქართველოს ყველა წერტილში. თქვენ შეგიძლიათ სხვისი ეზოს ქირაობა
-                დღიურად ან საკუთარის გაქირავება.
-              </p>
+              <h4>{t("camping")}</h4>
+              <p>{t("campingDesc")}</p>
               <Link href="/campsites">
                 <svg
                   width="16"
@@ -76,7 +68,7 @@ const HomeAbout = () => {
                     </clipPath>
                   </defs>
                 </svg>
-                ყველა საპიკნიკე ადგილი
+                {t("allCampingSites")}
               </Link>
             </div>
           </div>
