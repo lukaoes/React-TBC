@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FC, useState, useRef } from "react";
 import { cities } from "../Add/Product/mainProductField";
 import ReactSlider from "react-slider";
+import { useScopedI18n } from "../../locales/client";
 
 interface ProductsFilterProps {
   minPrice: number;
@@ -29,6 +30,7 @@ const ProductsFilter: FC<ProductsFilterProps> = ({
     minPrice,
     maxPrice,
   ]);
+  const t = useScopedI18n("products");
 
   const sliderMinPriceRef = useRef<number>(minPrice);
   const sliderMaxPriceRef = useRef<number>(maxPrice);
@@ -45,7 +47,7 @@ const ProductsFilter: FC<ProductsFilterProps> = ({
   return (
     <div className={`${filterState ? "active" : ""} products-filter-container`}>
       <div className="inside-products-filter-container">
-        <h3 className="products-filter-title">ფასი</h3>
+        <h3 className="products-filter-title">{t("price")}</h3>
         <div className="products-price-slider">
           <ReactSlider
             className="horizontal-slider"
@@ -64,7 +66,7 @@ const ProductsFilter: FC<ProductsFilterProps> = ({
             onChange={handleSliderChange}
           />
         </div>
-        <h3 className="products-filter-title">მდგომარეობა</h3>
+        <h3 className="products-filter-title">{t("condition")}</h3>
         <div className="products-filter-condition">
           <div>
             <input
@@ -74,7 +76,7 @@ const ProductsFilter: FC<ProductsFilterProps> = ({
               onChange={() => handleConditionChange("")}
               defaultChecked
             />
-            <label htmlFor="all">ყველა</label>
+            <label htmlFor="all">{t("all")}</label>
           </div>
           <div>
             <input
@@ -83,7 +85,7 @@ const ProductsFilter: FC<ProductsFilterProps> = ({
               id="new"
               onChange={() => handleConditionChange("new")}
             />
-            <label htmlFor="new">ახალი</label>
+            <label htmlFor="new">{t("new")}</label>
           </div>
           <div>
             <input
@@ -92,10 +94,10 @@ const ProductsFilter: FC<ProductsFilterProps> = ({
               id="used"
               onChange={() => handleConditionChange("used")}
             />
-            <label htmlFor="used">მეორადი</label>
+            <label htmlFor="used">{t("used")}</label>
           </div>
         </div>
-        <h3 className="products-filter-title">ტიპი</h3>
+        <h3 className="products-filter-title">{t("type")}</h3>
         <div className="products-filter-type">
           <div>
             <input
@@ -105,7 +107,7 @@ const ProductsFilter: FC<ProductsFilterProps> = ({
               onChange={() => handleTypeChange("")}
               defaultChecked
             />
-            <label htmlFor="all-type">ყველა</label>
+            <label htmlFor="all-type">{t("all")}</label>
           </div>
           <div>
             <input
@@ -114,7 +116,7 @@ const ProductsFilter: FC<ProductsFilterProps> = ({
               id="sell"
               onChange={() => handleTypeChange("sell")}
             />
-            <label htmlFor="sell">იყიდება</label>
+            <label htmlFor="sell">{t("sale")}</label>
           </div>
           <div>
             <input
@@ -123,10 +125,10 @@ const ProductsFilter: FC<ProductsFilterProps> = ({
               id="rent"
               onChange={() => handleTypeChange("rent")}
             />
-            <label htmlFor="rent">ქირავდება</label>
+            <label htmlFor="rent">{t("rent")}</label>
           </div>
         </div>
-        <h3 className="products-filter-title">კატეგორია</h3>
+        <h3 className="products-filter-title">{t("category")}</h3>
         <ul className="products-filter-list">
           {[
             "ფეხსაცმელი",
@@ -149,13 +151,13 @@ const ProductsFilter: FC<ProductsFilterProps> = ({
             </li>
           ))}
         </ul>
-        <h3 className="products-filter-title">მდებარეობა</h3>
+        <h3 className="products-filter-title">{t("location")}</h3>
         <select
           className="products-city-select"
           onChange={(e) => handleLocationChange(e.target.value)}
           defaultValue=""
         >
-          <option value="">ყველა</option>
+          <option value="">{t("all")}</option>
           {cities.map((city, index) => (
             <option key={`select-cities-products-page-${index}`} value={city}>
               {city}

@@ -240,6 +240,7 @@ const SingleProdMainDescription = async ({ product }: IProduct) => {
             ? `${product.price} ₾`
             : `${product.price} ₾/დღე`}
         </span>
+        {/* @ts-ignore */}
         <SingleProdMainDescriptionButton product={product} />
       </div>
     </div>

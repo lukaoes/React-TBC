@@ -73,7 +73,7 @@ const ProfileForm: React.FC<ProfileFormProps> = () => {
         alt="profile-illustration"
       />
       <fieldset>
-        <legend>{t("about")}</legend>
+        <legend>about</legend>
         <div>
           <div>
             <h2 className="profile-title">Email:</h2>

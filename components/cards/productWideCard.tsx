@@ -1,15 +1,16 @@
 import Image from "next/image";
 import { ProductsDisplay } from "../../types";
 import { FC } from "react";
-import { useCurrentLocale } from "../../locales/client";
 import Link from "next/link";
 import ProductWideCardButton from "./productWideCardButton";
+import { useCurrentLocale, useScopedI18n } from "../../locales/client";
 
 type MainProductCardProps = {
   product: ProductsDisplay;
 };
 
 const ProductWideCard: FC<MainProductCardProps> = ({ product }) => {
+  const t = useScopedI18n("products");
   const locale = useCurrentLocale();
   return (
     <div className="product-wide-card">
@@ -106,7 +107,7 @@ const ProductWideCard: FC<MainProductCardProps> = ({ product }) => {
           </span>
         </div>
         <div className="product-wide-card-type">
-          <span> {product.type === "sell" ? "იყიდება" : "ქირავდება"}</span>
+          <span> {product.type === "sell" ? t("sale") : t("rent")}</span>
           <h4>
             {product.category}, {product.subcategory ? product.subcategory : ""}
           </h4>
@@ -124,21 +125,21 @@ const ProductWideCard: FC<MainProductCardProps> = ({ product }) => {
         <div className="product-wide-card-bottom">
           <div className="product-wide-card-bottom-left">
             <div>
-              <span>ფასი</span>
+              <span>{t("price")}</span>
               <p>
                 {product.negotiable
-                  ? "შეთანხმებით"
+                  ? t("negotiable")
                   : product.type === "sell"
                   ? `${product.price} ₾`
-                  : `${product.price} ₾/დღე`}
+                  : `${product.price} ₾/${t("perDay")}`}
               </p>
             </div>
             <div>
-              <span>კონდიცია</span>
-              <p>{product.condition === "used" ? "მეორადი" : "ახალი"}</p>
+              <span>{t("condition")}</span>
+              <p>{product.condition === "used" ? t("used") : t("new")}</p>
             </div>
             <div>
-              <span>ლოკაცია</span>
+              <span>{t("location")}</span>
               <p>{product.location}</p>
             </div>
           </div>

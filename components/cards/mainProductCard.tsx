@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 import { ProductsDisplay } from "../../types";
-import { useCurrentLocale } from "../../locales/client";
+import { useCurrentLocale, useScopedI18n } from "../../locales/client";
 import MainProductCardButton from "./mainProductCardButton";
 
 type MainProductCardProps = {
@@ -12,10 +12,11 @@ type MainProductCardProps = {
 
 const MainProductCard: FC<MainProductCardProps> = ({ product, openModal }) => {
   const locale = useCurrentLocale();
+  const t = useScopedI18n("products");
   return (
     <div className="main-product-card">
       <span className="main-product-card-type">
-        {product.type === "sell" ? "იყიდება" : "ქირავდება"}
+        {product.type === "sell" ? t("sale") : t("rent")}
       </span>
 
       <div className="main-product-card-buttons">
@@ -128,12 +129,12 @@ const MainProductCard: FC<MainProductCardProps> = ({ product, openModal }) => {
           </h3>
         </Link>
         {product.negotiable == true ? (
-          <p>ფასი შეთანხმებით</p>
+          <p>{t("negotiableFull")}</p>
         ) : (
           <p>
             {product.type === "sell"
               ? `${product.price} ₾`
-              : `${product.price} ₾/დღე`}
+              : `${product.price} ₾/${t("perDay")}`}
           </p>
         )}
         <div className="product-grid-date-condition">
@@ -173,7 +174,7 @@ const MainProductCard: FC<MainProductCardProps> = ({ product, openModal }) => {
               />
               <path fill="#455A64" d="M23 10a1 1 0 11-2 0 1 1 0 012 0z" />
             </svg>
-            {product.condition === "used" ? "მეორადი" : "ახალი"}
+            {product.condition === "used" ? t("used") : t("new")}
           </div>
         </div>
       </div>

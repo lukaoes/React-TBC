@@ -1,5 +1,6 @@
 "use client";
 import { FC, useEffect, useState } from "react";
+import { useScopedI18n } from "../../locales/client";
 
 interface ProductsTopFilterProps {
   gridView: boolean;
@@ -23,6 +24,7 @@ const ProductsTopFilter: FC<ProductsTopFilterProps> = ({
   filterState,
 }) => {
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+  const t = useScopedI18n("products");
 
   useEffect(() => {
     const handleResize = () => {
@@ -87,14 +89,14 @@ const ProductsTopFilter: FC<ProductsTopFilterProps> = ({
             fill="black"
           />
         </svg>
-        <span>ფილტრი</span>
+        <span>{t("filter")}</span>
       </div>
       <div className="products-top-filter-right">
         <div className="products-top-filter-search">
           <input
             type="text"
             name="search"
-            placeholder="ძებნა..."
+            placeholder={t("search")}
             value={searchTerm}
             onChange={(e) => handleSearch(e.target.value)}
           />
@@ -127,11 +129,11 @@ const ProductsTopFilter: FC<ProductsTopFilterProps> = ({
                   }
                 }}
               >
-                <option value="">სორტირება</option>
-                <option value="price:low-high">ფასი: მცირე-დიდი</option>
-                <option value="price:high-low">ფასი: დიდი-მცირე</option>
-                <option value="date:new-old">თარიღი: ახალი-ძველი</option>
-                <option value="date:old-new">თარიღი: ძველი-ახალი</option>
+                <option value="">{t("sorting")}</option>
+                <option value="price:low-high">{t("priceLowHigh")}</option>
+                <option value="price:high-low">{t("priceHighLow")}</option>
+                <option value="date:new-old">{t("dateNewOld")}</option>
+                <option value="date:old-new">{t("dateOldNew")}</option>
               </select>
             </div>
           </div>

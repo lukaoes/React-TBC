@@ -86,7 +86,7 @@ const AdminProductsTable = () => {
         <SingleProdEditModal
           // @ts-ignore
           product={selectedProduct[0]}
-          onClose={handleCloseModal}
+          onClose={handleCloseModal} // @ts-ignore
           onSave={handleSave}
         />
       )}

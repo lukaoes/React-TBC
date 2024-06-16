@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
 import { ProductsDisplay } from "../../types";
-import { useCurrentLocale } from "../../locales/client";
+import { useCurrentLocale, useScopedI18n } from "../../locales/client";
 import MainProductCardModalButton from "./mainProductCardModalButton";
 
 type MainProductCardProps = {
@@ -14,7 +14,7 @@ const MainProductCardModal: FC<MainProductCardProps> = ({
   product,
   closeModal,
 }) => {
-  console.log("modalprod", product);
+  const t = useScopedI18n("products");
   const locale = useCurrentLocale();
   return (
     <div className="main-product-card-modal-container">
@@ -110,7 +110,7 @@ const MainProductCardModal: FC<MainProductCardProps> = ({
             </p>
           </div>
           <div className="card-modal-content-type">
-            <span>{product.type === "sell" ? "იყიდება" : "ქირავდება"}</span>
+            <span>{product.type === "sell" ? t("sale") : t("rent")}</span>
             <p> {product.category}</p>
           </div>
           <p className="card-modal-content-desc">
@@ -125,29 +125,29 @@ const MainProductCardModal: FC<MainProductCardProps> = ({
           <div className="card-modal-content-bottom">
             <div className="card-modal-content-bottom-left">
               <div>
-                <span>ფასი</span>
+                <span>{t("price")}</span>
                 {product.negotiable == true ? (
-                  <p>ფასი შეთანხმებით</p>
+                  <p>{t("negotiableFull")}</p>
                 ) : (
                   <p>
                     {product.type === "sell"
                       ? `${product.price} ₾`
-                      : `${product.price} ₾/დღე`}
+                      : `${product.price} ₾/${t("perDay")}`}
                   </p>
                 )}
               </div>
               <div>
-                <span>კონდიცია</span>
-                <p> {product.condition === "used" ? "მეორადი" : "ახალი"}</p>
+                <span>{t("conditionTwo")}</span>
+                <p> {product.condition === "used" ? t("used") : t("new")}</p>
               </div>
               <div>
-                <span>ლოკაცია</span>
+                <span>{t("locationTwo")}</span>
                 <p>{product.location}</p>
               </div>
             </div>
             <div className="card-modal-content-buttons">
               <MainProductCardModalButton product={product} />
-              <Link href={`/products/${product.id}`}>დეტალურად</Link>
+              <Link href={`/products/${product.id}`}>{t("details")}</Link>
             </div>
           </div>
         </div>

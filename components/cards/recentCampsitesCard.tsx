@@ -1,15 +1,14 @@
 import Image from "next/image";
 import { Link } from "next-view-transitions";
 import { CampsitesDisplay } from "../../types";
-import { useCurrentLocale } from "../../locales/client";
-import { getI18n } from "../../locales/server";
+import { useCurrentLocale, useI18n } from "../../locales/client";
 
 interface ICamp {
   campsite: CampsitesDisplay;
 }
 
-const RecentCampsitesCard = async ({ campsite }: ICamp) => {
-  const t = await getI18n();
+const RecentCampsitesCard = ({ campsite }: ICamp) => {
+  const t = useI18n();
   const locale = useCurrentLocale();
   const desc =
     locale === "ge"
