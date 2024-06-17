@@ -1,5 +1,6 @@
 "use client";
 import { FC, ChangeEvent } from "react";
+import { useI18n } from "../../locales/client";
 
 interface CampsiteSearchFilterProps {
   onSearch: (term: string) => void;
@@ -13,6 +14,7 @@ const CampsiteSearchFilter: FC<CampsiteSearchFilterProps> = ({
   const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
     onSearch(e.target.value);
   };
+  const t = useI18n();
 
   return (
     <>
@@ -21,7 +23,7 @@ const CampsiteSearchFilter: FC<CampsiteSearchFilterProps> = ({
           <input
             type="text"
             name="search"
-            placeholder="ძებნა..."
+            placeholder={t("camping.search")}
             className="campsite-search-filter-search"
             onChange={handleSearchChange}
           />
@@ -46,7 +48,7 @@ const CampsiteSearchFilter: FC<CampsiteSearchFilterProps> = ({
                 fill="black"
               ></path>
             </svg>
-            ფილტრი
+            {t("camping.filter")}
           </div>
         </div>
       </div>

@@ -4,16 +4,16 @@ import Link from "next/link";
 import { CampsitesDisplay, Review } from "../../types";
 import { FC, useEffect, useState } from "react";
 import { getCampReviews } from "../../actions";
+import { useScopedI18n } from "../../locales/client";
 
 interface ICamps {
   camp: CampsitesDisplay;
 }
 
 const CampsiteCard: FC<ICamps> = ({ camp }) => {
-  // Initialize review state
   const [review, setReview] = useState<Review[]>([]);
+  const t = useScopedI18n("camping");
 
-  // Fetch reviews when the component mounts
   useEffect(() => {
     const fetchReviews = async () => {
       try {
@@ -41,9 +41,7 @@ const CampsiteCard: FC<ICamps> = ({ camp }) => {
     <div className="campsite-card-layout">
       <Link href={`/campsites/${camp.id}`} className="campsite-image-container">
         <span className="campsite-card-pitch">
-          {camp.space_type === "nicepitch"
-            ? "მოწყობილი სივრცე"
-            : "ცარიელი სივრცე"}
+          {camp.space_type === "nicepitch" ? t("nicepitch") : t("barepitch")}
         </span>
         <Image
           src={camp.main_photo}
@@ -142,15 +140,17 @@ const CampsiteCard: FC<ICamps> = ({ camp }) => {
           </span>
         </div>
         <div className="campsite-card-location">
-          <span>{camp.size} კვ/მ • </span>
+          <span>
+            {camp.size} {t("sqm")} •{" "}
+          </span>
           <span> {camp.location}</span>
         </div>
         <p className="campsite-card-price">
           {camp.negotiable == true ? (
-            <span>ფასი შეთანხმებით</span>
+            <span>{t("negotiable")}</span>
           ) : (
             <>
-              <span>₾ {camp.price}</span> / დღე
+              <span>₾ {camp.price}</span> / {t("day")}
             </>
           )}
         </p>

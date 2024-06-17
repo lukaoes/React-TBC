@@ -5,6 +5,7 @@ import {
   amenitiesList,
 } from "../Add/Campsite/mainCampsiteField";
 import { cities } from "../Add/Product/mainProductField";
+import { useScopedI18n } from "../../locales/client";
 
 interface CampsiteFilterProps {
   filters: any;
@@ -18,6 +19,7 @@ const CampsiteFilter: FC<CampsiteFilterProps> = ({
   onClose,
 }) => {
   const [localFilters, setLocalFilters] = useState(filters);
+  const t = useScopedI18n("camping");
 
   useEffect(() => {
     setLocalFilters(filters);
@@ -69,7 +71,7 @@ const CampsiteFilter: FC<CampsiteFilterProps> = ({
       </div>
 
       <div className="single-camp-filter-type">
-        <h2>სივრცის ტიპი</h2>
+        <h2>{t("spaceType")}</h2>
         <div>
           <div>
             <input
@@ -81,7 +83,7 @@ const CampsiteFilter: FC<CampsiteFilterProps> = ({
               checked={localFilters.space_type === "barepitch"}
               onChange={handleChange}
             />
-            <label htmlFor="barepitch">ცარიელი სივრცე</label>
+            <label htmlFor="barepitch">{t("barepitch")}</label>
           </div>
           <div>
             <input
@@ -93,12 +95,12 @@ const CampsiteFilter: FC<CampsiteFilterProps> = ({
               checked={localFilters.space_type === "nicepitch"}
               onChange={handleChange}
             />
-            <label htmlFor="nicepitch">მოწყობილი სივრცე</label>
+            <label htmlFor="nicepitch">{t("nicepitch")}</label>
           </div>
         </div>
       </div>
       <div>
-        <h2>რითი გსურთ დარჩენა</h2>
+        <h2>{t("howYouStayin")}</h2>
         <div className="camp-filter-welcome">
           <div>
             <label htmlFor="tent">
@@ -110,7 +112,7 @@ const CampsiteFilter: FC<CampsiteFilterProps> = ({
                 checked={localFilters.accepted_guests.includes("tent")}
                 onChange={handleChange}
               />
-              კარავი
+              {t("tent")}
             </label>
             <label htmlFor="bike">
               <input
@@ -121,7 +123,7 @@ const CampsiteFilter: FC<CampsiteFilterProps> = ({
                 checked={localFilters.accepted_guests.includes("bike")}
                 onChange={handleChange}
               />
-              ველოსიპედი
+              {t("bycicle")}
             </label>
           </div>
           <div>
@@ -134,7 +136,7 @@ const CampsiteFilter: FC<CampsiteFilterProps> = ({
                 checked={localFilters.accepted_guests.includes("caravan")}
                 onChange={handleChange}
               />
-              ქარავანი
+              {t("caravan")}
             </label>
             <label htmlFor="homevan">
               <input
@@ -145,42 +147,42 @@ const CampsiteFilter: FC<CampsiteFilterProps> = ({
                 checked={localFilters.accepted_guests.includes("homevan")}
                 onChange={handleChange}
               />
-              სახლი-მანქანა
+              {t("homevan")}
             </label>
           </div>
         </div>
       </div>
       <div className="campsite-filter-capacity">
-        <h2>სტუმრების რაოდენობა</h2>
+        <h2>{t("guestsCount")}</h2>
         <select
           name="capacity"
           value={localFilters.capacity}
           onChange={handleChange}
         >
           <option value="" disabled>
-            აირჩიეთ რაოდენობა
+            {t("chooseCount")}
           </option>
-          <option value="1">1 ადამიანი</option>
-          <option value="2">2 ადამიანი</option>
-          <option value="3">3 ადამიანი</option>
-          <option value="4">4 ადამიანი</option>
-          <option value="5">5 ადამიანი</option>
-          <option value="5-10">5-10 ადამიანი</option>
-          <option value="10-15">10-15 ადამიანი</option>
-          <option value="15-20">15-20 ადამიანი</option>
-          <option value="20-30">20-30 ადამიანი</option>
-          <option value="30+">30+ ადამიანი</option>
+          <option value="1">1 {t("person")}</option>
+          <option value="2">2 {t("person")}</option>
+          <option value="3">3 {t("person")}</option>
+          <option value="4">4 {t("person")}</option>
+          <option value="5">5 {t("person")}</option>
+          <option value="5-10">5-10 {t("person")}</option>
+          <option value="10-15">10-15 {t("person")}</option>
+          <option value="15-20">15-20 {t("person")}</option>
+          <option value="20-30">20-30 {t("person")}</option>
+          <option value="30+">30+ {t("person")}</option>
         </select>
       </div>
       <div className="campsite-filter-location">
-        <h2>აირჩიეთ ლოკაცია</h2>
+        <h2>{t("chooseLocation")}</h2>
         <select
           name="location"
           value={localFilters.location}
           onChange={handleChange}
         >
           <option disabled value="">
-            აირჩიე ქალაქი
+            {t("chooseCity")}
           </option>
           {cities.map((city, index) => (
             <option key={`select-cities-${index}`} value={city}>
@@ -190,14 +192,14 @@ const CampsiteFilter: FC<CampsiteFilterProps> = ({
         </select>
       </div>
       <div>
-        <h2>ფასი</h2>
+        <h2>{t("price")}</h2>
         <div className="campsite-filter-price">
           <input
             type="number"
             name="min_price"
             id="min-price"
             className="camp-edit-price"
-            placeholder="ფასი"
+            placeholder={t("price")}
             value={localFilters.min_price}
             onChange={handleChange}
           />
@@ -206,18 +208,18 @@ const CampsiteFilter: FC<CampsiteFilterProps> = ({
             name="max_price"
             id="max-price"
             className="camp-edit-price"
-            placeholder="ფასი"
+            placeholder={t("price")}
             value={localFilters.max_price}
             onChange={handleChange}
           />
         </div>
         <div className="campsite-filter-label">
-          <span>მინ.</span>
-          <span>მაქს.</span>
+          <span>{t("min")}</span>
+          <span>{t("max")}</span>
         </div>
       </div>
       <div className="campsite-filter-amenties">
-        <h2>რა გსურთ სივრცეში</h2>
+        <h2>{t("whatYouWant")}</h2>
         <div className="amenties-row">
           {amenitiesList.map((amenity) => (
             <div key={amenity}>
@@ -236,7 +238,7 @@ const CampsiteFilter: FC<CampsiteFilterProps> = ({
         </div>
       </div>
       <div>
-        <h2>რა აქტივობა გსურთ</h2>
+        <h2>{t("whichActYouWant")}</h2>
         <div className="campsite-filter-activities">
           {activitiesList.map((activity) => (
             <div key={activity}>
@@ -255,8 +257,8 @@ const CampsiteFilter: FC<CampsiteFilterProps> = ({
         </div>
       </div>
       <div className="single-camp-edit-buttons">
-        <button onClick={handleSubmit}>გაფილტვრა</button>
-        <button onClick={handleClear}>ფილტრის გასუფთავება</button>
+        <button onClick={handleSubmit}>{t("doFilter")}</button>
+        <button onClick={handleClear}>{t("clearFilter")}</button>
       </div>
     </div>
   );

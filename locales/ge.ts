@@ -84,6 +84,7 @@ export default {
   "camping.chooseCount": "აირჩიეთ რაოდენობა",
   "camping.person": "ადამიანი",
   "camping.chooseLocation": "აირჩიეთ ლოკაცია",
+  "camping.chooseCity": "აირჩიეთ ქალაქი",
   "camping.price": "ფასი",
   "camping.min": "მინ.",
   "camping.max": "მაქს.",

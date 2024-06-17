@@ -4,12 +4,14 @@ import { CampsitesDisplay } from "../../types";
 import CampsiteAds from "./campsiteAds";
 import CampsiteSearchFilter from "./campsiteSearchFilter";
 import CampsiteFilter from "./campsiteFilter";
+import { useI18n } from "../../locales/client";
 
 interface ICamps {
   displayCamps: CampsitesDisplay[];
 }
 
 const CampsiteLayout: FC<ICamps> = ({ displayCamps }) => {
+  const t = useI18n();
   const [filteredCamps, setFilteredCamps] =
     useState<CampsitesDisplay[]>(displayCamps);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -105,7 +107,9 @@ const CampsiteLayout: FC<ICamps> = ({ displayCamps }) => {
         onSearch={handleSearch}
         onFilter={() => setIsModalOpen(true)}
       />
-      <div className="campsite-count">{filteredCamps.length} ადგილი</div>
+      <div className="campsite-count">
+        {filteredCamps.length} {t("camping.place")}
+      </div>
       <div className="campsites-container">
         <div>
           <CampsiteAds displayCamps={filteredCamps} />
