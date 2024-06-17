@@ -1,17 +1,22 @@
-import { getSession } from "@auth0/nextjs-auth0";
-import LoginToAccess from "../../../../../components/noAccess/loginToAccess";
 import { Metadata } from "next";
+import { getNicknameAction } from "../../../../../actions";
+import { getSession } from "@auth0/nextjs-auth0";
 
 export async function generateMetadata({
   params: { locale },
 }: {
   params: { locale: string };
 }): Promise<Metadata> {
+  const session = await getSession();
+  const nickname = await getNicknameAction(session?.user?.sub);
   const title = "ეზოეზო";
   const titleEn = "EzoEzo";
-  const desc = "დაამატე ბლოგი";
-  const descEn = "Add blog";
-  const pageTitle = locale === "ge" ? "ბლოგის დამატება" : "Add Blog";
+  const desc = `${nickname[0].nickname} მისამართების გვერდი`;
+  const descEn = `${nickname[0].nickname} addresses page`;
+  const pageTitle =
+    locale === "ge"
+      ? `მისამართები | ${nickname[0].nickname}`
+      : `Addresses | ${nickname[0].nickname}`;
   const siteTitle = locale === "ge" ? title : titleEn;
   const description = locale === "ge" ? desc : descEn;
 
@@ -26,15 +31,10 @@ export async function generateMetadata({
   };
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getSession();
-
-  if (!session) {
-    return <LoginToAccess />;
-  }
-  return <main>{children}</main>;
+  return <>{children}</>;
 }

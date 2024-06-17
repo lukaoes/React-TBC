@@ -1,5 +1,3 @@
-import { getSession } from "@auth0/nextjs-auth0";
-import LoginToAccess from "../../../../../components/noAccess/loginToAccess";
 import { Metadata } from "next";
 
 export async function generateMetadata({
@@ -9,9 +7,11 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const title = "ეზოეზო";
   const titleEn = "EzoEzo";
-  const desc = "დაამატე ბლოგი";
-  const descEn = "Add blog";
-  const pageTitle = locale === "ge" ? "ბლოგის დამატება" : "Add Blog";
+  const desc =
+    "ყველაფერი რაც უნდა იცოდე თუ ბუნებას ხშირად სტუმრობ. ბლოგები ბუნებაზე ქართულად. წაიკითხე და დაამატე ბლოგები ლაშქრობაზე, ქემფინგზე...";
+  const descEn =
+    "Everything that you need to know if you visit nature often. Blogs about nature in Georgian. Read and add blogs about hiking, camping...";
+  const pageTitle = locale === "ge" ? "ბლოგი" : "Blog";
   const siteTitle = locale === "ge" ? title : titleEn;
   const description = locale === "ge" ? desc : descEn;
 
@@ -26,15 +26,10 @@ export async function generateMetadata({
   };
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getSession();
-
-  if (!session) {
-    return <LoginToAccess />;
-  }
   return <main>{children}</main>;
 }

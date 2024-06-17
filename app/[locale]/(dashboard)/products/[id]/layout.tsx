@@ -20,9 +20,9 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 
   const title = (() => {
     if (locale === "ge" && title_ge) {
-      return title_ge;
+      return title_ge + " | ეზოეზო";
     } else if (title_en) {
-      return title_en;
+      return title_en + " | EzoEzo";
     } else {
       return "";
     }
