@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import { BASE_URL } from "../../api";
+import { useI18n } from "../../locales/client";
 
 interface AddBlogPictureProps {
   setBlobUrl: (url: string) => void;
@@ -9,6 +10,7 @@ interface AddBlogPictureProps {
 
 const AddBlogPicture: React.FC<AddBlogPictureProps> = ({ setBlobUrl }) => {
   const inputFileRef = useRef<HTMLInputElement>(null);
+  const t = useI18n();
 
   const handleUpload = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -35,7 +37,7 @@ const AddBlogPicture: React.FC<AddBlogPictureProps> = ({ setBlobUrl }) => {
   return (
     <div>
       <form onSubmit={handleUpload} className="upload-photo">
-        <label htmlFor="file-upload">ატვირთეთ ფოტო</label>
+        <label htmlFor="file-upload">{t("singleCamp.uploadPicture")}</label>
         <input
           name="file"
           ref={inputFileRef}
@@ -43,7 +45,7 @@ const AddBlogPicture: React.FC<AddBlogPictureProps> = ({ setBlobUrl }) => {
           required
           id="file-upload"
         />
-        <button type="submit">ატვირთვა </button>
+        <button type="submit">{t("singleCamp.upload")} </button>
       </form>
     </div>
   );

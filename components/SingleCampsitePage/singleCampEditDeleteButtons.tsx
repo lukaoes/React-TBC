@@ -3,6 +3,7 @@
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { FC } from "react";
 import { Campsite } from "../../types";
+import { useI18n } from "../../locales/client";
 
 interface IDelEdit {
   editOpen: () => void;
@@ -19,6 +20,7 @@ const SingleCampEditDeleteButton: FC<IDelEdit> = ({
 
   const isAdmin = Array.isArray(user?.role) && user.role.includes("admin");
   const isProductOwner = user?.sub === camp.user_id;
+  const t = useI18n();
 
   if (!isAdmin && !isProductOwner) {
     return null;
@@ -44,7 +46,7 @@ const SingleCampEditDeleteButton: FC<IDelEdit> = ({
               <path d="M303.85,138.388c-8.284,0-15,6.716-15,15v127.347c0,21.034-17.113,38.147-38.147,38.147H68.904     c-21.035,0-38.147-17.113-38.147-38.147V100.413c0-21.034,17.113-38.147,38.147-38.147h131.587c8.284,0,15-6.716,15-15     s-6.716-15-15-15H68.904c-37.577,0-68.147,30.571-68.147,68.147v180.321c0,37.576,30.571,68.147,68.147,68.147h181.798     c37.576,0,68.147-30.571,68.147-68.147V153.388C318.85,145.104,312.134,138.388,303.85,138.388z"></path>
             </g>
           </svg>
-          რედაქტირება
+          {t("singleProd.edit")}
         </button>
         <button onClick={deleteOpen}>
           <svg
@@ -67,7 +69,7 @@ const SingleCampEditDeleteButton: FC<IDelEdit> = ({
               </g>
             </g>
           </svg>
-          წაშლა
+          {t("singleProd.delete")}
         </button>
       </div>
     </div>

@@ -4,6 +4,7 @@ import { Campsite } from "../../types";
 import AddBlogPicture from "../Blog/addBlogPicture";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { addCampReview } from "../../actions";
+import { useScopedI18n } from "../../locales/client";
 
 interface ICamp {
   camp: Campsite;
@@ -17,6 +18,7 @@ const SingleCampAddReview = ({ camp }: ICamp) => {
   const [recommended, setRecommended] = useState(true);
   const [photoUrl, setPhotoUrl] = useState("");
   const [photoError, setPhotoError] = useState("");
+  const t = useScopedI18n("singleCamp");
 
   useEffect(() => {
     if (user && user.sub) {
@@ -74,9 +76,9 @@ const SingleCampAddReview = ({ camp }: ICamp) => {
   if (!user || !user.sub) {
     return (
       <div className="single-blog-add-comment">
-        კომენტარის დასატოვებლად გაიარეთ{" "}
+        {t("loginOne")}{" "}
         <a href="/api/auth/login" className="underline">
-          ავტორიზაცია
+          {t("loginTwo")}
         </a>
       </div>
     );
@@ -84,25 +86,25 @@ const SingleCampAddReview = ({ camp }: ICamp) => {
 
   return (
     <div className="single-camp-add-review">
-      <h1>დატოვეთ განხილვა</h1>
+      <h1>{t("addReview")}</h1>
       <AddBlogPicture setBlobUrl={setBlobUrl} />
       <form onSubmit={handleSubmit} className="single-blog-add-comment-form">
         <div>
-          <label htmlFor="review">დაამატეთ შეფასება</label>
+          <label htmlFor="review">{t("writeReview")}</label>
           <textarea
-            placeholder="დაწერეთ შეფასება..."
+            placeholder={t("writeReviewHere")}
             id="review"
             value={review}
             onChange={handleReviewChange}
           ></textarea>
         </div>
         <div>
-          <label htmlFor="main_photo">სურათის URL</label>
+          <label htmlFor="main_photo">{t("imageURL")}</label>
           <input
             type="text"
             name="main_photo"
             id="main_photo"
-            placeholder="ატვირთეთ ან ხელით ჩააკოპირეთ სურათის URL"
+            placeholder={t("uploadOrPasteUrl")}
             value={blobUrl || photoUrl}
             onChange={handlePhotoUrlChange}
             disabled={!!blobUrl}
@@ -114,17 +116,17 @@ const SingleCampAddReview = ({ camp }: ICamp) => {
             className={recommended ? "camp-recommend" : ""}
             onClick={() => setRecommended(true)}
           >
-            მომეწონა
+            {t("recommended")}
           </div>
           <div
             className={!recommended ? "camp-recommend" : ""}
             onClick={() => setRecommended(false)}
           >
-            არ მომეწონა
+            {t("notRecommended")}
           </div>
         </div>
         <div className="add-comment-button">
-          <button type="submit">დაკომენტარება</button>
+          <button type="submit">{t("comment")}</button>
         </div>
       </form>
     </div>

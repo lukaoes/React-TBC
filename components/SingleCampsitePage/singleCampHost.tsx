@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Campsite } from "../../types";
 import { FC } from "react";
 import { getNicknameAction, getPictureAction } from "../../actions";
+import { getScopedI18n } from "../../locales/server";
 
 interface ICamp {
   camp: Campsite;
@@ -11,11 +12,12 @@ interface ICamp {
 const SingleCampHost: FC<ICamp> = async ({ camp }) => {
   const nickname = await getNicknameAction(camp.user_id);
   const pic = await getPictureAction(camp.user_id);
+  const t = await getScopedI18n("singleCamp");
   return (
     <div>
       <div className="single-camp-welcome">
         <div className="single-camp-welcome-child">
-          <span>მივიღებთ</span>
+          <span>{t("guests")}</span>
           <div className="single-camp-icons">
             <span
               className={
@@ -87,28 +89,32 @@ const SingleCampHost: FC<ICamp> = async ({ camp }) => {
           </div>
         </div>
         <div className="single-camp-welcome-child">
-          <span>სივრცე</span>
+          <span>{t("space")}</span>
           <p>{camp.space_type === "nicepitch" ? "მოწყობილი" : "ცარიელი"}</p>
         </div>
         <div className="single-camp-welcome-child">
-          <span>ფასი</span>
+          <span>{t("price")}</span>
           <p>
             {camp.negotiable == true ? (
-              <span>შეთანხმებით</span>
+              <span>{t("negotiable")}</span>
             ) : (
               <>
-                <span>₾ {camp.price}</span> / დღე
+                <span>₾ {camp.price}</span> / {t("day")}
               </>
             )}
           </p>
         </div>
         <div className="single-camp-welcome-child">
-          <span>ფართობი</span>
-          <p>{camp.size} მ²</p>
+          <span>{t("area")}</span>
+          <p>
+            {camp.size} {t("msq")}
+          </p>
         </div>
         <div className="single-camp-welcome-child">
-          <span>ტევადობა</span>
-          <p>{camp.capacity} ადამიანი</p>
+          <span>{t("capacity")}</span>
+          <p>
+            {camp.capacity} {t("person")}
+          </p>
         </div>
       </div>
       <div className="single-camp-host">
@@ -123,14 +129,14 @@ const SingleCampHost: FC<ICamp> = async ({ camp }) => {
           </Link>
           <div>
             <h2>
-              თქვენი მასპინძელია{" "}
+              {t("yourHostIs")}{" "}
               <Link href={`/user/${nickname[0].nickname}`}>
                 {nickname[0].nickname}
               </Link>
               !
             </h2>
             <Link href={`/user/${nickname[0].nickname}`} className="all-ads">
-              ყველა განცხადება
+              {t("allAdvertisements")}
             </Link>
           </div>
         </div>

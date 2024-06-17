@@ -7,6 +7,7 @@ import {
   amenitiesList,
 } from "../Add/Campsite/mainCampsiteField";
 import { updateCampsiteAction } from "../../actions";
+import { useScopedI18n } from "../../locales/client";
 
 interface ICamp {
   camp: Campsite;
@@ -34,6 +35,7 @@ const SingleCampEditModal: FC<ICamp> = ({ camp, onClose }) => {
     negotiable: camp.negotiable || false,
     map: camp.map || "",
   });
+  const t = useScopedI18n("addCampsite");
 
   const handleInputChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -70,7 +72,7 @@ const SingleCampEditModal: FC<ICamp> = ({ camp, onClose }) => {
       <div className="single-campsite-edit-modal">
         <form onSubmit={handleSubmit}>
           <div>
-            <h2>სივრცის ტიპი</h2>
+            <h2>{t("howYourSiteLooks")}</h2>
             <input
               className="radio-input"
               type="radio"
@@ -80,7 +82,7 @@ const SingleCampEditModal: FC<ICamp> = ({ camp, onClose }) => {
               checked={formData.space_type === "barepitch"}
               onChange={handleInputChange}
             />
-            <label htmlFor="barepitch">უბრალო სივრცე</label>
+            <label htmlFor="barepitch">{t("barepitch")}</label>
             <input
               className="radio-input"
               type="radio"
@@ -90,10 +92,10 @@ const SingleCampEditModal: FC<ICamp> = ({ camp, onClose }) => {
               checked={formData.space_type === "nicepitch"}
               onChange={handleInputChange}
             />
-            <label htmlFor="nicepitch">მოწყობილი სივრცე</label>
+            <label htmlFor="nicepitch">{t("nicepitch")}</label>
           </div>
           <div>
-            <h2>ვისი მიღება შეგიძლიათ</h2>
+            <h2>{t("welcomedVisitors")}</h2>
             <label htmlFor="tent">
               <input
                 type="checkbox"
@@ -103,7 +105,7 @@ const SingleCampEditModal: FC<ICamp> = ({ camp, onClose }) => {
                 checked={formData.accepted_guests.includes("tent")}
                 onChange={handleInputChange}
               />
-              კარავი
+              {t("tent")}
             </label>
             <label htmlFor="bike">
               <input
@@ -114,7 +116,7 @@ const SingleCampEditModal: FC<ICamp> = ({ camp, onClose }) => {
                 checked={formData.accepted_guests.includes("bike")}
                 onChange={handleInputChange}
               />
-              ველოსიპედი
+              {t("bycicle")}
             </label>
             <label htmlFor="caravan">
               <input
@@ -125,7 +127,7 @@ const SingleCampEditModal: FC<ICamp> = ({ camp, onClose }) => {
                 checked={formData.accepted_guests.includes("caravan")}
                 onChange={handleInputChange}
               />
-              ქარავანი
+              {t("caravan")}
             </label>
             <label htmlFor="homevan">
               <input
@@ -136,11 +138,11 @@ const SingleCampEditModal: FC<ICamp> = ({ camp, onClose }) => {
                 checked={formData.accepted_guests.includes("homevan")}
                 onChange={handleInputChange}
               />
-              სახლი-მანქანა
+              {t("homevan")}
             </label>
           </div>
           <div className="input-block">
-            <h2>რამდენი ადამიანი დაეტევა</h2>
+            <h2>{t("howManyPeople")}</h2>
 
             <select
               name="capacity"
@@ -150,20 +152,20 @@ const SingleCampEditModal: FC<ICamp> = ({ camp, onClose }) => {
               <option value="" disabled>
                 აირჩიეთ რაოდენობა
               </option>
-              <option value="1">1 ადამიანი</option>
-              <option value="2">2 ადამიანი</option>
-              <option value="3">3 ადამიანი</option>
-              <option value="4">4 ადამიანი</option>
-              <option value="5">5 ადამიანი</option>
-              <option value="5-10">5-10 ადამიანი</option>
-              <option value="10-15">5-15 ადამიანი</option>
-              <option value="15-20">15-20 ადამიანი</option>
-              <option value="20-30">20-30 ადამიანი</option>
-              <option value="30+">30+ ადამიანი</option>
+              <option value="1">1 {t("person")}</option>
+              <option value="2">2 {t("person")}</option>
+              <option value="3">3 {t("person")}</option>
+              <option value="4">4 {t("person")}</option>
+              <option value="5">5 {t("person")}</option>
+              <option value="5-10">5-10 {t("person")}</option>
+              <option value="10-15">5-15 {t("person")}</option>
+              <option value="15-20">15-20 {t("person")}</option>
+              <option value="20-30">20-30 {t("person")}</option>
+              <option value="30+">30+ {t("person")}</option>
             </select>
           </div>
           <div className="input-block">
-            <label htmlFor="location">აირჩიეთ ლოკაცია*</label>
+            <label htmlFor="location">{t("chooseLocation")}*</label>
             <select
               name="location"
               value={formData.location}
@@ -177,37 +179,39 @@ const SingleCampEditModal: FC<ICamp> = ({ camp, onClose }) => {
             </select>
           </div>
           <div className="input-block">
-            <h2>სახელი და ტელეფონის ნომერი</h2>
-            <label htmlFor="firstName">სახელი*</label>
+            <h2>
+              {t("name")} & {t("phoneNumber")}
+            </h2>
+            <label htmlFor="firstName">{t("name")}*</label>
             <input
               type="text"
               name="first_name"
               id="firstName"
               value={formData.first_name}
-              placeholder="თქვენი სახელი"
+              placeholder={t("yourName")}
               onChange={handleInputChange}
             />
-            <label htmlFor="phone">ტელეფონის ნომერი*</label>
+            <label htmlFor="phone">{t("phoneNumber")}*</label>
             <input
               type="number"
               name="phone"
               id="phone"
               value={formData.phone}
-              placeholder="ტელეფონის ნომერი"
+              placeholder={t("yourPhoneNumber")}
               onChange={handleInputChange}
             />
           </div>
           <div>
-            <h2>ფასი</h2>
+            <h2>{t("price")}</h2>
 
-            <label htmlFor="price">ნივთის ფასი*</label>
+            <label htmlFor="price">{t("itemPrice")}*</label>
             <input
               type="number"
               name="price"
               id="price"
               className="camp-edit-price"
               value={formData.price}
-              placeholder="ფასი"
+              placeholder={t("itemPrice")}
               onChange={handleInputChange}
             />
             <input
@@ -222,27 +226,27 @@ const SingleCampEditModal: FC<ICamp> = ({ camp, onClose }) => {
                 }))
               }
             />
-            <label htmlFor="negotiable">ფასი შეთანხმებით</label>
+            <label htmlFor="negotiable">{t("negotiable")}</label>
           </div>
           <div className="input-block">
-            <h2>ფოტოები</h2>
+            <h2>{t("addPhoto")}</h2>
 
-            <label htmlFor="img-url">ან ატვირთეთ URL-ს გამოყენებით:</label>
+            <label htmlFor="img-url">{t("orUploadWithUrl")}:</label>
             <input
               type="text"
-              placeholder="ჩასვით სურათის ლინკი"
+              placeholder={t("pasteAdditionalUrl")}
               name="main_photo"
               id="img-url"
               value={formData.main_photo}
               onChange={handleInputChange}
             />
-            <span>დამატებითი სურათები:</span>
+            <span>{t("additionalImages")}:</span>
             {formData.photo_urls.map((url, index) => (
               <input
                 key={`photo_urls-${index}`}
                 type="text"
                 name="photo_urls"
-                placeholder="ჩასვით სურათის ლინკი"
+                placeholder={t("pasteAdditionalUrl")}
                 value={url}
                 onChange={(e) => {
                   const newPhotoUrls = [...formData.photo_urls];
@@ -263,64 +267,68 @@ const SingleCampEditModal: FC<ICamp> = ({ camp, onClose }) => {
                 }))
               }
             >
-              დამატებითი სურათის დამატება
+              {t("additionalImages")}
             </button>
           </div>
           <div className="input-block">
-            <h2>თქვენი სივრცის ზომა კვ/მ</h2>
+            <h2>
+              {t("writeSize")} {t("sqm")}
+            </h2>
 
             <input
               type="text"
               name="size"
               value={formData.size}
-              placeholder="ჩაწერეთ თქვენი სივრცის ზომა"
+              placeholder={t("writeSize")}
               onChange={handleInputChange}
             />
           </div>
           <div className="input-block">
-            <h2>სივრცის სახელი და ლოკაცია</h2>
-            <label htmlFor="name">სახელი</label>
+            <h2>
+              {t("name")} & {t("iframe")}
+            </h2>
+            <label htmlFor="name">{t("name")}</label>
             <input
               type="text"
               name="name"
               value={formData.name}
-              placeholder="ჩაწერეთ თქვნი სივრცის სახელი"
+              placeholder={t("giveSpaceName")}
               onChange={handleInputChange}
             />
-            <label htmlFor="map">რუკის Iframe ლინკი</label>
+            <label htmlFor="map">{t("iframe")}</label>
             <input
               type="text"
               name="map"
               id="map"
               value={formData.map}
-              placeholder="რუკის iframe ლინკი"
+              placeholder={t("writeIframe")}
               onChange={handleInputChange}
             />
           </div>
           <div className="input-block">
-            <h2>სივრცის აღწერა</h2>
+            <h2>{t("spaceDesc")}</h2>
             <textarea
               id="description"
               name="description"
               value={formData.description}
-              placeholder="აღწერეთ თქვენ ისივრცე რამდენიმე წინადადებით."
+              placeholder={t("writeFewSentences")}
               rows={5}
               onChange={handleInputChange}
             ></textarea>
           </div>
           <div className="input-block">
-            <h2>თქვენი სივრცის დახასიათება ინგლისურად.</h2>
+            <h2>{t("descEn")}</h2>
             <textarea
               id="descriptionen"
               name="descriptionen"
               value={formData.descriptionen}
-              placeholder="აღწერეთ თქვენ ისივრცე ინგლისურად რამდენიმე წინადადებით."
+              placeholder={t("writeFewSentencesEn")}
               rows={5}
               onChange={handleInputChange}
             ></textarea>
           </div>
           <div>
-            <h2>რას ნახავთ აქ</h2>
+            <h2>{t("whatWillYouSee")}</h2>
             <div className="amenties-row">
               {amenitiesList.map((amenity) => (
                 <div key={amenity}>
@@ -339,7 +347,7 @@ const SingleCampEditModal: FC<ICamp> = ({ camp, onClose }) => {
             </div>
           </div>
           <div>
-            <h2>რა აქტივობებით შეიძლება დაკავდეს სტუმარი.</h2>
+            <h2>{t("activities")}</h2>
             <div className="activities-row">
               {activitiesList.map((activity) => (
                 <div key={activity}>
@@ -358,8 +366,8 @@ const SingleCampEditModal: FC<ICamp> = ({ camp, onClose }) => {
             </div>
           </div>
           <div className="single-camp-edit-buttons">
-            <button onClick={onClose}>დახურვა</button>
-            <button type="submit">შენახვა</button>
+            <button onClick={onClose}>X</button>
+            <button type="submit">{t("add")}</button>
           </div>
         </form>
       </div>
