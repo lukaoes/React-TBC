@@ -1,21 +1,23 @@
 import Link from "next/link";
+import { useScopedI18n } from "../../locales/client";
 
 const ProfileNavigation = () => {
+  const t = useScopedI18n("profile");
   return (
     <div className="profile-user">
-      <h2 className="profile-navigation-head">ნავიგაცია</h2>
+      <h2 className="profile-navigation-head">{t("navigation")}</h2>
       <div>
         <Link href="/profile" className="profile-navigation">
-          ჩემი ინფორმაცია
+          {t("myInfo")}
         </Link>
         <Link href="/profile/address" className="profile-navigation">
-          ჩემი მისამართები
+          {t("myAddy")}
         </Link>
         <Link href="/profile/orders" className="profile-navigation">
-          ჩემი შეკვეთები
+          {t("myOrders")}
         </Link>
         <Link href="" className="profile-navigation">
-          ჩემი პაკეტები
+          {t("myPlans")}
         </Link>
       </div>
     </div>

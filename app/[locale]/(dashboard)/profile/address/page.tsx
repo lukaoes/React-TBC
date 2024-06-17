@@ -3,9 +3,11 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import { useEffect, useState } from "react";
 import { addAddressAction } from "../../../../../actions";
 import ProfileAddyDisplay from "../../../../../components/Profile/profileAddyDisplay";
+import { useScopedI18n } from "../../../../../locales/client";
 
 const ProfileAddress = () => {
   const { user } = useUser();
+  const t = useScopedI18n("profile");
   const [formData, setFormData] = useState({
     firstName: "",
     sub: "",
@@ -84,13 +86,13 @@ const ProfileAddress = () => {
 
   return (
     <div className="profile-form">
-      <h1 className="address-title">Shipping Address</h1>
+      <h1 className="address-title">{t("address")}</h1>
       <ProfileAddyDisplay />
       <div className="profile-address">
         <form onSubmit={handleSubmit}>
           <div>
             <div>
-              <h2>First Name</h2>
+              <h2>{t("firstName")}</h2>
               <input
                 type="text"
                 name="firstName"
@@ -102,7 +104,7 @@ const ProfileAddress = () => {
               )}
             </div>
             <div>
-              <h2>Last Name</h2>
+              <h2>{t("lastName")}</h2>
               <input
                 type="text"
                 name="lastName"
@@ -114,7 +116,7 @@ const ProfileAddress = () => {
               )}
             </div>
           </div>
-          <h2>Country / Region</h2>
+          <h2>{t("countryRegion")}</h2>
           <input
             type="text"
             name="country"
@@ -122,7 +124,7 @@ const ProfileAddress = () => {
             onChange={handleChange}
           />
           {errors.country && <div className="error">{errors.country}</div>}
-          <h2>City Name</h2>
+          <h2>{t("cityName")}</h2>
           <input
             type="text"
             name="city"
@@ -130,7 +132,7 @@ const ProfileAddress = () => {
             onChange={handleChange}
           />
           {errors.city && <div className="error">{errors.city}</div>}
-          <h2>Street Address</h2>
+          <h2>{t("streetAddy")}</h2>
           <input
             type="text"
             name="streetAddress"
@@ -140,7 +142,7 @@ const ProfileAddress = () => {
           {errors.streetAddress && (
             <div className="error">{errors.streetAddress}</div>
           )}
-          <h2>Postal / ZIP Code</h2>
+          <h2>{t("postalZipCode")}</h2>
           <input
             type="text"
             name="postalCode"
@@ -150,7 +152,7 @@ const ProfileAddress = () => {
           {errors.postalCode && (
             <div className="error">{errors.postalCode}</div>
           )}
-          <h2>Phone</h2>
+          <h2>{t("number")}</h2>
           <input
             type="text"
             name="phone"
@@ -158,15 +160,7 @@ const ProfileAddress = () => {
             onChange={handleChange}
           />
           {errors.phone && <div className="error">{errors.phone}</div>}
-          {/* <h2>Email Address</h2>
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          {errors.email && <div className="error">{errors.email}</div>} */}
-          {user?.email && <button type="submit">Add Address</button>}
+          {user?.email && <button type="submit">{t("addAddress")}</button>}
         </form>
       </div>
     </div>

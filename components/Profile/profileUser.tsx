@@ -6,6 +6,7 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import { getNicknameAction, getPictureAction } from "../../actions";
 import userIcon from "../../public/assets/images/userIcon.png";
 import ProfileNavigation from "./profileNavigation";
+import { useI18n } from "../../locales/client";
 
 interface PictureData {
   picture: string;
@@ -17,6 +18,7 @@ const ProfileUser = () => {
   const [displayName, setDisplayName] = useState("");
   const [nickname, setNickname] = useState<PictureData[] | null>(null);
   const { user } = useUser();
+  const t = useI18n();
 
   useEffect(() => {
     if (user) {
@@ -73,7 +75,7 @@ const ProfileUser = () => {
           </div>
         )}
         <a href="/api/auth/logout" className="logout-profile">
-          Log Out
+          {t("profile.logOut")}
         </a>
       </div>
       <ProfileNavigation />

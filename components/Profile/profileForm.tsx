@@ -73,18 +73,18 @@ const ProfileForm: React.FC<ProfileFormProps> = () => {
         alt="profile-illustration"
       />
       <fieldset>
-        <legend>about</legend>
+        <legend>{t("aboutMe")}</legend>
         <div>
           <div>
-            <h2 className="profile-title">Email:</h2>
+            <h2 className="profile-title">{t("email")}:</h2>
             <span>{user?.email || ""}</span>
             {user?.email !== user?.name && user?.name ? (
               <>
-                <h2 className="profile-title">Name:</h2>
+                <h2 className="profile-title">{t("firstName")}:</h2>
                 <span>{user.name}</span>
               </>
             ) : null}
-            <h2 className="profile-title">Nickname:</h2>
+            <h2 className="profile-title">{t("nickname")}:</h2>
             <span>
               {state.newNickname.trim() === ""
                 ? state.originalNickname
@@ -93,7 +93,7 @@ const ProfileForm: React.FC<ProfileFormProps> = () => {
           </div>
 
           <label className="profile-title" htmlFor="nickname">
-            Change Your Nickname:
+            {t("changeUrNickname")}:
           </label>
           <div className="profile-input-container">
             <input

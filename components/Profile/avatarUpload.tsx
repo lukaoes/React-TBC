@@ -5,12 +5,14 @@ import { useState, useRef, useEffect } from "react";
 import { BASE_URL } from "../../api";
 import { changePictureAction } from "../../actions";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { useI18n } from "../../locales/client";
 
 export default function AvatarUploadPage() {
   const inputFileRef = useRef<HTMLInputElement>(null);
   const [blob, setBlob] = useState<PutBlobResult | null>(null);
   const { user } = useUser();
   const sub = user?.sub;
+  const t = useI18n();
 
   useEffect(() => {
     if (blob && sub) {
@@ -44,7 +46,7 @@ export default function AvatarUploadPage() {
         }}
       >
         <label htmlFor="file-upload" className="custom-file-upload">
-          Change Picture
+          {t("profile.changePicture")}
         </label>
         <input
           name="file"
@@ -54,7 +56,6 @@ export default function AvatarUploadPage() {
           id="file-upload"
           style={{ display: "none" }}
           onChange={() => {
-            // Show the button when a file is selected
             const hasFile =
               inputFileRef.current?.files &&
               inputFileRef.current?.files.length > 0;
@@ -66,7 +67,7 @@ export default function AvatarUploadPage() {
           }}
         />
         <button type="submit" className="hidden">
-          Upload
+          {t("profile.logOut")}
         </button>
       </form>
     </div>
