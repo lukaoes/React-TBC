@@ -306,6 +306,8 @@ export default {
   "addBlog.writeBlogTitle": "ჩაწერეთ ბლოგის სათაური",
   "addBlog.imageUrl": "სურათის URL",
   "addBlog.uploadOrPasteUrl": "ატვირთეთ ან ჩასვით სურათის URL",
+  "addBlog.shortDesc": "ბლოგის მოკლე აღწერა",
+  "addBlog.writeShortDesc": "აღწერეთ თქვენი ბლოგი რამდენიმე წინადადებით.",
   "addBlog.blogPost": "ბლოგ პოსტი",
   "addBlog.markdownIsSupported": "შეგიძლიათ Markdown-ის გამოყენება",
   "addBlog.writeTextInMarkdown": "ჩაწერეთ ტექსტი Markdown-ში",

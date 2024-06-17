@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { addBlogPost } from "../../actions";
 import AddBlogPicture from "../Blog/addBlogPicture";
+import { useScopedI18n } from "../../locales/client";
 
 const AddBlogModal: React.FC = () => {
   const [category, setCategory] = useState("");
@@ -15,6 +16,7 @@ const AddBlogModal: React.FC = () => {
   const [id, setId] = useState("");
   const [errors, setErrors] = useState<string[]>([]);
   const { user } = useUser();
+  const t = useScopedI18n("addBlog");
 
   useEffect(() => {
     if (user && user.sub) {
@@ -55,7 +57,7 @@ const AddBlogModal: React.FC = () => {
 
   return (
     <div className="add-blog-modal">
-      <h1>ბლოგის დამატება</h1>
+      <h1>{t("addBlog")}</h1>
       <AddBlogPicture setBlobUrl={setBlobUrl} />
       <form onSubmit={handleSubmit} className="add-blog-modal-form">
         {errors.length > 0 && (
@@ -67,14 +69,14 @@ const AddBlogModal: React.FC = () => {
             ))}
           </ul>
         )}
-        <label htmlFor="category">კატეგორია</label>
+        <label htmlFor="category">{t("category")}</label>
         <select
           name="category"
           id="category"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         >
-          <option value="">აირჩიეთ კატეგორია</option>
+          <option value="">{t("chooseCategory")}</option>
           <option value="ლაშქრობა">ლაშქრობა</option>
           <option value="პიკნიკი">პიკნიკი</option>
           <option value="აღჭურვილობა">აღჭურვილობა</option>
@@ -83,42 +85,46 @@ const AddBlogModal: React.FC = () => {
           <option value="ცოცვა">ცოცვა</option>
           <option value="ველოსპორტი">ველოსპორტი</option>
         </select>
-        <label htmlFor="title">სათაური</label>
+        <label htmlFor="title">{t("title")}</label>
         <input
           type="text"
           name="title"
           id="title"
+          placeholder={t("writeBlogTitle")}
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <label htmlFor="main_photo">სურათის URL</label>
+        <label htmlFor="main_photo">{t("imageUrl")}</label>
         <input
           type="text"
           name="main_photo"
           id="main_photo"
+          placeholder={t("uploadOrPasteUrl")}
           value={blobUrl || mainPhoto}
           onChange={(e) => setMainPhoto(e.target.value)}
           disabled={!!blobUrl}
         />
-        <label htmlFor="description">ბლოგის მოკლე აღწერა</label>
+        <label htmlFor="description">{t("shortDesc")}</label>
         <textarea
           rows={3}
           name="description"
           id="description"
           value={description}
+          placeholder={t("writeShortDesc")}
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
         <label htmlFor="blog_post" className="blog_post">
-          ბლოგ პოსტი <span>შეგიძლიათ Markdown-ის გამოყენება.</span>
+          {t("blogPost")} <span>{t("markdownIsSupported")}</span>
         </label>
         <textarea
           rows={10}
           name="blog_post"
           id="blog_post"
+          placeholder={t("writeTextInMarkdown")}
           value={blogPost}
           onChange={(e) => setBlogPost(e.target.value)}
         />
-        <button type="submit">Submit</button>
+        <button type="submit">{t("add")}</button>
       </form>
     </div>
   );

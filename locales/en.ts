@@ -306,6 +306,8 @@ export default {
   "addBlog.writeBlogTitle": "Write blog title",
   "addBlog.imageUrl": "Image URL",
   "addBlog.uploadOrPasteUrl": "Upload or paste image URL",
+  "addBlog.shortDesc": "Short description",
+  "addBlog.writeShortDesc": "Write short description with few sentences.",
   "addBlog.blogPost": "Blog Post",
   "addBlog.markdownIsSupported": "Markdown is supported",
   "addBlog.writeTextInMarkdown": "Write text in Markdown",
