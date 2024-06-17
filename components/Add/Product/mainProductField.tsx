@@ -3,6 +3,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import GearSelector from "./selectCategories";
 import { addAdvertisement } from "../../../actions";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { useScopedI18n } from "../../../locales/client";
 
 interface FormData {
   user_id: string;
@@ -99,6 +100,7 @@ export const cities = [
 
 const MainProductField = () => {
   const { user } = useUser();
+  const t = useScopedI18n("addProduct");
 
   const [formData, setFormData] = useState<FormData>({
     user_id: "",
@@ -208,7 +210,7 @@ const MainProductField = () => {
       <form onSubmit={handleSubmit}>
         <div>
           <div className="add-product-detail-container">
-            <h2>განცხადების ტიპი*</h2>
+            <h2>{t("advertisementType")}*</h2>
             <div className="add-product-type">
               <div>
                 <input
@@ -219,7 +221,7 @@ const MainProductField = () => {
                   onChange={handleInputChange}
                 />
                 <label htmlFor="sell" className="form-control">
-                  გაყიდვა
+                  {t("sell")}
                 </label>
               </div>
               <div>
@@ -230,13 +232,13 @@ const MainProductField = () => {
                   value="rent"
                   onChange={handleInputChange}
                 />
-                <label htmlFor="rent">გაქირავება</label>
+                <label htmlFor="rent">{t("rent")}</label>
               </div>
               {errors.type && <p>{errors.type}</p>}
             </div>
           </div>
           <div className="add-product-detail-container">
-            <h2>აირჩიეთ კატეგორია*</h2>
+            <h2>{t("chooseCategory")}*</h2>
             <GearSelector
               formData={formData}
               setFormData={setFormData}
@@ -246,26 +248,26 @@ const MainProductField = () => {
         </div>
         <div className="add-product-main-img">
           <div className="add-product-detail-container">
-            <h2>დაამატეთ ფოტო</h2>
-            <p>
-              უფრო მეტი ადამიანი დაინტერესდება განცხადებით, რომელსაც ფოტო აქვს.
-            </p>
-            <span>აირჩიეთ მოწყობილობიდან</span>
+            <h2>{t("addImage")}</h2>
+            <p>{t("morePeopleWill")}</p>
+            <span>{t("chooseFromDevice")}</span>
             <input type="file" name="file" />
-            <label htmlFor="img-url">ან ატვირთეთ URL-ს გამოყენებით:</label>
+            <label htmlFor="img-url">{t("orUploadWithUrl")}:</label>
             <input
               type="text"
               name="main_photo"
+              placeholder={t("uploadOrPasteUrl")}
               id="img-url"
               onChange={handleInputChange}
             />
-            <span>დამატებითი სურათები:</span>
+            <span>{t("pasteAdditionalUrl")}:</span>
             <div className="add-products-additional-img">
               <span>1</span>
               <input
                 type="text"
                 name="photo_urls"
                 id="img-additional-0"
+                placeholder={t("pasteAdditionalUrl")}
                 onChange={handleInputChange}
               />
             </div>
@@ -275,6 +277,7 @@ const MainProductField = () => {
                 type="text"
                 name="photo_urls"
                 id="img-additional-1"
+                placeholder={t("pasteAdditionalUrl")}
                 onChange={handleInputChange}
               />
             </div>
@@ -283,6 +286,7 @@ const MainProductField = () => {
               <input
                 type="text"
                 name="photo_urls"
+                placeholder={t("pasteAdditionalUrl")}
                 id="img-additional-2"
                 onChange={handleInputChange}
               />
@@ -291,33 +295,37 @@ const MainProductField = () => {
         </div>
         <div className="add-product-description">
           <div className="add-product-detail-container">
-            <h2>პროდუქტის აღწერა ქართულად</h2>
-            <label htmlFor="title_ge">სათაური*</label>
+            <h2>{t("descGe")}</h2>
+            <label htmlFor="title_ge">{t("title")}*</label>
             <input
               type="text"
+              placeholder={t("titleGe")}
               name="title_ge"
               id="title"
               onChange={handleInputChange}
             />
             {errors.title_ge && <p>{errors.title_ge}</p>}
-            <label htmlFor="description_ge">აღწერა</label>
+            <label htmlFor="description_ge">{t("Desc")}</label>
             <textarea
               id="description"
               name="description_ge"
+              placeholder={t("descInGe")}
               onChange={handleInputChange}
               rows={5}
             ></textarea>
-            <h2>პროდუქტის აღწერა ინგლისურად</h2>
+            <h2>{t("title")}</h2>
             <label htmlFor="title_en">სათაური</label>
             <input
               type="text"
+              placeholder={t("writeTitleEn")}
               name="title_en"
               id="entitle"
               onChange={handleInputChange}
             />
-            <label htmlFor="description_en">აღწერა</label>
+            <label htmlFor="description_en">{t("descEn")}</label>
             <textarea
               id="endescription"
+              placeholder={t("writeDescInGe")}
               name="description_en"
               onChange={handleInputChange}
               rows={5}
@@ -327,11 +335,11 @@ const MainProductField = () => {
 
         <div className="add-product-detail-container">
           <div className="add-product-price">
-            <h2>პროდუქტის ფასი*</h2>
-            <label htmlFor="quantity">ფასი:</label>
+            <h2>{t("productPrice")}*</h2>
+            <label htmlFor="quantity">{t("price")}:</label>
             <input
               type="number"
-              placeholder="ფასი"
+              placeholder={t("writePrice")}
               name="price"
               id="price"
               onChange={handleInputChange}
@@ -344,7 +352,7 @@ const MainProductField = () => {
                 onChange={handleInputChange}
                 className="my-0"
               />
-              <label htmlFor="negotiable">ფასი შეთანხმებით</label>
+              <label htmlFor="negotiable">{t("negotiable")}</label>
             </div>
           </div>
         </div>
@@ -352,7 +360,7 @@ const MainProductField = () => {
         <div className="add-product-condition-quantity">
           <div className="add-product-detail-container">
             <div className="add-product-price">
-              <h2>პროდუქტის მდგომარეობა და რაოდენობა*</h2>
+              <h2>{t("productConditionQuantity")}*</h2>
               <div className="add-product-type mb-[20px]">
                 <div>
                   <input
@@ -363,7 +371,7 @@ const MainProductField = () => {
                     onChange={handleInputChange}
                   />
                   <label htmlFor="new" className="form-control">
-                    ახალი
+                    {t("new")}
                   </label>
                 </div>
                 <div>
@@ -376,16 +384,17 @@ const MainProductField = () => {
                     onChange={handleInputChange}
                   />
                   <label htmlFor="used" className="form-control">
-                    მეორადი
+                    {t("used")}
                   </label>
                 </div>
                 {errors.type && <p>{errors.type}</p>}
               </div>
-              <label htmlFor="quantity">რაოდენობა:</label>
+              <label htmlFor="quantity">{t("quantity")}:</label>
               <input
                 type="number"
                 name="quantity"
                 id="quantity"
+                placeholder={t("writeQuantity")}
                 onChange={handleInputChange}
               />
             </div>
@@ -393,8 +402,8 @@ const MainProductField = () => {
         </div>
         <div className="add-product-contact">
           <div className="add-product-detail-container">
-            <h2>საკონტაქტო ინფორმაცია</h2>
-            <label htmlFor="location">აირჩიეთ ლოკაცია*</label>
+            <h2>{t("contactInfo")}</h2>
+            <label htmlFor="location">{t("chooseLocation")}*</label>
             <select name="location" onChange={handleInputChange}>
               {cities.map((city, index) => (
                 <option key={`select-cities-${index}`} value={city}>
@@ -404,18 +413,20 @@ const MainProductField = () => {
             </select>
             {errors.location && <p>{errors.location}</p>}
             <div>
-              <label htmlFor="firstName">სახელი*</label>
+              <label htmlFor="firstName">{t("name")}*</label>
               <input
                 type="text"
                 name="first_name"
+                placeholder={t("writeYourName")}
                 id="firstName"
                 onChange={handleInputChange}
               />
               {errors.first_name && <p>{errors.first_name}</p>}
-              <label htmlFor="phone">ტელეფონის ნომერი*</label>
+              <label htmlFor="phone">{t("mobileNumber")}*</label>
               <input
                 type="number"
                 name="phone"
+                placeholder={t("writeYourNumber")}
                 id="phone"
                 onChange={handleInputChange}
               />
@@ -424,7 +435,7 @@ const MainProductField = () => {
           </div>
         </div>
         <div className="button-container">
-          {user?.sub && <button type="submit">დამატება</button>}
+          {user?.sub && <button type="submit">{t("add")}</button>}
         </div>
       </form>
     </div>

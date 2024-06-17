@@ -358,6 +358,13 @@ export default {
   "addProduct.mobileNumber": "ტელეფონის ნომერი",
   "addProduct.writeYourNumber": "ჩაწერეთ თქვენი ნომერი",
   "addProduct.add": "დამატება",
+  "addProduct.shoeSize": "ფეხსაცმლის ზომა",
+  "addProduct.size": "ზომა",
+  "addProduct.capacityLiters": "ტევადობა (ლიტრი)",
+  "addProduct.capacity": "ტევადობა",
+  "addProduct.person": "კაცი",
+  "addProduct.subcategory": "ქვეკატეგორია",
+  "addProduct.chooseSubcategory": "აირჩიეთ ქვეკატეგორია",
 
   "addCampsite.addCampsite": "სივრცის დამატება",
   "addCampsite.addYourCampsite": "დაამატეთ თქვენი სივრცე",

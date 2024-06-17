@@ -358,6 +358,13 @@ export default {
   "addProduct.mobileNumber": "Phone number",
   "addProduct.writeYourNumber": "Write your number",
   "addProduct.add": "Add",
+  "addProduct.shoeSize": "Shoe size",
+  "addProduct.size": "Size",
+  "addProduct.capacityLiters": "Capacity (liters)",
+  "addProduct.capacity": "Capacity",
+  "addProduct.person": "Person",
+  "addProduct.subcategory": "Subcategory",
+  "addProduct.chooseSubcategory": "Select subcategory",
 
   "addCampsite.addCampsite": "Add Campsite",
   "addCampsite.addYourCampsite": "Add your campsite",

@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
+import { useScopedI18n } from "../../../locales/client";
 
 interface GearSelectorProps {
   formData: FormData;
@@ -116,6 +117,7 @@ const GearSelector: React.FC<GearSelectorProps> = ({
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [subcategories, setSubcategories] = useState<string[]>([]);
+  const t = useScopedI18n("addProduct");
 
   const handleCategoryChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const category = event.target.value;
@@ -135,9 +137,10 @@ const GearSelector: React.FC<GearSelectorProps> = ({
     if (selectedCategory === "ფეხსაცმელი") {
       return (
         <label>
-          <span>ფეხსაცმლის ზომა:</span> <br />
+          <span>{t("shoeSize")}:</span> <br />
           <input
             type="text"
+            placeholder={t("shoeSize")}
             name="shoe_size"
             onChange={(e) =>
               setFormData((prevData) => ({
@@ -151,7 +154,7 @@ const GearSelector: React.FC<GearSelectorProps> = ({
     } else if (selectedCategory === "ტანსაცმელი") {
       return (
         <label>
-          <span>ზომა:</span> <br />
+          <span>{t("size")}:</span> <br />
           <select
             name="clothing_size"
             onChange={(e) =>
@@ -174,10 +177,11 @@ const GearSelector: React.FC<GearSelectorProps> = ({
     } else if (selectedCategory === "ზურგჩანთები და ჩანთები") {
       return (
         <label>
-          <span>ტევადობა (ლიტრი):</span> <br />
+          <span>{t("capacityLiters")}:</span> <br />
           <input
             type="text"
             name="backpack_capacity"
+            placeholder={t("capacity")}
             onChange={(e) =>
               setFormData((prevData) => ({
                 ...prevData,
@@ -193,7 +197,7 @@ const GearSelector: React.FC<GearSelectorProps> = ({
     ) {
       return (
         <label>
-          <span>ტევადობა:</span> <br />
+          <span>{t("capacity")}:</span> <br />
           <select
             name="tent_capacity"
             onChange={(e) =>
@@ -203,11 +207,11 @@ const GearSelector: React.FC<GearSelectorProps> = ({
               }))
             }
           >
-            <option value="1-person">1 კაცი</option>
-            <option value="2-person">2 კაცი</option>
-            <option value="3-person">3 კაცი</option>
-            <option value="4-person">4 კაცი</option>
-            <option value="5-person">5+ კაცი</option>
+            <option value="1-person">1 {t("person")}</option>
+            <option value="2-person">2 {t("person")}</option>
+            <option value="3-person">3 {t("person")}</option>
+            <option value="4-person">4 {t("person")}</option>
+            <option value="5-person">5+ {t("person")}</option>
           </select>
         </label>
       );
@@ -218,10 +222,10 @@ const GearSelector: React.FC<GearSelectorProps> = ({
   return (
     <div className="add-product-category">
       <label>
-        <span>კატეგორია:</span> <br />
+        <span>{t("category")}:</span> <br />
         <select value={selectedCategory} onChange={handleCategoryChange}>
           <option value="" disabled>
-            აირჩიეთ კატეგორია
+            {t("chooseCategory")}
           </option>
           {Object.keys(gearData).map((category) => (
             <option key={category} value={category}>
@@ -234,13 +238,13 @@ const GearSelector: React.FC<GearSelectorProps> = ({
 
       {subcategories.length > 0 && (
         <label>
-          <span>ქვეკატეგორია:</span> <br />
+          <span>{t("subcategory")}:</span> <br />
           <select
             value={formData.subcategory}
             onChange={handleSubcategoryChange}
           >
             <option value="" disabled>
-              აირჩიეთ ქვეკატეგორია
+              {t("chooseSubcategory")}
             </option>
             {subcategories.map((subcategory) => (
               <option key={subcategory} value={subcategory}>
