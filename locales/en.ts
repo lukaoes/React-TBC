@@ -293,6 +293,9 @@ export default {
   "userProfile.blogs": "Blogs",
   "userProfile.blogReviews": "Blog Reviews",
   "userProfile.campsiteReviews": "Campsite Reviews",
+  "userProfile.seePost": "See post",
+  "userProfile.negotiable": "Negotiable",
+  "userProfile.day": "Day",
 
   "addBlog.addBlog": "Add Blog",
   "addBlog.uploadImage": "Upload Image",

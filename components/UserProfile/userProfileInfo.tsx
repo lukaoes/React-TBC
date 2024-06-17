@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { getScopedI18n } from "../../locales/server";
 
 interface IUser {
   user: string;
@@ -14,7 +15,7 @@ interface IUser {
   userCampsitesLength: number;
 }
 
-const UserProfileInfo = ({
+const UserProfileInfo = async ({
   userInfo,
   user,
   userProductsLength,
@@ -23,6 +24,7 @@ const UserProfileInfo = ({
   userReviewsLength,
   userCampsitesLength,
 }: IUser) => {
+  const t = await getScopedI18n("userProfile");
   return (
     <div className="user-profile-info">
       <div className="user-profile-info-image">
@@ -34,19 +36,19 @@ const UserProfileInfo = ({
       </div>
       <div className="user-profile-info-counter">
         <h3>
-          პროდუქტები: <span>{userProductsLength}</span>
+          {t("products")}: <span>{userProductsLength}</span>
         </h3>
         <h3>
-          საპიკნიკეები: <span>{userCampsitesLength}</span>
+          {t("campsites")}: <span>{userCampsitesLength}</span>
         </h3>
         <h3>
-          ბლოგები: <span>{userBlogsLength}</span>
+          {t("blogs")}: <span>{userBlogsLength}</span>
         </h3>
         <h3>
-          ბლოგის განხილვები: <span>{userCommentsLength}</span>
+          {t("blogReviews")}: <span>{userCommentsLength}</span>
         </h3>
         <h3>
-          საპიკნიკეების შეფასებები: <span>{userReviewsLength}</span>
+          {t("campsiteReviews")}: <span>{userReviewsLength}</span>
         </h3>
       </div>
     </div>

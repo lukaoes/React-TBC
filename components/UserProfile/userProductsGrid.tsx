@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ProductsDisplay } from "../../types";
 import { FC } from "react";
-import { useCurrentLocale } from "../../locales/client";
+import { useCurrentLocale, useI18n } from "../../locales/client";
 
 interface IProd {
   products: ProductsDisplay;
@@ -11,6 +11,7 @@ interface IProd {
 
 const UserProductsGrid: FC<IProd> = ({ products }) => {
   const locale = useCurrentLocale();
+  const t = useI18n();
   return (
     <div className="user-profile-products-grid">
       {products.map((products: ProductsDisplay, index: number) => (
@@ -36,12 +37,12 @@ const UserProductsGrid: FC<IProd> = ({ products }) => {
               : products.title_ge}
           </Link>
           {products.negotiable == true ? (
-            <p>ფასი შეთანხმებით</p>
+            <p>{t("userProfile.negotiable")}</p>
           ) : (
             <p>
               {products.type === "sell"
                 ? `${products.price} ₾`
-                : `${products.price} ₾/დღე`}
+                : `${products.price} ₾/${t("userProfile.day")}`}
             </p>
           )}
         </div>

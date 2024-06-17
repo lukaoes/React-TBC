@@ -3,6 +3,7 @@ import { Review } from "../../types";
 import Link from "next/link";
 import SingleCampSingleReviewDelButton from "../SingleCampsitePage/singleCampSingleReviewDelButton";
 import Image from "next/image";
+import { getI18n } from "../../locales/server";
 
 interface IRew {
   reviews: Review;
@@ -14,8 +15,8 @@ interface IRew {
   };
 }
 
-const UserReviewsGrid: FC<IRew> = ({ reviews, user, userInfo }) => {
-  console.log(reviews, "asdasdasdsad");
+const UserReviewsGrid: FC<IRew> = async ({ reviews, user, userInfo }) => {
+  const t = await getI18n();
   return (
     <div className="single-camp-reviews-layout">
       {reviews.map((review: Review, index: any) => (
@@ -24,7 +25,7 @@ const UserReviewsGrid: FC<IRew> = ({ reviews, user, userInfo }) => {
             href={`/campsites/${review.campsite_id}`}
             className="underline mb-[8px] block"
           >
-            პოსტზე გადასვლა
+            {t("userProfile.seePost")}
           </Link>
           <>
             <div className="single-camp-review-info">
@@ -62,8 +63,8 @@ const UserReviewsGrid: FC<IRew> = ({ reviews, user, userInfo }) => {
                   </h3>
                   <span>
                     {review.recommended
-                      ? " უწევს რეკომენდაციას"
-                      : " არ უწევს რეკომენდაციას"}
+                      ? ` ${t("singleCamp.recommends")}`
+                      : ` ${t("singleCamp.notRecommends")}`}
                   </span>
                   <p>{review.created_at.slice(0, 10)}</p>
                 </div>

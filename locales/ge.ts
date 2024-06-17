@@ -293,6 +293,9 @@ export default {
   "userProfile.blogs": "ბლოგები",
   "userProfile.blogReviews": "ბლოგის შეფასებები",
   "userProfile.campsiteReviews": "საპიკნიკეს განხილვები",
+  "userProfile.seePost": "პოსტზე გადასვლა",
+  "userProfile.negotiable": "ფასი შეთანხმებით",
+  "userProfile.day": "დღე",
 
   "addBlog.addBlog": "ბლოგის დამატება",
   "addBlog.uploadImage": "ატვირთეთ ფოტო",
