@@ -7,12 +7,14 @@ import BlogEditModal from "../modals/blogEditModal";
 import { useState } from "react";
 import SingleBlogRemoveButton from "./singleBlogRemoveButton";
 import SingleBlogEditButton from "./singleBlogEditButton";
+import { useI18n } from "../../locales/client";
 
 interface IBlog {
   blogPost: Blog;
 }
 const SingleBlogFooter = ({ blogPost }: IBlog) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const t = useI18n();
 
   const path = usePathname();
   const baseUrl = BASE_URL;
@@ -37,7 +39,7 @@ const SingleBlogFooter = ({ blogPost }: IBlog) => {
       </div>
       <div className="single-blog-footer">
         <div>
-          <span>კატეგორია: </span>
+          <span>{t("singleBlog.category")}: </span>
           <span>{blogPost.category}</span>
         </div>
         <div className="blog-socials">

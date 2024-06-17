@@ -4,6 +4,7 @@ import { Blog } from "../../types";
 import AddBlogPicture from "../Blog/addBlogPicture";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { addBlogComment } from "../../actions";
+import { useScopedI18n } from "../../locales/client";
 
 interface IBlog {
   blogPost: Blog;
@@ -16,6 +17,7 @@ const SingleBlogAddComment = ({ blogPost }: IBlog) => {
   const [comment, setComment] = useState("");
   const [rating, setRating] = useState(0);
   const [photoUrl, setPhotoUrl] = useState("");
+  const t = useScopedI18n("singleBlog");
 
   useEffect(() => {
     if (user && user.sub) {
@@ -62,9 +64,9 @@ const SingleBlogAddComment = ({ blogPost }: IBlog) => {
   if (!user || !user.sub) {
     return (
       <div className="single-blog-add-comment">
-        კომენტარის დასატოვებლად გაიარეთ{" "}
+        {t("loginOne")}{" "}
         <a href="/api/auth/login" className="underline">
-          ავტორიზაცია
+          {t("loginTwo")}
         </a>
       </div>
     );
@@ -72,25 +74,25 @@ const SingleBlogAddComment = ({ blogPost }: IBlog) => {
 
   return (
     <div className="single-blog-add-comment">
-      <h1>დატოვეთ კომენტარი</h1>
+      <h1>{t("leaveComment")}</h1>
       <AddBlogPicture setBlobUrl={setBlobUrl} />
       <form onSubmit={handleSubmit} className="single-blog-add-comment-form">
         <div>
-          <label htmlFor="comment">დაამატეთ კომენტარი</label>
+          <label htmlFor="comment">{t("addComment")}</label>
           <textarea
-            placeholder="დაწერეთ კომენტარი..."
+            placeholder={t("writeComment")}
             id="comment"
             value={comment}
             onChange={handleCommentChange}
           ></textarea>
         </div>
         <div>
-          <label htmlFor="main_photo">სურათის URL</label>
+          <label htmlFor="main_photo">{t("imageUrl")}</label>
           <input
             type="text"
             name="main_photo"
             id="main_photo"
-            placeholder="ატვირთეთ ან ხელით ჩააკოპირეთ სურათის URL"
+            placeholder={t("uploadOrPasteUrl")}
             value={blobUrl || photoUrl}
             onChange={handlePhotoUrlChange}
             disabled={!!blobUrl}
@@ -113,7 +115,7 @@ const SingleBlogAddComment = ({ blogPost }: IBlog) => {
           ))}
         </div>
         <div className="add-comment-button">
-          <button type="submit">დაკომენტარება</button>
+          <button type="submit">{t("comment")}</button>
         </div>
       </form>
     </div>

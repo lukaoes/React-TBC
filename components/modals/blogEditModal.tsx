@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { updateBlogAction } from "../../actions";
 import { Blog } from "../../types";
+import { useScopedI18n } from "../../locales/client";
 
 interface BlogEditModalProps {
   blogPost: Blog;
@@ -11,7 +12,7 @@ interface BlogEditModalProps {
 const BlogEditModal = ({ blogPost, onClose }: BlogEditModalProps) => {
   const [formData, setFormData] = useState<Blog>({ ...blogPost });
   const [error, setError] = useState<string | null>(null);
-
+  const t = useScopedI18n("singleBlog");
   const categories = [
     "ლაშქრობა",
     "პიკნიკი",
@@ -52,11 +53,11 @@ const BlogEditModal = ({ blogPost, onClose }: BlogEditModalProps) => {
       ></div>
       <div className="blog-edit-modal">
         <div className="blog-edit-modal-content">
-          <h2>ბლოგის რედაქტირება</h2>
+          <h2>{t("editBlog")}</h2>
           {error && <p style={{ color: "red" }}>{error}</p>}
           <form onSubmit={handleFormSubmit}>
             <div>
-              <label>სათაური</label>
+              <label>{t("title")}</label>
               <input
                 type="text"
                 name="title"
@@ -66,7 +67,7 @@ const BlogEditModal = ({ blogPost, onClose }: BlogEditModalProps) => {
               />
             </div>
             <div>
-              <label>კატეგორია</label>
+              <label>{t("category")}</label>
               <select
                 name="category"
                 value={formData.category}
@@ -81,7 +82,7 @@ const BlogEditModal = ({ blogPost, onClose }: BlogEditModalProps) => {
               </select>
             </div>
             <div>
-              <label>ფოტოს URL</label>
+              <label>{t("imageUrl")}</label>
               <input
                 type="text"
                 name="main_photo"
@@ -91,7 +92,7 @@ const BlogEditModal = ({ blogPost, onClose }: BlogEditModalProps) => {
               />
             </div>
             <div>
-              <label>მოკლე აღწერა</label>
+              <label>{t("smallDesc")}</label>
               <textarea
                 name="description"
                 value={formData.description}
@@ -100,7 +101,7 @@ const BlogEditModal = ({ blogPost, onClose }: BlogEditModalProps) => {
               />
             </div>
             <div>
-              <label>ბლოგ პოსტი</label>
+              <label>{t("blogPost")}</label>
               <textarea
                 rows={10}
                 name="blog_post"
@@ -111,9 +112,9 @@ const BlogEditModal = ({ blogPost, onClose }: BlogEditModalProps) => {
             </div>
             <div className="blog-edit-modal-buttons">
               <button type="button" onClick={onClose}>
-                დახურვა
+                {t("close")}
               </button>
-              <button type="submit">ცვლილებების შენახვა</button>
+              <button type="submit">{t("saveChanges")}</button>
             </div>
           </form>
         </div>
