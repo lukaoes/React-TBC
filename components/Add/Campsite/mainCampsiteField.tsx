@@ -7,6 +7,7 @@ import barepitch from "../../../public/assets/images/barepitch.svg";
 import nicepitch from "../../../public/assets/images/nicepitch.svg";
 import Image from "next/image";
 import { AddCampsite } from "../../../types";
+import { useScopedI18n } from "../../../locales/client";
 
 export const amenitiesList = [
   "ცხოველები დაშვებულია",
@@ -43,6 +44,7 @@ export const activitiesList = [
 
 const MainCampsiteField = () => {
   const { user } = useUser();
+  const t = useScopedI18n("addCampsite");
 
   const [formData, setFormData] = useState<AddCampsite>({
     user_id: "",
@@ -193,7 +195,7 @@ const MainCampsiteField = () => {
     <form onSubmit={handleSubmit} className="add-campsite-container">
       <div className="add-campsite-detail-container">
         <div className="campsite-space-type">
-          <h2>როგორია თქვენი სივრცე?</h2>
+          <h2>{t("howYourSiteLooks")}</h2>
           <div className="campsite-space-container">
             <div className="campsite-space-type-single">
               <input
@@ -205,18 +207,14 @@ const MainCampsiteField = () => {
                 onChange={handleInputChange}
               />
               <label htmlFor="barepitch">
-                <h3>უბრალო სივრცე</h3>
+                <h3>{t("barepitch")}</h3>
                 <Image
                   src={barepitch}
                   alt="barepitch"
                   width={100}
                   height={100}
                 />
-                <p>
-                  უბრალო სივრცე, სადაც ხალხს შეეძლება კარვის გაშლა, ქარავანის ან
-                  სახლი-მანქანის დაპარკინგება. ეზოსთან ერთად, შესაძლოა იყოს
-                  ფერმა ან ვენახი.
-                </p>
+                <p>{t("barepitchDesc")}</p>
               </label>
             </div>
             <div className="campsite-space-type-single">
@@ -229,17 +227,14 @@ const MainCampsiteField = () => {
                 onChange={handleInputChange}
               />
               <label htmlFor="nicepitch">
-                <h3>მოწყობილი გარე სივრცე</h3>
+                <h3>{t("nicepitch")}</h3>
                 <Image
                   src={nicepitch}
                   alt="barepitch"
                   width={100}
                   height={100}
                 />
-                <p>
-                  მოწყობილი სივრცე, სადაც არის საპირფარეშო, დენის წყარო და სველი
-                  წერტილი. შესაძლოა იყოს ინტერნეტი, მაგიდა-სკამები ან მაყალი.
-                </p>
+                <p>{t("nicepitchDesc")}</p>
               </label>
             </div>
             {errors.space_type && <p>{errors.space_type}</p>}
@@ -248,8 +243,8 @@ const MainCampsiteField = () => {
       </div>
       <div className="add-campsite-detail-container">
         <div className="campsite-accepted-guests">
-          <h2>ვისი მიღება გსურთ?</h2>
-          <p>შეგიძლიათ რამდენიმე ვარიანტის არჩევა</p>
+          <h2>{t("welcomedVisitors")}</h2>
+          <p>{t("chooseFewOptions")}</p>
           <div className="guest-options-row">
             <div className="guest-option-single">
               <label htmlFor="tent">
@@ -263,7 +258,7 @@ const MainCampsiteField = () => {
                   <path d="M97.274 81.656H2.051A2.047 2.047 0 010 79.612c0-1.14.914-2.053 2.05-2.053h95.224a2.048 2.048 0 110 4.097M48.435 33.176c9.208 0 39.386 33.36 46.3 41.139-7.134-18.38-32.087-53.606-45.046-54.41-12.962-.809-37.91 35.536-45.057 54.273 6.712-8.074 34.642-41.002 43.803-41.002"></path>
                   <path d="M48.435 35.233c-7.152 0-31.344 27.217-41.856 39.82h26.655C33.8 58.78 48.837 48.614 48.837 48.614S63.87 58.781 64.43 75.053h28.204C81.365 62.424 55.6 35.233 48.435 35.233"></path>
                 </svg>
-                კარავი
+                {t("tent")}
                 <input
                   type="checkbox"
                   name="accepted_guests"
@@ -309,7 +304,7 @@ const MainCampsiteField = () => {
     c2.524-0.481,5.125-0.743,7.788-0.743c22.909,0,41.547,18.639,41.547,41.548S261.613,231.042,238.703,231.042z"
                   />
                 </svg>
-                ველოსიპედი
+                {t("bycicle")}
                 <input
                   type="checkbox"
                   name="accepted_guests"
@@ -331,7 +326,7 @@ const MainCampsiteField = () => {
                   <path d="M49.431 69.021a4.525 4.525 0 00-4.527 4.529 4.525 4.525 0 109.053 0 4.525 4.525 0 00-4.526-4.529m0-5.188c5.361 0 9.71 4.349 9.71 9.717 0 5.366-4.349 9.717-9.71 9.717-5.364 0-9.709-4.35-9.709-9.717 0-5.368 4.345-9.717 9.709-9.717M3.135 67.467H.923c-.44 0-.8.358-.8.8v5.677a.8.8 0 00.8.799h17.789V70.58H4.735a.805.805 0 01-.8-.8v-1.513a.8.8 0 00-.8-.8M84.792 50.005c0 .49-.401.891-.892.891H73.337a.893.893 0 01-.889-.89V37.303c0-.489.4-.892.89-.892H83.9c.489 0 .892.403.892.892v12.701zm2.118-15.543l-.002.004a1.05 1.05 0 00-.744-.313H71.078c-.292 0-.558.12-.746.313-.193.189-.313.456-.313.745v39.335h17.2V35.21a1.05 1.05 0 00-.307-.745l-.002-.004z"></path>
                   <path d="M89.095 75.485a.937.937 0 01-.938.937H69.079a.938.938 0 01-.936-.937V35.211c0-.81.332-1.544.862-2.076a2.919 2.919 0 012.074-.862h15.085c.806 0 1.537.33 2.071.862l-.002.003c.533.534.862 1.266.862 2.073v40.274zm-26.983-26.59a2.002 2.002 0 01-1.996 2.002H21.883c-6.892 0 5.073-18.481 10.05-18.481h28.185a2 2 0 011.995 1.997v14.483zM78.022 19.9c-8.989.005-19.387.005-29.66.005-22.27 0-40.424 18.173-40.424 40.453v12.255c0 4.103 3.345 7.455 7.445 7.455h23.163a12.642 12.642 0 01-1.797-6.518c0-7.009 5.677-12.692 12.682-12.692 7.004 0 12.681 5.684 12.681 12.692 0 2.38-.655 4.611-1.797 6.518h31.67c4.104 0 7.45-3.351 7.45-7.455V41.329c0-11.804-9.618-21.43-21.414-21.43z"></path>
                 </svg>
-                ქარავანი
+                {t("caravan")}
                 <input
                   type="checkbox"
                   name="accepted_guests"
@@ -353,7 +348,7 @@ const MainCampsiteField = () => {
                   <path d="M7.28 5.552a.532.532 0 10-1.066 0 .532.532 0 101.065 0zM2.221 5.552a.532.532 0 10-1.065 0 .532.532 0 101.065 0z"></path>
                   <path d="M5.393 2.385a15.82 15.82 0 00-2.47.135.794.794 0 00-.373.153A16.343 16.343 0 00.871 4.13a.799.799 0 00-.22.417 16.33 16.33 0 00-.12.704.266.266 0 00.264.304h.229a.665.665 0 011.33 0h3.728a.665.665 0 011.33-.01.532.532 0 00.397-.358 7.025 7.025 0 00.066-.215 1.597 1.597 0 00-.012-.925 10.976 10.976 0 00-.477-1.24.53.53 0 00-.416-.306 15.82 15.82 0 00-1.577-.116zm-2.114.358a.066.066 0 01.067.085 3.319 3.319 0 00-.131.842.132.132 0 01-.136.129 10.892 10.892 0 00-1.346.045.066.066 0 01-.05-.115 16.079 16.079 0 011.026-.844.53.53 0 01.249-.103 15.555 15.555 0 01.317-.038.066.066 0 01.004 0zm.685 1.225a.132.132 0 01.005 0h3.175a.132.132 0 010 .264H3.969a.132.132 0 01-.005-.264z"></path>
                 </svg>
-                სახლი-მანქანა
+                {t("homevan")}
                 <input
                   type="checkbox"
                   name="accepted_guests"
@@ -368,30 +363,30 @@ const MainCampsiteField = () => {
       </div>
       <div className="add-campsite-detail-container">
         <div className="campsite-capacity">
-          <h2>რამდენი ადამიანი დაეტევა თქვენს სივრცეში?</h2>
-          <p>აირჩიეთ ისე, რომ არ იყოს სივრცე გადატვირთული.</p>
+          <h2>{t("howManyPeople")}</h2>
+          <p>{t("chooseSoNoOvercrowd")}</p>
           <div>
             <select name="capacity" onChange={handleInputChange}>
               <option value="" disabled>
                 აირჩიეთ რაოდენობა
               </option>
-              <option value="1">1 ადამიანი</option>
-              <option value="2">2 ადამიანი</option>
-              <option value="3">3 ადამიანი</option>
-              <option value="4">4 ადამიანი</option>
-              <option value="5">5 ადამიანი</option>
-              <option value="5-10">5-10 ადამიანი</option>
-              <option value="10-15">5-15 ადამიანი</option>
-              <option value="15-20">15-20 ადამიანი</option>
-              <option value="20-30">20-30 ადამიანი</option>
-              <option value="30+">30+ ადამიანი</option>
+              <option value="1">1 {t("person")}</option>
+              <option value="2">2 {t("person")}</option>
+              <option value="3">3 {t("person")}</option>
+              <option value="4">4 {t("person")}</option>
+              <option value="5">5 {t("person")}</option>
+              <option value="5-10">5-10 {t("person")}</option>
+              <option value="10-15">5-15 {t("person")}</option>
+              <option value="15-20">15-20 {t("person")}</option>
+              <option value="20-30">20-30 {t("person")}</option>
+              <option value="30+">30+ {t("person")}</option>
             </select>
           </div>
         </div>
       </div>
       <div className="add-campsite-detail-container">
         <div className="campsite-location">
-          <h2>სად მდებარეობს სივრცე?</h2>
+          <h2>{t("whereItsLocated")}</h2>
           <label htmlFor="location">აირჩიეთ ლოკაცია*</label>
           <select name="location" onChange={handleInputChange}>
             {cities.map((city, index) => (
@@ -401,19 +396,19 @@ const MainCampsiteField = () => {
             ))}
           </select>
 
-          <label htmlFor="firstName">სახელი*</label>
+          <label htmlFor="firstName">{t("name")}*</label>
           <input
             type="text"
             name="first_name"
             id="firstName"
-            placeholder="თქვენი სახელი"
+            placeholder={t("yourName")}
             onChange={handleInputChange}
           />
           {errors.name && <p>{errors.name}</p>}
-          <label htmlFor="phone">ტელეფონის ნომერი*</label>
+          <label htmlFor="phone">{t("phoneNumber")}*</label>
           <input
             type="number"
-            placeholder="ტელეფონის ნომერი"
+            placeholder={t("yourPhoneNumber")}
             name="phone"
             id="phone"
             onChange={handleInputChange}
@@ -423,10 +418,10 @@ const MainCampsiteField = () => {
       </div>
       <div className="add-campsite-detail-container">
         <div className="add-campsite-price">
-          <h2>ფასი</h2>
-          <label htmlFor="price">ნივთის ფასი*</label>
+          <h2>{t("price")}</h2>
+          <label htmlFor="price">{t("itemPrice")}*</label>
           <input
-            placeholder="ფასი"
+            placeholder={t("price")}
             type="number"
             name="price"
             id="price"
@@ -439,21 +434,19 @@ const MainCampsiteField = () => {
             id="negotiable"
             onChange={handleInputChange}
           />
-          <label htmlFor="negotiable">ფასი შეთანხმებით</label>
+          <label htmlFor="negotiable">{t("negotiable")}</label>
         </div>
       </div>
       <div className="add-campsite-detail-container">
         <div className="campsite-main-photo">
-          <h2>დაამატეთ ფოტო</h2>
-          <p>
-            უფრო მეტი ადამიანი დაინტერესდება განცხადებით, რომელსაც ფოტო აქვს
-          </p>
-          <span>აირჩიეთ მოწყობილობიდან</span>
+          <h2>{t("addPhoto")}</h2>
+          <p>{t("morePeopleWill")}</p>
+          <span>{t("chooseFromDevice")}</span>
           <input type="file" name="file" />
-          <label htmlFor="img-url">ან ატვირთეთ URL-ს გამოყენებით:</label>
+          <label htmlFor="img-url">{t("orUploadWithUrl")}:</label>
           <input
             type="text"
-            placeholder="ჩასვით სურათის ლინკი"
+            placeholder={t("uploadOrPasteUrl")}
             name="main_photo"
             id="img-url"
             onChange={handleInputChange}
@@ -463,25 +456,25 @@ const MainCampsiteField = () => {
       </div>
       <div className="add-campsite-detail-container">
         <div className="campsite-photo-urls">
-          <span>დამატებითი სურათები:</span>
+          <span>{t("additionalImages")}:</span>
           <input
             type="text"
             name="photo_urls"
-            placeholder="ჩასვით სურათის ლინკი"
+            placeholder={t("pasteAdditionalUrl")}
             id="img-additional-0"
             onChange={handleInputChange}
           />
           <input
             type="text"
             name="photo_urls"
-            placeholder="ჩასვით სურათის ლინკი"
+            placeholder={t("pasteAdditionalUrl")}
             id="img-additional-1"
             onChange={handleInputChange}
           />
           <input
             type="text"
             name="photo_urls"
-            placeholder="ჩასვით სურათის ლინკი"
+            placeholder={t("pasteAdditionalUrl")}
             id="img-additional-2"
             onChange={handleInputChange}
           />
@@ -489,51 +482,46 @@ const MainCampsiteField = () => {
       </div>
       <div className="add-campsite-detail-container">
         <div className="campsite-size">
-          <h2>დაახლოებით რამხელაა ადგილი?</h2>
-          <span>
-            ჩაწერეთ სავარაუდო ზომა, რათა სტუმრებმა იცოდნენ რას ელოდონ.
-          </span>
+          <h2>{t("sizeOfSpace")}</h2>
+          <span>{t("assumeSize")}</span>
           <div className="flex gap-[10px]">
             <input
-              placeholder="ჩაწერეთ თქვენი სივრცის ზომა"
+              placeholder={t("writeSize")}
               type="text"
               name="size"
               onChange={handleInputChange}
             />
-            <span>კვ/მ.</span>
+            <span>{t("sqm")}</span>
           </div>
         </div>
       </div>
       <div className="add-campsite-detail-container">
         <div className="campsite-name">
-          <h2>დაარქვით თქვენ სივრცეს რაიმე სახელი.</h2>
-          <span>
-            შეურჩიეთ თქვენს საკუთრებას სახელი. სცადეთ იყოს ეს კრეატიული, რაც
-            მოიზიდავს ბევრ სტუმარს.
-          </span>
+          <h2>{t("giveSpaceName")}</h2>
+          <span>{t("creativeName")}</span>
           <input
             type="text"
             name="name"
             onChange={handleInputChange}
-            placeholder="ჩაწერეთ თქვნი სივრცის სახელი"
+            placeholder={t("writeYourSpaceName")}
           />
-          <label htmlFor="map">რუკის Iframe ლინკი</label>
+          <label htmlFor="map">{t("iframe")}</label>
           <input
             type="text"
             name="map"
             id="map"
-            placeholder="რუკის iframe ლინკი"
+            placeholder={t("writeIframe")}
             onChange={handleInputChange}
           />
         </div>
       </div>
       <div className="add-campsite-detail-container">
         <div className="campsite-description">
-          <h2>თქვენი სივრცის დახასიათება.</h2>
+          <h2>{t("spaceDesc")}</h2>
           <textarea
             id="description"
             name="description"
-            placeholder="აღწერეთ თქვენ ისივრცე რამდენიმე წინადადებით."
+            placeholder={t("writeFewSentences")}
             onChange={handleInputChange}
             rows={5}
           ></textarea>
@@ -541,12 +529,12 @@ const MainCampsiteField = () => {
       </div>
       <div className="add-campsite-detail-container">
         <div className="campsite-descriptionen">
-          <h2>თქვენი სივრცის დახასიათება ინგლისურად.</h2>
-          <span>ეს დაგეხმარებათ მოიზიდოთ უცხოელი სტუმრები.</span>
+          <h2>{t("descEn")}</h2>
+          <span>{t("bringVisitors")}</span>
           <textarea
             id="description"
             name="descriptionen"
-            placeholder="აღწერეთ თქვენ ისივრცე ინგლისურად რამდენიმე წინადადებით."
+            placeholder={t("writeFewSentencesEn")}
             onChange={handleInputChange}
             rows={5}
           ></textarea>
@@ -554,8 +542,8 @@ const MainCampsiteField = () => {
       </div>
       <div className="add-campsite-detail-container">
         <div className="campsite-amenities">
-          <h2>რას ნახავთ აქ</h2>
-          <p>აირჩიეთ ყველა ვარიანტი, რასაც სტუმრებს სთავაზობთ</p>
+          <h2>{t("whatWillYouSee")}</h2>
+          <p>{t("chooseEverything")}</p>
           <div className="amenties-row">
             {amenitiesList.map((amenity) => (
               <div key={amenity}>
@@ -575,7 +563,7 @@ const MainCampsiteField = () => {
       </div>
       <div className="add-campsite-detail-container">
         <div className="campsite-activities">
-          <h2>რა აქტივობებით შეიძლება დაკავდეს სტუმარი.</h2>
+          <h2>{t("activities")}</h2>
           <div className="activities-row">
             {activitiesList.map((activity) => (
               <div key={activity}>
@@ -594,7 +582,7 @@ const MainCampsiteField = () => {
         </div>
       </div>
       <div className="flex justify-center">
-        {user?.sub && <button type="submit">დამატება</button>}
+        {user?.sub && <button type="submit">{t("add")}</button>}
       </div>
     </form>
   );

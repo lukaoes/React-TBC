@@ -3,7 +3,7 @@ import { Review } from "../../types";
 import Link from "next/link";
 import SingleCampSingleReviewDelButton from "../SingleCampsitePage/singleCampSingleReviewDelButton";
 import Image from "next/image";
-import { getI18n } from "../../locales/server";
+import { useI18n } from "../../locales/client";
 
 interface IRew {
   reviews: Review;
@@ -15,8 +15,8 @@ interface IRew {
   };
 }
 
-const UserReviewsGrid: FC<IRew> = async ({ reviews, user, userInfo }) => {
-  const t = await getI18n();
+const UserReviewsGrid: FC<IRew> = ({ reviews, user, userInfo }) => {
+  const t = useI18n();
   return (
     <div className="single-camp-reviews-layout">
       {reviews.map((review: Review, index: any) => (
