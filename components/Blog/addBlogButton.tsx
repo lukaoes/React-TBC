@@ -2,9 +2,11 @@
 
 import { useUser } from "@auth0/nextjs-auth0/client";
 import Link from "next/link";
+import { useI18n } from "../../locales/client";
 
 const AddBlogButton = () => {
   const { user } = useUser();
+  const t = useI18n();
 
   if (!user) {
     return;
@@ -31,7 +33,7 @@ const AddBlogButton = () => {
             </g>
           </g>
         </svg>
-        დამატება
+        {t("blog.add")}
       </Link>
     );
 };

@@ -1,3 +1,4 @@
+import { useI18n } from "../../locales/client";
 import AddBlogButton from "./addBlogButton";
 
 interface BlogTopSectionProps {
@@ -5,10 +6,11 @@ interface BlogTopSectionProps {
 }
 
 const BlogTopSection = ({ toggleFilter }: BlogTopSectionProps) => {
+  const t = useI18n();
   return (
     <div className="blog-top-section">
       <div>
-        <span>ყველა ბლოგი</span>
+        <span>{t("blog.allBlogs")}</span>
         <AddBlogButton />
       </div>
       <h2 onClick={toggleFilter}>
@@ -32,7 +34,7 @@ const BlogTopSection = ({ toggleFilter }: BlogTopSectionProps) => {
             fill="black"
           ></path>
         </svg>
-        ფილტრი
+        {t("blog.filter")}
       </h2>
     </div>
   );

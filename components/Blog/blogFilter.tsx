@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import BlogPageRecentCard from "../cards/blogPageRecentCard";
 import { BlogsDisplay } from "../../types";
+import { useI18n } from "../../locales/client";
 
 interface BlogFilterProps {
   displayBlogs: BlogsDisplay;
@@ -16,6 +17,7 @@ const BlogFilter = ({
 }: BlogFilterProps) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("ყველა");
+  const t = useI18n();
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(e.target.value);
@@ -58,11 +60,11 @@ const BlogFilter = ({
   return (
     <div className={`blog-filter ${openFilter ? "active" : ""}`}>
       <div className="blog-filter-search">
-        <h2>ძებნა</h2>
+        <h2>{t("blog.search")}</h2>
         <input
           type="text"
           name="search"
-          placeholder="ძებნა..."
+          placeholder={`${t("blog.search")}...`}
           value={searchQuery}
           onChange={handleSearchChange}
         />
@@ -90,7 +92,7 @@ const BlogFilter = ({
         </svg>
       </div>
       <div>
-        <h2>კატეგორია</h2>
+        <h2>{t("blog.category")}</h2>
         <ul>
           {categories.map((category) => (
             <li
@@ -134,15 +136,12 @@ const BlogFilter = ({
         </ul>
       </div>
       <div>
-        <h2>ბოლო პოსტები</h2>
+        <h2>{t("blog.latestPosts")}</h2>
         <div className="blog-filter-recent-posts">
           {displayBlogs.slice(0, 3).map((blog, index) => (
             <BlogPageRecentCard key={index} blog={blog} />
           ))}
         </div>
-      </div>
-      <div>
-        <h2>თეგები</h2>
       </div>
     </div>
   );

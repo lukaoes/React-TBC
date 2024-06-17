@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getNicknameAction } from "../../actions";
+import { useI18n } from "../../locales/client";
 
 interface Nickname {
   nickname: string;
@@ -9,6 +10,7 @@ interface Nickname {
 const MainBlogCardAuthor = ({ blog }: any) => {
   const userId = blog.user_id;
   const [nickname, setNickname] = useState<Nickname[]>([]);
+  const t = useI18n();
 
   useEffect(() => {
     const fetchNickname = async () => {
@@ -23,7 +25,7 @@ const MainBlogCardAuthor = ({ blog }: any) => {
     <h3>
       {nickname.length > 0 && (
         <>
-          ავტორი:{" "}
+          {t("blog.author")}:{" "}
           <Link href={`/user/${nickname[0].nickname}`}>
             {nickname[0].nickname}
           </Link>
