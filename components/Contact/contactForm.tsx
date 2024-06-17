@@ -1,6 +1,7 @@
 "use client";
 import { useState, ChangeEvent, FormEvent } from "react";
 import { sendContactMessage } from "../../actions";
+import { useScopedI18n } from "../../locales/client";
 
 interface FormData {
   name: string;
@@ -23,6 +24,8 @@ export default function ContactForm() {
     number: "",
     message: "",
   });
+
+  const t = useScopedI18n("contact");
 
   const [errors, setErrors] = useState<FormErrors>({});
 
@@ -75,51 +78,55 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit} className="contact-form">
       <div>
-        <label htmlFor="name">თქვენი სახელი</label>
+        <label htmlFor="name">{t("name")}</label>
         <input
           type="text"
           name="name"
           id="name"
+          placeholder={t("yourName")}
           value={formData.name}
           onChange={handleChange}
         />
         {errors.name && <p>{errors.name}</p>}
       </div>
       <div>
-        <label htmlFor="email">თქვენი მეილი</label>
+        <label htmlFor="email">{t("yourMail")}</label>
         <input
           type="email"
           name="email"
           id="email"
+          placeholder={t("mail")}
           value={formData.email}
           onChange={handleChange}
         />
         {errors.email && <p>{errors.email}</p>}
       </div>
       <div>
-        <label htmlFor="number">ტელეფონის ნომერი</label>
+        <label htmlFor="number">{t("mobileNumber")}</label>
         <input
           type="number"
           name="number"
           id="number"
+          placeholder={t("number")}
           value={formData.number}
           onChange={handleChange}
         />
         {errors.number && <p>{errors.number}</p>}
       </div>
       <div>
-        <label htmlFor="message">შეტყობინება</label>
+        <label htmlFor="message">{t("message")}</label>
         <textarea
           name="message"
           id="message"
           rows={5}
+          placeholder={t("writeYourMessage")}
           value={formData.message}
           onChange={handleChange}
         ></textarea>
         {errors.message && <p>{errors.message}</p>}
       </div>
       <div className="contact-form-button">
-        <button type="submit">გაგზავნა</button>
+        <button type="submit">{t("send")}</button>
       </div>
     </form>
   );

@@ -103,6 +103,7 @@ export default {
   "blog.author": "ავტორი",
   "blog.details": "ვრცლად",
 
+  "contact.contact": "კონტაქტი",
   "contact.gerogia": "საქართველო",
   "contact.address": "მისამართი: თბილისი, 1092.",
   "contact.addressTwo": "987 ცოტნე დადიანის ქუჩა",

@@ -103,6 +103,7 @@ export default {
   "blog.author": "Author",
   "blog.details": "Read More",
 
+  "contact.contact": "Contact",
   "contact.gerogia": "Georgia",
   "contact.address": "Address: Tbilisi, 1092.",
   "contact.addressTwo": "987 Tsotne Dadiani Street",
