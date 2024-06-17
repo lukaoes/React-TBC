@@ -3,6 +3,7 @@ import { FC, useEffect, useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { BASE_URL } from "../../api";
 import { getAddyByEmailAction } from "../../actions"; // Import the address fetching function
+import { useScopedI18n } from "../../locales/client";
 
 interface CartTotalProps {
   totalPrice: number;
@@ -17,13 +18,14 @@ const CartTotal: FC<CartTotalProps> = ({
 }) => {
   const { user } = useUser();
   const [hasAddress, setHasAddress] = useState<boolean | null>(null);
+  const t = useScopedI18n("cart");
 
   useEffect(() => {
     const checkAddress = async () => {
       if (user && user.email) {
         try {
           const address = await getAddyByEmailAction(user.email);
-          setHasAddress(address.length > 0); // Check if address array is not empty
+          setHasAddress(address.length > 0);
         } catch (error) {
           console.error("Error fetching address:", error);
           setHasAddress(false);
@@ -64,20 +66,22 @@ const CartTotal: FC<CartTotalProps> = ({
   return (
     <div className="cart-total-wrapper">
       <div className="cart-total-header">
-        <h2>გადახდა</h2>
+        <h2>{t("payment")}</h2>
       </div>
       <ul className="cart-total-pricing">
         <li>
-          <span>პროდუქტები ({selectedNumber})</span>
+          <span>
+            {t("products")} ({selectedNumber})
+          </span>
           <span className="cart-total-value">{totalPrice.toFixed(2)} ₾</span>
         </li>
         <li>
-          <span>მიტანის საფასური</span>
+          <span>{t("deliveryFee")}</span>
           <span className="cart-total-value accent">{deliveryPrice} ₾</span>
         </li>
       </ul>
       <div className="cart-total-total">
-        <h2>ჯამური ღირებულება</h2>
+        <h2>{t("total")}</h2>
         <span className="cart-total-sum">{totalWithDelivery.toFixed(2)} ₾</span>
       </div>
       <span className="cart-total-secure">
@@ -96,22 +100,22 @@ const CartTotal: FC<CartTotalProps> = ({
             strokeLinejoin="round"
           ></path>
         </svg>{" "}
-        გადახდის დაცული მეთოდები
+        {t("safePaymentMethods")}
       </span>
       <div className="cart-total-checkout">
         {hasAddress === null ? (
-          <button>იტვირთება...</button>
+          <button>{t("loading")}</button>
         ) : hasAddress ? (
           <button className="cart-total-primary-hover" onClick={checkout}>
-            შეკვეთის გაფორმება
+            {t("order")}
           </button>
         ) : (
           <p className="w-auto">
-            თქვენ არ გაქვთ დამატებული მისამართი,{" "}
+            {t("noAddyOne")}{" "}
             <a href="/profile/address" className="underline">
-              დაამატეთ მისამართი,
+              {t("noAddyTwo")}
             </a>{" "}
-            რომ გააგრძელოთ
+            {t("noAddyThree")}
           </p>
         )}
       </div>

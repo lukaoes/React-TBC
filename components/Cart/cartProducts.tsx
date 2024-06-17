@@ -5,7 +5,7 @@ import Image from "next/image";
 import { handleProductRemove, handleQuantityChange } from "../../actions";
 import CartTotal from "./cartTotal";
 import { useUser } from "@auth0/nextjs-auth0/client";
-import { useCurrentLocale } from "../../locales/client";
+import { useCurrentLocale, useScopedI18n } from "../../locales/client";
 import Link from "next/link";
 
 interface CartProductsProps {
@@ -33,6 +33,7 @@ const CartProducts = ({
     useState(filteredProducts);
   const [id, setId] = useState("");
   const [loading, setLoading] = useState<Record<string, boolean>>({});
+  const t = useScopedI18n("cart");
 
   useEffect(() => {
     if (user && user.sub && user.email) {
@@ -113,10 +114,10 @@ const CartProducts = ({
     <div className="cart-container">
       <div className="cart-products-list-container">
         <div className="cart-header">
-          <div className="cart-header-item">პროდუქტი</div>
-          <div className="cart-header-item">ფასი</div>
-          <div className="cart-header-item">რაოდენობა</div>
-          <div className="cart-header-item">ჯამი</div>
+          <div className="cart-header-item">{t("product")}</div>
+          <div className="cart-header-item">{t("price")}</div>
+          <div className="cart-header-item">{t("quantity")}</div>
+          <div className="cart-header-item">{t("subtotal")}</div>
         </div>
         {localFilteredProducts.map((item: Product, index: number) => (
           <div key={`filteredProducts-${index}`}>
@@ -147,7 +148,7 @@ const CartProducts = ({
                       </Link>
                     </div>
                   </div>
-                  <div className="cart-item-price">${item.price}</div>
+                  <div className="cart-item-price">₾{item.price}</div>
                   <div className="cart-item-quantity">
                     <div className="quant-changer">
                       <button
@@ -173,11 +174,11 @@ const CartProducts = ({
                       </button>
                     </div>
                     <div className="quant-stock">
-                      მარაგი: <span>{item.quantity}</span>
+                      {t("stock")}: <span>{item.quantity}</span>
                     </div>
                   </div>
                   <div className="cart-item-subtotal">
-                    $
+                    ₾
                     {(
                       item.price * (productQuantities[item.id.toString()] || 0)
                     ).toFixed(2)}

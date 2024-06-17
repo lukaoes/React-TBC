@@ -5,8 +5,10 @@ import { getSession } from "@auth0/nextjs-auth0";
 import LoginToAccess from "../../../../components/noAccess/loginToAccess";
 import SecondHeader from "../../../../components/layout/secondHeader";
 import cartImage from "../../../../public/assets/images/secondHeader/cart.jpg";
+import { getI18n } from "../../../../locales/server";
 const Cart = async ({ params: { locale } }: { params: { locale: string } }) => {
   setStaticParamsLocale(locale);
+  const t = await getI18n();
 
   try {
     const session = await getSession();
@@ -39,9 +41,9 @@ const Cart = async ({ params: { locale } }: { params: { locale: string } }) => {
 
     return (
       <>
-        <SecondHeader title="კალათა" backgroundImage={cartImage} />
+        <SecondHeader title={t("cart.cart")} backgroundImage={cartImage} />
         <div className="cart-layout">
-          <h1>ნივთები თქვენს კალათაში:</h1>
+          <h1>{t("cart.itemsInCart")}:</h1>
           <div>
             <CartProducts
               filteredProducts={filteredProducts}
