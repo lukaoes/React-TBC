@@ -9,7 +9,6 @@ const SingleProductPage = async ({ params }: { params: { id: string } }) => {
   const prodId = params.id;
   const product = await getSingleProduct(prodId);
   const displayProd = product[0];
-  console.log(displayProd);
   return (
     <div className="single-product-layout">
       <SingleProdNavigation

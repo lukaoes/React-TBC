@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { getNicknameAction, getPictureAction } from "../../actions";
-import { getCurrentLocale } from "../../locales/server";
+import { getCurrentLocale, getScopedI18n } from "../../locales/server";
 import { Product } from "../../types";
 import Link from "next/link";
 import SingleProdMainDescriptionButton from "./singleProdMainDescriptionButton";
@@ -15,6 +15,7 @@ const SingleProdMainDescription = async ({ product }: IProduct) => {
   const locale = getCurrentLocale();
   const userPic = await getPictureAction(product.user_id);
   const userNickname = await getNicknameAction(product.user_id);
+  const t = await getScopedI18n("singleProd");
   return (
     <div className="single-prod-main-description">
       <div className="small-details">
@@ -40,10 +41,6 @@ const SingleProdMainDescription = async ({ product }: IProduct) => {
             {product.created_at.slice(0, 10)}
           </span>
         </div>
-        {/* <div>
-          <span>{product.condition === "used" ? "მეორადი" : "ახალი"}</span>
-          <span>{product.type === "sell" ? "იყიდება" : "ქირავდება"}</span>
-        </div> */}
         <div className="single-product-edit-remove-buttons">
           <SingleProdEditButton product={product} />
           <SingleProdRemoveButton product={product} />
@@ -76,7 +73,7 @@ const SingleProdMainDescription = async ({ product }: IProduct) => {
             ></path>
             <path fill="#ffffff" d="M23 10a1 1 0 11-2 0 1 1 0 012 0z"></path>
           </svg>{" "}
-          {product.type === "sell" ? "იყიდება" : "ქირავდება"}{" "}
+          {product.type === "sell" ? t("sale") : t("rent")}{" "}
         </span>
         <span>
           <svg
@@ -95,7 +92,7 @@ const SingleProdMainDescription = async ({ product }: IProduct) => {
             ></path>
             <path fill="#ffffff" d="M23 10a1 1 0 11-2 0 1 1 0 012 0z"></path>
           </svg>{" "}
-          {product.condition === "used" ? "მეორადი" : "ახალი"}
+          {product.condition === "used" ? t("used") : t("new")}
         </span>
       </div>
       <p className="single-prod-main-desc">
@@ -115,7 +112,8 @@ const SingleProdMainDescription = async ({ product }: IProduct) => {
           </Link>
 
           <Link href={`/user/${userNickname[0].nickname}`}>
-            {userNickname[0].nickname} <br /> <span>ყველა განცხადება</span>
+            {userNickname[0].nickname} <br />{" "}
+            <span>{t("allAdvertisements")}</span>
           </Link>
         </div>
         <div>
@@ -192,53 +190,61 @@ const SingleProdMainDescription = async ({ product }: IProduct) => {
       <div className="stock-and-stuff">
         {product.location && (
           <p>
-            მდებარეობა: <span>{product.location}</span>
+            {t("location")}: <span>{product.location}</span>
           </p>
         )}
         {product.category && (
           <p>
-            კატეგორია: <span>{product.category}</span>
+            {t("category")}: <span>{product.category}</span>
           </p>
         )}
         {product.subcategory && (
           <p>
-            ქვეკატეგორია: <span>{product.subcategory}</span>
+            {t("subcategory")}: <span>{product.subcategory}</span>
           </p>
         )}
         {product.shoe_size && (
           <p>
-            ფეხსაცმლის ზომა: <span>{product.shoe_size}</span>
+            {t("shoeSize")}: <span>{product.shoe_size}</span>
           </p>
         )}
         {product.clothing_size && (
           <p>
-            ტანსაცმლის ზომა: <span>{product.clothing_size}</span>
+            {t("clothingSize")}: <span>{product.clothing_size}</span>
           </p>
         )}
         {product.backpack_capacity && (
           <p>
-            ზურგჩანტთის მოცულობა: <span>{product.backpack_capacity} ლიტრი</span>
+            {t("backpackCapacity")}:{" "}
+            <span>
+              {product.backpack_capacity} {t("liter")}
+            </span>
           </p>
         )}
         {product.tent_capacity && (
           <p>
-            კარავის ტევადობა:{" "}
-            <span>{product.tent_capacity.replace("-person", "")} ადამიანი</span>
+            {t("tentCapacity")}:{" "}
+            <span>
+              {product.tent_capacity.replace("-person", "")} {t("person")}
+            </span>
           </p>
         )}
         {product.quantity && (
           <p>
-            მარაგშია: <span>{product.quantity} ცალი</span>
+            {t("inStock")}:{" "}
+            <span>
+              {product.quantity} {t("item")}
+            </span>
           </p>
         )}
       </div>
       <div className="single-prod-main-price">
         <span>
           {product.negotiable
-            ? "ფასი შეთანხმებით"
+            ? t("negotiable")
             : product.type === "sell"
             ? `${product.price} ₾`
-            : `${product.price} ₾/დღე`}
+            : `${product.price} ₾/${t("day")}`}
         </span>
         {/* @ts-ignore */}
         <SingleProdMainDescriptionButton product={product} />

@@ -4,6 +4,7 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import { handleAddToCart } from "../../actions";
 import { ProductsDisplay } from "../../types";
 import { getUserCart } from "../../api";
+import { useI18n } from "../../locales/client";
 
 interface IProd {
   product: ProductsDisplay;
@@ -13,6 +14,7 @@ const SingleProdMainDescriptionButton: FC<IProd> = ({ product }) => {
   const { user } = useUser();
   const [id, setId] = useState("");
   const [isInCart, setIsInCart] = useState(false);
+  const t = useI18n();
 
   useEffect(() => {
     if (user && user.sub) {
@@ -45,7 +47,7 @@ const SingleProdMainDescriptionButton: FC<IProd> = ({ product }) => {
   };
   return (
     <button disabled={isInCart} onClick={handleClick}>
-      {isInCart ? "კალათაშია" : "კალათაში დამატება"}
+      {isInCart ? t("singleProd.alreadyInCart") : t("singleProd.addToCart")}
     </button>
   );
 };

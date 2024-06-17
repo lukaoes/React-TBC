@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getCurrentLocale } from "../../locales/server";
+import { getCurrentLocale, getI18n } from "../../locales/server";
 import { FC } from "react";
 
 interface SingleProdNavigationNames {
@@ -8,14 +8,15 @@ interface SingleProdNavigationNames {
   id: number;
 }
 
-const SingleProdNavigation: FC<SingleProdNavigationNames> = (props) => {
+const SingleProdNavigation: FC<SingleProdNavigationNames> = async (props) => {
   const locale = getCurrentLocale();
   const { titlege, titleen, id } = props;
+  const t = await getI18n();
 
   return (
     <div className="single-prod-navigation">
       <div>
-        <Link href="/">მთავარი</Link>
+        <Link href="/">{t("singleProd.home")}</Link>
         <svg
           width="20"
           height="20"
@@ -31,7 +32,7 @@ const SingleProdNavigation: FC<SingleProdNavigationNames> = (props) => {
             strokeLinejoin="round"
           ></path>
         </svg>
-        <Link href="/products">პროდუქტები</Link>
+        <Link href="/products">{t("singleProd.products")}</Link>
         <svg
           width="20"
           height="20"
