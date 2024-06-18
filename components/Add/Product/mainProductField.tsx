@@ -1,9 +1,10 @@
 "use client";
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import GearSelector from "./selectCategories";
 import { addAdvertisement } from "../../../actions";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useScopedI18n } from "../../../locales/client";
+import { BASE_URL } from "../../../api";
 
 interface FormData {
   user_id: string;
@@ -112,7 +113,7 @@ const MainProductField = () => {
     backpack_capacity: "",
     tent_capacity: "",
     main_photo: "",
-    photo_urls: [],
+    photo_urls: ["", "", ""],
     title_ge: "",
     description_ge: "",
     title_en: "",
@@ -126,7 +127,12 @@ const MainProductField = () => {
     phone: "",
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-  console.log(formData);
+  const inputFileRef = useRef<HTMLInputElement>(null);
+  const additionalFileRefs = useRef<(HTMLInputElement | null)[]>([
+    null,
+    null,
+    null,
+  ]);
 
   useEffect(() => {
     if (user && user.sub) {
@@ -144,17 +150,11 @@ const MainProductField = () => {
     const checked =
       type === "checkbox" ? (e.target as HTMLInputElement).checked : undefined;
 
-    if (name === "photo_urls") {
+    if (name.startsWith("photo_urls")) {
+      const index = parseInt(e.target.id.split("-")[2]);
       setFormData((prevData) => {
         const newPhotoUrls = [...prevData.photo_urls];
-        const index = parseInt(e.target.id.split("-")[2]);
-
-        if (value) {
-          newPhotoUrls[index] = value;
-        } else {
-          newPhotoUrls.splice(index, 1);
-        }
-
+        newPhotoUrls[index] = value;
         return {
           ...prevData,
           photo_urls: newPhotoUrls,
@@ -192,6 +192,61 @@ const MainProductField = () => {
 
     setErrors(newErrors);
     return valid;
+  };
+
+  const handleUpload = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    if (!inputFileRef.current?.files) {
+      throw new Error("No file selected");
+    }
+
+    const file = inputFileRef.current.files[0];
+
+    const response = await fetch(
+      `${BASE_URL}/api/avatar/upload?filename=${file.name}`,
+      {
+        method: "POST",
+        body: file,
+      }
+    );
+
+    const newBlob = await response.json();
+
+    setFormData((prevData) => ({
+      ...prevData,
+      main_photo: newBlob.url,
+    }));
+  };
+
+  const handleAdditionalUpload = async (
+    event: ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    if (!event.target.files) {
+      throw new Error("No file selected");
+    }
+
+    const file = event.target.files[0];
+
+    const response = await fetch(
+      `${BASE_URL}/api/avatar/upload?filename=${file.name}`,
+      {
+        method: "POST",
+        body: file,
+      }
+    );
+
+    const newBlob = await response.json();
+
+    setFormData((prevData) => {
+      const newPhotoUrls = [...prevData.photo_urls];
+      newPhotoUrls[index] = newBlob.url;
+      return {
+        ...prevData,
+        photo_urls: newPhotoUrls,
+      };
+    });
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -251,46 +306,45 @@ const MainProductField = () => {
             <h2>{t("addImage")}</h2>
             <p>{t("morePeopleWill")}</p>
             <span>{t("chooseFromDevice")}</span>
-            <input type="file" name="file" />
+            <input
+              type="file"
+              name="file"
+              ref={inputFileRef}
+              onChange={handleUpload}
+            />
             <label htmlFor="img-url">{t("orUploadWithUrl")}:</label>
             <input
               type="text"
               name="main_photo"
               placeholder={t("uploadOrPasteUrl")}
               id="img-url"
+              value={formData.main_photo}
               onChange={handleInputChange}
+              disabled={!!formData.main_photo}
             />
             <span>{t("pasteAdditionalUrl")}:</span>
-            <div className="add-products-additional-img">
-              <span>1</span>
-              <input
-                type="text"
-                name="photo_urls"
-                id="img-additional-0"
-                placeholder={t("pasteAdditionalUrl")}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="add-products-additional-img">
-              <span>2</span>
-              <input
-                type="text"
-                name="photo_urls"
-                id="img-additional-1"
-                placeholder={t("pasteAdditionalUrl")}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div className="add-products-additional-img">
-              <span>3</span>
-              <input
-                type="text"
-                name="photo_urls"
-                placeholder={t("pasteAdditionalUrl")}
-                id="img-additional-2"
-                onChange={handleInputChange}
-              />
-            </div>
+            {formData.photo_urls.map((photoUrl, index) => (
+              <div className="add-products-additional-img" key={index}>
+                <span>{index + 1}</span>
+                <div>
+                  <input
+                    type="file"
+                    // @ts-ignore
+                    ref={(el) => (additionalFileRefs.current[index] = el)}
+                    onChange={(e) => handleAdditionalUpload(e, index)}
+                  />
+                  <input
+                    type="text"
+                    name="photo_urls"
+                    id={`img-additional-${index}`}
+                    value={photoUrl}
+                    placeholder={t("pasteAdditionalUrl")}
+                    onChange={handleInputChange}
+                    disabled={!!photoUrl}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
         <div className="add-product-description">
