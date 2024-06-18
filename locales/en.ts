@@ -429,6 +429,11 @@ export default {
   "notFound.middle": "It's a great place to be, except in this case...",
   "notFound.bottom": "Return to home",
 
+  "orderStripe.cancel": "ORDER CANCELLED :(",
+  "orderStripe.shop": "Shop Again",
+  "orderStripe.success": "ORDER RECEIVED :)",
+  "orderStripe.orders": "See Your Orders",
+
   "footer.paragraph":
     "Want to know what we're up to? Sign up for the newsteller and join our tribe.",
   "footer.subscribe": "SUBSCRIBE",

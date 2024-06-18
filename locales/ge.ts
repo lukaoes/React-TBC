@@ -430,6 +430,11 @@ export default {
   "notFound.middle": "კარგია უკაცრიელი ადგილები, მაგრამ არა ამ შემთხვევაში...",
   "notFound.bottom": "სახლში დაბრუნება",
 
+  "orderStripe.cancel": "შეკვეთა გაუქმებულია :(",
+  "orderStripe.shop": "განაგრძეთ შოპინგი",
+  "orderStripe.success": "შეკვეთა მიღებულია :)",
+  "orderStripe.orders": "ნახეთ შეკვეთები",
+
   // 'profile.logOut': 'გამოსვლა',
   // 'profile.save': 'შენახვა',
   // 'profile.change': 'შეცვლა',

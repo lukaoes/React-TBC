@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { BASE_URL } from "../../../../api";
 const stripe = require("stripe")(process.env.STRIPE_SECRET);
 
 const getActiveProducts = async () => {
@@ -60,8 +61,8 @@ export const POST = async (request: any) => {
     line_items: stripeItems,
     mode: "payment",
     customer_email: email,
-    success_url: "http://localhost:3000/products",
-    cancel_url: "http://localhost:3000/profile/address",
+    success_url: `${BASE_URL}/success`,
+    cancel_url: `${BASE_URL}/cancel`,
   });
 
   return NextResponse.json({ url: session.url });
