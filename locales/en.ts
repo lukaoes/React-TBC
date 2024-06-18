@@ -425,6 +425,10 @@ export default {
   "addCampsite.activities": "Choose activities visitors can have nearby.",
   "addCampsite.add": "Add",
 
+  "notFound.top": "You've landed in the middle of nowhere.",
+  "notFound.middle": "It's a great place to be, except in this case...",
+  "notFound.bottom": "Return to home",
+
   "footer.paragraph":
     "Want to know what we're up to? Sign up for the newsteller and join our tribe.",
   "footer.subscribe": "SUBSCRIBE",

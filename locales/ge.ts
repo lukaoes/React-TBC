@@ -426,6 +426,10 @@ export default {
   "addCampsite.activities": "რა აქტივობებით შეიძლება დაკავდეს სტუმარი.",
   "addCampsite.add": "დამატება",
 
+  "notFound.top": "თქვენ მოხვდით უკაცრიელ ადგილას.",
+  "notFound.middle": "კარგია უკაცრიელი ადგილები, მაგრამ არა ამ შემთხვევაში...",
+  "notFound.bottom": "სახლში დაბრუნება",
+
   // 'profile.logOut': 'გამოსვლა',
   // 'profile.save': 'შენახვა',
   // 'profile.change': 'შეცვლა',

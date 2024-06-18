@@ -1,0 +1,51 @@
+.background-404 {
+  background-image: url(../public/assets/images/otxasotxigisment.avif);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: calc(100vh - 80px - 180px);
+  width: 100%;
+  padding: 50px;
+
+  .container-404 {
+    background-color: #fff;
+    padding: 40px;
+    display: inline-block;
+
+    .logo {
+      display: flex;
+      justify-content: center;
+    }
+
+    svg {
+      width: 120px;
+      height: 120px;
+    }
+    h1 {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+    }
+
+    a {
+      margin-top: 20px;
+      display: inline-block;
+      background-color: #444444;
+      color: #fff;
+      border-radius: 2px;
+      padding: 7px 20px;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    padding: 20px;
+    .container-404 {
+      h1 {
+        font-size: 24px;
+      }
+    }
+  }
+}
