@@ -1,10 +1,13 @@
-const FooterBottom = () => {
+import { getScopedI18n } from "../../locales/server";
+
+const FooterBottom = async () => {
+  const t = await getScopedI18n("footer");
   return (
     <div className="footer-bottom">
       <div>
-        <span>© ეზოეზო 2024</span>
+        <span>© {t("ezoezo")} 2024</span>
         <span>●</span>
-        <span>ყველა უფლება დაცულია</span>
+        <span>{t("allRightsReserved")}</span>
       </div>
     </div>
   );

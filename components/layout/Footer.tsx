@@ -1,8 +1,10 @@
 import { Link } from "next-view-transitions";
 import LogoSvg from "./LogoSvg";
 import FooterBottom from "./footerBottom";
+import { getScopedI18n } from "../../locales/server";
 
 async function Footer() {
+  const t = await getScopedI18n("footer");
   return (
     <footer>
       <div className="footer-container">
@@ -10,7 +12,7 @@ async function Footer() {
           <Link href="/" className="footer-logo">
             <LogoSvg />
           </Link>
-          <h5>გამოგვყევით</h5>
+          <h5>{t("follow")}</h5>
           <div>
             <a href="https://www.instagram.com" target="_blank">
               <svg
@@ -99,56 +101,56 @@ async function Footer() {
           </div>
         </div>
         <div className="footer-section">
-          <h3>ნავიგაცია</h3>
+          <h3>{t("navigation")}</h3>
           <ul>
             <li>
-              <Link href="#">მთავარი</Link>
+              <Link href="#">{t("home")}</Link>
             </li>
             <li>
-              <Link href="/products">პროდუქტები</Link>
+              <Link href="/products">{t("products")}</Link>
             </li>
             <li>
-              <Link href="/campsites">საპიკნიკე</Link>
+              <Link href="/campsites">{t("campsites")}</Link>
             </li>
             <li>
-              <Link href="/blog">ბლოგები</Link>
+              <Link href="/blog">{t("blogs")}</Link>
             </li>
             <li>
-              <Link href="/contact">კონტაქტი</Link>
+              <Link href="/contact">{t("contact")}</Link>
             </li>
           </ul>
         </div>
         <div className="footer-section">
-          <h3>დამატება</h3>
+          <h3>{t("add")}</h3>
           <ul>
             <li>
-              <Link href="/add">დამატების გვერდი</Link>
+              <Link href="/add">{t("addPage")}</Link>
             </li>
             <li>
-              <Link href="/add/product">პროდუქტის დამატება</Link>
+              <Link href="/add/product">{t("addProduct")}</Link>
             </li>
             <li>
-              <Link href="/add/campsite">საპიკნიკეს დამატება</Link>
+              <Link href="/add/campsite">{t("addCampsite")}</Link>
             </li>
             <li>
-              <Link href="/blog/add">ბლოგის დამატება</Link>
+              <Link href="/blog/add">{t("addBlog")}</Link>
             </li>
           </ul>
         </div>
         <div className="footer-section">
-          <h3>მომხმარებელი</h3>
+          <h3>{t("user")}</h3>
           <ul>
             <li>
-              <Link href="/profile">პროფილი</Link>
+              <Link href="/profile">{t("profile")}</Link>
             </li>
             <li>
-              <Link href="/profile/address">მისამართები</Link>
+              <Link href="/profile/address">{t("addresses")}</Link>
             </li>
             <li>
-              <Link href="/profile/orders">შეკვეთები</Link>
+              <Link href="/profile/orders">{t("orders")}</Link>
             </li>
             <li>
-              <Link href="/cart">კალათა</Link>
+              <Link href="/cart">{t("cart")}</Link>
             </li>
           </ul>
         </div>
