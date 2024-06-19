@@ -103,16 +103,19 @@
     gap: 30px;
     max-width: 1000px;
     margin: 0 auto;
+    flex-wrap: wrap;
 
     div {
       position: relative;
       background-color: #b9d484;
+      min-width: 250px;
       padding: 15px;
       padding-top: 30px;
       border-radius: 6px;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      flex: 1;
       align-items: center;
       box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
         rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
@@ -171,6 +174,7 @@
   display: flex;
   gap: 30px;
   justify-content: space-between;
+  flex-wrap: wrap;
 
   a {
     padding: 30px;
@@ -183,6 +187,7 @@
     display: flex;
     position: relative;
     transition: all 0.3s ease-in-out;
+    min-width: 230px;
 
     &:hover {
       transform: scale(1.03);
@@ -257,14 +262,97 @@
   margin-bottom: 30px;
 
   div:first-child {
+    h1 {
+      font-size: 28px;
+      font-weight: 900;
+      color: #4b4b4b;
+      letter-spacing: 2px;
+    }
     h3 {
       font-size: 24px;
+      font-weight: 500;
       color: #444444;
+    }
+
+    @media screen and (max-width: 450px) {
+      h1 {
+        font-size: 20px;
+      }
+      h3 {
+        font-size: 18px;
+      }
+    }
+  }
+
+  div:last-child {
+    width: 105px;
+  }
+}
+
+.home-see-all {
+  display: flex;
+  justify-content: center;
+
+  a {
+    display: inline-block;
+    padding: 8px 16px;
+    background-color: #b9d484;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(0.95);
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+        rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
     }
   }
 }
 
+.home-recent-products-container {
+  position: relative;
+
+  .swiper-button-next,
+  .swiper-button-next::after {
+    background-image: url(../public/assets/images/rightArrow.svg);
+    background-repeat: no-repeat;
+    background-position: 0%;
+    position: absolute;
+    top: 38px;
+    right: 20px;
+    font-size: 0;
+    z-index: 4;
+    width: 43px;
+    background-color: #fcf9f4;
+    border-radius: 100%;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    border: 1px solid #a5a5a5;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-prev::after {
+    background-image: url(../public/assets/images/arrowLeft.svg);
+    background-repeat: no-repeat;
+    background-position: 0%;
+    position: absolute;
+    left: auto;
+    top: 38px;
+    right: 75px;
+    font-size: 0;
+    z-index: 4;
+    width: 43px;
+    background-color: #fcf9f4;
+    border-radius: 100%;
+  }
+}
+
 .recent-products-slider {
+  .swiper {
+    position: static;
+  }
   .swiper-wrapper {
     margin-bottom: 30px;
   }

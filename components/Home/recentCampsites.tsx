@@ -10,13 +10,15 @@ const RecentCampsites = async () => {
     <div className="home-recent-products-container">
       <div className="recent-products-header">
         <div>
+          <h1>აღმოაჩინე</h1>
           <h3>{t("newCampsites")}</h3>
         </div>
-        <div>
-          <Link href="/campsites">{t("seeAll")}</Link>
-        </div>
+        <div></div>
       </div>
       <RecentCampsitesSlider campsites={campsites} />
+      <div className="home-see-all">
+        <Link href="/products">{t("seeAll")}</Link>
+      </div>
     </div>
   );
 };
