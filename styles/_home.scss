@@ -105,8 +105,10 @@
     margin: 0 auto;
 
     div {
+      position: relative;
       background-color: #b9d484;
       padding: 15px;
+      padding-top: 30px;
       border-radius: 6px;
       display: flex;
       flex-direction: column;
@@ -114,6 +116,15 @@
       align-items: center;
       box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
         rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+      img {
+        position: absolute;
+        height: 40px;
+        width: auto;
+        left: 50%;
+        transform: translate(-30%);
+        top: -19px;
+      }
     }
 
     p {

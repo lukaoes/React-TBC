@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { getScopedI18n } from "../../locales/server";
+import Image from "next/image";
+import pin from "../../public/assets/images/pin.png";
 
 const HomeAbout = async () => {
   const t = await getScopedI18n("main");
@@ -10,6 +12,7 @@ const HomeAbout = async () => {
         <div className="home-about-us-container">
           <div className="home-about-us-types">
             <div>
+              <Image src={pin} alt="pin" width={300} height={300} />
               <h4>{t("gear")}</h4>
               <p>{t("gearDesc")}</p>
               <Link href="/products">
@@ -41,6 +44,7 @@ const HomeAbout = async () => {
               </Link>
             </div>
             <div>
+              <Image src={pin} alt="pin" width={300} height={300} />
               <h4>{t("camping")}</h4>
               <p>{t("campingDesc")}</p>
               <Link href="/campsites">
