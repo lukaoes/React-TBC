@@ -29,9 +29,9 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
   const [selectedCondition, setSelectedCondition] = useState<string>("");
   const [selectedType, setSelectedType] = useState<string>("");
   const [selectedLocation, setSelectedLocation] = useState<string>("");
-  const [selectedCategory, setSelectedCategory] = useState<string>(""); // Add this line
+  const [selectedCategory, setSelectedCategory] = useState<string>("ყველა");
   const [filterState, setFilterState] = useState(false);
-
+  const prodLength = products.length;
   useEffect(() => {
     setFilteredProducts(products);
     setSortedProducts(products);
@@ -148,7 +148,7 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
     condition: string,
     type: string,
     location: string,
-    category: string // Add this line
+    category: string
   ) => {
     let filtered = products.filter(
       (product) =>
@@ -159,7 +159,7 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
         (condition === "" || product.condition === condition) &&
         (type === "" || product.type === type) &&
         (location === "" || product.location === location) &&
-        (category === "" || product.category === category) // Add this line
+        (category === "ყველა" || product.category === category)
     );
     setFilteredProducts(filtered);
     setSortedProducts(filtered);
@@ -190,8 +190,10 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
           handleConditionChange={handleConditionChange}
           handleTypeChange={handleTypeChange}
           handleLocationChange={handleLocationChange}
-          handleCategoryChange={handleCategoryChange} // Add this line
+          handleCategoryChange={handleCategoryChange}
           getCategoryCount={getCategoryCount}
+          selectedCategory={selectedCategory}
+          prodLength={prodLength}
         />
         <ProductsGrid
           products={sortedProducts}

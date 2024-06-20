@@ -11,9 +11,11 @@ interface ProductsFilterProps {
   handleConditionChange: (condition: string) => void;
   handleTypeChange: (type: string) => void;
   handleLocationChange: (location: string) => void;
-  handleCategoryChange: (category: string) => void; // Add this line
+  handleCategoryChange: (category: string) => void;
   getCategoryCount: (category: string) => number;
   filterState: boolean;
+  selectedCategory: string;
+  prodLength: number;
 }
 
 const ProductsFilter: FC<ProductsFilterProps> = ({
@@ -23,9 +25,11 @@ const ProductsFilter: FC<ProductsFilterProps> = ({
   handleConditionChange,
   handleTypeChange,
   handleLocationChange,
-  handleCategoryChange, // Add this line
+  handleCategoryChange,
   getCategoryCount,
   filterState,
+  selectedCategory,
+  prodLength,
 }) => {
   const [priceRange, setPriceRange] = useState<[number, number]>([
     minPrice,
@@ -128,6 +132,7 @@ const ProductsFilter: FC<ProductsFilterProps> = ({
         <h3 className="products-filter-title">{t("category")}</h3>
         <ul className="products-filter-list">
           {[
+            "ყველა",
             "ფეხსაცმელი",
             "ტანსაცმელი",
             "ზურგჩანთები და ჩანთები",
@@ -143,12 +148,20 @@ const ProductsFilter: FC<ProductsFilterProps> = ({
             "სხვა",
           ].map((category, index) => (
             <li
-              className="cursor-pointer"
+              className={
+                category === selectedCategory
+                  ? "selected-category cursor-pointer"
+                  : "cursor-pointer"
+              }
               key={`category-${index}`}
-              onClick={() => handleCategoryChange(category)} // Add this line
+              onClick={() => handleCategoryChange(category)}
             >
               {category}
-              <span>({getCategoryCount(category)})</span>
+              <span>
+                (
+                {category !== "ყველა" ? getCategoryCount(category) : prodLength}
+                )
+              </span>
             </li>
           ))}
         </ul>
