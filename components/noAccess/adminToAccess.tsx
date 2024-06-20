@@ -1,6 +1,8 @@
 import { Link } from "next-view-transitions";
+import { getScopedI18n } from "../../locales/server";
 
-const AdminToAccess = () => {
+const AdminToAccess = async () => {
+  const t = await getScopedI18n("adminToAccess");
   return (
     <div className="login-to-access-container">
       <svg
@@ -74,8 +76,8 @@ const AdminToAccess = () => {
         </g>
       </svg>
       <div>
-        <h1 className="mb-5">თქვენ არ ხართ ადმინისტრატორი!</h1>
-        <Link href="/">მთავარ გვერდზე დაბრუნება</Link>
+        <h1 className="mb-5">{t("youreNotAdmin")}</h1>
+        <Link href="/">{t("backToHome")}</Link>
       </div>
     </div>
   );

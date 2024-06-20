@@ -1,4 +1,7 @@
-const LoginToAccess = () => {
+import { getScopedI18n } from "../../locales/server";
+
+const LoginToAccess = async () => {
+  const t = await getScopedI18n("loginToAccess");
   return (
     <div className="login-to-access-container">
       <svg
@@ -72,9 +75,9 @@ const LoginToAccess = () => {
         </g>
       </svg>
       <div>
-        <h1>თქვენ არ ხართ ავტორიზირებული!</h1>
-        <p>გვერდის კონტენტის სანახავად</p>
-        <a href="/api/auth/login">გაიარეთ ავტორიზაცია</a>
+        <h1>{t("youAreNotAuthorized")}</h1>
+        <p>{t("ifYouWantToSeePageContent")}</p>
+        <a href="/api/auth/login">{t("pleaseLogin")}</a>
       </div>
     </div>
   );

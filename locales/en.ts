@@ -434,6 +434,13 @@ export default {
   "orderStripe.success": "ORDER RECEIVED :)",
   "orderStripe.orders": "See Your Orders",
 
+  "loginToAccess.youAreNotAuthorized": "You are not authorized!",
+  "loginToAccess.ifYouWantToSeePageContent": "If you want to see page content",
+  "loginToAccess.pleaseLogin": "Please login.",
+
+  "adminToAccess.youreNotAdmin": "თქვენ არ ხართ ადმინისტრატორი!",
+  "adminToAccess.backToHome": "მთავარ გვერდზე დაბრუნება",
+
   "footer.follow": "Follow Us",
   "footer.navigation": "Navigation",
   "footer.home": "Home",

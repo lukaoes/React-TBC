@@ -435,6 +435,13 @@ export default {
   "orderStripe.success": "შეკვეთა მიღებულია :)",
   "orderStripe.orders": "ნახეთ შეკვეთები",
 
+  "loginToAccess.youAreNotAuthorized": "თქვენ არ ხართ ავტორიზირებული!",
+  "loginToAccess.ifYouWantToSeePageContent": "გვერდის კონტენტის სანახავად",
+  "loginToAccess.pleaseLogin": "გაიარეთ ავტორიზაცია",
+
+  "adminToAccess.youreNotAdmin": "თქვენ არ ხართ ადმინისტრატორი!",
+  "adminToAccess.backToHome": "მთავარ გვერდზე დაბრუნება",
+
   "footer.follow": "გამოგვყევით",
   "footer.navigation": "ნავიგაცია",
   "footer.home": "მთავარი",
