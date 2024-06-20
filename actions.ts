@@ -662,3 +662,14 @@ export async function getEverythingByNicknameAction(nickname: string) {
 
   return res;
 }
+
+export async function emptyUserCart(id: string) {
+  const response = await fetch(BASE_URL + "/api/cart/empty-cart/", {
+    method: "DELETE",
+    body: JSON.stringify({ id }),
+  });
+  revalidatePath("/campsites");
+
+  const data = await response.json();
+  return data.response;
+}

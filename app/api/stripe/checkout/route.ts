@@ -61,7 +61,7 @@ export const POST = async (request: any) => {
     line_items: stripeItems,
     mode: "payment",
     customer_email: email,
-    success_url: `${BASE_URL}/success`,
+    success_url: `${BASE_URL}/success?from=stripe`,
     cancel_url: `${BASE_URL}/cancel`,
   });
 
