@@ -5,8 +5,7 @@ $complimentary-color-light: #feffff;
 $light-main: #ebe9df;
 $dark-main: #213329;
 $dark-secondary: #262624;
-
-// #192E2F
+$green-medium: #28583e;
 
 .app {
   background-color: $light-main;
@@ -29,8 +28,6 @@ $dark-secondary: #262624;
     background-color: $dark-main;
     color: $light-main;
   }
-
-  // header
 
   header {
     nav {
@@ -83,7 +80,7 @@ $dark-secondary: #262624;
 
         li {
           &:hover {
-            background-color: #28583e;
+            background-color: $green-medium;
           }
         }
 
@@ -96,7 +93,6 @@ $dark-secondary: #262624;
     }
   }
 
-  // footer
   .footer-bottom {
     color: $light-main;
     background-color: $dark-secondary;
@@ -123,29 +119,40 @@ $dark-secondary: #262624;
     }
   }
 
-  // main
-  .featured-products {
-    background: rgba(255, 255, 255, 0.1);
-  }
+  // home
 
-  .price-cart {
-    button {
-      background-color: #353535;
+  .home-about-us-container {
+    .home-about-us-types {
+      div {
+        background-color: $green-medium;
+
+        path {
+          fill: $light-main;
+        }
+      }
     }
   }
 
-  .featured-card_joint,
-  .featured-card_info {
-    background-color: $dark-main;
-  }
+  .home-recent-products-container {
+    .recent-products-header {
+      h1,
+      h3 {
+        color: $light-main;
+      }
+    }
+    svg {
+      fill: $light-main;
+    }
 
-  .featured-card_info {
-    box-shadow: 0px 5px 0px 0px #181717;
-  }
+    .home-see-all {
+      a {
+        background-color: $green-medium;
+      }
+    }
 
-  // contact
-  .contact-form {
-    background-color: rgba(255, 255, 255, 0.05);
+    .recent-campsites-card {
+      background-color: $green-medium;
+    }
   }
 
   // profile
@@ -160,32 +167,4 @@ $dark-secondary: #262624;
   }
 
   // blog
-  .blog-recent {
-    background-color: #555555;
-    background-image: none;
-  }
-
-  .blog-recent-right {
-    a {
-      color: $light-main;
-    }
-  }
-
-  .blog-card_info,
-  .blog-card {
-    border-radius: 15px;
-    background-color: #525252;
-
-    a {
-      color: $light-main;
-    }
-  }
-
-  .blog-post-cover {
-    background-color: #555555;
-  }
-
-  .blog-date {
-    background-color: #555555;
-  }
 }
