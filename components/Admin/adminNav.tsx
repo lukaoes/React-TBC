@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useCurrentLocale } from "../../locales/client";
 
 const AdminNav = () => {
   const path = usePathname();
+  const locale = useCurrentLocale();
 
   const handleUsersClick = (e: { preventDefault: () => void }) => {
-    if (path === "/admin") {
+    if (path === `/${locale}/admin`) {
       e.preventDefault();
       window.location.reload();
     }
@@ -17,7 +19,9 @@ const AdminNav = () => {
     <div className="admin-navigation">
       <Link
         href="/admin"
-        className={path === "/admin" ? "active bg-[#2980b9] font-bold" : ""}
+        className={
+          path === `/${locale}/admin` ? "active bg-[#2980b9] font-bold" : ""
+        }
         onClick={handleUsersClick}
       >
         შეტყობინებები
@@ -25,7 +29,9 @@ const AdminNav = () => {
       <Link
         href="/admin/products"
         className={
-          path === "/admin/products" ? "active bg-[#2980b9] font-bold" : ""
+          path === `/${locale}/admin/products`
+            ? "active bg-[#2980b9] font-bold"
+            : ""
         }
       >
         პროდუქტები
@@ -33,7 +39,9 @@ const AdminNav = () => {
       <Link
         href="/admin/blogs"
         className={
-          path === "/admin/blogs" ? "active bg-[#2980b9] font-bold" : ""
+          path === `/${locale}/admin/blogs`
+            ? "active bg-[#2980b9] font-bold"
+            : ""
         }
       >
         ბლოგები
@@ -41,7 +49,9 @@ const AdminNav = () => {
       <Link
         href="/admin/users"
         className={
-          path === "/admin/users" ? "active bg-[#2980b9] font-bold" : ""
+          path === `/${locale}/admin/users`
+            ? "active bg-[#2980b9] font-bold"
+            : ""
         }
       >
         მომხმარებლები
@@ -49,7 +59,9 @@ const AdminNav = () => {
       <Link
         href="/admin/orders"
         className={
-          path === "/admin/orders" ? "active bg-[#2980b9] font-bold" : ""
+          path === `/${locale}/admin/orders`
+            ? "active bg-[#2980b9] font-bold"
+            : ""
         }
       >
         შეკვეთები

@@ -1,12 +1,13 @@
 "use client";
 import { Link } from "next-view-transitions";
 import HamburgerMenu from "./hamburgerMenu";
-import { useScopedI18n } from "../../locales/client";
+import { useCurrentLocale, useScopedI18n } from "../../locales/client";
 import { usePathname } from "next/navigation";
 
 function Header() {
   const t = useScopedI18n("header");
   const path = usePathname();
+  const locale = useCurrentLocale();
 
   return (
     <>
@@ -14,20 +15,36 @@ function Header() {
         <nav>
           <div className="header-desktop-nav">
             <ul>
-              <li className={path == "/" ? "choosen-header-nav" : ""}>
-                <Link href="/">{t("home")}</Link>
+              <li className={path == `/${locale}` ? "choosen-header-nav" : ""}>
+                <Link href={`/${locale}/`}>{t("home")}</Link>
               </li>
-              <li className={path == "/products" ? "choosen-header-nav" : ""}>
-                <Link href="/products">{t("products")}</Link>
+              <li
+                className={
+                  path == `/${locale}/products` ? "choosen-header-nav" : ""
+                }
+              >
+                <Link href={`/${locale}/products`}>{t("products")}</Link>
               </li>
-              <li className={path == "/campsites" ? "choosen-header-nav" : ""}>
-                <Link href="/campsites">{t("campsites")}</Link>
+              <li
+                className={
+                  path == `/${locale}/campsites` ? "choosen-header-nav" : ""
+                }
+              >
+                <Link href={`/${locale}/campsites`}>{t("campsites")}</Link>
               </li>
-              <li className={path == "/blog" ? "choosen-header-nav" : ""}>
-                <Link href="/blog">{t("blog")}</Link>
+              <li
+                className={
+                  path == `/${locale}/blog` ? "choosen-header-nav" : ""
+                }
+              >
+                <Link href={`/${locale}/blog`}>{t("blog")}</Link>
               </li>
-              <li className={path == "/contact" ? "choosen-header-nav" : ""}>
-                <Link href="/contact">{t("contact")}</Link>
+              <li
+                className={
+                  path == `/${locale}/contact` ? "choosen-header-nav" : ""
+                }
+              >
+                <Link href={`/${locale}/contact`}>{t("contact")}</Link>
               </li>
             </ul>
           </div>
