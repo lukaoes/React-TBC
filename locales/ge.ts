@@ -442,6 +442,11 @@ export default {
   "adminToAccess.youreNotAdmin": "თქვენ არ ხართ ადმინისტრატორი!",
   "adminToAccess.backToHome": "მთავარ გვერდზე დაბრუნება",
 
+  "profileDropdown.admin": "ადმინი",
+  "profileDropdown.profile": "პროფილი",
+  "profileDropdown.add": "დამატება",
+  "profileDropdown.logout": "გასვლა",
+
   "footer.follow": "გამოგვყევით",
   "footer.navigation": "ნავიგაცია",
   "footer.home": "მთავარი",

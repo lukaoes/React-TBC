@@ -2,9 +2,11 @@
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { Link } from "next-view-transitions";
 import React from "react";
+import { useScopedI18n } from "../../locales/client";
 
 export default function ProfileDropdown() {
   const { user } = useUser();
+  const t = useScopedI18n("profileDropdown");
   const isAdmin = Array.isArray(user?.role)
     ? user?.role.includes("admin")
     : user?.role === "admin";
@@ -37,7 +39,7 @@ export default function ProfileDropdown() {
                 />
               </g>
             </svg>
-            <Link href="/admin">Admin</Link>
+            <Link href="/admin">{t("admin")}</Link>
           </li>
         )}
         <li>
@@ -70,7 +72,7 @@ export default function ProfileDropdown() {
               strokeLinejoin="round"
             />
           </svg>
-          <a href="/profile">Profile</a>
+          <a href="/profile">{t("profile")}</a>
         </li>
         <li>
           <svg
@@ -102,7 +104,7 @@ export default function ProfileDropdown() {
               </g>
             </g>
           </svg>
-          <a href="/add">Add</a>
+          <a href="/add">{t("add")}</a>
         </li>
         <li>
           <svg
@@ -134,7 +136,7 @@ export default function ProfileDropdown() {
               strokeLinejoin="round"
             />
           </svg>
-          <a href="/api/auth/logout">Logout</a>
+          <a href="/api/auth/logout">{t("logout")}</a>
         </li>
       </ul>
     </div>
