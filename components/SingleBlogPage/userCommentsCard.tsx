@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Link } from "next-view-transitions";
 import { Comments } from "../../types";
 import { getNicknameAction, getPictureAction } from "../../actions";
+import SingleBlogCommentDel from "./singleBlogCommentDel";
 
 interface IComment {
   comments: Comments;
@@ -36,6 +37,9 @@ const UserCommentsCard = async ({ comments }: IComment) => {
           </Link>
           <span>
             {generateStars(comments.rating)} {comments.rating}/5
+          </span>
+          <span>
+            <SingleBlogCommentDel comments={comments} />
           </span>
         </div>
         <h4>{comments.created_at.slice(0, 10)}</h4>

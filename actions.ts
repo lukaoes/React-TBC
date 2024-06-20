@@ -673,3 +673,14 @@ export async function emptyUserCart(id: string) {
   const data = await response.json();
   return data.response;
 }
+
+export async function deleteBlogComment(id: number) {
+  const response = await fetch(BASE_URL + "/api/blog/delete-blog-comment/", {
+    method: "DELETE",
+    body: JSON.stringify({ id }),
+  });
+  revalidatePath("/blog");
+
+  const data = await response.json();
+  return data.response;
+}
