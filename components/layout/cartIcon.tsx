@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { getUserCart } from "../../api";
 import { getSession } from "@auth0/nextjs-auth0";
 

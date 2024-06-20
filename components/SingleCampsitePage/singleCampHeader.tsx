@@ -1,5 +1,5 @@
 "use client";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { Campsite } from "../../types";
 import { FC, useState } from "react";
 import SingleCampEditModal from "./singleCampEditModal";

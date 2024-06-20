@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import camping from "../../../../public/assets/images/camping.png";
 import shopping from "../../../../public/assets/images/shopping.png";
 import Image from "next/image";

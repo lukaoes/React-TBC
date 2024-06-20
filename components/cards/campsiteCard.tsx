@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { CampsitesDisplay, Review } from "../../types";
 import { FC, useEffect, useState } from "react";
 import { getCampReviews } from "../../actions";

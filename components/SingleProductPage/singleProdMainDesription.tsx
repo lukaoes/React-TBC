@@ -2,7 +2,7 @@ import Image from "next/image";
 import { getNicknameAction, getPictureAction } from "../../actions";
 import { getCurrentLocale, getScopedI18n } from "../../locales/server";
 import { Product } from "../../types";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import SingleProdMainDescriptionButton from "./singleProdMainDescriptionButton";
 import SingleProdEditButton from "./singleProdEditButton";
 import SingleProdRemoveButton from "./singleProdRemoveButton";

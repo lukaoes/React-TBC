@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { getCurrentLocale, getI18n } from "../../locales/server";
 import { FC } from "react";
 

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import LogoSvg from "./LogoSvg";
 import HeaderProfile from "./headerProfile";
 import CartIcon from "./cartIcon";

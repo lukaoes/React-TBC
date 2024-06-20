@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { FC } from "react";
 import { ProductsDisplay } from "../../types";
 import { useCurrentLocale, useScopedI18n } from "../../locales/client";

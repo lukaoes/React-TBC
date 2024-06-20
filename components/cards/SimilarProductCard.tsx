@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Product } from "../../types";
 import { FC } from "react";
 import { getCurrentLocale } from "../../locales/server";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 interface ISimilar {
   products: Product[];

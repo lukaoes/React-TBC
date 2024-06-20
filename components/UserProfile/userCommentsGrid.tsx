@@ -1,7 +1,7 @@
 import { Comments } from "../../types";
 import { FC } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 interface ICom {
   comments: Comments;

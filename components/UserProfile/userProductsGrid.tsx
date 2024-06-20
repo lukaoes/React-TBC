@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { ProductsDisplay } from "../../types";
 import { FC } from "react";
 import { useCurrentLocale, useI18n } from "../../locales/client";

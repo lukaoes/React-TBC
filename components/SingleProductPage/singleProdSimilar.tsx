@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { getSimilarProducts } from "../../actions";
 import SimilarProductCard from "../cards/SimilarProductCard";
 type ParamsWithIdAndCategory = {

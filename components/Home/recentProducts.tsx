@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import RecentProductsSlider from "./recentProductsSlider";
 import { getUserProductsDisplay } from "../../actions";
 import { getScopedI18n } from "../../locales/server";

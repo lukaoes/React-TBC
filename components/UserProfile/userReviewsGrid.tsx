@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Review } from "../../types";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import SingleCampSingleReviewDelButton from "../SingleCampsitePage/singleCampSingleReviewDelButton";
 import Image from "next/image";
 import { useI18n } from "../../locales/client";

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { getScopedI18n } from "../../locales/server";
 
 const HomeRoadmap = async () => {

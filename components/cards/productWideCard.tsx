@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { ProductsDisplay } from "../../types";
 import { FC } from "react";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import ProductWideCardButton from "./productWideCardButton";
 import { useCurrentLocale, useScopedI18n } from "../../locales/client";
 

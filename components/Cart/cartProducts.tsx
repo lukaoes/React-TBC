@@ -6,7 +6,7 @@ import { handleProductRemove, handleQuantityChange } from "../../actions";
 import CartTotal from "./cartTotal";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useCurrentLocale, useScopedI18n } from "../../locales/client";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 interface CartProductsProps {
   filteredProducts: Product[];

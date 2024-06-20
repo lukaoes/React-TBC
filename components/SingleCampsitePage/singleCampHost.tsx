@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { Campsite } from "../../types";
 import { FC } from "react";
 import { getNicknameAction, getPictureAction } from "../../actions";

@@ -1,7 +1,7 @@
 // HeaderMenu.js
 import { getScopedI18n } from "../../locales/server";
 import React from "react";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 interface HeaderMenuProps {
   openBurger: boolean;

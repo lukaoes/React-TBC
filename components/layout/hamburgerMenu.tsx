@@ -1,6 +1,6 @@
 "use client";
 import Hamburger from "hamburger-react";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { useState } from "react";
 import ThemeButton from "./themeButton";
 import MobileLangSelect from "./mobileLangSelect";

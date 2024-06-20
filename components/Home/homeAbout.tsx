@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { getScopedI18n } from "../../locales/server";
 import Image from "next/image";
 import pin from "../../public/assets/images/pin.png";

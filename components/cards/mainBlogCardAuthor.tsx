@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 import { useEffect, useState } from "react";
 import { getNicknameAction } from "../../actions";
 import { useI18n } from "../../locales/client";

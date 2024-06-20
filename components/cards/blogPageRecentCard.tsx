@@ -1,7 +1,6 @@
-// BlogPageRecentCard.tsx
 import Image from "next/image";
 import { Blog } from "../../types";
-import Link from "next/link";
+import { Link } from "next-view-transitions";
 
 interface BlogPageRecentCardProps {
   blog: Blog;
