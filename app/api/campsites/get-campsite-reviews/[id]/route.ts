@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
     const reviews =
       await sql`SELECT * FROM user_campsite_reviews WHERE campsite_id = ${Number(
         id
-      )}`;
+      )} ORDER BY id DESC;`;
     return NextResponse.json({ reviews }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });

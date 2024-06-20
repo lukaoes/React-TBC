@@ -12,7 +12,9 @@ export async function GET(request: NextRequest) {
   try {
     if (!id) throw new Error("ID is required");
     const comments =
-      await sql`SELECT * FROM user_blog_comments WHERE blog_id = ${Number(id)}`;
+      await sql`SELECT * FROM user_blog_comments WHERE blog_id = ${Number(
+        id
+      )} ORDER BY id DESC;`;
     return NextResponse.json({ comments }, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
