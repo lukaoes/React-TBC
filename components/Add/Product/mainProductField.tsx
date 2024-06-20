@@ -186,7 +186,7 @@ const MainProductField = () => {
     requiredFields.forEach((field) => {
       if (!formData[field]) {
         valid = false;
-        newErrors[field] = "This field is required";
+        newErrors[field] = "ეს ველი შესავსებია*";
       }
     });
 
@@ -289,7 +289,9 @@ const MainProductField = () => {
                 />
                 <label htmlFor="rent">{t("rent")}</label>
               </div>
-              {errors.type && <p>{errors.type}</p>}
+              {errors.type && (
+                <p className="text-red-500 mt-[4px]">{errors.type}</p>
+              )}
             </div>
           </div>
           <div className="add-product-detail-container">
@@ -358,7 +360,9 @@ const MainProductField = () => {
               id="title"
               onChange={handleInputChange}
             />
-            {errors.title_ge && <p>{errors.title_ge}</p>}
+            {errors.title_ge && (
+              <p className="text-red-500 mt-[4px]">{errors.title_ge}</p>
+            )}
             <label htmlFor="description_ge">{t("Desc")}</label>
             <textarea
               id="description"
@@ -441,7 +445,9 @@ const MainProductField = () => {
                     {t("used")}
                   </label>
                 </div>
-                {errors.type && <p>{errors.type}</p>}
+                {errors.type && (
+                  <p className="text-red-500 mt-[4px]">{errors.type}</p>
+                )}
               </div>
               <label htmlFor="quantity">{t("quantity")}:</label>
               <input
@@ -465,7 +471,9 @@ const MainProductField = () => {
                 </option>
               ))}
             </select>
-            {errors.location && <p>{errors.location}</p>}
+            {errors.location && (
+              <p className="text-red-500 mt-[4px]">{errors.location}</p>
+            )}
             <div>
               <label htmlFor="firstName">{t("name")}*</label>
               <input
@@ -475,7 +483,9 @@ const MainProductField = () => {
                 id="firstName"
                 onChange={handleInputChange}
               />
-              {errors.first_name && <p>{errors.first_name}</p>}
+              {errors.first_name && (
+                <p className="text-red-500 mt-[4px]">{errors.first_name}</p>
+              )}
               <label htmlFor="phone">{t("mobileNumber")}*</label>
               <input
                 type="number"
@@ -484,7 +494,9 @@ const MainProductField = () => {
                 id="phone"
                 onChange={handleInputChange}
               />
-              {errors.phone && <p>{errors.phone}</p>}
+              {errors.phone && (
+                <p className="text-red-500 mt-[4px]">{errors.phone}</p>
+              )}
             </div>
           </div>
         </div>

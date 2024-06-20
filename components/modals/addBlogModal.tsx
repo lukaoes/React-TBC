@@ -14,7 +14,7 @@ const AddBlogModal: React.FC = () => {
   const [mainPhoto, setMainPhoto] = useState("");
   const [blobUrl, setBlobUrl] = useState("");
   const [id, setId] = useState("");
-  const [errors, setErrors] = useState<string[]>([]);
+  const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const { user } = useUser();
   const t = useScopedI18n("addBlog");
 
@@ -25,14 +25,19 @@ const AddBlogModal: React.FC = () => {
   }, [user]);
 
   const validateForm = () => {
-    const errors: string[] = [];
-    if (!category) errors.push("კატეგორია is required.");
-    if (!title) errors.push("სათაური is required.");
-    if (!mainPhoto && !blobUrl) errors.push("სურათის URL is required.");
-    if (!description) errors.push("ბლოგის მოკლე აღწერა is required.");
-    if (!blogPost) errors.push("ბლოგ პოსტი is required.");
+    const errors: { [key: string]: string } = {};
+    if (!category) errors.category = `${t("category")} აუცილებელია.`;
+    if (!title) errors.title = `${t("title")} აუცილებელია.`;
+    if (!mainPhoto && !blobUrl)
+      errors.mainPhoto = `${t("imageUrl")} აუცილებელია.`;
+    if (!description) {
+      errors.description = `${t("shortDesc")} აუცილებელია.`;
+    } else if (description.length > 200) {
+      errors.description = "მაქსიმუმი სიმბოლოების რაოდენობა: 200.";
+    }
+    if (!blogPost) errors.blogPost = `${t("blogPost")} აუცილებელია.`;
     setErrors(errors);
-    return errors.length === 0;
+    return Object.keys(errors).length === 0;
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -60,15 +65,6 @@ const AddBlogModal: React.FC = () => {
       <h1>{t("addBlog")}</h1>
       <AddBlogPicture setBlobUrl={setBlobUrl} />
       <form onSubmit={handleSubmit} className="add-blog-modal-form">
-        {errors.length > 0 && (
-          <ul>
-            {errors.map((error, index) => (
-              <li key={index} style={{ color: "red" }}>
-                {error}
-              </li>
-            ))}
-          </ul>
-        )}
         <label htmlFor="category">{t("category")}</label>
         <select
           name="category"
@@ -85,6 +81,8 @@ const AddBlogModal: React.FC = () => {
           <option value="ცოცვა">ცოცვა</option>
           <option value="ველოსპორტი">ველოსპორტი</option>
         </select>
+        {errors.category && <p style={{ color: "red" }}>{errors.category}</p>}
+
         <label htmlFor="title">{t("title")}</label>
         <input
           type="text"
@@ -94,6 +92,8 @@ const AddBlogModal: React.FC = () => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
+        {errors.title && <p style={{ color: "red" }}>{errors.title}</p>}
+
         <label htmlFor="main_photo">{t("imageUrl")}</label>
         <input
           type="text"
@@ -104,6 +104,8 @@ const AddBlogModal: React.FC = () => {
           onChange={(e) => setMainPhoto(e.target.value)}
           disabled={!!blobUrl}
         />
+        {errors.mainPhoto && <p style={{ color: "red" }}>{errors.mainPhoto}</p>}
+
         <label htmlFor="description">{t("shortDesc")}</label>
         <textarea
           rows={3}
@@ -113,6 +115,10 @@ const AddBlogModal: React.FC = () => {
           placeholder={t("writeShortDesc")}
           onChange={(e) => setDescription(e.target.value)}
         ></textarea>
+        {errors.description && (
+          <p style={{ color: "red" }}>{errors.description}</p>
+        )}
+
         <label htmlFor="blog_post" className="blog_post">
           {t("blogPost")} <span>{t("markdownIsSupported")}</span>
         </label>
@@ -124,6 +130,8 @@ const AddBlogModal: React.FC = () => {
           value={blogPost}
           onChange={(e) => setBlogPost(e.target.value)}
         />
+        {errors.blogPost && <p style={{ color: "red" }}>{errors.blogPost}</p>}
+
         <button type="submit">{t("add")}</button>
       </form>
     </div>

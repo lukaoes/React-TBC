@@ -233,7 +233,9 @@ const GearSelector: React.FC<GearSelectorProps> = ({
             </option>
           ))}
         </select>
-        {errors.category && <p>{errors.category}</p>}
+        {errors.category && (
+          <p className="text-red-500 mt-[4px]">{errors.category}</p>
+        )}
       </label>
 
       {subcategories.length > 0 && (

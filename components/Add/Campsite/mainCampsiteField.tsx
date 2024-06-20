@@ -150,12 +150,14 @@ const MainCampsiteField = () => {
       "phone",
       "first_name",
       "price",
+      "activities",
+      "amenities",
     ];
 
     requiredFields.forEach((field) => {
       if (!formData[field]) {
         valid = false;
-        newErrors[field] = "ეს ადგილი შესავსებია.";
+        newErrors[field] = "ეს ველი შესავსებია.";
       }
     });
 
@@ -298,7 +300,9 @@ const MainCampsiteField = () => {
                 <p>{t("nicepitchDesc")}</p>
               </label>
             </div>
-            {errors.space_type && <p>{errors.space_type}</p>}
+            {errors.space_type && (
+              <p className="text-red-500 mt-[4px]">{errors.space_type}</p>
+            )}
           </div>
         </div>
       </div>
@@ -420,6 +424,9 @@ const MainCampsiteField = () => {
               </label>
             </div>
           </div>
+          {errors.accepted_guests && (
+            <p className="text-red-500 mt-[4px]">{errors.accepted_guests}</p>
+          )}
         </div>
       </div>
       <div className="add-campsite-detail-container">
@@ -443,6 +450,9 @@ const MainCampsiteField = () => {
               <option value="30+">30+ {t("person")}</option>
             </select>
           </div>
+          {errors.capacity && (
+            <p className="text-red-500 mt-[4px]">{errors.capacity}</p>
+          )}
         </div>
       </div>
       <div className="add-campsite-detail-container">
@@ -456,7 +466,9 @@ const MainCampsiteField = () => {
               </option>
             ))}
           </select>
-
+          {errors.location && (
+            <p className="text-red-500 mt-[4px]">{errors.location}</p>
+          )}
           <label htmlFor="firstName">{t("name")}*</label>
           <input
             type="text"
@@ -465,7 +477,9 @@ const MainCampsiteField = () => {
             placeholder={t("yourName")}
             onChange={handleInputChange}
           />
-          {errors.name && <p>{errors.name}</p>}
+          {errors.first_name && (
+            <p className="text-red-500 mt-[4px]">{errors.first_name}</p>
+          )}
           <label htmlFor="phone">{t("phoneNumber")}*</label>
           <input
             type="number"
@@ -474,7 +488,9 @@ const MainCampsiteField = () => {
             id="phone"
             onChange={handleInputChange}
           />
-          {errors.phone && <p>{errors.phone}</p>}
+          {errors.phone && (
+            <p className="text-red-500 mt-[4px]">{errors.phone}</p>
+          )}
         </div>
       </div>
       <div className="add-campsite-detail-container">
@@ -488,7 +504,9 @@ const MainCampsiteField = () => {
             id="price"
             onChange={handleInputChange}
           />
-          {errors.price && <p>{errors.price}</p>}
+          {errors.price && (
+            <p className="text-red-500 mt-[4px]">{errors.price}</p>
+          )}
           <input
             type="checkbox"
             name="negotiable"
@@ -519,7 +537,9 @@ const MainCampsiteField = () => {
             onChange={handleInputChange}
             disabled={!!formData.main_photo}
           />
-          {errors.main_photo && <p>{errors.main_photo}</p>}
+          {errors.main_photo && (
+            <p className="text-red-500 mt-[4px]">{errors.main_photo}</p>
+          )}
         </div>
       </div>
       <div className="add-campsite-detail-container">
@@ -573,12 +593,16 @@ const MainCampsiteField = () => {
         <div className="campsite-name">
           <h2>{t("giveSpaceName")}</h2>
           <span>{t("creativeName")}</span>
+          {errors.name && (
+            <p className="text-red-500 mt-[4px]">{errors.name}</p>
+          )}
           <input
             type="text"
             name="name"
             onChange={handleInputChange}
             placeholder={t("writeYourSpaceName")}
           />
+
           <label htmlFor="map">{t("iframe")}</label>
           <input
             type="text"
@@ -630,6 +654,9 @@ const MainCampsiteField = () => {
                   />
                   {amenity}
                 </label>
+                {errors.amenities && (
+                  <p className="text-red-500 mt-[4px]">{errors.amenities}</p>
+                )}
               </div>
             ))}
           </div>
@@ -653,6 +680,9 @@ const MainCampsiteField = () => {
               </div>
             ))}
           </div>
+          {errors.activities && (
+            <p className="text-red-500 mt-[4px]">{errors.activities}</p>
+          )}
         </div>
       </div>
       <div className="flex justify-center">
