@@ -1,5 +1,5 @@
 "use client";
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 import { cities } from "../Product/mainProductField";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { addCampsite } from "../../../actions";
@@ -8,6 +8,7 @@ import nicepitch from "../../../public/assets/images/nicepitch.svg";
 import Image from "next/image";
 import { AddCampsite } from "../../../types";
 import { useScopedI18n } from "../../../locales/client";
+import { BASE_URL } from "../../../api";
 
 export const amenitiesList = [
   "ცხოველები დაშვებულია",
@@ -53,7 +54,7 @@ const MainCampsiteField = () => {
     capacity: "1 ადამიანი",
     location: "თბილისი",
     main_photo: "",
-    photo_urls: [],
+    photo_urls: ["", "", ""],
     size: 0,
     name: "",
     amenities: [],
@@ -67,7 +68,12 @@ const MainCampsiteField = () => {
     map: "",
   });
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
-
+  const inputFileRef = useRef<HTMLInputElement>(null);
+  const additionalFileRefs = useRef<(HTMLInputElement | null)[]>([
+    null,
+    null,
+    null,
+  ]);
   console.log(formData);
 
   useEffect(() => {
@@ -155,6 +161,61 @@ const MainCampsiteField = () => {
 
     setErrors(newErrors);
     return valid;
+  };
+
+  const handleUpload = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    if (!inputFileRef.current?.files) {
+      throw new Error("No file selected");
+    }
+
+    const file = inputFileRef.current.files[0];
+
+    const response = await fetch(
+      `${BASE_URL}/api/avatar/upload?filename=${file.name}`,
+      {
+        method: "POST",
+        body: file,
+      }
+    );
+
+    const newBlob = await response.json();
+
+    setFormData((prevData) => ({
+      ...prevData,
+      main_photo: newBlob.url,
+    }));
+  };
+
+  const handleAdditionalUpload = async (
+    event: ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    if (!event.target.files) {
+      throw new Error("No file selected");
+    }
+
+    const file = event.target.files[0];
+
+    const response = await fetch(
+      `${BASE_URL}/api/avatar/upload?filename=${file.name}`,
+      {
+        method: "POST",
+        body: file,
+      }
+    );
+
+    const newBlob = await response.json();
+
+    setFormData((prevData) => {
+      const newPhotoUrls = [...prevData.photo_urls];
+      newPhotoUrls[index] = newBlob.url;
+      return {
+        ...prevData,
+        photo_urls: newPhotoUrls,
+      };
+    });
   };
 
   const handleSubmit = async (e: FormEvent) => {
@@ -442,42 +503,55 @@ const MainCampsiteField = () => {
           <h2>{t("addPhoto")}</h2>
           <p>{t("morePeopleWill")}</p>
           <span>{t("chooseFromDevice")}</span>
-          <input type="file" name="file" />
+          <input
+            type="file"
+            name="file"
+            ref={inputFileRef}
+            onChange={handleUpload}
+          />
           <label htmlFor="img-url">{t("orUploadWithUrl")}:</label>
           <input
             type="text"
             placeholder={t("uploadOrPasteUrl")}
             name="main_photo"
             id="img-url"
+            value={formData.main_photo}
             onChange={handleInputChange}
+            disabled={!!formData.main_photo}
           />
           {errors.main_photo && <p>{errors.main_photo}</p>}
         </div>
       </div>
       <div className="add-campsite-detail-container">
-        <div className="campsite-photo-urls">
+        <div className="campsite-photo-urls w-full">
           <span>{t("additionalImages")}:</span>
-          <input
-            type="text"
-            name="photo_urls"
-            placeholder={t("pasteAdditionalUrl")}
-            id="img-additional-0"
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="photo_urls"
-            placeholder={t("pasteAdditionalUrl")}
-            id="img-additional-1"
-            onChange={handleInputChange}
-          />
-          <input
-            type="text"
-            name="photo_urls"
-            placeholder={t("pasteAdditionalUrl")}
-            id="img-additional-2"
-            onChange={handleInputChange}
-          />
+          {formData.photo_urls.map((photoUrl, index) => (
+            <div
+              className="add-products-additional-img"
+              key={`additional-${index}`}
+            >
+              <span>{index + 1}</span>
+              <div>
+                <input
+                  type="file"
+                  // @ts-ignore
+                  ref={(el) => (additionalFileRefs.current[index] = el)}
+                  onChange={(e) => handleAdditionalUpload(e, index)}
+                  className="w-full mb-[5px]"
+                />
+                <input
+                  type="text"
+                  className="w-full"
+                  name="photo_urls"
+                  id={`img-additional-${index}`}
+                  value={photoUrl}
+                  placeholder={t("pasteAdditionalUrl")}
+                  onChange={handleInputChange}
+                  disabled={!!photoUrl}
+                />
+              </div>
+            </div>
+          ))}
         </div>
       </div>
       <div className="add-campsite-detail-container">
