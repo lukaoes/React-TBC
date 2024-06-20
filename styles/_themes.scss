@@ -121,6 +121,30 @@ $green-medium: #28583e;
 
   // home
 
+  .home-hero {
+    position: relative;
+    .home-hero-layout {
+      h1 {
+        position: relative;
+        z-index: 2;
+        color: $light-main;
+        text-shadow: 0 3px 0 rgba(0, 0, 0, 0.9);
+        -webkit-text-stroke-width: 0px;
+        -webkit-text-stroke-color: transparent;
+      }
+    }
+    &:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-image: linear-gradient(to bottom left, #000000, $dark-main);
+      opacity: 0.4;
+    }
+  }
+
   .home-about-us-container {
     .home-about-us-types {
       div {
