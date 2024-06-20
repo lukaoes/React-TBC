@@ -2,6 +2,7 @@ import { Link } from "next-view-transitions";
 import LogoSvg from "./LogoSvg";
 import FooterBottom from "./footerBottom";
 import { getScopedI18n } from "../../locales/server";
+import LangSelect from "./langSelect";
 
 async function Footer() {
   const t = await getScopedI18n("footer");
@@ -152,7 +153,10 @@ async function Footer() {
             <li>
               <Link href="/cart">{t("cart")}</Link>
             </li>
-          </ul>
+          </ul>{" "}
+          <div className="mt-[20px]">
+            <LangSelect />
+          </div>
         </div>
       </div>
       <FooterBottom />
