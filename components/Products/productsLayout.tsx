@@ -29,6 +29,7 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
   const [selectedCondition, setSelectedCondition] = useState<string>("");
   const [selectedType, setSelectedType] = useState<string>("");
   const [selectedLocation, setSelectedLocation] = useState<string>("");
+  const [selectedCategory, setSelectedCategory] = useState<string>(""); // Add this line
   const [filterState, setFilterState] = useState(false);
 
   useEffect(() => {
@@ -76,7 +77,8 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
       priceRange,
       selectedCondition,
       selectedType,
-      selectedLocation
+      selectedLocation,
+      selectedCategory
     );
   };
 
@@ -87,7 +89,8 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
       range,
       selectedCondition,
       selectedType,
-      selectedLocation
+      selectedLocation,
+      selectedCategory
     );
   };
 
@@ -98,7 +101,8 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
       priceRange,
       condition,
       selectedType,
-      selectedLocation
+      selectedLocation,
+      selectedCategory
     );
   };
 
@@ -109,7 +113,8 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
       priceRange,
       selectedCondition,
       type,
-      selectedLocation
+      selectedLocation,
+      selectedCategory
     );
   };
 
@@ -120,7 +125,20 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
       priceRange,
       selectedCondition,
       selectedType,
-      location
+      location,
+      selectedCategory
+    );
+  };
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    filterProducts(
+      searchTerm,
+      priceRange,
+      selectedCondition,
+      selectedType,
+      selectedLocation,
+      category
     );
   };
 
@@ -129,7 +147,8 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
     range: [number, number],
     condition: string,
     type: string,
-    location: string
+    location: string,
+    category: string // Add this line
   ) => {
     let filtered = products.filter(
       (product) =>
@@ -139,7 +158,8 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
         Number(product.price) <= range[1] &&
         (condition === "" || product.condition === condition) &&
         (type === "" || product.type === type) &&
-        (location === "" || product.location === location)
+        (location === "" || product.location === location) &&
+        (category === "" || product.category === category) // Add this line
     );
     setFilteredProducts(filtered);
     setSortedProducts(filtered);
@@ -170,6 +190,7 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
           handleConditionChange={handleConditionChange}
           handleTypeChange={handleTypeChange}
           handleLocationChange={handleLocationChange}
+          handleCategoryChange={handleCategoryChange} // Add this line
           getCategoryCount={getCategoryCount}
         />
         <ProductsGrid

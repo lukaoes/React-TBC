@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { FC, useState, useRef } from "react";
 import { cities } from "../Add/Product/mainProductField";
 import ReactSlider from "react-slider";
@@ -12,6 +11,7 @@ interface ProductsFilterProps {
   handleConditionChange: (condition: string) => void;
   handleTypeChange: (type: string) => void;
   handleLocationChange: (location: string) => void;
+  handleCategoryChange: (category: string) => void; // Add this line
   getCategoryCount: (category: string) => number;
   filterState: boolean;
 }
@@ -23,6 +23,7 @@ const ProductsFilter: FC<ProductsFilterProps> = ({
   handleConditionChange,
   handleTypeChange,
   handleLocationChange,
+  handleCategoryChange, // Add this line
   getCategoryCount,
   filterState,
 }) => {
@@ -34,10 +35,6 @@ const ProductsFilter: FC<ProductsFilterProps> = ({
 
   const sliderMinPriceRef = useRef<number>(minPrice);
   const sliderMaxPriceRef = useRef<number>(maxPrice);
-
-  // useEffect(() => {
-  //   setPriceRange([minPrice, maxPrice]);
-  // }, [minPrice, maxPrice]);
 
   const handleSliderChange = (values: [number, number]) => {
     setPriceRange(values);
@@ -145,8 +142,12 @@ const ProductsFilter: FC<ProductsFilterProps> = ({
             "პიკნიკი",
             "სხვა",
           ].map((category, index) => (
-            <li key={`category-${index}`}>
-              <Link href="">{category}</Link>
+            <li
+              className="cursor-pointer"
+              key={`category-${index}`}
+              onClick={() => handleCategoryChange(category)} // Add this line
+            >
+              {category}
               <span>({getCategoryCount(category)})</span>
             </li>
           ))}
