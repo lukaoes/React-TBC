@@ -6,7 +6,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   const { id } = params;
   const product = await getSingleProduct(id);
 
-  if (!product) {
+  if (!product || product.length === 0 || !product[0]) {
     return {
       title: "პროდუქტზე ინფორმაცია ვერ მოიძებნა",
       description: "მოთხოვნილი პროდუქტი წაშლილია ან არ არსებობს.",

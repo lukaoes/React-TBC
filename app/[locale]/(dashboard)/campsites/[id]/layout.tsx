@@ -4,16 +4,16 @@ import { getCurrentLocale } from "../../../../../locales/server";
 export async function generateMetadata({ params }: { params: { id: string } }) {
   const locale = getCurrentLocale();
   const { id } = params;
-  const product = await getSingleCampsite(id);
+  const campsite = await getSingleCampsite(id);
 
-  if (!product) {
+  if (!campsite || campsite.length === 0 || !campsite[0]) {
     return {
       title: "საპიკნიკე ადგილზე ინფორმაცია ვერ მოიძებნა",
       description: "მოთხოვნილი საპიკნიკე ადგილი წაშლილია ან არ არსებობს.",
     };
   }
 
-  const { name, description, descriptionen, main_photo } = product[0];
+  const { name, description, descriptionen, main_photo } = campsite[0];
 
   const ogImageUrl = main_photo ? main_photo : null;
 

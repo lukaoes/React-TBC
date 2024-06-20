@@ -7,10 +7,14 @@ import SingleCampImages from "../../../../../components/SingleCampsitePage/singl
 import SingleCampLocation from "../../../../../components/SingleCampsitePage/singleCampLocation";
 import SingleCampReviews from "../../../../../components/SingleCampsitePage/singleCampReviews";
 import { Review } from "../../../../../types";
+import NotFoundPage from "../../not-found";
 
 const SingleCampsitePage = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
   const singleCamp = await getSingleCampsite(id);
+  if (!singleCamp || singleCamp.length === 0 || !singleCamp[0]) {
+    return <NotFoundPage />;
+  }
   const camp = singleCamp[0];
 
   const review = await getCampReviews(String(camp.id));

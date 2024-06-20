@@ -4,10 +4,15 @@ import SingleProdMainDescription from "../../../../../components/SingleProductPa
 import SingleProdNavigation from "../../../../../components/SingleProductPage/singleProdNavigation";
 import SingleProdSimilar from "../../../../../components/SingleProductPage/singleProdSimilar";
 import SingleProdSocialShare from "../../../../../components/SingleProductPage/singleProdSocialShare";
+import NotFoundPage from "../../not-found";
 
 const SingleProductPage = async ({ params }: { params: { id: string } }) => {
   const prodId = params.id;
   const product = await getSingleProduct(prodId);
+  if (!product || product.length === 0 || !product[0]) {
+    return <NotFoundPage />;
+  }
+
   const displayProd = product[0];
   return (
     <div className="single-product-layout">

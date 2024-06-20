@@ -4,7 +4,7 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   const { id } = params;
   const blogData = await getSingleBlog(id);
 
-  if (!blogData) {
+  if (!blogData || blogData.length === 0 || !blogData[0]) {
     return {
       title: "ბლოგი ვერ მოიძებნა",
       description: "მოთხოვნილი ბლოგი არ არსებობს.",

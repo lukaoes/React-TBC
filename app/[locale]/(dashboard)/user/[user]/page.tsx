@@ -1,12 +1,13 @@
 import { getEverythingByNicknameAction } from "../../../../../actions";
 import UserEverythingGrid from "../../../../../components/UserProfile/userEverythingGrid";
 import UserProfileInfo from "../../../../../components/UserProfile/userProfileInfo";
+import NotFoundPage from "../../not-found";
 
 const UserProfile = async ({ params }: { params: { user: string } }) => {
   const user = params.user;
   const everything = await getEverythingByNicknameAction(user);
   if (!everything || Object.keys(everything).length === 0) {
-    return <h1>ეს მომხმარებელი არ არსებობს</h1>;
+    return <NotFoundPage />;
   }
   const userInfo = everything.user;
   const userProducts = everything.products;

@@ -4,10 +4,14 @@ import SingleBlogCommentsSection from "../../../../../components/SingleBlogPage/
 import SingleBlogFooter from "../../../../../components/SingleBlogPage/singleBlogFooter";
 import SingleBlogHeader from "../../../../../components/SingleBlogPage/singleBlogHeader";
 import SingleBlogText from "../../../../../components/SingleBlogPage/singleBlogText";
+import NotFoundPage from "../../not-found";
 
 const SingleBlogPage = async ({ params }: { params: { id: string } }) => {
   const blogId = params.id;
   const singBlog = await getSingleBlog(blogId);
+  if (!singBlog || singBlog.length === 0 || !singBlog[0]) {
+    return <NotFoundPage />;
+  }
   const blogPost = singBlog[0];
   return (
     <div>
