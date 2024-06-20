@@ -3,7 +3,8 @@ $background-color-light: #eef6f0;
 $complimentary-color-dark: #393b43;
 $complimentary-color-light: #feffff;
 $light-main: #ebe9df;
-$dark-main: #424242;
+$dark-main: #213329;
+$dark-secondary: #262624;
 
 // #192E2F
 
@@ -22,11 +23,6 @@ $dark-main: #424242;
   background-color: $dark-main;
   color: $light-main;
 
-  path {
-    stroke: #fff;
-    fill: $dark-main;
-  }
-
   // header & footer
   header,
   footer {
@@ -34,36 +30,96 @@ $dark-main: #424242;
     color: $light-main;
   }
 
-  .brand {
-    color: $light-main;
-  }
+  // header
 
-  .company {
-    a {
+  header {
+    nav {
       color: $light-main;
+      background-color: $dark-secondary;
     }
   }
 
-  .footer-newsteller {
-    button {
-      background-color: #424242;
-      border: 1px solid $light-main;
+  .header-top {
+    .top-logo {
+      svg {
+        g {
+          fill: $light-main !important;
+        }
+      }
     }
-    div input {
-      border-bottom: 1px solid $light-main;
+
+    .header-top-left {
+      path {
+        stroke: $light-main;
+        fill: $dark-main;
+      }
+    }
+
+    .header-top-right {
+      color: $dark-main;
+      path {
+        stroke: $light-main;
+        fill: $dark-main;
+      }
+
+      .dropdown-menu {
+        background-color: $dark-main;
+        g {
+          path {
+            fill: $light-main;
+          }
+        }
+        path {
+          fill: none;
+        }
+        #user-admin {
+          path {
+            stroke: none;
+          }
+        }
+        a {
+          color: $light-main;
+        }
+
+        li {
+          &:hover {
+            background-color: #28583e;
+          }
+        }
+
+        &::before {
+          background-color: $dark-main;
+          border-top: 1px solid #ccc;
+          border-left: 1px solid #ccc;
+        }
+      }
     }
   }
 
-  .cart-icon {
-    // border: 1px solid $background-color-light;
+  // footer
+  .footer-bottom {
+    color: $light-main;
+    background-color: $dark-secondary;
+  }
+
+  .footer-first {
+    div {
+      svg {
+        fill: $light-main;
+      }
+    }
+    .linkedin-svg {
+      path {
+        fill: $light-main !important;
+      }
+    }
+  }
+
+  .footer-logo {
     svg {
-      fill: $background-color-light;
-    }
-
-    span {
-      // background-color: $background-color-dark;
-      // border: 1px solid $background-color-light;
-      // font-weight: 800;
+      g {
+        fill: $light-main !important;
+      }
     }
   }
 
