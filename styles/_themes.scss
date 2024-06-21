@@ -272,6 +272,48 @@ $green-medium: #28583e;
     }
   }
 
+  // campsites
+
+  .campsite-search-filter-container {
+    input {
+      background-color: $dark-secondary;
+    }
+
+    .campsite-search-filter-filter {
+      background-color: $dark-secondary;
+      color: $light-main;
+      path {
+        fill: $light-main;
+      }
+    }
+  }
+
+  .single-campsite-filter-modal {
+    background-color: $dark-main;
+
+    input,
+    select {
+      background-color: $dark-main;
+      border: 1px solid #ccc;
+    }
+  }
+
+  .campsite-ad-item {
+    .campsite-card-pitch {
+      background-color: $green-medium;
+    }
+
+    .campsite-card-welcome {
+      svg {
+        fill: $light-main;
+      }
+    }
+
+    .opacity-50 {
+      opacity: 0.3;
+    }
+  }
+
   // profile
   .profile-form,
   .profile-user {
