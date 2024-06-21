@@ -43,7 +43,7 @@
   .contact-form {
     background-color: #6b7946;
     border-radius: 15px;
-    color: #e1ffff;
+    color: #fff;
     padding: 40px;
     max-width: 500px;
     width: 100%;
@@ -90,6 +90,7 @@
         border-radius: 10px;
         margin: 0 auto;
         transition: all 0.3s ease-in-out;
+        color: #fff;
 
         &:hover {
           background-color: #e1ffff;

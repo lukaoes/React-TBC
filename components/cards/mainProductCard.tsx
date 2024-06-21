@@ -20,7 +20,7 @@ const MainProductCard: FC<MainProductCardProps> = ({ product, openModal }) => {
       </span>
 
       <div className="main-product-card-buttons">
-        <button onClick={openModal}>
+        <button onClick={openModal} aria-label="view details">
           <svg
             width="24px"
             height="24px"

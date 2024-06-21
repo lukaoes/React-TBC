@@ -105,6 +105,7 @@ const ProductsTopFilter: FC<ProductsTopFilterProps> = ({
           <div className="products-top-filter-sort">
             <div className="products-top-filter-sort">
               <select
+                aria-label="sort"
                 onChange={(e) => {
                   const value = e.target.value;
                   const option = value.split(":");
