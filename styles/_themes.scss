@@ -487,6 +487,29 @@ $green-medium: #28583e;
     }
   }
 
+  // add product and campsite
+
+  .add-product-detail-container,
+  .add-campsite-detail-container {
+    background-color: $green-medium;
+
+    img {
+      path {
+        fill: $light-main;
+      }
+    }
+
+    path {
+      fill: $light-main;
+    }
+
+    input,
+    textarea,
+    select {
+      background-color: $dark-secondary;
+    }
+  }
+
   // profile
   .profile-form,
   .profile-user {
