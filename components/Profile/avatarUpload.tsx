@@ -67,7 +67,7 @@ export default function AvatarUploadPage() {
           }}
         />
         <button type="submit" className="hidden">
-          {t("profile.logOut")}
+          {t("profile.edit")}
         </button>
       </form>
     </div>
