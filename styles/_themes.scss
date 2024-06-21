@@ -4,6 +4,7 @@ $complimentary-color-dark: #393b43;
 $complimentary-color-light: #feffff;
 $light-main: #ebe9df;
 $dark-main: #213329;
+// $dark-main: #1f2c2e;
 $dark-secondary: #262624;
 $green-medium: #28583e;
 
@@ -119,6 +120,20 @@ $green-medium: #28583e;
     }
   }
 
+  // second header
+
+  .top-left-second-header {
+    path {
+      fill: $dark-secondary;
+    }
+  }
+
+  .bottom-right-second-header {
+    path {
+      fill: $dark-main;
+    }
+  }
+
   // home
 
   .home-hero {
@@ -176,6 +191,38 @@ $green-medium: #28583e;
 
     .recent-campsites-card {
       background-color: $green-medium;
+    }
+  }
+
+  // products
+
+  .products-filter-container {
+    background-color: $dark-main;
+
+    .products-city-select {
+      background-color: $dark-secondary;
+    }
+  }
+
+  .products-top-filter-right {
+    select,
+    input {
+      background-color: $dark-secondary;
+    }
+
+    svg {
+      path {
+        fill: $light-main;
+      }
+    }
+  }
+
+  .main-product-card {
+    background-color: $dark-secondary;
+
+    svg,
+    path {
+      fill: $light-main;
     }
   }
 
