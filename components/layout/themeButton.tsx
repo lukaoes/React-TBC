@@ -50,7 +50,7 @@ const ThemeButton = () => {
   }, []);
 
   return (
-    <button onClick={toggleTheme}>
+    <button onClick={toggleTheme} aria-label="change site theme">
       {themeMode === "LIGHT" ? (
         <svg
           width="22px"

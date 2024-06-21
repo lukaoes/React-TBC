@@ -26,7 +26,7 @@ const RecentProductCard = async ({ product }: IProd) => {
       <Link href={`/products/${product.id}`}>
         <Image
           src={product.main_photo}
-          alt={product.title_en}
+          alt={product.title_en || "product"}
           width={1000}
           height={1000}
         />

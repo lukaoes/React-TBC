@@ -57,7 +57,7 @@ export default async function RootLayout({
 }) {
   return (
     <ViewTransitions>
-      <html>
+      <html lang="en">
         <UserProvider>
           <body>
             <I18nProviderClient locale={locale}>

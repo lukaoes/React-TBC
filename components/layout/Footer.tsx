@@ -15,13 +15,18 @@ async function Footer() {
             <Image
               src={footerLogo}
               alt="footer logo"
+              aria-label="ezoezo logo"
               width={130}
               height={130}
             />
           </Link>
-          <h5>{t("follow")}</h5>
+          <h1>{t("follow")}</h1>
           <div>
-            <a href="https://www.instagram.com" target="_blank">
+            <a
+              href="https://www.instagram.com"
+              target="_blank"
+              aria-label="instagram"
+            >
               <svg
                 fill="#000000"
                 version="1.1"
@@ -53,7 +58,11 @@ async function Footer() {
                 </g>
               </svg>
             </a>
-            <a href="https://www.facebook.com" target="_blank">
+            <a
+              href="https://www.facebook.com"
+              target="_blank"
+              aria-label="facebook"
+            >
               <svg
                 fill="#000000"
                 height="25px"
@@ -77,7 +86,11 @@ async function Footer() {
                 </g>
               </svg>
             </a>
-            <a href="https://www.linkedin.com" target="_blank">
+            <a
+              href="https://www.linkedin.com"
+              target="_blank"
+              aria-label="linkedin"
+            >
               <svg
                 width="25px"
                 height="25px"

@@ -8,7 +8,7 @@ const HomeAbout = async () => {
   return (
     <div className="h">
       <div className="home-about-us">
-        <h3>{t("whatEzoezoDoes")}</h3>
+        <h1>{t("whatEzoezoDoes")}</h1>
         <div className="home-about-us-container">
           <div className="home-about-us-types">
             <div>

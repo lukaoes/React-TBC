@@ -22,7 +22,12 @@ const HamburgerMenu = () => {
 
   return (
     <div className="hamburger-menu">
-      <Hamburger toggled={isOpen} toggle={handleMenuOpen} color="white" />
+      <Hamburger
+        toggled={isOpen}
+        toggle={handleMenuOpen}
+        color="white"
+        aria-label="menu"
+      />
       <div
         className={`${isOpen ? "mobile-menu-bg" : "mobile-menu-bg-none"}`}
         onClick={handleClose}

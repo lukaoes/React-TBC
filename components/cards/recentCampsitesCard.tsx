@@ -29,7 +29,7 @@ const RecentCampsitesCard = ({ campsite }: ICamp) => {
             height={700}
           />
         </Link>
-        <h4>
+        <h2>
           {campsite.negotiable == true ? (
             <span>{t("camping.negotiable")}</span>
           ) : (
@@ -38,9 +38,9 @@ const RecentCampsitesCard = ({ campsite }: ICamp) => {
               <span> / {t("main.perDay")}</span>
             </>
           )}
-        </h4>
+        </h2>
         <Link href={`/campsites/${campsite.id}`}>
-          <h2>{campsite.name}</h2>{" "}
+          <h3>{campsite.name}</h3>{" "}
         </Link>
         <p>
           {desc.slice(0, 125)}
