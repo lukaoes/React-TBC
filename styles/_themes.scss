@@ -7,7 +7,7 @@ $dark-main: #213329;
 // $dark-main: #1f2c2e;
 $dark-secondary: #262624;
 $green-medium: #28583e;
-
+$green-light: #006700;
 .app {
   background-color: $light-main;
   color: $dark-main;
@@ -516,8 +516,40 @@ $green-medium: #28583e;
     background: rgba(255, 255, 255, 0.05);
     box-shadow: 0px 10px 1px rgb(36, 36, 36), 0 10px 20px rgb(24, 24, 24);
 
+    input {
+      background-color: $dark-secondary;
+      border: 1px solid #ccc;
+    }
+
     input:read-only {
       color: rgba($light-main, 0.4);
+    }
+  }
+
+  .admin-table {
+    .admin-table-header.blue {
+      background-color: $dark-secondary !important;
+    }
+
+    .row {
+      background-color: $green-medium;
+      button {
+        color: $light-main;
+      }
+    }
+
+    .row:nth-of-type(odd) {
+      background: $green-light;
+    }
+  }
+
+  .profile-user {
+    a {
+      color: $light-main;
+
+      &:hover {
+        background-color: $green-medium;
+      }
     }
   }
 }
