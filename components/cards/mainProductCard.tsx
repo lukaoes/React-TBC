@@ -45,6 +45,7 @@ const MainProductCard: FC<MainProductCardProps> = ({ product, openModal }) => {
             alt={product.title_en || product.title_ge}
             width={400}
             height={500}
+            priority={true}
           />
         ) : (
           <svg
