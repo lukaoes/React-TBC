@@ -439,6 +439,35 @@ $green-medium: #28583e;
     }
   }
 
+  // cart
+
+  .cart-header {
+    border-bottom: 1px solid #ccc;
+  }
+
+  .cart-item-row {
+    a {
+      color: $light-main !important;
+    }
+  }
+
+  .cart-item-quantity-btn {
+    background-color: $green-medium;
+    color: $light-main;
+    font-weight: 500;
+  }
+
+  .cart-total-wrapper {
+    background-color: $green-medium;
+    h2 {
+      color: $light-main;
+    }
+
+    .accent {
+      color: $light-main;
+    }
+  }
+
   // profile
   .profile-form,
   .profile-user {
