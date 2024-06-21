@@ -43,8 +43,8 @@ const MainProductCard: FC<MainProductCardProps> = ({ product, openModal }) => {
           <Image
             src={product.main_photo}
             alt={product.title_en || product.title_ge}
-            width={300}
-            height={300}
+            width={270}
+            height={250}
             priority={true}
           />
         ) : (

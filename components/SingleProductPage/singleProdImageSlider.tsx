@@ -51,7 +51,7 @@ const SingleProdImageSlider: FC<SingleProdSlider> = ({ photos, mainphoto }) => {
               <Image
                 src={image}
                 width={400}
-                height={400}
+                height={350}
                 alt="product"
                 className="single-product-slider-main-photo"
               />
@@ -72,7 +72,7 @@ const SingleProdImageSlider: FC<SingleProdSlider> = ({ photos, mainphoto }) => {
         >
           {allPhotos.map((image, index) => (
             <SwiperSlide key={`single-prod-slider-thumbnail-${index}`}>
-              <Image src={image} width={150} height={150} alt="products" />
+              <Image src={image} width={100} height={100} alt="products" />
             </SwiperSlide>
           ))}
         </Swiper>

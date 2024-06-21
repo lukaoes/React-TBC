@@ -7,6 +7,7 @@ const LogoSvg = () => {
       height="109.2px"
       viewBox="0 0 800.000000 672.000000"
       preserveAspectRatio="xMidYMid meet"
+      aria-label="ezoezo logo"
     >
       <g
         transform="translate(0.000000,672.000000) scale(0.100000,-0.100000)"

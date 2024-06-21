@@ -224,6 +224,14 @@ $green-light: #006700;
 
     .recent-campsites-card {
       background-color: $green-medium;
+
+      .recent-camp-see-more {
+        color: $light-main;
+
+        path {
+          fill: $light-main;
+        }
+      }
     }
   }
 
@@ -233,6 +241,28 @@ $green-light: #006700;
     background-color: $dark-main;
 
     .products-city-select {
+      background-color: $dark-secondary;
+    }
+  }
+
+  .main-product-card-modal-layout {
+    .main-product-card-modal-content {
+      background-color: $dark-main;
+
+      path {
+        fill: $light-main;
+      }
+    }
+  }
+
+  .product-wide-card {
+    background-color: $dark-secondary;
+
+    path {
+      fill: $light-main;
+    }
+
+    button {
       background-color: $dark-secondary;
     }
   }

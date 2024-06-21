@@ -65,7 +65,7 @@ const RecentCampsitesCard = ({ campsite }: ICamp) => {
             <g clipPath="url(#clip0_45_18679)">
               <path
                 d="M9.395 2.84912L8.8129 3.50763L13.933 8.03367H0.5V8.91258H13.933L8.8129 13.4386L9.395 14.0971L15.5 8.7005V8.24575L9.395 2.84912Z"
-                fill="#ffa500"
+                fill="#444444"
               />
             </g>
             <defs>

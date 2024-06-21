@@ -13,7 +13,7 @@ const HomeAbout = async () => {
           <div className="home-about-us-types">
             <div>
               <Image src={pin} alt="pin" width={300} height={300} />
-              <h4>{t("gear")}</h4>
+              <h2>{t("gear")}</h2>
               <p>{t("gearDesc")}</p>
               <Link href="/products">
                 <svg

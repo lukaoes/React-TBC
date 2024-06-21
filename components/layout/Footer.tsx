@@ -12,7 +12,7 @@ async function Footer() {
     <footer>
       <div className="footer-container">
         <div className="footer-first">
-          <Link href="/" className="footer-logo">
+          <Link href="/" className="footer-logo" aria-label="ezoezo label">
             {/* <Image
               src={footerLogo}
               alt="footer logo"
