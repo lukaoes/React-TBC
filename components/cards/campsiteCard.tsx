@@ -46,8 +46,8 @@ const CampsiteCard: FC<ICamps> = ({ camp }) => {
         <Image
           src={camp.main_photo}
           alt={camp.name}
-          width={1000}
-          height={1000}
+          width={350}
+          height={350}
           className="campsite-card-image"
         />
       </Link>
