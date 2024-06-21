@@ -400,6 +400,16 @@ $green-medium: #28583e;
     }
   }
 
+  // blog add page
+
+  .add-blog-modal {
+    input,
+    textarea,
+    select {
+      background-color: $dark-secondary;
+    }
+  }
+
   // single blog page
 
   .single-blog-page-buttons {
