@@ -400,6 +400,37 @@ $green-medium: #28583e;
     }
   }
 
+  // single blog page
+
+  .single-blog-page-buttons {
+    button {
+      svg {
+        fill: $light-main;
+      }
+    }
+
+    div {
+      svg {
+        fill: red;
+      }
+    }
+  }
+
+  .blog-socials {
+    path {
+      fill: $light-main;
+    }
+  }
+
+  .single-blog-add-comment {
+    input,
+    textarea,
+    .upload-photo {
+      background-color: $dark-secondary;
+      border: 1px solid #ccc;
+    }
+  }
+
   // profile
   .profile-form,
   .profile-user {
