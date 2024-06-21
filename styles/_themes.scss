@@ -314,6 +314,61 @@ $green-medium: #28583e;
     }
   }
 
+  // single campsite page
+
+  .single-camp-share {
+    path {
+      fill: $light-main;
+    }
+  }
+
+  .single-camp-header-buttons {
+    button:first-child {
+      path {
+        fill: $light-main;
+      }
+    }
+    button:last-child {
+      color: rgb(255, 113, 113);
+      path {
+        fill: rgb(255, 113, 113);
+      }
+    }
+  }
+
+  .single-camp-welcome {
+    background-color: $dark-secondary;
+
+    path {
+      fill: $light-main;
+    }
+  }
+
+  #amenities,
+  #activities {
+    path,
+    ellipse,
+    polygon {
+      fill: $light-main;
+    }
+  }
+
+  .single-camp-location {
+    iframe {
+      filter: invert(92%) contrast(83%);
+    }
+  }
+
+  .single-camp-add-review {
+    color: $light-main;
+    input,
+    textarea,
+    .upload-photo {
+      background-color: $dark-secondary;
+      border: 1px solid #ccc;
+    }
+  }
+
   // profile
   .profile-form,
   .profile-user {
