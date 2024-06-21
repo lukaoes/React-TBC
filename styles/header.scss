@@ -61,7 +61,8 @@ nav {
   .mobile-nav-bottom {
     width: 100%;
     display: flex;
-    justify-content: space-between;
+    color: #242424;
+    justify-content: center;
 
     div {
       flex-direction: column;
@@ -183,10 +184,10 @@ nav {
   width: 100%;
   background-color: #ebe9df;
   position: fixed;
-  right: -100%;
+  right: -110%;
   top: 0;
   z-index: 10;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s ease-in-out;
   display: flex;
   flex-direction: column;
 

@@ -126,6 +126,29 @@ $green-light: #006700;
     }
   }
 
+  // mobile nav
+
+  .mobile-menu {
+    background-color: $dark-main;
+
+    .close {
+      path {
+        fill: $light-main;
+      }
+    }
+
+    .mobile-nav-bottom {
+      color: $light-main;
+      path {
+        stroke: $light-main;
+      }
+    }
+
+    a {
+      color: $light-main;
+    }
+  }
+
   // second header
 
   .top-left-second-header {
@@ -185,7 +208,7 @@ $green-light: #006700;
   .home-recent-products-container {
     .recent-products-header {
       h1,
-      h3 {
+      h2 {
         color: $light-main;
       }
     }

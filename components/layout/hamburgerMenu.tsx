@@ -2,7 +2,6 @@
 import Hamburger from "hamburger-react";
 import { Link } from "next-view-transitions";
 import { useState } from "react";
-import ThemeButton from "./themeButton";
 import MobileLangSelect from "./mobileLangSelect";
 import { useScopedI18n } from "../../locales/client";
 
@@ -21,7 +20,7 @@ const HamburgerMenu = () => {
   };
 
   return (
-    <div className="hamburger-menu">
+    <div className="hamburger-menu" aria-label="menu">
       <Hamburger
         toggled={isOpen}
         toggle={handleMenuOpen}
@@ -74,10 +73,6 @@ const HamburgerMenu = () => {
             </ul>
           </div>
           <div className="mobile-nav-bottom">
-            <div>
-              <p>თემა:</p>
-              <ThemeButton />
-            </div>
             <div>
               <p>ენა:</p>
               <MobileLangSelect />
