@@ -14,6 +14,8 @@ interface IProd {
 }
 
 const RecentProductsSlider = ({ products }: IProd) => {
+  const limitedProducts = products.slice(0, 8);
+
   return (
     <div>
       <div className="recent-products-slider">
@@ -41,7 +43,7 @@ const RecentProductsSlider = ({ products }: IProd) => {
             },
           }}
         >
-          {products.map((product, index) => (
+          {limitedProducts.map((product: ProductsDisplay, index: number) => (
             <SwiperSlide key={`recent-prods-slide-${index}`}>
               <RecentProductCard product={product} />
             </SwiperSlide>

@@ -1,7 +1,7 @@
 import MainProductField from "../../../../../components/Add/Product/mainProductField";
 import SecondHeader from "../../../../../components/layout/secondHeader";
 import { getI18n } from "../../../../../locales/server";
-import addProduct from "../../../../../public/assets/images/secondHeader/addProduct.png";
+import addProduct from "../../../../../public/assets/images/secondHeader/productss.webp";
 const AddProduct = async () => {
   const t = await getI18n();
   return (

@@ -1,8 +1,9 @@
 import { Link } from "next-view-transitions";
-import LogoSvg from "./LogoSvg";
 import FooterBottom from "./footerBottom";
 import { getScopedI18n } from "../../locales/server";
 import LangSelect from "./langSelect";
+import Image from "next/image";
+import footerLogo from "../../public/assets/images/secondHeader/footerLogo.webp";
 
 async function Footer() {
   const t = await getScopedI18n("footer");
@@ -11,7 +12,12 @@ async function Footer() {
       <div className="footer-container">
         <div className="footer-first">
           <Link href="/" className="footer-logo">
-            <LogoSvg />
+            <Image
+              src={footerLogo}
+              alt="footer logo"
+              width={130}
+              height={130}
+            />
           </Link>
           <h5>{t("follow")}</h5>
           <div>

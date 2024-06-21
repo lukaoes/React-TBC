@@ -2,7 +2,7 @@ import { getCampsitesDisplay } from "../../../../actions";
 import CampsiteLayout from "../../../../components/Campsite/campsiteLayout";
 import SecondHeader from "../../../../components/layout/secondHeader";
 import { getI18n } from "../../../../locales/server";
-import campsitesImage from "../../../../public/assets/images/secondHeader/camping.png";
+import campsitesImage from "../../../../public/assets/images/secondHeader/camping.webp";
 
 const Campsites = async () => {
   const displayCamps = await getCampsitesDisplay();

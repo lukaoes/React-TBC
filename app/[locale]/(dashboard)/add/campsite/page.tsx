@@ -1,7 +1,7 @@
 import MainCampsiteField from "../../../../../components/Add/Campsite/mainCampsiteField";
 import SecondHeader from "../../../../../components/layout/secondHeader";
 import { getI18n } from "../../../../../locales/server";
-import addCampsite from "../../../../../public/assets/images/secondHeader/addCampsite.jpg";
+import addCampsite from "../../../../../public/assets/images/secondHeader/camping.webp";
 
 const AddCampsite = async () => {
   const t = await getI18n();

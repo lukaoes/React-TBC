@@ -14,6 +14,8 @@ interface ICamp {
 }
 
 const RecentCampsitesSlider = ({ campsites }: ICamp) => {
+  const limitedCamps = campsites.slice(0, 5);
+
   return (
     <div>
       <div className="recent-products-slider">
@@ -37,7 +39,7 @@ const RecentCampsitesSlider = ({ campsites }: ICamp) => {
             },
           }}
         >
-          {campsites.map((campsite: CampsitesDisplay, index: number) => (
+          {limitedCamps.map((campsite: CampsitesDisplay, index: number) => (
             <SwiperSlide key={`recent-campsites-slide-${index}`}>
               <RecentCampsitesCard campsite={campsite} />
             </SwiperSlide>

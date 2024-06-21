@@ -1,4 +1,5 @@
 export interface ProductsDisplay {
+  [x: string]: any;
   map(
     arg0: (
       products: ProductsDisplay,
@@ -87,6 +88,7 @@ export interface Contact {
 }
 
 export interface CampsitesDisplay {
+  [x: string]: any;
   map: any;
   id: number;
   space_type: string;

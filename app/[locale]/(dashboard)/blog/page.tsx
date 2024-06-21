@@ -2,7 +2,7 @@ import { getBlogDisplay } from "../../../../actions";
 import BlogLayout from "../../../../components/Blog/blogLayout";
 import SecondHeader from "../../../../components/layout/secondHeader";
 import { getI18n } from "../../../../locales/server";
-import blogImage from "../../../../public/assets/images/secondHeader/blog.png";
+import blogImage from "../../../../public/assets/images/secondHeader/bloghead.webp";
 
 const Blog = async () => {
   const displayBlogs = await getBlogDisplay();

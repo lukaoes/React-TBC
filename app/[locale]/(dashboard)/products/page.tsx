@@ -2,7 +2,7 @@ import { getUserProductsDisplay } from "../../../../actions";
 import ProductsLayout from "../../../../components/Products/productsLayout";
 import SecondHeader from "../../../../components/layout/secondHeader";
 import { getI18n } from "../../../../locales/server";
-import productss from "../../../../public/assets/images/secondHeader/productss.png";
+import productss from "../../../../public/assets/images/secondHeader/productss.webp";
 
 const Products = async () => {
   const products = await getUserProductsDisplay();
