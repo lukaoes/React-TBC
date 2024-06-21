@@ -431,6 +431,14 @@ $green-medium: #28583e;
     }
   }
 
+  // contact
+
+  .contact-info {
+    iframe {
+      filter: invert(92%) contrast(83%);
+    }
+  }
+
   // profile
   .profile-form,
   .profile-user {
