@@ -30,6 +30,12 @@ $green-light: #006700;
     color: $light-main;
   }
 
+  .header-auth {
+    a {
+      color: $light-main;
+    }
+  }
+
   header {
     nav {
       color: $light-main;
@@ -158,6 +164,10 @@ $green-light: #006700;
       background-image: linear-gradient(to bottom left, #000000, $dark-main);
       opacity: 0.4;
     }
+  }
+
+  .recent-product-card-type {
+    background-color: $green-medium;
   }
 
   .home-about-us-container {
@@ -550,6 +560,58 @@ $green-light: #006700;
       &:hover {
         background-color: $green-medium;
       }
+    }
+  }
+
+  // admin
+
+  .admin-navigation {
+    background-color: $green-medium;
+  }
+
+  .admin-message-modal {
+    background-color: $background-color-dark;
+  }
+
+  .single-product-edit-modal,
+  .blog-edit-modal,
+  .edit-user-content,
+  .admin-orders-modal {
+    background-color: $dark-main;
+
+    input,
+    select,
+    textarea {
+      background-color: $dark-secondary;
+    }
+  }
+
+  // user profile
+
+  .user-profile-info {
+    background-color: $green-medium;
+  }
+
+  .user-profile-blogs-card {
+    p {
+      background-color: $green-medium;
+    }
+  }
+
+  .campsite-card-pitch {
+    background-color: $green-medium;
+  }
+
+  // 404
+  .container-404 {
+    color: $dark-main;
+  }
+
+  // login to access
+
+  .login-to-access-container {
+    svg {
+      fill: $light-main;
     }
   }
 }
