@@ -478,6 +478,15 @@ $green-medium: #28583e;
     }
   }
 
+  // add page
+
+  .add-container {
+    a {
+      background-color: $green-medium;
+      border: 1px solid $dark-secondary;
+    }
+  }
+
   // profile
   .profile-form,
   .profile-user {
