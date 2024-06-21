@@ -369,6 +369,37 @@ $green-medium: #28583e;
     }
   }
 
+  // blog
+
+  .blog-top-section {
+    h2 {
+      path {
+        fill: $light-main;
+      }
+    }
+  }
+
+  .blog-filter-search {
+    input {
+      background-color: $dark-secondary;
+    }
+
+    path {
+      stroke: $light-main;
+    }
+  }
+
+  .blog-filter {
+    &.active {
+      background-color: $dark-main;
+    }
+    ul {
+      path {
+        fill: $light-main;
+      }
+    }
+  }
+
   // profile
   .profile-form,
   .profile-user {
@@ -379,6 +410,4 @@ $green-medium: #28583e;
       color: rgba($light-main, 0.4);
     }
   }
-
-  // blog
 }
