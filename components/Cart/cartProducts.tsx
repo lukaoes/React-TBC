@@ -54,6 +54,11 @@ const CartProducts = ({
       return;
     }
 
+    if (newQuantity === 0) {
+      await removeProduct(productId);
+      return;
+    }
+
     setProductQuantities((prevQuantities) => ({
       ...prevQuantities,
       [productId]: newQuantity,
