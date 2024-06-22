@@ -10,6 +10,14 @@ export default {
   "header.add": "დამატება",
   "header.logout": "გამოსვლა",
 
+  "search.category": "კატეგორია",
+  "search.products": "პროდუქტები",
+  "search.campsites": "საპიკნიკეები",
+  "search.blogs": "ბლოგები",
+  "search.search": "ძებნა...",
+  "search.quickSearch": "სწრაფი ძებნა",
+  "search.searched": "მოძებნილი",
+
   "main.exploreGeorgia": "აღმოაჩინე საქართველო და დაბანაკდი ყველგან",
   "main.whatEzoezoDoes": "რას აკეთებს ეზოეზო",
   "main.gear": "აღჭურვილობა",

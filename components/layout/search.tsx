@@ -7,6 +7,7 @@ import {
   getCampsitesDisplay,
   getUserProductsDisplay,
 } from "../../actions";
+import { useScopedI18n } from "../../locales/client";
 
 const debounce = <T extends (...args: any[]) => void>(
   func: T,
@@ -42,11 +43,16 @@ type Campsite = {
 
 type Item = Product | Blog | Campsite;
 
-const Search: React.FC = () => {
+interface iProp {
+  handleClose: () => void;
+}
+
+const Search = ({ handleClose }: iProp) => {
   const [category, setCategory] = useState<string>("");
   const [query, setQuery] = useState<string>("");
   const [results, setResults] = useState<Item[]>([]);
   const [allItems, setAllItems] = useState<Item[]>([]);
+  const t = useScopedI18n("search");
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const fetchResults = useCallback(
@@ -97,7 +103,7 @@ const Search: React.FC = () => {
   }, [query, allItems]);
 
   return (
-    <div>
+    <>
       <div className="search-layout">
         <div className="select-search">
           <select
@@ -109,15 +115,15 @@ const Search: React.FC = () => {
             }}
           >
             <option disabled value="">
-              Choose Category
+              {t("category")}
             </option>
-            <option value="products">Products</option>
-            <option value="campsites">Campsites</option>
-            <option value="blog">Blogs</option>
+            <option value="products">{t("products")}</option>
+            <option value="campsites">{t("campsites")}</option>
+            <option value="blog">{t("blogs")}</option>
           </select>
           <input
             type="text"
-            placeholder="search..."
+            placeholder={t("search")}
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             disabled={!category}
@@ -164,21 +170,35 @@ const Search: React.FC = () => {
           </datalist>
         </div>
         <div className="quick-search">
-          <span>Quick search:</span>
+          <span>{t("quickSearch")}:</span>
           <div>
-            <Link href="/products">Products</Link>
-            <Link href="/campsites">Campsites</Link>
-            <Link href="/blog">Blogs</Link>
+            <Link href="/products" onClick={handleClose}>
+              {t("products")}
+            </Link>
+            <Link href="/campsites" onClick={handleClose}>
+              {t("campsites")}
+            </Link>
+            <Link href="/blog" onClick={handleClose}>
+              {t("blogs")}
+            </Link>
           </div>
         </div>
         <div className="searched-products">
           <h1>
-            Searched {category.charAt(0).toUpperCase() + category.slice(1)}:
+            {t("searched")}{" "}
+            {category === "products"
+              ? t("products")
+              : category === "campsites"
+              ? t("campsites")
+              : category === "blog"
+              ? t("blogs")
+              : ""}{" "}
+            :{/* {category.charAt(0).toUpperCase() + category.slice(1)}: */}
           </h1>
           <div className="searched-products-cards-container">
             {results.map((item) => (
               <div key={`searched-items-${item.id}`}>
-                <Link href={`/${category}/${item.id}`}>
+                <Link href={`/${category}/${item.id}`} onClick={handleClose}>
                   <Image
                     src={item.main_photo}
                     alt="product card"
@@ -204,7 +224,7 @@ const Search: React.FC = () => {
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

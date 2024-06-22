@@ -36,6 +36,15 @@ $green-light: #006700;
     }
   }
 
+  .search-header-container {
+    background-color: $dark-main;
+
+    input,
+    select {
+      background-color: $dark-secondary;
+    }
+  }
+
   header {
     nav {
       color: $light-main;

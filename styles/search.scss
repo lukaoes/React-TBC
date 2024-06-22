@@ -1,7 +1,22 @@
+.search-header-container {
+  position: fixed;
+  left: 0;
+  top: -700px;
+  background-color: #ebe9df;
+  width: 100%;
+  z-index: 25;
+  transition: all 0.3s ease-in-out;
+  &.active {
+    top: 0;
+  }
+}
+
 .search-layout {
   max-width: 1300px;
   margin: 0 auto;
   padding: 20px 20px;
+  display: block !important;
+  width: 100%;
 
   h1 {
     margin-bottom: 10px;
@@ -15,7 +30,7 @@
   padding-bottom: 15px;
   border-bottom: 1px solid #444444;
   select {
-    max-width: 130px;
+    max-width: 145px;
     width: 100%;
     padding: 8px 10px;
     border-right: 1px solid #444444;
@@ -60,6 +75,7 @@
 
 .searched-products {
   margin-top: 30px;
+  display: block !important;
 }
 
 .searched-products-cards-container {

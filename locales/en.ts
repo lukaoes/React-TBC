@@ -10,6 +10,14 @@ export default {
   "header.add": "Add",
   "header.logout": "Logout",
 
+  "search.category": "Category",
+  "search.products": "Products",
+  "search.campsites": "Campsites",
+  "search.blogs": "Blogs",
+  "search.search": "Search...",
+  "search.quickSearch": "Quick search",
+  "search.searched": "Searched",
+
   "main.exploreGeorgia": "Explore Georgia and camp everywhere",
   "main.whatEzoezoDoes": "What EzoEzo does?",
   "main.gear": "Gear",
