@@ -116,7 +116,11 @@ const SingleProdSocialShare: FC<SingleProdSocials> = ({
             />
           </svg>
         </a>
-        <a href={`https://web.whatsapp.com/send?text=${text}: ${url}`}>
+        <a
+          href={`https://web.whatsapp.com/send?text=${text}: ${url}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <svg
             fill="#00b922"
             height="35px"

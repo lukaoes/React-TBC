@@ -18,7 +18,7 @@ const SingleBlogFooter = ({ blogPost }: IBlog) => {
 
   const path = usePathname();
   const baseUrl = BASE_URL;
-  const text = `samsasmasmasm`;
+  const text = `${blogPost.title}`;
   const url = baseUrl + path;
 
   const copyUrl = () => {
@@ -90,7 +90,11 @@ const SingleBlogFooter = ({ blogPost }: IBlog) => {
               </g>
             </svg>
           </a>
-          <a href={`https://x.com/intent/tweet?text=${text}: ${url}`}>
+          <a
+            href={`https://x.com/intent/tweet?text=${text}: ${url}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <svg
               width={25}
               height={25}
@@ -108,7 +112,11 @@ const SingleBlogFooter = ({ blogPost }: IBlog) => {
               />
             </svg>
           </a>
-          <a href="">
+          <a
+            href={`https://web.whatsapp.com/send?text=${text}: ${url}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               shapeRendering="geometricPrecision"

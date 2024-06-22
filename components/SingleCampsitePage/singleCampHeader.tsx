@@ -6,6 +6,8 @@ import SingleCampEditModal from "./singleCampEditModal";
 import SingleCampRemoveModal from "./singleCampRemoveModal";
 import SingleCampEditDeleteButton from "./singleCampEditDeleteButtons";
 import { useScopedI18n } from "../../locales/client";
+import { usePathname } from "next/navigation";
+import { BASE_URL } from "../../api";
 
 interface ICamp {
   camp: Campsite;
@@ -21,6 +23,19 @@ const SingleCampHeader: FC<ICamp> = ({
   const [modal, setModal] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const t = useScopedI18n("singleCamp");
+  const path = usePathname();
+  const baseUrl = BASE_URL;
+  const text = `${camp.name}`;
+  const url = baseUrl + path;
+
+  const copyUrl = () => {
+    navigator.clipboard.writeText(url);
+  };
+
+  const facebookShareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+    url
+  )}&quote=${encodeURIComponent(text)}`;
+
   const onClose = () => {
     setModal(false);
   };
@@ -76,7 +91,7 @@ const SingleCampHeader: FC<ICamp> = ({
         camp={camp}
       />
       <div className="single-camp-share">
-        <div>
+        <div onClick={copyUrl}>
           <svg
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
@@ -99,11 +114,7 @@ const SingleCampHeader: FC<ICamp> = ({
             </g>
           </svg>
         </div>
-        <a
-          href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A3000%2Fblog%2F10&amp;quote=samsasmasmasm"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href={facebookShareUrl} target="_blank" rel="noopener noreferrer">
           <svg
             fill="#000000"
             height="25px"
@@ -123,7 +134,11 @@ const SingleCampHeader: FC<ICamp> = ({
             </g>
           </svg>
         </a>
-        <a href="https://x.com/intent/tweet?text=samsasmasmasm: http://localhost:3000/blog/10">
+        <a
+          href={`https://x.com/intent/tweet?text=${text}: ${url}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <svg
             width="25"
             height="25"
@@ -141,7 +156,11 @@ const SingleCampHeader: FC<ICamp> = ({
             ></path>
           </svg>
         </a>
-        <a href="">
+        <a
+          href={`https://web.whatsapp.com/send?text=${text}: ${url}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             shapeRendering="geometricPrecision"
