@@ -18,6 +18,8 @@ export default {
   "search.quickSearch": "Quick search",
   "search.searched": "Searched",
 
+  "secondHeader.home": "Home",
+
   "main.exploreGeorgia": "Explore Georgia and camp everywhere",
   "main.whatEzoezoDoes": "What EzoEzo does?",
   "main.gear": "Gear",

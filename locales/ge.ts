@@ -18,6 +18,8 @@ export default {
   "search.quickSearch": "სწრაფი ძებნა",
   "search.searched": "მოძებნილი",
 
+  "secondHeader.home": "მთავარი",
+
   "main.exploreGeorgia": "აღმოაჩინე საქართველო და დაბანაკდი ყველგან",
   "main.whatEzoezoDoes": "რას აკეთებს ეზოეზო",
   "main.gear": "აღჭურვილობა",

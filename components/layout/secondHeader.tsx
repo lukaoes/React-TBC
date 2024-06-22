@@ -2,6 +2,7 @@
 import { FC } from "react";
 import { Link } from "next-view-transitions";
 import { usePathname } from "next/navigation";
+import { useI18n } from "../../locales/client";
 
 interface SecondHeaderProps {
   title: string;
@@ -13,6 +14,7 @@ export const SecondHeader: FC<SecondHeaderProps> = ({
   backgroundImage,
 }) => {
   const route = usePathname();
+  const t = useI18n();
   return (
     <div
       className="second-header-container"
@@ -54,7 +56,7 @@ export const SecondHeader: FC<SecondHeaderProps> = ({
         <div className="second-header-links">
           <h2>{title}</h2>
           <div className="second-header-navigation">
-            <Link href="/">მთავარი</Link>
+            <Link href="/">{t("secondHeader.home")}</Link>
             <svg
               width="20"
               height="20"
