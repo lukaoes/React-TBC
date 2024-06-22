@@ -45,7 +45,7 @@ const ProductWideCardButton: FC<IProd> = ({ product }) => {
     }
   };
   return (
-    <button disabled={isInCart} onClick={handleClick}>
+    <button disabled={isInCart || product.negotiable} onClick={handleClick}>
       {isInCart ? t("products.alreadyInCart") : t("products.addToCart")}
     </button>
   );

@@ -45,7 +45,11 @@ const MainProductCardButton: FC<IProd> = ({ product }) => {
   };
 
   return (
-    <button disabled={isInCart} onClick={handleClick} aria-label="add to cart">
+    <button
+      disabled={isInCart || product.negotiable}
+      onClick={handleClick}
+      aria-label="add to cart"
+    >
       <svg
         width="24"
         height="24"

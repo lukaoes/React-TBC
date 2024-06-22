@@ -46,7 +46,7 @@ const SingleProdMainDescriptionButton: FC<IProd> = ({ product }) => {
     }
   };
   return (
-    <button disabled={isInCart} onClick={handleClick}>
+    <button disabled={isInCart || product.negotiable} onClick={handleClick}>
       {isInCart ? t("singleProd.alreadyInCart") : t("singleProd.addToCart")}
     </button>
   );
