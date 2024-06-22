@@ -24,7 +24,7 @@ export default function ProfileDropdown() {
               xmlns="http://www.w3.org/2000/svg"
               xmlnsXlink="http://www.w3.org/1999/xlink"
               viewBox="0 0 24 24"
-              enable-background="new 0 0 24 24"
+              enableBackground="new 0 0 24 24"
               xmlSpace="preserve"
             >
               <g id="user-admin">

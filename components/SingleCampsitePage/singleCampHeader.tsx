@@ -56,7 +56,7 @@ const SingleCampHeader: FC<ICamp> = ({
         <svg
           stroke="currentColor"
           fill="currentColor"
-          stroke-width="0"
+          strokeWidth="0"
           viewBox="0 0 512 512"
           height="12px"
           width="12px"
@@ -86,7 +86,7 @@ const SingleCampHeader: FC<ICamp> = ({
             width="25"
             height="25"
             viewBox="0 0 256 256"
-            enable-background="new 0 0 256 256"
+            enableBackground="new 0 0 256 256"
             xmlSpace="preserve"
           >
             <g>

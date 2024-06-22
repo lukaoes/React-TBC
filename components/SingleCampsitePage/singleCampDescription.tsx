@@ -44,7 +44,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <g>
@@ -93,7 +93,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <g id="Layer_2">
@@ -125,7 +125,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <g>
@@ -165,7 +165,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <g>
@@ -193,7 +193,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <g>
@@ -231,7 +231,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <g>
@@ -271,7 +271,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <g>
@@ -308,7 +308,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <g>
@@ -343,7 +343,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <g>
@@ -382,7 +382,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <g>
@@ -492,7 +492,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <g>
@@ -602,7 +602,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <g>
@@ -633,7 +633,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <g>
@@ -663,7 +663,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <g>
@@ -698,7 +698,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <g>
@@ -732,7 +732,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <path
@@ -764,7 +764,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <path
@@ -792,7 +792,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <path
@@ -820,7 +820,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <g>
@@ -1020,7 +1020,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <g>
@@ -1062,7 +1062,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <g>
@@ -1117,7 +1117,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <g>
@@ -1152,7 +1152,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <g>
@@ -1192,7 +1192,7 @@ const SingleCampDescription: FC<ICamp> = async ({ camp }) => {
               width="100px"
               height="100px"
               viewBox="0 0 100 100"
-              enable-background="new 0 0 100 100"
+              enableBackground="new 0 0 100 100"
               xmlSpace="preserve"
             >
               <g>
