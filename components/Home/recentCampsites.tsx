@@ -10,7 +10,7 @@ const RecentCampsites = async () => {
     <div className="home-recent-products-container">
       <div className="recent-products-header">
         <div>
-          <h1>აღმოაჩინე</h1>
+          <h1>{t("explore")}</h1>
           <h2>{t("newCampsites")}</h2>
         </div>
         <div></div>

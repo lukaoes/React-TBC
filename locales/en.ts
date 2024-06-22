@@ -38,6 +38,7 @@ export default {
   "main.sectionBlog": "Blog",
   "main.sectionBlogDesc":
     "Get necessary knowledge using our Blog posts. Search or add your own Blog post.",
+  "main.explore": "Explore",
   "main.newProducts": "New Products",
   "main.seeAll": "See all",
   "main.forSale": "FOR SALE",

@@ -38,6 +38,7 @@ export default {
   "main.sectionBlog": "ბლოგი",
   "main.sectionBlogDesc":
     "მიიღე ცოდნა სასურველ საკითხზე ჩვენი ბლოგების საშუალებით. მოძებნეთ ან დაამატეთ ბლოგები.",
+  "main.explore": "აღმოაჩინე",
   "main.newProducts": "ახალი პროდუქტები",
   "main.seeAll": "ყველას ნახვა",
   "main.forSale": "იყიდება",
