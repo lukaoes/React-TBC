@@ -3,8 +3,9 @@ import { FC, useEffect, useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { handleAddToCart } from "../../actions";
 import { ProductsDisplay } from "../../types";
-import { getUserCart } from "../../api";
+import { BASE_URL, getUserCart } from "../../api";
 import { useI18n } from "../../locales/client";
+import { useRouter } from "next/navigation";
 
 interface IProd {
   product: ProductsDisplay;
@@ -14,6 +15,7 @@ const SingleProdMainDescriptionButton: FC<IProd> = ({ product }) => {
   const { user } = useUser();
   const [id, setId] = useState("");
   const [isInCart, setIsInCart] = useState(false);
+  const router = useRouter();
   const t = useI18n();
 
   useEffect(() => {
@@ -36,6 +38,10 @@ const SingleProdMainDescriptionButton: FC<IProd> = ({ product }) => {
   };
 
   const handleClick = async () => {
+    if (!user) {
+      router.push(`${BASE_URL}/api/auth/login`);
+      return;
+    }
     try {
       setIsInCart(true);
       await handleAddToCart(String(product.id), id);

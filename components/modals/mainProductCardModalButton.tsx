@@ -3,9 +3,10 @@ import { FC, useEffect, useState } from "react";
 import { ProductsDisplay } from "../../types";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { handleAddToCart } from "../../actions";
-import { getUserCart } from "../../api";
+import { BASE_URL, getUserCart } from "../../api";
 import { revalidatePath } from "next/cache";
 import { useI18n } from "../../locales/client";
+import { useRouter } from "next/navigation";
 
 interface IProd {
   product: ProductsDisplay;
@@ -15,6 +16,7 @@ const MainProductCardModalButton: FC<IProd> = ({ product }) => {
   const t = useI18n();
   const { user } = useUser();
   const [id, setId] = useState("");
+  const router = useRouter();
   const [isInCart, setIsInCart] = useState(false);
 
   useEffect(() => {
@@ -36,6 +38,10 @@ const MainProductCardModalButton: FC<IProd> = ({ product }) => {
   };
 
   const handleClick = async () => {
+    if (!user) {
+      router.push(`${BASE_URL}/api/auth/login`);
+      return;
+    }
     try {
       setIsInCart(true);
       await handleAddToCart(String(product.id), id);
@@ -47,7 +53,7 @@ const MainProductCardModalButton: FC<IProd> = ({ product }) => {
     }
   };
   return (
-    <button disabled={isInCart} onClick={handleClick}>
+    <button disabled={isInCart || product.negotiable} onClick={handleClick}>
       {isInCart ? t("products.alreadyInCart") : t("products.addToCart")}
     </button>
   );
