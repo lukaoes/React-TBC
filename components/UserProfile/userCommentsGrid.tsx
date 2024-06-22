@@ -14,7 +14,6 @@ interface ICom {
 }
 
 const UserCommentsGrid: FC<ICom> = ({ comments, user, userInfo }) => {
-  console.log(comments, "comments");
   const generateStars = (rating: number) => {
     const stars = [];
     for (let i = 0; i < rating; i++) {

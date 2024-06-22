@@ -14,7 +14,6 @@ interface EditModalProps {
 const SingleProdEditModal = ({ product, onClose, onSave }: EditModalProps) => {
   const [editedProduct, setEditedProduct] = useState<Product>(product);
   const [error, setError] = useState<string | null>(null);
-  console.log("editedProduct", editedProduct);
   const handleChange = (
     e: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement

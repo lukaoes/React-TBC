@@ -10,7 +10,6 @@ interface AddToCartButtonProps {
 const AddToCartButton: React.FC<AddToCartButtonProps> = ({ productId }) => {
   const { user } = useUser();
   const [id, setId] = useState("");
-  console.log(id);
   useEffect(() => {
     if (user && user.sub) {
       setId(user.sub);

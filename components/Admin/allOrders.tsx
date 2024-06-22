@@ -6,7 +6,6 @@ const AllOrders = ({ orders }: any) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [address, setAddress] = useState<any>(null);
   const [loading, setLoading] = useState(false);
-  console.log(address);
 
   const refundHandler = async (charge: string) => {
     await createRefund(charge);
@@ -29,8 +28,6 @@ const AllOrders = ({ orders }: any) => {
     setModalVisible(false);
     setAddress(null);
   };
-
-  console.log(orders);
 
   return (
     <div className="admin-inbox">

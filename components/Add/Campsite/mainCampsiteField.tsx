@@ -74,7 +74,6 @@ const MainCampsiteField = () => {
     null,
     null,
   ]);
-  console.log(formData);
 
   useEffect(() => {
     if (user && user.sub) {

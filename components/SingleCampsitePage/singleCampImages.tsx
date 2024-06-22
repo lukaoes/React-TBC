@@ -22,7 +22,6 @@ interface ICamp {
 const SingleCampImages: FC<ICamp> = ({ camp }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState<SwiperType | null>(null);
   const allPhotos = [camp.main_photo, ...camp.photo_urls];
-  console.log(allPhotos, "alsdasdasd");
   const [isOpen, setIsOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
 

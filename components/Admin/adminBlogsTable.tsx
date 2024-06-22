@@ -8,7 +8,6 @@ const AdminBlogsTable = () => {
   const [displayBlogs, setDisplayBlogs] = useState<Blog[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedBlog, setSelectedBlog] = useState<Blog | null>(null);
-  console.log(selectedBlog);
   useEffect(() => {
     const fetchBlogs = async () => {
       const blogs = await getBlogDisplay();

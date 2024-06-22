@@ -72,7 +72,6 @@ export default function HeaderProfile() {
     if (user) {
       try {
         const pictureUrl = await getPictureAction(user.sub);
-        console.log(pictureUrl);
 
         setProfilePicture(pictureUrl);
         const response = await fetch("/api/users/save-user", {

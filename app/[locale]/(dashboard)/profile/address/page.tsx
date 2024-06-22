@@ -20,8 +20,6 @@ const ProfileAddress = () => {
     email: "",
   });
 
-  console.log(formData);
-
   const [errors, setErrors] = useState({
     firstName: "",
     lastName: "",
