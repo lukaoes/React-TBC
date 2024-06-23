@@ -2,19 +2,21 @@
 import { FC, useEffect, useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { BASE_URL } from "../../api";
-import { getAddyByEmailAction } from "../../actions"; // Import the address fetching function
+import { getAddyByEmailAction } from "../../actions";
 import { useScopedI18n } from "../../locales/client";
 
 interface CartTotalProps {
   totalPrice: number;
   selectedNumber: number;
   localFilteredProducts: any[];
+  productQuantities: Record<string, number>; // Add the product quantities prop
 }
 
 const CartTotal: FC<CartTotalProps> = ({
   totalPrice,
   selectedNumber,
   localFilteredProducts,
+  productQuantities, // Destructure the product quantities prop
 }) => {
   const { user } = useUser();
   const [hasAddress, setHasAddress] = useState<boolean | null>(null);
@@ -47,19 +49,21 @@ const CartTotal: FC<CartTotalProps> = ({
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          products: localFilteredProducts,
+          products: localFilteredProducts.map((product) => ({
+            ...product,
+            selectedQuantity: productQuantities[product.id], // Add the selected quantity
+          })),
           email: user?.email,
         }),
       })
         .then((response) => response.json())
         .then((response) => {
-          if (response.url) {
-            window.location.href = response.url;
+          if (response?.url) {
+            window.location.assign(response.url);
           }
-        })
-        .catch((error) => {
-          console.error("Error during checkout:", error);
         });
+    } else {
+      window.location.assign("/user/profile");
     }
   };
 

@@ -205,6 +205,7 @@ const CartProducts = ({
         totalPrice={calculateTotalPrice()}
         selectedNumber={calculateTotalItems()}
         localFilteredProducts={localFilteredProducts}
+        productQuantities={productQuantities} // Pass the product quantities to CartTotal
       />
     </div>
   );
