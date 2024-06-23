@@ -6,6 +6,7 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import { useScopedI18n } from "../../../locales/client";
 import { BASE_URL } from "../../../api";
 import { MainProductFormData } from "../../../types";
+import { useRouter } from "next/navigation";
 
 export const cities = [
   "თბილისი",
@@ -78,6 +79,7 @@ export const cities = [
 const MainProductField = () => {
   const { user } = useUser();
   const t = useScopedI18n("addProduct");
+  const route = useRouter();
 
   const [formData, setFormData] = useState<MainProductFormData>({
     user_id: "",
@@ -230,6 +232,7 @@ const MainProductField = () => {
     if (validateForm()) {
       try {
         await addAdvertisement(formData);
+        route.push("/products");
       } catch (error) {
         console.error("Error submitting form:", error);
       }

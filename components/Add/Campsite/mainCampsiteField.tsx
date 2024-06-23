@@ -9,6 +9,7 @@ import Image from "next/image";
 import { AddCampsite } from "../../../types";
 import { useScopedI18n } from "../../../locales/client";
 import { BASE_URL } from "../../../api";
+import { useRouter } from "next/navigation";
 
 export const amenitiesList = [
   "ცხოველები დაშვებულია",
@@ -46,6 +47,7 @@ export const activitiesList = [
 const MainCampsiteField = () => {
   const { user } = useUser();
   const t = useScopedI18n("addCampsite");
+  const route = useRouter();
 
   const [formData, setFormData] = useState<AddCampsite>({
     user_id: "",
@@ -224,29 +226,7 @@ const MainCampsiteField = () => {
     if (validateForm()) {
       try {
         await addCampsite(formData);
-        if (typeof window !== "undefined") {
-          window.location.reload();
-        }
-        setFormData({
-          user_id: "",
-          space_type: "",
-          accepted_guests: [],
-          capacity: "1 ადამიანი",
-          location: "თბილისი",
-          main_photo: "",
-          photo_urls: [],
-          size: 0,
-          name: "",
-          amenities: [],
-          activities: [],
-          description: "",
-          descriptionen: "",
-          first_name: "",
-          phone: "",
-          price: "0",
-          negotiable: false,
-          map: "",
-        });
+        route.push("/campsites");
       } catch (error) {
         console.error("Error submitting form:", error);
       }
