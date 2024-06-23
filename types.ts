@@ -160,3 +160,39 @@ export interface Review {
   recommended: boolean;
   created_at: string;
 }
+
+export interface MainProductFormData {
+  user_id: string;
+  type: string;
+  category: string;
+  subcategory: string;
+  shoe_size: string;
+  clothing_size: string;
+  backpack_capacity: string;
+  tent_capacity: string;
+  main_photo: string;
+  photo_urls: string[];
+  title_ge: string;
+  description_ge: string;
+  title_en: string;
+  description_en: string;
+  price: string;
+  negotiable: boolean;
+  location: string;
+  condition: string;
+  quantity: string;
+  first_name: string;
+  phone: string;
+  [key: string]: any;
+}
+
+export interface AddressData {
+  first_name: string;
+  last_name: string;
+  country: string;
+  city: string;
+  street_address: string;
+  postal_code: string;
+  phone: string;
+  email: string;
+}

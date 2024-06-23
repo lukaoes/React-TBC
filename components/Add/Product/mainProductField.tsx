@@ -5,31 +5,7 @@ import { addAdvertisement } from "../../../actions";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useScopedI18n } from "../../../locales/client";
 import { BASE_URL } from "../../../api";
-
-interface FormData {
-  user_id: string;
-  type: string;
-  category: string;
-  subcategory: string;
-  shoe_size: string;
-  clothing_size: string;
-  backpack_capacity: string;
-  tent_capacity: string;
-  main_photo: string;
-  photo_urls: string[];
-  title_ge: string;
-  description_ge: string;
-  title_en: string;
-  description_en: string;
-  price: string;
-  negotiable: boolean;
-  location: string;
-  condition: string;
-  quantity: string;
-  first_name: string;
-  phone: string;
-  [key: string]: any;
-}
+import { MainProductFormData } from "../../../types";
 
 export const cities = [
   "თბილისი",
@@ -103,7 +79,7 @@ const MainProductField = () => {
   const { user } = useUser();
   const t = useScopedI18n("addProduct");
 
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<MainProductFormData>({
     user_id: "",
     type: "",
     category: "",

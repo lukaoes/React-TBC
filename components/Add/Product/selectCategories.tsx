@@ -1,10 +1,11 @@
 "use client";
 import React, { useState, ChangeEvent, Dispatch, SetStateAction } from "react";
 import { useScopedI18n } from "../../../locales/client";
+import { MainProductFormData } from "../../../types";
 
 interface GearSelectorProps {
-  formData: FormData;
-  setFormData: Dispatch<SetStateAction<FormData>>;
+  formData: MainProductFormData;
+  setFormData: Dispatch<SetStateAction<MainProductFormData>>;
   errors: { [key: string]: string };
 }
 
@@ -12,31 +13,6 @@ interface GearData {
   [category: string]: {
     Types: string[];
   };
-}
-
-interface FormData {
-  user_id: string;
-  type: string;
-  category: string;
-  subcategory: string;
-  shoe_size: string;
-  clothing_size: string;
-  backpack_capacity: string;
-  tent_capacity: string;
-  main_photo: string;
-  photo_urls: string[];
-  title_ge: string;
-  description_ge: string;
-  title_en: string;
-  description_en: string;
-  price: string;
-  condition: string;
-  quantity: string;
-  negotiable: boolean;
-  location: string;
-  first_name: string;
-  phone: string;
-  [key: string]: any; // Add index signature
 }
 
 const gearData: GearData = {

@@ -52,7 +52,7 @@ export const POST = async (request: any) => {
     if (stripeProduct) {
       stripeItems.push({
         price: stripeProduct?.default_price,
-        quantity: product?.selectedQuantity, // Ensure quantity from the selected products
+        quantity: product?.selectedQuantity,
       });
     }
   }

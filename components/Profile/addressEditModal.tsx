@@ -1,22 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
+import { AddressData } from "../../types";
 
 interface EditAddressModalProps {
   isOpen: boolean;
   onClose: () => void;
   initialData: AddressData | null;
   onSave: (updatedData: AddressData) => Promise<void>;
-}
-
-interface AddressData {
-  first_name: string;
-  last_name: string;
-  country: string;
-  city: string;
-  street_address: string;
-  postal_code: string;
-  phone: string;
-  email: string;
 }
 
 const EditAddressModal: React.FC<EditAddressModalProps> = ({

@@ -9,14 +9,14 @@ interface CartTotalProps {
   totalPrice: number;
   selectedNumber: number;
   localFilteredProducts: any[];
-  productQuantities: Record<string, number>; // Add the product quantities prop
+  productQuantities: Record<string, number>;
 }
 
 const CartTotal: FC<CartTotalProps> = ({
   totalPrice,
   selectedNumber,
   localFilteredProducts,
-  productQuantities, // Destructure the product quantities prop
+  productQuantities,
 }) => {
   const { user } = useUser();
   const [hasAddress, setHasAddress] = useState<boolean | null>(null);
@@ -51,7 +51,7 @@ const CartTotal: FC<CartTotalProps> = ({
         body: JSON.stringify({
           products: localFilteredProducts.map((product) => ({
             ...product,
-            selectedQuantity: productQuantities[product.id], // Add the selected quantity
+            selectedQuantity: productQuantities[product.id],
           })),
           email: user?.email,
         }),

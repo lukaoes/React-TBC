@@ -7,17 +7,7 @@ import {
   updateAddyAction,
 } from "../../actions";
 import EditAddressModal from "./addressEditModal";
-
-interface AddressData {
-  first_name: string;
-  last_name: string;
-  country: string;
-  city: string;
-  street_address: string;
-  postal_code: string;
-  phone: string;
-  email: string;
-}
+import { AddressData } from "../../types";
 
 const ProfileAddyDisplay: React.FC = () => {
   const [addyData, setAddyData] = useState<AddressData | null>(null);
@@ -43,7 +33,7 @@ const ProfileAddyDisplay: React.FC = () => {
     try {
       if (user && user.sub) {
         await deleteAddyAction(user.sub);
-        setAddyData(null); // Clear the address data after deletion
+        setAddyData(null);
       }
     } catch (error) {
       console.error("Error deleting address:", error);
@@ -54,7 +44,7 @@ const ProfileAddyDisplay: React.FC = () => {
     try {
       if (user && user.sub) {
         await updateAddyAction(user.sub, updatedData);
-        const updatedDataFromServer = await getAddyAction(user.sub); // Fetch the updated address data
+        const updatedDataFromServer = await getAddyAction(user.sub);
         setAddyData(updatedDataFromServer[0]);
         setIsModalOpen(false);
       }
