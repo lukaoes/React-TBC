@@ -4,7 +4,7 @@ import CartProducts from "../../../../components/Cart/cartProducts";
 import { getSession } from "@auth0/nextjs-auth0";
 import LoginToAccess from "../../../../components/noAccess/loginToAccess";
 import SecondHeader from "../../../../components/layout/secondHeader";
-import cartImage from "../../../../public/assets/images/secondHeader/cart.jpg";
+import cartImage from "../../../../public/assets/images/secondHeader/productss.webp";
 import { getI18n } from "../../../../locales/server";
 const Cart = async ({ params: { locale } }: { params: { locale: string } }) => {
   setStaticParamsLocale(locale);
