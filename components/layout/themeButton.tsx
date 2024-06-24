@@ -17,21 +17,21 @@ const ThemeButton = () => {
     }
   };
 
-  const setSystemThemeMode = () => {
-    const prefersDarkMode = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-    const themeMode = prefersDarkMode ? "dark" : "light";
-    const appElement = document.querySelector(".app");
-    if (themeMode === "dark") {
-      setThemeMode("LIGHT");
-      appElement?.classList.add("dark-mode");
-    } else {
-      appElement?.classList.remove("dark-mode");
-      setThemeMode("DARK");
-    }
-    localStorage.setItem("themeMode", themeMode);
-  };
+  // const setSystemThemeMode = () => {
+  //   const prefersDarkMode = window.matchMedia(
+  //     "(prefers-color-scheme: dark)"
+  //   ).matches;
+  //   const themeMode = prefersDarkMode ? "dark" : "light";
+  //   const appElement = document.querySelector(".app");
+  //   if (themeMode === "dark") {
+  //     setThemeMode("LIGHT");
+  //     appElement?.classList.add("dark-mode");
+  //   } else {
+  //     appElement?.classList.remove("dark-mode");
+  //     setThemeMode("DARK");
+  //   }
+  //   localStorage.setItem("themeMode", themeMode);
+  // };
 
   useEffect(() => {
     const storedThemeMode = localStorage.getItem("themeMode");
@@ -45,7 +45,7 @@ const ThemeButton = () => {
         setThemeMode("DARK");
       }
     } else {
-      setSystemThemeMode();
+      // setSystemThemeMode();
     }
   }, []);
 
