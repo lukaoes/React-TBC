@@ -37,6 +37,16 @@ const AdminNav = () => {
         პროდუქტები
       </Link>
       <Link
+        href="/admin/campsites"
+        className={
+          path === `/${locale}/admin/campsites`
+            ? "active bg-[#2980b9] font-bold"
+            : ""
+        }
+      >
+        საპიკნიკეები
+      </Link>
+      <Link
         href="/admin/blogs"
         className={
           path === `/${locale}/admin/blogs`

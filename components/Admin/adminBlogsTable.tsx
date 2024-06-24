@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { deleteBlog, getBlogDisplay, getSingleBlog } from "../../actions";
 import { Blog } from "../../types";
 import BlogEditModal from "../modals/blogEditModal";
+import { Link } from "next-view-transitions";
 
 const AdminBlogsTable = () => {
   const [displayBlogs, setDisplayBlogs] = useState<Blog[]>([]);
@@ -63,7 +64,7 @@ const AdminBlogsTable = () => {
             {product.id}
           </div>
           <div className="cell" data-title="სახელი">
-            {product.title}
+            <Link href={`/blog/${product.id}`}>{product.title}</Link>
           </div>
           <div className="cell" data-title="კატეგორია">
             {product.category}

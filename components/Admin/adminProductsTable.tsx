@@ -4,6 +4,7 @@ import { deleteSingleProduct, getUserProductsDisplay } from "../../actions";
 import { ProductsDisplay } from "../../types";
 import SingleProdEditModal from "../SingleProductPage/singleProdEditModal";
 import { getSingleProduct } from "../../actions";
+import { Link } from "next-view-transitions";
 
 const AdminProductsTable = () => {
   const [displayProds, setDisplayProds] = useState<ProductsDisplay[]>([]);
@@ -66,7 +67,9 @@ const AdminProductsTable = () => {
             {product.id}
           </div>
           <div className="cell" data-title="სახელი">
-            {product.title_ge}
+            <Link href={`/products/${product.id}`}>
+              {product.title_ge || product.title_en}
+            </Link>
           </div>
           <div className="cell" data-title="კატეგორია">
             {product.category}
