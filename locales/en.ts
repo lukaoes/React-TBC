@@ -76,6 +76,8 @@ export default {
   "products.alreadyInCart": "In Cart",
   "products.details": "Details",
 
+  "products.seeMore": "See More",
+
   "camping.campingSites": "Camping Sites",
   "camping.search": "Search...",
   "camping.filter": "Filter",

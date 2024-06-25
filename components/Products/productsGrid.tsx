@@ -2,6 +2,7 @@ import { FC } from "react";
 import { ProductsDisplay } from "../../types";
 import MainProductCard from "../cards/mainProductCard";
 import ProductWideCard from "../cards/productWideCard";
+import { useI18n } from "../../locales/client";
 
 type ProductsGridProps = {
   gridView: boolean;
@@ -18,6 +19,7 @@ const ProductsGrid: FC<ProductsGridProps> = ({
   visibleCount,
   loadMoreProducts,
 }) => {
+  const t = useI18n();
   return (
     <div className="products-gird-main-container">
       {gridView ? (
@@ -43,7 +45,7 @@ const ProductsGrid: FC<ProductsGridProps> = ({
       <div className="see-more-button-container">
         {visibleCount < products.length && (
           <button onClick={loadMoreProducts} className="see-more-button">
-            მეტის ნახვა
+            {t("products.seeMore")}
           </button>
         )}
       </div>

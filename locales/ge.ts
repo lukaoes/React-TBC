@@ -76,6 +76,8 @@ export default {
   "products.alreadyInCart": "კალათაშია",
   "products.details": "დეტალურად",
 
+  "products.seeMore": "მეტის ნახვა",
+
   "camping.campingSites": "საკემპინგე ადგილები",
   "camping.search": "ძებნა...",
   "camping.filter": "ფილტრი",
