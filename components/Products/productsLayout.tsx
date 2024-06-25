@@ -31,7 +31,9 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
   const [selectedLocation, setSelectedLocation] = useState<string>("");
   const [selectedCategory, setSelectedCategory] = useState<string>("ყველა");
   const [filterState, setFilterState] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(12);
   const prodLength = products.length;
+
   useEffect(() => {
     setFilteredProducts(products);
     setSortedProducts(products);
@@ -163,10 +165,15 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
     );
     setFilteredProducts(filtered);
     setSortedProducts(filtered);
+    setVisibleCount(12); // Reset visible count on filter change
   };
 
   const getCategoryCount = (category: string) => {
     return products.filter((product) => product.category === category).length;
+  };
+
+  const loadMoreProducts = () => {
+    setVisibleCount((prevCount) => prevCount + 12);
   };
 
   return (
@@ -199,6 +206,8 @@ export const ProductsLayout: FC<IProductsLayout> = ({ products }) => {
           products={sortedProducts}
           gridView={gridView}
           openModal={openModal}
+          visibleCount={visibleCount}
+          loadMoreProducts={loadMoreProducts}
         />
       </div>
       {modal && selectedProduct && (

@@ -7,18 +7,22 @@ type ProductsGridProps = {
   gridView: boolean;
   openModal: (product: ProductsDisplay) => void;
   products: ProductsDisplay[];
+  visibleCount: number;
+  loadMoreProducts: () => void;
 };
 
 const ProductsGrid: FC<ProductsGridProps> = ({
   products,
   gridView,
   openModal,
+  visibleCount,
+  loadMoreProducts,
 }) => {
   return (
-    <>
+    <div className="products-gird-main-container">
       {gridView ? (
         <div className="products-grid-container">
-          {products.map((product, index) => (
+          {products.slice(0, visibleCount).map((product, index) => (
             <div className="grid-product" key={`display-products-${index}`}>
               <MainProductCard
                 product={product}
@@ -29,14 +33,21 @@ const ProductsGrid: FC<ProductsGridProps> = ({
         </div>
       ) : (
         <div className="products-wide-display-container">
-          {products.map((product, index) => (
+          {products.slice(0, visibleCount).map((product, index) => (
             <div key={`display-products-wide-${index}`}>
               <ProductWideCard product={product} />
             </div>
           ))}
         </div>
       )}
-    </>
+      <div className="see-more-button-container">
+        {visibleCount < products.length && (
+          <button onClick={loadMoreProducts} className="see-more-button">
+            მეტის ნახვა
+          </button>
+        )}
+      </div>
+    </div>
   );
 };
 
