@@ -45,7 +45,7 @@ const HomeAbout = async () => {
             </div>
             <div>
               <Image src={pin} alt="pin" width={300} height={300} />
-              <h4>{t("camping")}</h4>
+              <h2>{t("camping")}</h2>
               <p>{t("campingDesc")}</p>
               <Link href="/campsites">
                 <svg
