@@ -61,6 +61,8 @@ Ezoezo is a comprehensive platform designed to facilitate the buying, selling, a
 ## SEO
 Each page has English and Georgian metadata and title. Each single product page has that product's image as OpenGraph, product description as metadata, and product title as title. The same applies for campsites and blogs.
 
+The site includes a `robots.txt` file that instructs search crawlers on what not to crawl, such as the admin page. It also has a sitemap that is automatically updated when new products, blogs, campsites, or users are added, informing crawlers of these updates.
+
 ## Technical Details
 - **Languages**: Georgian and English.
 - **Themes**: Dark and light mode.
@@ -75,3 +77,80 @@ Each page has English and Georgian metadata and title. Each single product page 
 - **Responsive Design**: Fully responsive UX, designed in Figma **by me**.
 
 EzoEzo is more than just a marketplace!
+
+
+## Landing Page
+
+![home.png](https://postimg.cc/2bTbJtSG)
+
+## Products Page
+
+![screencapture-ezoezo-vercel-app-ge-products-2024-07-04-19-24-20.png](https://postimg.cc/9Rx01qLN)
+
+## Single Product Page
+
+![screencapture-ezoezo-vercel-app-ge-products-32-2024-07-04-19-25-30.png](https://postimg.cc/CB6MbpK3)
+
+## Campsites Page
+
+![campsites.png](https://postimg.cc/pmnjTksV)
+
+## Single Campsite Page
+
+![screencapture-ezoezo-vercel-app-ge-campsites-24-2024-07-04-19-32-03.png](https://postimg.cc/k2hjrjBn)
+
+## Blog
+
+![blog.png](https://postimg.cc/9r0Z3cT7)
+
+## Single Blog Page
+
+![single-Blog.png](https://postimg.cc/PNr8ZdSR)
+
+## Contact
+
+![contact.png](https://postimg.cc/Cz2DS9H6)
+
+## Cart
+
+![cart.png](https://postimg.cc/jCZPkDWT)
+
+## User Public Profile Page
+
+![user-Profile.png](https://postimg.cc/5XvH1yt6)
+
+## User Profile Settings Page
+
+![profile.png](https://postimg.cc/7C82T7R3)
+
+![profile-Address.png](https://postimg.cc/xkvbG8rW)
+
+![profile-Orders.png](https://postimg.cc/tZ9nBbp7)
+
+## Add Page
+
+![add.png](https://postimg.cc/GBGvMzDg)
+
+## Add Campsite Page
+
+![add-Campsite.png](https://postimg.cc/rRFWwkP7)
+
+## Add Product Page
+
+![add-Product.png](https://postimg.cc/CB4k01mj)
+
+## 404 Page
+
+![404.png](https://postimg.cc/TpNSG2sM)
+
+
+## SEO
+
+![opengraph1.png](https://postimg.cc/ppQT17cF)
+
+![opengraph2.png](https://postimg.cc/gxN0GhWc)
+
+![opengraph3.png](https://postimg.cc/940Q0fmd)
+
+![opengraph4.png](https://postimg.cc/K1ZzXNCs)
+
