@@ -81,76 +81,76 @@ EzoEzo is more than just a marketplace!
 
 ## Landing Page
 
-![home.png](https://postimg.cc/2bTbJtSG)
+[![home.png](https://i.postimg.cc/T1vVyM8z/home.png)](https://postimg.cc/2bTbJtSG)
 
 ## Products Page
 
-![screencapture-ezoezo-vercel-app-ge-products-2024-07-04-19-24-20.png](https://postimg.cc/9Rx01qLN)
+[![screencapture-ezoezo-vercel-app-ge-products-2024-07-04-19-24-20.png](https://i.postimg.cc/yxKR1mcB/screencapture-ezoezo-vercel-app-ge-products-2024-07-04-19-24-20.png)](https://postimg.cc/9Rx01qLN)
 
 ## Single Product Page
 
-![screencapture-ezoezo-vercel-app-ge-products-32-2024-07-04-19-25-30.png](https://postimg.cc/CB6MbpK3)
+[![screencapture-ezoezo-vercel-app-ge-products-32-2024-07-04-19-25-30.png](https://i.postimg.cc/vTG1FQwZ/screencapture-ezoezo-vercel-app-ge-products-32-2024-07-04-19-25-30.png)](https://postimg.cc/CB6MbpK3)
 
 ## Campsites Page
 
-![campsites.png](https://postimg.cc/pmnjTksV)
+[![campsites.png](https://i.postimg.cc/qv1x15nK/campsites.png)](https://postimg.cc/pmnjTksV)
 
 ## Single Campsite Page
 
-![screencapture-ezoezo-vercel-app-ge-campsites-24-2024-07-04-19-32-03.png](https://postimg.cc/k2hjrjBn)
+[![screencapture-ezoezo-vercel-app-ge-campsites-24-2024-07-04-19-32-03.png](https://i.postimg.cc/N0QZHStr/screencapture-ezoezo-vercel-app-ge-campsites-24-2024-07-04-19-32-03.png)](https://postimg.cc/k2hjrjBn)
 
 ## Blog
 
-![blog.png](https://postimg.cc/9r0Z3cT7)
+[![blog.png](https://i.postimg.cc/15cHqt3J/blog.png)](https://postimg.cc/9r0Z3cT7)
 
 ## Single Blog Page
 
-![single-Blog.png](https://postimg.cc/PNr8ZdSR)
+[![single-Blog.png](https://i.postimg.cc/c1f7pHw0/single-Blog.png)](https://postimg.cc/PNr8ZdSR)
 
 ## Contact
 
-![contact.png](https://postimg.cc/Cz2DS9H6)
+[![contact.png](https://i.postimg.cc/Qd8qk3Bs/contact.png)](https://postimg.cc/Cz2DS9H6)
 
 ## Cart
 
-![cart.png](https://postimg.cc/jCZPkDWT)
+[![cart.png](https://i.postimg.cc/28fGyvr1/cart.png)](https://postimg.cc/jCZPkDWT)
 
 ## User Public Profile Page
 
-![user-Profile.png](https://postimg.cc/5XvH1yt6)
+[![user-Profile.png](https://i.postimg.cc/9Qgydq5t/user-Profile.png)](https://postimg.cc/5XvH1yt6)
 
 ## User Profile Settings Page
 
-![profile.png](https://postimg.cc/7C82T7R3)
+[![profile.png](https://i.postimg.cc/PqNz9QzR/profile.png)](https://postimg.cc/7C82T7R3)
 
-![profile-Address.png](https://postimg.cc/xkvbG8rW)
+[![profile-Address.png](https://i.postimg.cc/nL5YJ93c/profile-Address.png)](https://postimg.cc/xkvbG8rW)
 
-![profile-Orders.png](https://postimg.cc/tZ9nBbp7)
+[![profile-Orders.png](https://i.postimg.cc/Pxwbrf7b/profile-Orders.png)](https://postimg.cc/tZ9nBbp7)
 
 ## Add Page
 
-![add.png](https://postimg.cc/GBGvMzDg)
+[![add.png](https://i.postimg.cc/wBbFjGjz/add.png)](https://postimg.cc/GBGvMzDg)
 
 ## Add Campsite Page
 
-![add-Campsite.png](https://postimg.cc/rRFWwkP7)
+[![add-Campsite.png](https://i.postimg.cc/Y0Qx82f2/add-Campsite.png)](https://postimg.cc/rRFWwkP7)
 
 ## Add Product Page
 
-![add-Product.png](https://postimg.cc/CB4k01mj)
+[![add-Product.png](https://i.postimg.cc/C13Njn86/add-Product.png)](https://postimg.cc/CB4k01mj)
 
 ## 404 Page
 
-![404.png](https://postimg.cc/TpNSG2sM)
+[![404.png](https://i.postimg.cc/13yZGfct/404.png)](https://postimg.cc/TpNSG2sM)
 
 
 ## SEO
 
-![opengraph1.png](https://postimg.cc/ppQT17cF)
+[![opengraph1.png](https://i.postimg.cc/L6w1hFzN/opengraph1.png)](https://postimg.cc/ppQT17cF)
 
-![opengraph2.png](https://postimg.cc/gxN0GhWc)
+[![opengraph2.png](https://i.postimg.cc/wBdRc54N/opengraph2.png)](https://postimg.cc/gxN0GhWc)
 
-![opengraph3.png](https://postimg.cc/940Q0fmd)
+[![opengraph3.png](https://i.postimg.cc/g0qXMw1T/opengraph3.png)](https://postimg.cc/940Q0fmd)
 
-![opengraph4.png](https://postimg.cc/K1ZzXNCs)
+[![opengraph4.png](https://i.postimg.cc/pLjnFcCx/opengraph4.png)](https://postimg.cc/K1ZzXNCs)
 
